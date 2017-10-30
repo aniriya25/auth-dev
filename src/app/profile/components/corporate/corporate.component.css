@@ -1,0 +1,14 @@
+textarea{
+  height: 18px;
+}
+
+@media (max-width:768px){
+    h2{
+        font-size:18px;
+    }
+}
+.material-icons{font-size: 18px;    vertical-align: middle;}
+textarea.mat-input-element {
+    margin-bottom: 0px !important;
+}
+div{padding-top: 3px;}

@@ -1,0 +1,118 @@
+
+<div id="page">
+  <div fxLayout="row" fxLayout.xs="column">
+    <!-- // left section [content] -->
+    <div fxFlex="70" class="left-section">
+      <h2>{{title}}</h2>
+      <div fxLayout="row">
+        <div class="profile-section" fxFlex="58">
+          <app-providerbasicinfo 
+            [basicInfoInput]="basicInfoInput" 
+            [providerTypes]="providerTypes" 
+            [latitude]="latitude" 
+            [longitude]="longitude" 
+            (basicInfoFx)="basicInfoFx($event, eve)" 
+            [isBasicButton]="isBasicButton" 
+            [isBasicInfoFormoOverlay]="isBasicInfoFormoOverlay" 
+            [isBasicInfoActiveForm]="isBasicInfoActiveForm"
+            [isBasicInfoFieldset]="isBasicInfoFieldset"
+            [basicInfoProgress]="basicInfoProgress"
+            [profilePix]="profilePix"
+            [basicInfoBtnText]="basicInfoBtnText">
+          </app-providerbasicinfo>
+        </div>
+
+        <div class="contact-section" fxFlex="40" fxFlexOffset="2">
+          <app-providercontact 
+            (signatoryNcontactFx)="signatoryNcontactFx($event)" 
+            [contactInput]="contactInput" 
+            [signatoryInput]="signatoryInput"
+            [isContactButton]="isContactButton"
+            [isSignatoryButton]="isSignatoryButton"
+            [isSginatoryFormOverlay]="isSginatoryFormOverlay"
+            [isContactFormOverlay]="isContactFormOverlay"
+            [isSignatoryFieldset]="isSignatoryFieldset"
+            [isContactFieldset]="isContactFieldset"
+            [tabIndx]="tabIndx"
+            [signatoryProgress]="signatoryProgress"
+            [contactProgress]="contactProgress"
+            [signatoryBtnText]="signatoryBtnText"
+            [contactBtnText]="contactBtnText">
+          </app-providercontact>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column">
+        <div class="banking" fxFlex="100">
+            <app-banking 
+              (bankingFx)="bankingFx($event)"
+              (ifscDetails)="ifscDetails($event)"
+              [bankingUser]="bankingUser"
+              [branches]="branches"
+              [isBankingActiveForm]="isBankingActiveForm"
+              [isBankFormOverlay]="isBankFormOverlay"
+              [isBankingBtn]="isBankingBtn"
+              [isBankingFieldset]="isBankingFieldset"
+              [bankingBtn]="bankingBtn"
+              [cancelChequeImg]="cancelChequeImg"
+              [bankingProgress]="bankingProgress">
+            </app-banking>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column">
+            <div class="services" fxFlex="100">
+              <app-providerservices 
+                [services]="services" 
+                [isServiceButton]="isServiceButton"
+                [isServiceFormOverlay]="isServiceFormOverlay"
+                [isServiceFieldset] ="isServiceFieldset"
+                (servicesFx)="servicesFx($event)"
+                [servicesProgress]="servicesProgress">
+              </app-providerservices>
+            </div>
+      </div>
+
+      <div fxLayout="row" fxLayout="column">
+        <div class="mous" fxFlex="100">
+          <app-mous
+            [mouTypes]="mouTypes"
+            [annexures]="annexures"
+            [isMouFieldset]="isMouFieldset"
+            [isMouOverlay]="isMouOverlay"
+            [isMouBtn]="isMouBtn"
+            [versionNo]="versionNo"
+            [mouInput]="mouInput"
+            [pdfversion]="pdfversion"
+            [mouVersions]="mouVersions"
+            [completeSec]="completeSec"
+            [partialSec]="partialSec"
+            (mouFx)="mouFx($event)"
+            (getMouAnxrById)="getMouAnxrById($event)">
+          </app-mous>
+        </div>
+      </div>
+    </div>
+
+    <!-- // right section [aside] -->
+    <div fxFlex="28" fxFlexOffset="2" class="right-section">
+      <h3>Info</h3>
+      <hr>
+      <ul>
+            <li [ngClass]="{'active': isBasicActive}"><span></span> Basic Info
+              <!--<div>  
+                  <p [ngClass]="{'active': isBasicActive}"><span></span><label>Basic Info</label></p>
+              </div>-->
+            </li>
+            <li [ngClass]="{'active': isSignatoryActive}"><span></span>Signatory</li>
+            <li [ngClass]="{'active': isContactActive}"><span></span>Contact</li>
+            <li [ngClass]="{'active': isBankingActive}"><span></span>Banking</li>
+            <li [ngClass]="{'active': isServiceActive}"><span></span>Services</li>
+            <li [ngClass]="{'active': isMousActive}"><span></span>MOU</li>
+            <!--<li [ngClass]="{'active': isMousActive}"><span></span>MOU</li>-->
+            <li><span></span><a routerLink="/dashboard/provider/{{pid}}/outlets">Outlets</a> | <a routerLink="/dashboard/provider/{{pid}}/outlet/add">+</a></li>
+          </ul> 
+    </div>
+  </div>
+</div>
+

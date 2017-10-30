@@ -1,0 +1,49 @@
+<!--<router-outlet></router-outlet>-->
+<div class="container">
+  <!-- Left Panel -->
+  <div fxLayout="column" fxFlex.xs="100" fxFlex.lg="75" fxLayoutGap="20px" class="right-panel">
+    <!-- Chart Section -->
+    <app-chart></app-chart>
+    <div fxLayout="row" fxFlexOrder="2" fxLayoutAlign="center" fxLayoutGap="10px" fxLayout.xs="column">
+      <!-- Transaction Section -->
+      <div fxFlex="48" class.xs="tran">
+        <app-generate-transaction></app-generate-transaction>
+      </div>
+      <!-- Services Section -->
+      <div fxFlex="48" class.xs="tran">
+        <app-offer></app-offer>
+      </div>
+    </div>
+  </div>
+  <!-- Right Panel -->
+  <div fxLayout="column" fxHide.xs="true" fxFlex.xs="100" fxFlex.lg="25" fxLayoutGap="20px" fxLayoutAlign="center center">
+    <div class="cp-para">
+      <h2>Information</h2>
+      <ul>
+        <li>Name</li>
+        <li>Details</li>
+        <li>Pharmacy</li>
+      </ul>
+    </div>
+    <hr>
+
+    <div class="cp-para">
+      <h2>Services</h2>
+      <ul>
+        <li>Consultation</li>
+        <li>Diagnostic</li>
+        <li>Pharmacy</li>
+      </ul>
+    </div>
+    <hr>
+
+    <div class="cp-para">
+      <h2>MOU</h2>
+      <ul>
+        <li>Consultation</li>
+        <li>Diagnostic</li>
+        <li>Pharmacy</li>
+      </ul>
+    </div>
+  </div>
+</div>

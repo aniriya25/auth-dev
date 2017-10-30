@@ -1,0 +1,188 @@
+<form>
+  <fieldset [disabled]="false">
+      <!-- <div fxLayout="row">
+        <div fxFlex="100" class="vertical-tab-table-header">
+          <p>Specialisation <span></span>( 3 of 30 selected )</p>
+        </div> 
+      </div> -->
+      <div fxLayout="row">
+        <div fxFlex="20">
+          <div fxLayout="row">
+            <div fxFlex="100"  class="vertical-tab-table-header">
+              <p>Specialisation</p>
+            </div> 
+          </div>
+          
+          <div fxLayout="row" style="margin-top:25px;"> 
+                
+                      <md-input-container fxFlex="99">
+                        <input type="text" mdInput placeholder="Search">
+                      </md-input-container>
+                    
+              </div>
+          <ul class="providerServices">
+           
+            <li (click)="specialities = 'general'" >
+              <label>
+                <input type="checkbox" name="General" />    
+                <div class="btn btn-sık"><span>General</span></div>
+              </label>
+            </li>
+            <li (click)="specialities = 'cardiology'">
+              <label>
+                <input type="checkbox" name="cardiology" />    
+                <div class="btn btn-sık"><span>Cardiology</span></div>
+              </label>
+            </li>
+            <li (click)="specialities = 'dental'">
+              <label>
+                <input type="checkbox" name="Dental" />    
+                <div class="btn btn-sık"><span>Dental</span></div>
+              </label>
+            </li>
+            <li (click)="specialities = ''">
+              <label>
+                <input type="checkbox" name="Default" />    
+                <div class="btn btn-sık"><span>Default</span></div>
+              </label>
+            </li>
+          </ul>
+          <div fxLayout="row">
+            <div fxFlex="100">
+              <small> 3 of 30 Selected </small> 
+            </div> 
+          </div>
+        </div>
+        <div fxFlex="79" fxFlexOffset="1" class="vertical-tab-table-right">
+          <div fxLayout="row">
+            <div fxFlex="100" class="vertical-tab-table-header">
+              <p>Specialisation Detail</p>
+            </div> 
+          </div>
+          <div [ngSwitch]="specialities">
+            <div *ngSwitchCase="'general'" class="vertical-tab-table-body">
+              <!-- <p>OPD Price in Rupees</p>
+              <div fxLayout="row"> 
+                <md-input-container fxFlex="50">
+                  <input type="text" mdInput placeholder="Minimum Amount">
+                </md-input-container>
+                <md-input-container fxFlexOffset="5" fxFlex="45">
+                  <input type="text" mdInput placeholder="Maximum Amount">
+                </md-input-container>
+              </div> -->
+              <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxFlex="100">
+                  <p>Mode</p>
+                  <md-radio-group>
+                    <md-radio-button value="1" fxFlex="18">Yearly</md-radio-button>
+                    <md-radio-button value="2" fxFlex="22">Half yearly</md-radio-button>
+                    <md-radio-button value="3" fxFlex="20">Quarterly</md-radio-button>
+                    <md-radio-button value="4" fxFlex="20">Monthly</md-radio-button>
+                    <md-radio-button value="5" fxFlex="20">Daily</md-radio-button>
+                  </md-radio-group>
+                </div>
+              </div>
+              <br><br>
+              <div class="table-content">
+                <div fxLayout="row">
+                  <div fxFlex="20">
+                    <p>Timing-Open</p>
+                  </div>
+                  <div fxFlexOffset="5" fxFlex="20">
+                    <p>Timing-Close</p>
+                  </div>
+                  <div fxFlex="25" fxFlexOffset="5">
+                    <p>Days</p>
+                  </div>
+                  <div fxFlexOffset="5" fxFlex="20"> 
+                    <p>Price</p>  
+                  </div>
+                </div>
+                <div fxLayout="row">  
+                  <md-input-container fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                  <md-input-container fxFlexOffset="5" fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                  
+                  <div fxFlex="25" fxFlexOffset="5">
+                    <md-select fxFlex="95" placeholder="Price" required>
+                      <md-option>
+                        
+                      </md-option>
+                    </md-select>
+                  </div>
+                  <md-input-container fxFlexOffset="5" fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div class="btn-group">
+                  <button md-raised-button type="button" class="primary"><md-icon>add</md-icon>Add</button>
+                </div>
+              </div>
+            </div>
+            <div *ngSwitchCase="'cardiology'" class="vertical-tab-table-body"><p>cardiology</p></div>
+            <div *ngSwitchCase="'dental'" class="vertical-tab-table-body"><p>dental</p></div>
+            <div *ngSwitchDefault class="vertical-tab-table-body">
+               <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxFlex="100">
+                  <p>Mode</p>
+                  <md-radio-group>
+                    <md-radio-button value="1" fxFlex="18">Yearly</md-radio-button>
+                    <md-radio-button value="2" fxFlex="22">Half yearly</md-radio-button>
+                    <md-radio-button value="3" fxFlex="20">Quarterly</md-radio-button>
+                    <md-radio-button value="4" fxFlex="20">Monthly</md-radio-button>
+                    <md-radio-button value="5" fxFlex="20">Daily</md-radio-button>
+                  </md-radio-group>
+                </div>
+              </div>
+              <br><br>
+              <div class="table-content">
+                <div fxLayout="row">
+                  <div fxFlex="20">
+                    <p>Timing-Open</p>
+                  </div>
+                  <div fxFlexOffset="5" fxFlex="20">
+                    <p>Timing-Close</p>
+                  </div>
+                  <div fxFlex="25" fxFlexOffset="5">
+                    <p>Days</p>
+                  </div>
+                  <div fxFlexOffset="5" fxFlex="20"> 
+                    <p>Price</p>  
+                  </div>
+                </div>
+                <div fxLayout="row">  
+                  <md-input-container fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                  <md-input-container fxFlexOffset="5" fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                  
+                  <div fxFlex="25" fxFlexOffset="5">
+                    <md-select fxFlex="95" placeholder="Price" required>
+                      <md-option>
+                        
+                      </md-option>
+                    </md-select>
+                  </div>
+                  <md-input-container fxFlexOffset="5" fxFlex="20">
+                    <input type="text" mdInput placeholder="">
+                  </md-input-container>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div class="btn-group">
+                  <button md-raised-button type="button" class="primary"><md-icon>add</md-icon>Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </fieldset>
+</form>

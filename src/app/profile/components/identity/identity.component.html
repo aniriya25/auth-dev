@@ -1,0 +1,150 @@
+<div>
+<h2>Identity
+ <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+ <button class="pull-right" fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+</h2>
+<form class="form" #identity="ngForm" (ngSubmit)="submitFrm(user)">
+  <!-- // Aadhar section -->
+<fieldset>
+  <legend>Aadhar</legend>
+          <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <md-input-container fxFlex="100">
+
+                <input type="text" mdInput pattern="^\d{4}\s\d{4}\s\d{4}$" placeholder="Aadhar Number (example: 1234 5678 9012)" [(ngModel)]="user.addharNo" name="number" #number="ngModel">
+                <md-error *ngIf="number.errors && (number.dirty || number.touched)">
+                    <md-error>
+                      <span [hidden]="!number.errors.required">Enter adhaar number.</span>
+                      <span [hidden]="!number.errors.pattern">Invalid adhaar number.</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload</label>
+                  <input accept="image/*" class="file-upload__input" type="file" (change)="getFileFx($event, id)" name="pix1">
+                </div>
+                <md-input-container fxFlex="95">
+                  <input type="text" mdInput placeholder="document image" [(ngModel)]="user.imageUrl" name="adharPix" #adharPix="ngModel">
+                </md-input-container> 
+              </div>
+            </div>
+</fieldset>
+<!-- // Aadhar section -->
+  <!-- // Passport section -->
+<fieldset>
+  <legend>Passport</legend>
+  <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <md-input-container fxFlex="95">
+                <input type="text" mdInput placeholder="Passport Number" [(ngModel)]="user.passportNumber" name="passportNumber" #passportNumber="ngModel">
+                <md-error *ngIf="passportNumber.errors && (passportNumber.dirty || passportNumber.touched)">
+                    <md-error>
+                      <span [hidden]="!passportNumber.errors.required">Enter passport number.</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+               <div fxFlex="95" fxFlex.xs="100">
+                <md-input-container fxFlex="90" fxFlex.xs="100">
+
+        <input mdInput (focus)="picker.open()" [mdDatepicker]="picker"  placeholder="Expiry Date" required [(ngModel)]="user.passportExpDate" name="passportExpDate" #passportExpDate="ngModel">
+            <button type="button" mdSuffix [mdDatepickerToggle]="picker"></button>
+              <md-error *ngIf="passportExpDate.errors && (passportExpDate.dirty || passportExpDate.touched)">
+              <md-error>
+                <span [hidden]="!passportExpDate.errors.required">Please provide Expiry Date</span>
+              </md-error>
+            </md-error>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload</label>
+                  <input accept="image/*" class="file-upload__input" type="file" (change)="getFileFx($event, 'passport')" name="pix2">
+                </div>
+                <md-input-container fxFlex="95">
+                  <input type="text" mdInput placeholder="document image" [(ngModel)]="user.passportPix" name="passportPix" #passportPix="ngModel">
+                </md-input-container> 
+              </div>
+            </div>
+</fieldset>
+
+<!-- // Passport section -->
+<!-- // DL section -->
+<fieldset>
+  <legend>Driving Licence</legend>
+  <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="50" fxFlex.xs="100">
+                <md-input-container fxFlex="95">
+                <input type="text" mdInput placeholder="Driving Number" [(ngModel)]="user.dlNumber" name="dlNumber" #dlNumber="ngModel">
+                <md-error *ngIf="dlNumber.errors && (dlNumber.dirty || dlNumber.touched)">
+                    <md-error>
+                      <span [hidden]="!dlNumber.errors.required">Enter driving license number.</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+                <div fxFlex="50" fxFlex.xs="100">
+                <md-input-container fxFlex="90">
+                  <input type="text" (focus)="DrivingExpDate.open()" mdInput placeholder="Expiry Date" [mdDatepicker]="DrivingExpDate" [(ngModel)]="user.DrivingExpDate" name="DrivingExpDate" #DrivingExpDate="ngModel">
+                  <button type="button" mdSuffix [mdDatepickerToggle]="DrivingExpDate"></button>
+                </md-input-container>  
+                <md-datepicker #DrivingExpDate></md-datepicker>      
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload</label>
+                  <input accept="image/*" class="file-upload__input" type="file" (change)="getFileFx($event, 'driving')" name="pix3">
+                </div>
+                <md-input-container fxFlex="95">
+                  <input type="text" mdInput placeholder="document image" [(ngModel)]="user.drivingPix" name="drivingPix" #drivingPix="ngModel">
+                </md-input-container> 
+              </div>
+            </div>
+            
+</fieldset>
+<!-- // DL section -->
+
+<!-- // PAN section -->
+        <fieldset>  
+          <legend>PAN Card</legend>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <md-input-container fxFlex="100">
+                <input type="text" mdInput placeholder="PAN Card Number" [(ngModel)]="user.panNumber" name="panNumber" #panNumber="ngModel">
+                <md-error *ngIf="panNumber.errors && (panNumber.dirty || panNumber.touched)">
+                    <md-error>
+                      <span [hidden]="!panNumber.errors.required">Enter PAN Card number.</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload</label>
+                  <input accept="image/*" class="file-upload__input" type="file" (change)="getFileFx($event, 'pancard')" name="pix4">
+                </div>
+                <md-input-container fxFlex="95">
+                  <input type="text" mdInput placeholder="document image" [(ngModel)]="user.pancardPix" name="pancardPix" #pancardPix="ngModel">
+                </md-input-container> 
+              </div>
+            </div>
+         </fieldset>
+
+
+<div class="button-row" fxLayoutAlign="left">
+            <button md-raised-button class="primary">UPDATE</button>
+          </div>
+</form>
+</div>

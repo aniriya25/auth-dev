@@ -1,0 +1,216 @@
+
+<div class="container">
+    <div fxLayout="row">
+      <md-card class="profileCard" fxFlex="100">
+          <div fxFlex="69" fxFlexOffset="1" class="left-card">
+              <h2>Transaction</h2>
+              <div fxLayout="row" fx-layout-align="center center">
+                  <div fxFlex="100" class="v_align" >
+                    <md-input-container fxFlex="45">
+                      <input type="text" mdInput type='text' value="9876543210987654">
+                    </md-input-container>
+                    <md-input-container fxFlex="50" fxFlexOffset="4">
+                        <input type="text" mdInput type='text' placeholder='Enter Request Number'/>
+                      </md-input-container>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayout.xs="column">
+                    <fieldset fxFlex="100">
+                        <legend>Services</legend>
+                    <div fxLayout="row" fxFlex="100">
+                        <md-select placeholder="Select Service" fxFlex="50">
+                            <md-option *ngFor="let service of services" [value]="service.value">
+                              {{ service.viewValue }}
+                            </md-option>
+                          </md-select>
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
+                           <md-option *ngFor="let speciality of speciality" [value]="speciality.value">
+                              {{ speciality.viewValue }}
+                            </md-option>
+                          </md-select>
+                    </div><br>
+                    <div fxLayout="row" fxFlex="100">
+                        <md-input-container fxFlex="50">
+                            <input type="text" mdInput type='text'  placeholder='Doctor Name' />
+                          </md-input-container>
+                          <md-input-container fxFlex="50" fxFlexOffset="2">
+                              <input type="text" mdInput type='text'  placeholder='Amount' />
+                            </md-input-container>
+                        
+                    </div>
+                  </fieldset>
+                  </div>
+                <div fxLayout="row" fxLayout.xs="column">
+                    <fieldset fxFlex="100">
+                        <legend>Member</legend>
+                    <div fxFlex="100">
+                        <small>
+                            <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
+                            <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+                          </small>
+                      <ngx-datatable #myTable class='material fullscreen expandable'          
+                      [rows]='rows'
+                      [limit]="PageSize"
+                      [columnMode]="'force'"
+                      [headerHeight]="50"
+                      [footerHeight]="50"
+                      [scrollbarV]="false" 
+                      [rowHeight]="'auto'">
+                      (activate)="onActivate($event, modal)"-->
+                      <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                            <ol fxFlex="100" fxLayoutAlign="center center">
+                            <li fxFlex="35"><span> Aadhar Card </span>{{user.addharNo}}</li>
+                            <li fxFlex="13">adharcardlink</li>
+                            <li fxFlex="80"><a><button md-mini-fab ><md-icon>remove_red_eye</md-icon></button></a></li>
+
+                            </ol>
+                          </ng-template>
+                        </ngx-datatable-row-detail>
+                        <ngx-datatable-column name="NAME" prop="name" >
+                          <!-- Row Detail Template -->
+                          <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                           {{row.MemberName}}
+                          </ng-template>
+                        </ngx-datatable-column> 
+                        <ngx-datatable-column name="GENDER" prop="gender" width="100">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            {{row.Gender}}
+                          </ng-template>
+                        </ngx-datatable-column>
+                      
+                        <ngx-datatable-column name="DATE OF BIRTH" prop="dob">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            {{row.Dob}}
+                          </ng-template>
+                        </ngx-datatable-column>  
+
+                        <ngx-datatable-column name="RELATION" prop="relation" width="100">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            {{row.Relation}}
+                          </ng-template>
+                        </ngx-datatable-column> 
+
+                        <ngx-datatable-column name="AGE" prop="age" width="100">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            {{row.Age}}
+                          </ng-template>
+                        </ngx-datatable-column> 
+                       
+                      </ngx-datatable>
+                    </div>
+                  </fieldset>
+                  </div>
+                  <div fxLayout="row" fxLayout.xs="column">
+                      <fieldset fxFlex="40">
+                          <legend>Member ID</legend>
+                          <md-card fxFlex="100">
+                              <img md-card-image src="assets/images/user.jpg" alt="user profile photo">
+                              <md-card-content>
+                                 <span fxFlex="50" fxLayoutAlign="start">{{user.firstName}} {{user.lastName}}</span>
+                                 <span fxFlex="50" fxLayoutAlign="end">{{user.Relation}}</span>
+                                </md-card-content>
+                          </md-card>
+                      </fieldset>
+                      <fieldset fxFlex="60">
+                          <legend>Member ID Proof</legend>
+                          <md-card fxFlex="100">
+                              <div fxLayout="row">
+                                  <md-input-container fxFlex="100">
+                                      <input type="text" mdInput type='text' placeholder='Date of Birth' [(ngModel)]="user.dob" #dob="ngModel" />
+                                    </md-input-container>
+                              </div><br/>
+                            <div fxLayout="row">
+                                <md-input-container fxFlex="50">
+                                    <input type="text" mdInput type='text' [(ngModel)]="user.refIdentityTypeId"  placeholder='ID Proof No' />
+                                  </md-input-container>
+                            
+                                    <md-input-container fxFlex="48" fxFlexOffset="2">
+                                      <input type="text" mdInput type='text' pattern="^\d{4}\s\d{4}\s\d{4}$" placeholder='ID Proof No' [(ngModel)]="user.addharNo" #number="ngModel" />
+                                    </md-input-container>
+                            </div>  <br>
+                            <div fxLayout="row">
+                                <md-input-container fxFlex="50">
+                                    <input type="text" mdInput type='text' placeholder='Gender' [(ngModel)]="user.gender" />
+                                  </md-input-container>
+                            
+                                    <md-input-container fxFlex="48" fxFlexOffset="2">
+                                      <input type="text" mdInput type='text' placeholder='Age' [(ngModel)]="user.addharNo"  />
+                                    </md-input-container>
+                            </div>  
+                            <!-- <div>
+                              <p>Upload ID proof</p>
+                            <div class="file-upload" fxLayout fxLayoutAlign="center center">
+                               <input id="upload" class="btnupload" type="file" name="file-upload">
+                               <md-icon>file_upload</md-icon>
+                            </div>
+                            </div> -->
+                          </md-card>
+                      </fieldset>
+                  </div>
+                  <div fxLayout="row" fxLayout.xs="column">
+                      <fieldset fxFlex="40">
+                          <legend>Member ID</legend>
+                          <md-card fxFlex="100">
+                              <img md-card-image src="assets/images/user.jpg" alt="user profile photo">
+                              <md-card-content>
+                                 <h2>abc</h2>
+                                </md-card-content>
+                          </md-card>
+                      </fieldset>
+                      <fieldset fxFlex="60">
+                          <legend>Member ID Proof</legend>
+                          <md-card fxFlex="100">
+                            <div fxLayout="row">
+                                <md-select placeholder="ID proof type" fxFlex="100">
+                                    <md-option>Pan card</md-option>                                  
+                                    <md-option>Passport</md-option>
+                                    <md-option>Driving Licence</md-option> 
+                                    <md-option>Passport</md-option>  
+                                  </md-select>
+                            </div>
+                                  <div fxLayout="row"  fxLayoutGap="10px">
+                                    <md-input-container fxFlex="100">
+                                      <input type="text" mdInput type='text' placeholder='ID Proof No' />
+                                    </md-input-container>
+                            </div>  
+                            <div>
+                              <p>Upload ID proof</p>
+                            <div class="file-upload" fxLayout fxLayoutAlign="center center">
+                               <input id="upload" class="btnupload" type="file" name="file-upload">
+                               <md-icon>file_upload</md-icon>
+                            </div>
+                            </div>
+                          </md-card>
+                      </fieldset>
+                  </div>
+                  <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
+                    <button md-raised-button class="primary">Submit</button>
+                  </div>
+          </div>
+          <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+              <div fxLayout="row">
+                <div fxFlex="100" class="cp-para">
+                  <h3><label>Recent Users</label></h3>
+                  
+                  <ul>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                    <li>Poornima</li>
+                  </ul>
+  
+                </div>
+              </div>
+              <hr>
+            </div>
+      </md-card>
+    </div>
+  </div>
+  

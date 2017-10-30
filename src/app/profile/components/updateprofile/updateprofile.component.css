@@ -1,0 +1,194 @@
+h2 {
+    font-size: 26px;
+    font-weight: normal;
+    padding-bottom: 8px;
+    margin: 0px;
+}
+h2 > hr {
+    margin-bottom: 8px;
+}
+.profileThmb {
+    width: 120px;
+    height: 120px;
+    background: #607d8b;
+    border-radius: 50%;
+   text-align: center;
+   line-height: 120px;
+   font-size: 45px;
+   color: white;
+}
+
+@media (max-width: 768px) {
+    .profileThmb {
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+    }
+}
+
+.profileDes {display: block}
+.profileDes > h3 {
+    font-weight: normal;
+    font-size: 24px;
+    margin-bottom:0px;
+    padding-bottom: 0px;
+    color: #607d8b;
+}
+.profileDes > p {
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+.colxs-4 {width: 40%;}
+.form {margin: 30px 0px 0px 0px;}
+
+div.mat-input-underline {
+    border: none!important;
+}
+
+.mat-hint {
+    margin-left: 15px;
+}
+.panelHeading {
+    cursor: pointer;
+}
+
+
+/* profile */
+.profileCard {
+    padding: 0px;
+}
+@media (max-width: 767px) {
+    .profileCard {margin-bottom: 30px;}
+}
+.profileImg {
+    height: 254px;
+    position: relative;
+    overflow: hidden;
+}
+.profileImg > img {
+    width: 100%;
+    height: auto;
+    min-height: 254px;
+}
+.profileOverlap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0; top: 0;
+    background: rgba(255, 255, 255, 0.7);
+}
+.profileOverlap > p {text-align: center;}
+.profileOverlap > p img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.profileOverlap > h4 {
+    text-align: center;
+    margin: 10px 0px;
+    font-weight: normal;
+    font-size: 22px;
+    color: #3e444e;
+    text-transform: capitalize;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+.profileOverlap > p {
+    margin: 0px;
+    font-weight: 300;
+}
+.profileOverlap > p:first-child {
+    margin-top: 25px;
+}
+
+ul.profileList {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+ul.profileList li > p{
+    display: block;
+    padding: 10px;
+        margin: 0px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(210, 210, 210, 0.69);
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+background: #ffffff; 
+background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #e2e2e2 100%);
+background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#e2e2e2 100%); 
+background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#e2e2e2 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2e2e2',GradientType=0 );
+}
+ul.profileList a li{
+    color: #333;
+    letter-spacing: 1px;
+}
+ul.profileList li a:hover,
+ul.profileList li a:focus {
+    color: #333;
+}
+ul.profileList li:hover {
+    /*background: #f5f5f5;*/
+    cursor: pointer;
+}
+ul.profileList li span {
+    background: #2296fc;
+    color: white;
+    border-radius: 4px;
+    padding: 2px 8px;
+    float: right;
+}
+ul.profileList li ul{
+        transform: scale(1);
+  transition: all 0.5s;
+  margin-left: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+ul.profileList li ul li{
+    list-style: none;
+    padding: 0px;
+    font-family: 'Raleway';
+    margin: 0px;
+    border-top: none;
+    text-indent: 12px;
+    font-size: 15px;
+}
+ul.profileList li ul a li{
+  display: block;
+    padding: 5px;
+    border-bottom: 1px solid #e5e5e5;   
+}
+ul.profileList li ul a li md-icon {padding-right: 10px;}
+ul.profileList li ul a li:hover{
+     background: #f5f5f5;
+    cursor: pointer;
+}
+ul.profileList li ul li span {
+    background: #2296fc;
+    color: white;
+    border-radius: 4px;
+    padding: 2px 8px;
+    float: right;
+}
+.arrow:before {
+    content:'\203A';
+    font: normal 24px Arial;
+    float: right;
+}
+.arrow.activeArrow:before{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.material-icons{font-size: 18px;    vertical-align: middle;}
+ 
+
+md-icon.inActiveBtn {
+    color: gray;
+}
+md-icon.isActiveBtn {
+    color: #000;
+}

@@ -1,0 +1,72 @@
+
+<div class="form-control">
+  <div [ngClass]="{'form-overlay': isOutletBankingOverlay}">
+    <div [hidden]="isOutletBankingBtn" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edtFrm()">EDIT</button> 
+    </div>
+  </div>   
+ 
+  <form #outletBanking="ngForm" (ngSubmit)="outletBankingFrm()">
+    <fieldset [disabled]="isOutletBankingFieldset">
+        <!--<md-progress-bar *ngIf="bankingProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>-->
+      <p>Banking</p>
+      <div data-attr="banking">
+          <div fxLayout="row">
+            <div fxFlex="50">
+              <div fxLayout="row">
+                <md-input-container fxFlex="100">
+                  <input type="text" mdInput placeholder="Bank Account No.">
+                </md-input-container>
+              </div>
+              <div fxLayout="row">
+                <md-select placeholder="Account Type" fxFlex="100">
+                  <md-option >
+                  </md-option>
+                </md-select>
+              </div>
+            </div>
+            <div fxFlex="45" fxFlexOffset="5">
+              <div fxFlex="100" class="profile-pic">
+                <!-- <span></span> -->
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload</label>
+                  <input accept="image/*" class="file-upload__input" type="file">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row">
+              <md-input-container fxFlex="50">
+                <input type="text" mdInput placeholder="IFSC Code">
+              </md-input-container>
+
+              <md-input-container fxFlex="45" fxFlexOffset="5">
+                <input type="text" mdInput placeholder="Bank Name">
+              </md-input-container>
+          </div>
+          <div fxLayout="row">
+            <md-select placeholder="Branch Name" fxFlex="50" >
+              <md-option >
+              </md-option>
+            </md-select>
+          
+            <md-input-container fxFlex="45" fxFlexOffset="5" class="mdTextAra">
+              <textarea mdInput placeholder="Address" name="address"></textarea>
+            </md-input-container>
+          </div>
+          <div fxLayout="row">
+            <md-input-container fxFlex="50">
+              <input type="text" mdInput placeholder="City">
+            </md-input-container>
+            <md-input-container fxFlex="45" fxFlexOffset="5">
+              <input type="text" mdInput placeholder="State">
+            </md-input-container>
+          </div>
+      </div>
+
+      <div class="btn-group" [hidden]="isOutletBankingOverlay || isOutletBankingFieldset">
+        <button md-raised-button type="submit" class="primary">SUBMIT</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

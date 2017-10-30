@@ -1,0 +1,132 @@
+<div>
+<h2>Corporate
+  <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+  <button class="pull-right" fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+</h2>
+
+<form class="form" #corporate="ngForm" (ngSubmit)="submitFrm(user)">
+  <div class="row" fxLayout.xs="column">
+    <div fxFlex="33">
+    <md-input-container fxFlex="90">
+      <input mdInput placeholder="Name" readonly required [(ngModel)]="user.name" name="name" #name="ngModel">
+      <md-error *ngIf="name.errors && (name.dirty || name.touched)">
+            <md-error>
+              <span [hidden]="!name.errors.required">Provide name</span>
+            </md-error>
+          </md-error>
+    </md-input-container>
+    </div>
+    <div fxFlex="33">
+     <md-input-container fxFlex="90">
+        <input mdInput placeholder="Corporate Email Id" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.email" name="corporateEmailId" #corporateEmailId="ngModel">
+        <md-error *ngIf="corporateEmailId.errors && (corporateEmailId.dirty || corporateEmailId.touched)">
+              <md-error>
+                <span [hidden]="!corporateEmailId.errors.required">provide email</span>
+                <span [hidden]="!corporateEmailId.errors.pattern">Invalid email</span>
+              </md-error>
+            </md-error>
+      </md-input-container>
+    </div>
+   <div fxFlex="33" fxFlex.xs="100">
+      <md-input-container fxFlex="90" fxFlex.xs="100">
+        <input mdInput placeholder="Employee Id" required [(ngModel)]="user.uniqueId" name="employeeId" #employeeId="ngModel">
+        <md-error *ngIf="employeeId.errors && (employeeId.dirty || employeeId.touched)">
+              <md-error>
+                <span [hidden]="!employeeId.errors.required">Provide employee id</span>
+              </md-error>
+            </md-error>
+      </md-input-container>
+        </div>
+  </div>
+  <div class="row" fxLayout.xs="column">
+        <div fxFlex="33" fxFlex.xs="100">
+      <md-input-container fxFlex="90" fxFlex.xs="100">
+        <input mdInput (focus)="picker.open()" [mdDatepicker]="picker" [max]="maxDate" placeholder="Joining Date" required [(ngModel)]="user.doj" name="joiningDate" #joiningDate="ngModel">
+            <button type="button" mdSuffix [mdDatepickerToggle]="picker"></button>
+              <md-error *ngIf="joiningDate.errors && (joiningDate.dirty || joiningDate.touched)">
+              <md-error>
+                <span [hidden]="!joiningDate.errors.required">Provide joining date</span>
+              </md-error>
+            </md-error>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>
+      </div>
+    <!--{{user.refDesigId | json}}-->
+    <div fxFlex="33" fxFlex.xs="100">
+       <md-select placeholder="Designation" fxFlex="90" required #designationId="ngModel" [(ngModel)]="user.refDesigId" name="designation">
+          <md-option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.name}}</md-option>
+       </md-select>  
+
+      <!--<md-input-container fxFlex="90">
+          <input mdInput placeholder="Designation" required [(ngModel)]="user.refDesigId" name="designation" #designation="ngModel">
+            <md-error *ngIf="designation.errors && (designation.dirty || designation.touched)">
+              <md-error>
+                <span [hidden]="!designation.errors.required">Provide designation</span>
+              </md-error>
+            </md-error>
+      </md-input-container>-->
+    </div>
+    <div fxFlex="33" fxFlex.xs="100">
+       <md-select placeholder="Department" fxFlex="90" required #departmentId="ngModel" [(ngModel)]="user.refDeptId" name="department">
+          <md-option *ngFor="let department of departments" value="{{department.id}}">{{department.name}}</md-option>
+       </md-select>
+
+        <!--<md-input-container fxFlex="90">
+          <input mdInput placeholder="Department" required [(ngModel)]="user.dept" name="department" #department="ngModel">
+          <md-error *ngIf="department.errors && (department.dirty || department.touched)">
+              <md-error>
+                <span [hidden]="!department.errors.required">Provide department</span>
+              </md-error>
+            </md-error>
+        </md-input-container>-->
+    </div>
+  </div>
+    <div class="row" fxLayout.xs="column">
+     <div fxFlex="50" fxFlex.xs="100">
+      <md-input-container fxFlex="90">
+            <textarea mdInput placeholder="Address" required [(ngModel)]="user.address" name="address" #address="ngModel" readonly>{{user.address}}</textarea>
+              <md-error *ngIf="address.errors && (address.dirty || address.touched)">
+              <md-error>
+                <span [hidden]="!address.errors.required">Provide address</span>
+              </md-error>
+            </md-error>
+      </md-input-container>
+    </div>
+   
+      <div fxFlex="50" fxFlex.xs="100">
+      
+        <md-select placeholder="Branch" fxFlex="90" required #branchId="ngModel" [(ngModel)]="user.refCorpBranchId" name="branch" disabled >
+          <md-option *ngFor="let branch of branches" value="{{branch.id}}">{{branch.name}}</md-option>
+       </md-select>
+        <!--<input mdInput placeholder="Branch" required [(ngModel)]="user.name" name="branch" #branch="ngModel">
+          <md-error *ngIf="branch.errors && (branch.dirty || branch.touched)">
+          <md-error>
+            <span [hidden]="!branch.errors.required">Please provide Branch</span>
+          </md-error>
+        </md-error>-->
+   
+      </div>
+    </div>
+      <!--<div class="row" fxLayout.xs="column">
+      <div fxFlex="50" fxFlex.xs="100">
+          <md-select fxFlex="90" fxFlex.xs="100" placeholder="Select Country" name="countryid" #countryid="ngModel" [(ngModel)]="user.countryId" (change)="selStates($event.value)">
+             <md-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</md-option>
+               <md-error *ngIf="countryid.errors && (countryid.dirty || countryid.touched)">
+                  <md-error>
+                    <span [hidden]="!countryid.errors.required">Provide address</span>
+                  </md-error>
+                </md-error>
+          </md-select>
+      </div>
+      <div fxFlex="50" fxFlex.xs="100">
+         <md-select fxFlex="90" fxFlex.xs="100" placeholder="Select State" [(ngModel)]="user.stateid" name="state" #state="ngModel">
+           <md-option *ngFor="let state of states" [value]="state.id">{{state.name}}</md-option>
+          </md-select>
+      </div>
+    </div>-->
+    <p></p>
+  <div class="button-row" fxLayoutAlign="left">
+    <button md-raised-button class="primary">UPDATE</button>
+  </div>
+</form>
+</div>

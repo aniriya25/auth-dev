@@ -1,0 +1,17 @@
+@media (max-width:768px){
+    h2{
+        font-size:18px;
+    }
+}
+.material-icons{font-size: 18px;    vertical-align: middle;}
+.input{
+        padding: 8px;
+        font-size: 16px;
+        margin: 8px 0;
+        border: 0px;
+        text-align: center;
+        vertical-align: middle;
+        width:70%;
+        background: rgb(210, 210, 210);
+        border-radius: 3px;
+}

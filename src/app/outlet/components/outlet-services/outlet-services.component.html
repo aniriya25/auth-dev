@@ -1,0 +1,244 @@
+<div class="form-control">
+    <!-- // services -->
+    <div data-attr="services" style="position: relative; display: block;">
+        <div [ngClass]="{'form-overlay': isServicesOverlay}">
+            <div [hidden]="isServicesBtn" style="position: absolute; right: 0; bottom: 0;">
+                <button md-raised-button type="button" class="primary" (click)="editService()">EDIT</button>
+            </div>
+        </div> 
+        <form>
+            <fieldset [disabled]="isServicesFieldset">
+                <p>Services</p>
+                <div fxLayout="row">
+                    <ul class="providerServices"> 
+                        <li *ngFor="let service of services">
+                            <label>
+                                <input type="checkbox" name="{{service.name}}" value="{{service.id}}" [(ngModel)]="service.isChecked" (change)="updateService(service)" /> 
+                                <div class="btn btn-sık"><span>{{service.name}}</span></div>  
+                            </label>
+                        </li>
+                        <!-- <li>
+                            <label>
+                                <input type="checkbox" name="Pharmacy" (change)="updateService()" /> 
+                                <div class="btn btn-sık"><span>Pharmacy</span></div>  
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="Diagnostic" /> 
+                                <div class="btn btn-sık"><span>Diagnostic</span></div>  
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="Daycare" /> 
+                                <div class="btn btn-sık"><span>Daycare</span></div>  
+                            </label>
+                        </li> -->
+                    </ul>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <br><br>
+    <!-- // sub services -->
+    <div data-attr="sub-services" style="margin-top: 20px;" [hidden]="subServices == ''" style="position: relative;">
+        <div [ngClass]="{'form-overlay': isServicesOverlay}">
+        </div>
+
+        <!-- <p *ngFor="let subService of subServices" id="{{subService.id}}">{{subService.id}}</p> -->
+        <md-tab-group>
+            <md-tab *ngFor="let subService of subServices; let i = index;" label="{{subService.name}}">
+                <div *ngIf="subService.name == 'OPD'">
+                    {{subService.name}}
+                    <app-opd
+                    (outletOPDContactFx)="outletOPDContactFx($event)">
+                    </app-opd>
+                    <!-- <hr> -->
+                    <!-- <form #{{subService.name}}="ngForm" (ngSubmit)="subServiceFrm(subService['name'+'ab'])">
+                        <div fxLayout="row">
+                            <md-input-container fxFlex="90">
+                                <input type="text" mdInput placeholder="Enter name" [(ngModel)]="subService['name'+'ab'].name" name="name" #name="ngModel">
+                            </md-input-container>
+                        </div>
+                        <div fxLayout="row">
+                            <button md-raised-button type="submit" class="primary">SUBMIT</button>
+                        </div>
+                    </form> -->
+                </div>
+                <div *ngIf="subService.name == 'Pharmacy'">
+                    {{subService.name}}
+                    <hr>
+                    <form #{{subService.name}} (ngSubmit)="subServiceFrm(subService['name'+'ab'])">
+                        <div fxLayout="row">
+                        <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Enter name" [(ngModel)]="subService['name'+'ab'].name" name="name" #name="ngModel">
+                        </md-input-container>
+                        </div>
+
+                        <div fxLayout="row">
+                            <button md-raised-button type="submit" class="primary">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="subService.name == 'Diagnostic'">
+                    <form #{{subService.name}}="ngForm" (ngSubmit)="subServiceFrm(subService['name'+'ab'])">
+                        <div fxLayout="row">
+                            <md-input-container fxFlex="90">
+                                <input type="text" mdInput placeholder="Enter name" [(ngModel)]="subService['name'+'ab'].name" name="name" #name="ngModel">
+                            </md-input-container>
+                        </div>
+                        <div fxLayout="row">
+                            <button md-raised-button type="submit" class="primary">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </md-tab>
+            <!-- <md-tab label="Pharmacy">
+                Pharmacy
+            </md-tab>
+            <md-tab label="Diagnostic">
+                Diagnostic
+            </md-tab>
+            <md-tab label="Daycare">
+                Daycare
+            </md-tab> -->
+        </md-tab-group>
+    </div>
+
+    
+  
+
+  <form>
+    <fieldset>
+        <!--<p>Services</p>-->
+        <div data-attr="services">
+            <!--<div fxLayout="row">
+                <ul class="providerServices">                
+                     <li>
+                        <label>
+                            <input type="checkbox" name="OPD" />    
+                            <div class="btn btn-sık"><span>OPD</span></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="Pharmacy" />    
+                            <div class="btn btn-sık"><span>Pharmacy</span></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="Diagnostic" />    
+                            <div class="btn btn-sık"><span>Diagnostic</span></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="Wellness" />    
+                            <div class="btn btn-sık"><span>Wellness</span></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="Daycare" />    
+                            <div class="btn btn-sık"><span>Daycare</span></div>
+                        </label>
+                    </li>
+                </ul>
+            </div>-->
+            <!-- <md-tab-group> -->
+                <!-- <md-tab label="OPD">
+                    <div class="services">
+                        <h3>Statutory Details</h3>
+                        <div fxLayout="row">
+                            <md-input-container fxFlex="33">
+                                <input type="text" mdInput placeholder="Operation License Number">
+                            </md-input-container>
+                            <md-input-container fxFlexOffset="3" fxFlex="30">
+                                <input type="text" mdInput placeholder="License Issuing Authority">
+                            </md-input-container>
+                        
+                            <md-input-container fxFlex="30" fxFlexOffset="3">
+                                <input type="text" mdInput placeholder="Expiry Date" [mdDatepicker]="picker">
+                                <button type="button" [mdDatepickerToggle]="picker" mdSuffix></button>
+                            </md-input-container>  
+                            <md-datepicker #picker></md-datepicker>
+                        </div>
+                    </div>
+                    <div class="services">
+                        <h3>Operations</h3>
+                        <div fxLayout="row">
+                            <div fxFlex="100">
+                                <p>Timing</p>
+                                <div fxLayout="row">
+                                    <md-input-container fxFlex="33">
+                                        <input type="text" mdInput placeholder="Opening Time">
+                                    </md-input-container>
+                                
+                                    <md-input-container fxFlex="30" fxFlexOffset="3">
+                                        <input type="text" mdInput placeholder="Closing time">
+                                    </md-input-container>
+                               
+                                    <md-input-container fxFlex="30" fxFlexOffset="3">
+                                        <input type="text" mdInput placeholder="Weekly Off">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex="100">
+                                <p>Contact</p>
+                                <div fxLayout="row">
+                                    <md-input-container fxFlex="50">
+                                        <input type="text" mdInput placeholder="Name">
+                                    </md-input-container>
+                                
+                                    <md-input-container fxFlex="44" fxFlexOffset="5">
+                                        <input type="text" mdInput placeholder="Designation">
+                                    </md-input-container>
+                                </div>
+                                <div fxLayout="row">
+                                    <md-input-container fxFlex="50">
+                                        <input type="email" required mdInput placeholder="Email">
+                                    </md-input-container>
+                                
+                                    <md-input-container fxFlex="44" fxFlexOffset="5">
+                                        <input type="text" mdInput placeholder="Mobile">
+                                    </md-input-container>
+                                </div>
+                                <div fxLayout="row">
+                                    <md-input-container fxFlex="50">
+                                        <input type="text" mdInput placeholder="Landline">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="services">
+                        <h3>Discounts</h3>
+                        <div fxLayout="row">
+                            <md-input-container fxFlex="50">
+                                <input type="text" mdInput placeholder="OPD Discount (in %)">
+                            </md-input-container>
+                            
+                            <md-input-container fxFlex="44" fxFlexOffset="5">
+                                <input type="text" mdInput placeholder="OPD Discount (in Rs)">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="services">    
+                        <h3>Specialities</h3>
+                        <app-outlet-specialities></app-outlet-specialities>
+                    </div>
+                </md-tab>
+                <md-tab label="Pharmacy">Pharmacy</md-tab>
+                <md-tab label="Diagnostic">Diagnostic</md-tab>
+                <md-tab label="Wellness">Wellness</md-tab>
+                <md-tab label="Daycare">Daycare</md-tab> -->
+            <!-- </md-tab-group> -->
+        </div>
+    </fieldset>
+  </form>
+</div>

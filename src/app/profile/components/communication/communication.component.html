@@ -1,0 +1,50 @@
+<div>
+<h2>Contact Details <button class="pull-right edit-btn"  md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+  <!--<button class="pull-right"  md-raised-button fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+</h2>
+<form class="form" #communicationFrm="ngForm" (ngSubmit)="submitFrm(user)">
+  <fieldset>
+  <legend>Contact</legend>
+          <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="10" fxFlex.xs="100">
+                <input type="text" readonly="readonly" class="input" value="+91">
+              </div>
+              <div fxFlex="30" fxFlex.xs="100">
+                 <md-input-container fxFlex="95" fxFlex.xs="100" style="border:none;">
+                  <input mdInput placeholder="Mobile No" pattern="\d*" minlength="10"  maxlength="10" required [(ngModel)]="user.value" name="mobileNo" #mobileNo="ngModel">
+                  <md-error *ngIf="mobileNo.errors && (mobileNo.dirty || mobileNo.touched)">
+                    <md-error>
+                      <span [hidden]="!mobileNo.errors.required">Provide mobile number</span>
+                      <span [hidden]="!mobileNo.errors.pattern && !mobileNo.errors.minlength">Invalid mobile number</span>
+                     </md-error>
+                  </md-error>
+                </md-input-container>
+              </div>
+
+              <div fxFlex="30" fxFlex.xs="100"> 
+              <md-input-container fxFlex="95" fxFlex.xs="100" style="border:none;">
+        
+                <input type="text" mdInput placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.value" name="emailId" #emailId="ngModel"/>
+                <md-error *ngIf="emailId.errors && (emailId.dirty || emailId.touched)">
+                    <md-error>
+                      <span [hidden]="!emailId.errors.required">Please provide email</span>
+                      <span [hidden]="!emailId.errors.pattern">Invalid email</span>
+                    </md-error>
+                  </md-error>
+              </md-input-container>
+             </div>
+            
+              <div fxFlex="30" fxFlex.xs="100">  
+                            
+                <md-select fxFlex="90" placeholder="Type" name="CommunicationTypeID" #CommunicationTypeID="ngModel" [(ngModel)]="user.refContactTypeId">
+                    <md-option *ngFor="let communication of selectType" value="{{communication.id}}">{{communication.name}}</md-option>
+                </md-select> 
+              </div>
+            </div>
+
+   </fieldset>
+  <div class="button-row">
+    <button md-raised-button class="primary"><span *ngIf="user.id">SUBMIT</span><span *ngIf="!user.id">UPDATE</span></button>
+  </div>  
+</form>
+</div>

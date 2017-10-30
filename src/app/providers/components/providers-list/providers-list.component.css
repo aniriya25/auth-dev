@@ -1,0 +1,207 @@
+.container{padding:2%;}
+.v_align{ margin-top: 5px;}
+.ngx-datatable.material {background: #FFF;box-shadow: none;vertical-align: middle}
+.addrow{margin-bottom: 20px;}
+.addprovider{padding: 0px;list-style: none;cursor: pointer;font-family: 'Raleway';}
+.addprovider > li{display: inline-block;vertical-align: middle; margin-left:10px;height: 110px;width:110px;background:#ffffff; border: 1px solid #ddd;padding: 10px;text-align: center; margin-bottom: 10px;}
+.addprovider > li > label {font-size: 25px;font-weight: bold;display: block;margin-bottom: 20px;}
+.addprovider > li:hover {border: 1px solid #5a9ae5;}
+.addprovider > li:hover label {color: #5a9ae5;}
+.addprovider > li:active{border: 1px solid #d2cfcf;cursor: pointer;} 
+ul.addprovider > li > p{margin-bottom: 0px;-webkit-margin-before: 0px;}
+.right-card{border-left: 1px solid #d6d2d2;}
+strong {color:#5a9ae5;}
+label, p > b{color:#777575;font-size: 14px;}
+label > span{color:#777575;}
+label > strong {font-weight: bold;color:#777575;}
+.object{vertical-align: top;margin-right:10px;display:table-cell;} 
+.object-body{display: table-cell;vertical-align: top;}
+/*md-icon{color:#777575;font-size: 25px;}*/
+button{color: #508cd2;}
+small > label{color:red;font-weight:600;}
+small > p >label{color:#5a9ae5;font-weight:600;}
+.icon{color:#f5ad27;}
+.link{color:#5a9ae5;display: table-cell;font-weight: 300;}
+.page-count {text-transform: uppercase!important;}
+
+
+/* provider analysis box */
+.recBox {
+    display: block;
+    padding: 18px 15px;
+    position: relative;
+    background: yellow;
+    cursor: pointer;
+}
+.recBox p {
+    text-align: center;
+    margin: 0px;
+}
+.recBox .num {
+    font-size: 40px;
+    font-weight: 400;
+    text-indent: 10px;
+    line-height: 100%;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+.recBox.totalProvider {
+    background: #597d8c;
+    color: white;
+}
+.recBox.newApproval {
+    background: #00bed8;
+    color: white;
+}
+.recBox.inProgress {
+    background: #f6bb42;
+    color: white;
+}
+.recBox.approved {
+    background: #70cb49;
+    color: white;
+}
+.triangle-bottomleft {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 30px solid red;
+    border-right: 30px solid #fafafa;
+}
+.recBox.totalProvider .triangle-bottomleft {
+    border-bottom: 30px solid #40606d;
+    border-right: 30px solid #fafafa;
+}
+.recBox.newApproval .triangle-bottomleft {
+    border-bottom: 30px solid #06abc1;
+    border-right: 30px solid #fafafa;
+}
+.recBox.inProgress .triangle-bottomleft {
+    border-bottom: 30px solid #ce9c37;
+    border-right: 30px solid #fafafa;
+}
+.recBox.approved .triangle-bottomleft {
+    border-bottom: 30px solid #62b140;
+    border-right: 30px solid #fafafa;
+}
+.triangle-bottomleft.active {
+    border-color: transparent!important;
+}
+.mainIcon {
+    font-size: 35px;
+}
+.recBox.totalProvider .mainIcon,
+.recBox.newApproval .mainIcon,
+.recBox.inProgress .mainIcon,
+.recBox.approved .mainIcon {
+    color: white;
+    margin-right: 30px;
+}
+._caption {
+    border: 1px solid #ddd;
+    border-top: 0px;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+    color: #7d7b7b;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    cursor: pointer;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+._caption.totalProvider {color: #597d8c;
+    -webkit-box-shadow: 0 0 10px 2px #ddd;
+    -moz-box-shadow: 0 0 10px 2px #ddd;;
+    box-shadow: 0 0 10px 2px #ddd;
+}
+._caption.newApproval {color: #00bed8;
+    -webkit-box-shadow: 0 0 10px 2px #ddd;
+    -moz-box-shadow: 0 0 10px 2px #ddd;;
+    box-shadow: 0 0 10px 2px #ddd;}
+._caption.inProgress {color: #f6bb42;
+         -webkit-box-shadow: 0 0 10px 2px #ddd;
+    -moz-box-shadow: 0 0 10px 2px #ddd;;
+    box-shadow: 0 0 10px 2px #ddd;
+    }
+._caption.approved {color: #70cb49;
+     -webkit-box-shadow: 0 0 10px 2px #ddd;
+    -moz-box-shadow: 0 0 10px 2px #ddd;;
+    box-shadow: 0 0 10px 2px #ddd;
+}
+
+/* right panel style */
+.cp{position: relative}
+.cp md-icon{
+    font-size: 55px;
+    color: #4dbbfe;}
+.cp-para{text-align: center;    font-size: 22px;
+    font-weight: normal;}
+.cp-para h3 span{position: relative;font-family: "Oswald",Helvetica,Arial,sans-serif;}
+.cp-para h3 span::after{
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 1px;
+    bottom: -8px;
+    left: 0;
+    background: #4b5668;
+} 
+h3 {
+    font-size: 26px;
+    font-weight: 300;
+    padding-bottom: 8px;
+    margin: 0px;
+}
+.cp-para > label{position:relative;font-size:16px;color:#56befe;}
+.cp-para > label::after{border-bottom:5px solid #828282}
+.cp-para small > label{font-size:14px;color:#5a9ae5;font-weight: 300;}
+.cp-para small > p > label{font-size:14px;color:#333;font-weight: 300;}
+.cp-para small > p{font-size:14px;color:#333;font-weight: 300;-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em; }
+.cp-margin{text-align: left;border-bottom:1px solid #d2d0d0;margin-left: 10px;}
+.cp-margin:last-child{border-bottom:none;}
+.cp-para span a{font-size:12px; color:#56befe;letter-spacing: 2px;}
+.cp-para span a md-icon{font-size:16px; color:#56befe;    position: absolute;
+    margin-top: 7px;}
+
+/*.cp-para span md-icon{position: absolute;}*/
+.cp-para button md-icon{font-size:16px;    position: relative;
+    top: 3px;}
+hr{    width: 10%;
+    border-bottom: 5px solid #a4a2a2;
+    border-radius: 7px;    margin-top: 25px;
+    margin-bottom: 25px;}
+._brand.providerIcon > img{width: 60px;
+    overflow: hidden;
+    float: left;height: 60px;margin: 10px 0 10px 10px;}
+._providerbrand.providerIcon > img{width: 55px;
+    overflow: hidden;
+    float: left;height: 55px;}
+.mat-paginator[_ngcontent-c6] .mat-paginator-page-size{display: none !important;}
+.ngx-datatable.material .datatable-body .progress-linear .container {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 5px;
+    -webkit-transform: translate(0, 0) scale(1, 1);
+    transform: translate(0, 0) scale(1, 1);
+    background-color: transparent !important;
+}
+.datatable-body-row {
+    height: auto !important;
+    border-bottom: none !important;
+}
+.ngx-datatable.material .datatable-body .datatable-row-detail {
+    background: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ccc !important;
+}
+table{
+    border:transparent;
+}
+table, td{
+    padding:15px;
+}

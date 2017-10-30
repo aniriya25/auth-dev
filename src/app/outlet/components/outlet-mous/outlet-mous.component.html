@@ -1,0 +1,184 @@
+<!-- <div [hidden]="mouseSec">
+  <form>
+  <ul class="dropMous">
+    <li *ngFor="let file of temp; let i = index;trackBy:i;">
+      <button type="button" class="close"><span aria-hidden="true" (click)="removeItem(i)">×</span><span class="sr-only"></span></button>
+       
+       <div>
+         {{i}}
+        <div fxLayout="row">
+          <div fxFlex="50">
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" required mdInput placeholder="Type" [(ngModel)]="temp.type" name="type" #type="ngModel">
+              </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input mdInput required (focus)="picker.open()" [mdDatepicker]="picker" placeholder="Start">
+                <button type="button" mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+              <md-datepicker #picker></md-datepicker>
+            </div>
+             <div fxLayout="row"> 
+              <md-input-container fxFlex="100">
+                <input mdInput required (focus)="picker1.open()" [mdDatepicker]="picker1" placeholder="End">
+                <button type="button" mdSuffix [mdDatepickerToggle]="picker1"></button>
+              </md-input-container>
+              <md-datepicker #picker1></md-datepicker>
+            </div>  
+          </div>
+          <div fxFlex="45" fxFlexOffset="5">
+            <div fxLayout="row">
+              <div fxFlex="100" style="background: #fff; border: 1px solid #d2d2d2; height: 120px;    margin-bottom: -4px;">
+
+              </div>
+            </div><br>
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" required mdInput placeholder="Name">
+              </md-input-container>
+            </div>
+          </div>
+        </div> 
+        
+      </div> 
+    </li> 
+    <li>
+      <file-drop headertext="UPLOAD KYC DOCUMENTS" multiple (onFileDrop)="dropped($event)"></file-drop>
+    </li>
+  </ul>
+
+  <p><button type="submit">Submit</button></p>
+</form>
+</div> -->
+
+<div style="position: relative;">
+  <div class="form-control">
+  <!-- <div [ngClass]="{'form-overlay': isMouOverlay}">
+    <div [hidden]="isMouBtn" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edtFrm(mouInput)">EDIT</button> 
+    </div>
+  </div> -->
+ 
+<form #mous="ngForm">
+  <fieldset >
+    <p>MOU</p>
+
+    <div fxLayout="row">
+        <div fxFlex="colFirst">
+          <md-select fxFlex="95" placeholder="MOU Type" required>
+            <md-option>
+              
+            </md-option>
+          </md-select>
+           <!-- <md-error *ngIf="mouTypeId.errors && (mouTypeId.dirty || mouTypeId.touched)">
+              <md-error>
+                  <span [hidden]="!mouTypeId.errors.required">Select mou type</span>
+              </md-error>
+            </md-error> -->
+        </div>
+        <div fxFlex="colSecond">
+          <md-input-container fxFlex="95">
+            <input mdInput (focus)="startDate.open()" (change)="alert(0)"
+            [mdDatepicker]="startDate" 
+            placeholder="Start Date" 
+            required
+            
+            [max]="maxDate">
+            <button type="button" mdSuffix [mdDatepickerToggle]="startDate"></button>
+          </md-input-container>
+          <md-datepicker  #startDate ></md-datepicker>
+        </div>
+        <div fxFlex="colThird">
+            <md-input-container fxFlex="95">
+              <input mdInput (focus)="endDate.open()" 
+              [mdDatepicker]="endDate" 
+              placeholder="End Date" 
+              required
+             
+              [min]="minDate">
+              <button type="button" mdSuffix [mdDatepickerToggle]="endDate"></button>
+            </md-input-container>
+            <md-datepicker  #endDate></md-datepicker>
+        </div>
+        <div fxFlex="25" [hidden]="versionNo">
+          <div >
+          <md-select fxFlex="100" placeholder="Version No.">
+            <md-option>
+             
+            </md-option>
+          </md-select>
+          </div>
+        </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="30" class="pdf">
+        <div class="mou-pdf">
+          <a href="" target="_blank"><img src="assets/images/Adobe_Acrobat_Logo.png"></a>
+        </div>
+         <span>Version - </span>
+        <!-- <p *ngIf="mouInput.documentUrl">lksdjflksf</p> -->
+      </div>
+      <div fxFlex="fColsecond">
+        <file-drop headertext="UPLOAD KYC DOCUMENTS"></file-drop>
+      </div>
+    </div>
+    <table width="100%" border="1" style="border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start Page</th>
+          <th>End Page</th>
+          <th>Upload</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+
+          <td> 
+            <md-input-container>
+              <input mdInput type="text" pattern="[0-9]{1,}" (blur)="getAnnexure(annexure)" placeholder="Start Page">
+               <!-- <md-error *ngIf="startPage.errors && (startPage.dirty || startPage.touched)">
+                <md-error>
+                  <span [hidden]="!startPage.errors.pattern">Enter digit Only</span>
+                </md-error>
+                </md-error> -->
+            </md-input-container></td>
+          <td><md-input-container>
+              <input mdInput type="text" pattern="[0-9]{1,}" placeholder="End Page">
+               <!-- <md-error *ngIf="endPage.errors && (endPage.dirty || endPage.touched)">
+                  <md-error>
+                    <span [hidden]="!endPage.errors.pattern">Enter digit Only</span>
+                  </md-error>
+                </md-error> -->
+             </md-input-container></td>
+          <td class="upload">
+            <div fxLayout="row" >
+              <div fxFlex="60" class="file-upload">
+                <span class="file-upload__label">Upload <md-icon class="md-18">file_upload</md-icon></span>
+                <input type="file" class="file-upload__input"accept=".pdf" >
+                <p style="margin: 0px; margin-top: 5px;"> 
+                 <span mdTooltip="" [mdTooltipPosition]="position" style="text-align: left; border: 1px solid #28a745; border-radius: 2px; margin-top: 4px;color: #333; padding: 3px 12px;font-size: 12px;">
+                 <a href="" target="_blank"> </a>
+                  </span><md-icon fxFlex="20" (click)="removeFile(annexure)">close</md-icon> </p>
+              </div>
+            </div>
+          </td>
+          <td><md-input-container>
+            <input mdInput type="text" placeholder="Remarks">
+            </md-input-container></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <!-- <div class="btn-group">
+    <div [hidden]="isMouFieldset || !mous.form.valid || !mouInput.compDocUrl">
+      <button md-raised-button type="submit" class="primary">Submit</button>
+    </div>
+  </div> -->
+</form>
+</div>
+  </div>

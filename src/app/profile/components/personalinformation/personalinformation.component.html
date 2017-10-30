@@ -1,0 +1,125 @@
+<div>
+  <h2>Personal Information 
+    <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+    <button class="pull-right" fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+  </h2>
+  <form class="form" #personal="ngForm" (ngSubmit)="submitFrm(user)">
+    <div fxLayout="row">
+      <div fxFlex="33">
+        <md-input-container fxFlex="90">
+          
+        <input type="text" mdInput placeholder="First Name" required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel">
+            <md-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+            <md-error>
+              <span [hidden]="!firstName.errors.required">Provide first name</span>
+            </md-error>
+          </md-error>
+        </md-input-container> 
+      </div>
+      <div fxFlex="33">
+        <md-input-container fxFlex="90">
+        <input type="text" mdInput placeholder="Middle Name" [(ngModel)]="user.middleName" name="middleName" #middleName="ngModel">
+        </md-input-container> 
+      </div>
+      <div fxFlex="33">
+        <md-input-container fxFlex="100">
+          
+        <input type="text" mdInput placeholder="Last Name" required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel">
+          <md-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+            <md-error>
+              <span [hidden]="!lastName.errors.required">Provide last name</span>
+            </md-error>
+          </md-error>
+        </md-input-container>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="33">
+        <md-input-container fxFlex="90"> 
+              <input type="text"  mdInput placeholder="Mobile Number" pattern="\d*" minlength="10"  maxlength="10" [(ngModel)]="user.mobileNo" name="mobileNo" #mobileNo="ngModel">
+              <md-error *ngIf="mobileNo.errors && (mobileNo.dirty || mobileNo.touched)">
+                <md-error>
+                  <span [hidden]="!mobileNo.errors.pattern">Enter valid number</span>
+                  <span [hidden]="!mobileNo.errors.minlength">Should be 10 digit</span>
+                </md-error>
+              </md-error>
+        </md-input-container> 
+      </div>
+      <div fxFlex="33">
+        <md-input-container fxFlex="90">
+          
+          <input mdInput (focus)="myDatepicker.open()" 
+          [max]="maxDate" 
+          [mdDatepicker]="myDatepicker"           
+          placeholder="Date Of Birth" 
+          required 
+          [(ngModel)]="user.dob" name="dob" #dob="ngModel">
+          <button type="button" mdSuffix  [mdDatepickerToggle]="myDatepicker"></button>
+          <md-error *ngIf="dob.errors && (dob.dirty || dob.touched)">
+            <md-error>
+              <span [hidden]="!dob.errors.required">Please provide DOB</span>
+            </md-error> 
+          </md-error>
+        </md-input-container>
+        <md-datepicker  #myDatepicker startView="year"></md-datepicker>
+      </div>
+      <div fxFlex="100">
+        <md-radio-group [(ngModel)]="user.refGenderId" name="refGenderId">
+          <md-radio-button value="1">Male</md-radio-button>
+          <md-radio-button fxFlexOffset="10px" value="2">Female</md-radio-button>
+        </md-radio-group>
+      </div>
+  
+    </div>
+    
+    <div fxLayout="row">
+      <div fxFlex="50">
+        <md-input-container fxFlex="90">
+        
+          <textarea mdInput  placeholder="Permanent Address" required [(ngModel)]="user.permanentAddress" name="permanentAddress" #permanentAddress="ngModel"></textarea>
+          <md-error *ngIf="permanentAddress.errors && (permanentAddress.dirty || permanentAddress.touched)">
+            <md-error>
+              <span [hidden]="!permanentAddress.errors.required">Please provide Permanent Address</span>
+            </md-error>
+          </md-error>
+        </md-input-container>
+      </div>
+  
+      <div fxFlex="50">
+        <md-input-container fxFlex="100">
+        
+          <textarea mdInput placeholder="Communication  Address" name="communicationAddress" #communicationAddress="ngModel" [(ngModel)]="user.communicationAddress"></textarea>
+        </md-input-container>  
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="50" fxFlex.xs="100">
+        <md-input-container fxFlex="90">
+          
+          <input type="text" mdInput placeholder="Primary (Personal) Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.primaryEmailId" name="primaryEmail" #primaryEmail="ngModel"/>
+          <md-error *ngIf="primaryEmail.errors && (primaryEmail.dirty || primaryEmail.touched)">
+              <md-error>
+                <span [hidden]="!primaryEmail.errors.required">Please provide Valid Primary Email</span>
+                <span [hidden]="!primaryEmail.errors.pattern">Invalid email</span>
+              </md-error>
+            </md-error>
+        </md-input-container>
+      </div>
+    
+      <div fxFlex="50" fxFlex.xs="100">
+          <md-input-container fxFlex="100">
+            
+            <input type="text" mdInput placeholder="Secondary (Personal) Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="seconderyEmail" [(ngModel)]="user.secondaryEmailId" #seconderyEmail="ngModel">
+            <md-error *ngIf="seconderyEmail.errors && (seconderyEmail.dirty || seconderyEmail.touched)">
+              <md-error>
+                <span [hidden]="!seconderyEmail.errors.pattern">Invalid email</span>
+              </md-error>
+            </md-error>
+          </md-input-container>
+      </div>
+    </div>
+    <div class="button-row" fxLayoutAlign="left">
+      <button md-raised-button class="primary">UPDATE</button>
+    </div>
+  </form>
+</div>

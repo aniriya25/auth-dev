@@ -1,0 +1,89 @@
+<div id="page">
+  <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="70" class="left-section">
+        <h2>OUTLET <span><md-icon>chevron_right</md-icon> ADD</span></h2>
+        <div fxLayout="row">
+            <div class="profile-section" fxFlex="58">
+                <app-outlet-basic-info
+                [isOutletBasicFieldset]="isOutletBasicFieldset"
+                [isOutletEditBtn]="isOutletEditBtn"
+                [outletBasicFormOnverlay]="outletBasicFormOnverlay"
+                [btnText]="btnText"
+                [outletBasicInfoInput]="outletBasicInfoInput"
+                (outletBasicInfoFx)="outletBasicInfoFx($event)">
+                </app-outlet-basic-info>
+            </div>
+            <div class="contact-section" fxFlex="40" fxFlexOffset="2">
+                <app-outlet-contact
+                [isContactFormOverlay]="isContactFormOverlay"
+                [isContactFieldset]="isContactFieldset"
+                [isOutletContactBtn]="isOutletContactBtn"
+                (outletContactFx)="outletContactFx($event)">
+                </app-outlet-contact>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+
+            <div class="infra" fxFlex="100">
+                <app-outlet-infra
+                [isInfraOverlay]="isInfraOverlay"
+                [isInfraFieldset]="isInfraFieldset"
+                [isInfraBtn]="isInfraBtn"
+                (outletInfraFx)="outletInfraFx($event)">
+                </app-outlet-infra>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div class="banking" fxFlex="100">
+                <app-outlet-banking
+                [isOutletBankingOverlay]="isOutletBankingOverlay"
+                [isOutletBankingFieldset]="isOutletBankingFieldset"
+                [isOutletBankingBtn]="isOutletBankingBtn"
+                (outletBankingFx)="outletBankingFx($event)">
+                </app-outlet-banking>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout="column">
+            <div class="mous" fxFlex="100">
+                <app-outlet-mous></app-outlet-mous>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div class="services" fxFlex="100">
+                <app-outlet-services
+                [isServicesOverlay]="isServicesOverlay"
+                [isServicesBtn]="isServicesBtn"
+                [isServicesFieldset]="isServicesFieldset"
+                (outletServiceFx)="outletServiceFx($event)">
+                </app-outlet-services>
+            </div>
+        </div>    
+        <!-- <div fxLayout="row" fxLayout="column">
+            <div class="specialities" fxFlex="100">
+                <app-outlet-specialities></app-outlet-specialities>
+            </div>
+        </div> -->
+      </div>
+
+      <div fxFlex="28" fxFlexOffset="2" class="right-section">
+      <h3><a href="javascript: void(0)">Zarnish Pasa</a></h3>
+      <h3>REGISTER</h3>
+      <hr>
+      <ul>
+            <li [ngClass]="{'active': isBasicActive}"><span></span> Basic Info
+              <!--<div>  
+                  <p [ngClass]="{'active': isBasicActive}"><span></span><label>Basic Info</label></p>
+              </div>-->
+            </li>
+            <li [ngClass]="{'active': isSignatoryActive}"><span></span>Signatory</li>
+            <li [ngClass]="{'active': isContactActive}"><span></span>Contact</li>
+            <li [ngClass]="{'active': isBankingActive}"><span></span>Banking</li>
+            <li [ngClass]="{'active': isServiceActive}"><span></span>Services</li>
+            <li [ngClass]="{'active': isServiceActive}"><span></span>Services Details</li>
+            <li [ngClass]="{'active': isMousActive}"><span></span>MOU</li>
+            <!--<li [ngClass]="{'active': isMousActive}"><span></span>MOU</li>-->
+            <!--<li><span></span>Outlet</li>-->
+          </ul> 
+    </div>
+  </div>
+</div>

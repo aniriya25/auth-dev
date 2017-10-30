@@ -1,0 +1,65 @@
+<div class="container">
+    <div fxLayout="row">
+      <div class="profileCard" fxFlex="100">
+        <div fxFlex="74" fxFlexOffset="1" class="left-card">
+          <router-outlet></router-outlet>
+        </div>
+
+        <div fxFlex="24" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true" >
+          <!-- <div class="timeline">
+            <div class="timeline-card">
+              <div class="timeline-icon mat-grey"></div>
+              <section class="timeline-content">
+                <md-card>
+                  <md-card-content>
+                    <h4>98.4 Pharmacy</h4>
+                  </md-card-content>
+                </md-card>
+              </section>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon mat-green"></div>
+              <section class="timeline-content">
+                <md-card>
+                  <md-card-content>
+                    <h4><a routerLink="companyinfo"  routerLinkActive='mat-green'>COMPANY &amp; PERSONAL INFORMATION</a></h4>
+                  </md-card-content>
+                </md-card>
+              </section>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-icon mat-grey"></div>
+              <section class="timeline-content">
+                <md-card>
+                  <md-card-content>
+                    <h4><a routerLink="kycandmou" routerLinkActive='mat-green'>KYC AND MOU</a></h4>
+                  </md-card-content>
+                </md-card>
+              </section>
+            </div>
+          </div> -->
+           <ul>
+            <h4><img src="assets/images/logo.jpg">98.4 Pharmacy</h4>
+            <li><a routerLink="companyinfo" routerLinkActive="active"><span></span> COMPANY &amp; PERSONAL INFORMATION</a></li>
+            <li><a routerLink="kycandmou" routerLinkActive="active"><span></span> KYC AND MOU</a></li>
+            <li><a routerLink="addoutlet" routerLinkActive="active"><span></span> OUTLETS (30)</a>
+              <div>
+                <div slimScroll [options]="opts" style="height: 110px; width: 200px;">
+                  <p><a routerLink="companyinfo" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="kycandmou" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="addoutlet" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="companyinfo" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="kycandmou" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="companyinfo" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="companyinfo" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+                  <p><a routerLink="companyinfo" routerLinkActive="active"><span></span><label>Name of the outlet</label></a></p>
+              </div>
+              </div>
+            </li>
+          </ul> 
+          <hr>
+        </div>
+      </div>
+    </div>
+</div>
+

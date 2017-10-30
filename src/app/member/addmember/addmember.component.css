@@ -1,0 +1,65 @@
+h2 {
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+    margin: 0;
+}
+/*.example-card{
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    width: 90%;
+     height: auto;
+   background: white;
+   box-shadow:0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+   padding:0px;
+}*/
+.mat-card-header {
+    display: flex;
+    flex-direction: column;
+    background: #e2e2e2;
+    text-align: center;
+}
+.mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title {
+    display: block;
+    margin-bottom: 0;
+    padding: 0px;
+    text-align: center;
+}
+.container h2[_ngcontent-c6]::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    bottom: 4px;
+    left: 0;
+    background: #4b5668;
+}
+
+
+.container{
+  padding:3%;
+}
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.example-radio-button {
+  margin: 22px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+h2 {
+    font-size: 26px;
+    font-weight: 300;
+    padding-bottom: 8px;
+    margin: 0px;
+}
+h2 > hr {
+    margin-bottom: 8px;
+}
+.material-icons{font-size: 18px;    vertical-align: middle;}
+/*.mat-datepicker-toggle {
+        background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…Y1YzAtMS4xLS45LTItMi0yem0wIDE2SDVWOGgxNHYxMXpNNyAxMGg1djVIN3oiLz48L3N2Zz4=) no-repeat;
+}*/

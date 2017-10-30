@@ -1,0 +1,31 @@
+<div class="strip"> 
+    <div class="strip_bg">
+      <h2 align="right"><span>MEMBER'S</span><strong> SIGN IN</strong></h2>
+    </div>
+</div>
+<md-card class="loginBox" class.xs="login-mb" >
+  <md-progress-bar *ngIf="loginProgress" mode="indeterminate"></md-progress-bar>
+  <div fxLayout="column" fxLayoutGap="20px" class="container" class.xs="container-mb">
+    <div fxLayoutAlign="center">
+      <img class="logo" src="assets/images/H3U_Logo_201x132.png" />
+    </div>
+
+    <form (ngSubmit)="loginForm.valid && loginSubmit()" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="left" #loginForm="ngForm" novalidate>
+
+      <md-input-container>
+        <input #email="ngModel" autocomplete="off" email mdInput name="email" placeholder="Email" required [(ngModel)]="login.email">
+        <md-error *ngIf="email.errors?.required">Please provide email</md-error>
+        <md-error *ngIf="!email.errors?.required && email.errors?.email">Please provide valid email</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input name="password" type="password" mdInput placeholder="Password" required [(ngModel)]="login.password">
+        <md-error>Please provide password</md-error>
+      </md-input-container>
+      <button md-raised-button class="primary" [disabled]="!loginForm.valid || loginProgress">SIGN IN</button>
+    </form>
+    <div fxLayout="row">
+      <!--<md-checkbox fxFlex="60">Remember me</md-checkbox>-->
+      <a fxFlex="40" routerLink="/forgotpassword">Forgot password?</a> 
+      </div>
+  </div> 
+</md-card>

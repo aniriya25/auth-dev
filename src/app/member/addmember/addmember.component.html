@@ -1,0 +1,87 @@
+<h2>Add Member
+  <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> Edit</button>
+  <button class="pull-right" md-raised-button fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+</h2>
+<form fxLayout="column" #addMember="ngForm" (ngSubmit)="submitFrm(user)">
+  <fieldset>
+    <legend>Basic Details</legend>
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-input-container fxFlex="90">
+            <input type="text" mdInput required placeholder="First Name" [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel">
+                  <md-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                    <md-error>
+                      <span [hidden]="!firstName.errors.required">Please provide First Name</span>
+                    </md-error>
+                  </md-error>
+        </md-input-container>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-input-container fxFlex="90">
+          <input type="text" mdInput required placeholder="Email Id"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="user.emailId" name="emailId" #emailId="ngModel">
+          <md-error *ngIf="emailId.errors && (emailId.dirty || emailId.touched)">
+              <md-error>
+                <span [hidden]="!emailId.errors.pattern">Invalid email</span>
+              </md-error>
+            </md-error>
+        </md-input-container>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-radio-group class="example-radio-group" required [(ngModel)]="user.gender" name="gender">
+          <md-radio-button  class="example-radio-button" value="male">Male</md-radio-button>
+          <md-radio-button fxFlexOffset="10px" class="example-radio-button" value="female">Female</md-radio-button>
+        </md-radio-group>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-select placeholder="Roles" required fxFlex="90" [(ngModel)]="user.roleId" name="roleId" (change)="getRoleId(user.roleId)">
+          <md-option *ngFor="let role of allRoles" [value]="role.id">{{role.role}}</md-option>
+          
+        </md-select>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-select placeholder="Manager" required fxFlex="90" [(ngModel)]="user.managerId" name="managerId">
+          <md-option *ngFor="let manager of managers" [value]="manager.id">
+            {{manager.userName}}
+          </md-option>
+        </md-select>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+         <md-input-container fxFlex="90">
+          <input type="text" mdInput required placeholder="Employee Id"  [(ngModel)]="user.empId" name="empId" #empId="ngModel">
+          <md-error *ngIf="empId.errors && (empId.dirty || empId.touched)">
+                    <md-error>
+                      <span [hidden]="!empId.errors.required">Please provide Employee Id</span>
+                    </md-error>
+                  </md-error>
+       </md-input-container>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-select placeholder="Branch" fxFlex="90" [(ngModel)]="user.refCorpBranchId" name="branchId">
+          <md-option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}}</md-option>
+        </md-select>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-select placeholder="Department" fxFlex="90" [(ngModel)]="user.departmentId" name="departmentId">
+          <md-option *ngFor="let department of departments" [value]="department.id">
+            {{department.name}}
+          </md-option>
+        </md-select>
+      </div>
+      <div fxFlex="33" fxFlex.xs="100">
+        <md-select placeholder="Designation" fxFlex="90" [(ngModel)]="user.designationId" name="designationId">
+          <md-option *ngFor="let designation of designations" [value]="designation.id">
+            {{designation.name}}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+    
+ </fieldset>
+  <div class="button-row" fxLayoutAlign="left">
+      <button md-raised-button class="primary">SUBMIT</button>
+    </div>
+</form>

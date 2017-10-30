@@ -1,0 +1,99 @@
+
+.ngx-datatable.material {
+    background: #FFF;
+     box-shadow: none;
+}
+.ngx-datatable .datatable-body {
+    cursor: pointer !important;
+}
+.breacrumb {
+  list-style: none;
+  margin: 18px 0 0 0;
+  font-size: 12px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 15px;
+  padding-left:0px;
+}
+.breacrumb > li {
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 22px;
+  background: #3498db;
+  position: relative;
+  border: 0 #3498db;
+  cursor: pointer;
+      margin-bottom: 10px;
+    margin-top: 0px;
+}
+.breacrumb > li + li {
+  margin-left: 20px;
+}
+/*.breacrumb > li:hover {
+  background: #fa5ba5;
+  border-color: #fa5ba5;
+  margin-left: 55px;
+  margin-right: 10px;
+}*/
+.breacrumb > li:before, .breacrumb > li:after {
+  content: '';
+  position: absolute;
+  border: 11px solid transparent;
+  border-right: 0;
+  top: 0;
+}
+.breacrumb > li:before {
+  right: 100%;
+  border-top-color: inherit;
+  border-bottom-color: inherit;
+}
+.breacrumb > li:after {
+  left: 100%;
+  border-left-color: inherit;
+}
+.breacrumb > li:first-child {
+  border-radius: 0px 0 0 0px;
+  padding-left: 10px;
+  margin-left: 0;
+}
+.breacrumb > li:first-child:before {
+  content: none;
+}
+.breacrumb > li:last-child {
+  border-radius: 0 0px 0px 0;
+  padding-right: 10px;
+  margin-right: 0;
+  background: #4b5668 ;
+  border:#4b5668 ;
+cursor: text;
+}
+.breacrumb > li:last-child:after {
+  content: '';
+  position: absolute;
+  /*border: 15px solid transparent;*/
+  border-right: 0;
+  top: 0;
+}
+
+strong {
+    color:#5a9ae5;
+}
+label{color:#777575;font-size: 14px;}
+md-icon{
+    color:#777575;
+}
+
+@media (max-width:768px){
+    h2{
+        font-size:18px;
+    }
+}
+/*.breadCrumb span {
+    color: #2373fa;
+    cursor: pointer;
+    margin-top: 16px;
+}
+.breadCrumb span:last-child {
+    color: #795548;
+    cursor: text;
+}*/

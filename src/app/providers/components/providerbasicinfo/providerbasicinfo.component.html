@@ -1,0 +1,150 @@
+<!-- // provider basic informtaion -->
+<div class="form-control" [ngClass]="{'active': isBasicInfoActiveForm}">
+  <div [ngClass]="{'form-overlay': isBasicInfoFormoOverlay}">
+    <div [hidden]="isBasicButton" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edtFrm(basicInfoInput)">EDIT</button>
+    </div>
+  </div>
+  <md-progress-bar *ngIf="basicInfoProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>
+
+  <form #basicForm="ngForm" (ngSubmit)="submitBasicFrm(basicInfoInput)">
+    <fieldset [disabled]="isBasicInfoFieldset">
+      <div data-attr="basicInfo">
+        <div fxLayout="row">
+          <div fxFlex="44">
+            <div class="profile-pic" style="overflow: hidden;">
+              <image-upload [max]="1" [preview]="true" [dropBoxMessage]="''" [buttonCaption]="'Upload Image'" [extensions]="['image/*']" (onFileUploadFinish)="imageUploaded($event)">
+             </image-upload>
+              <div *ngIf="profilePix">
+                <!--<i (click)="removeImg()" style="color:red; margin-left: 20px; position: absolute; z-index: 999;">remove</i>-->
+                <img [src]="profilePix" alt="" style="width:100%; height: auto; margin-top: -14px;">
+              </div>
+            </div>
+             
+             <!--<image-upload [max]="1" [preview]="false" [dropBoxMessage]="''" [buttonCaption]="'Upload Image'" [extensions]="['image/*']" (onFileUploadFinish)="imageUploaded($event)">
+             </image-upload>-->
+             <!--<div>d</div>-->
+              <!--<div *ngIf="profilePix">
+                <i (click)="removeImg()">x</i>
+                <img [src]="profilePix" alt="" height="100" width="100">
+              </div>-->
+          </div>
+          <div fxFlex="56">
+
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" mdInput (keydown.enter)="$event.preventDefault()" required placeholder="Company Name" [(ngModel)]="basicInfoInput.name" name="name" #name="ngModel">
+                <md-error *ngIf="name.errors && (name.dirty || name.touched)">
+                    <md-error>
+                        <span [hidden]="!name.errors.required">Enter company name</span>
+                    </md-error>
+                  </md-error>
+              </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="100" class="mdTextAra">
+                <textarea mdInput placeholder="Address" required [(ngModel)]="basicInfoInput.regdAddress" name="regdAddress" #regdAddress="ngModel">1600 Amphitheatre Pkwy</textarea>
+                <md-error *ngIf="regdAddress.errors && (regdAddress.dirty || regdAddress.touched)">
+                    <md-error>
+                        <span [hidden]="!regdAddress.errors.required">Enter Address</span>
+                    </md-error>
+                  </md-error>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+         <div fxLayout="row">
+          <md-input-container fxFlex="50">
+            <input type="text" (keydown.enter)="$event.preventDefault()" mdInput required placeholder="Commercial Name" [(ngModel)]="basicInfoInput.regdName" name="regdName" #regdName="ngModel">
+            <md-error *ngIf="regdName.errors && (regdName.dirty || regdName.touched)">
+                <md-error>
+                    <span [hidden]="!regdName.errors.required">Enter commercial name</span>
+                </md-error>
+              </md-error>
+          </md-input-container>
+          <md-select required placeholder="Provider Type" fxFlexOffset="5" fxFlex="45" [(ngModel)]="basicInfoInput.providerTypeId" name="providerTypeId"  #providerTypeId="ngModel">
+             <md-option *ngFor="let providerType of providerTypes" value="{{providerType.id}}">{{providerType.Name}}</md-option>
+          </md-select>
+          <div>
+          <md-error *ngIf="providerTypeId.errors && (providerTypeId.dirty || providerTypeId.touched)">
+              <!--<md-error>
+                  <span [hidden]="!providerType.errors.required">Select provider type</span>
+              </md-error>-->
+            </md-error>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <md-input-container fxFlex="50">
+            <input type="text" (keydown.enter)="$event.preventDefault()" required pattern="[0-9]{1,}" mdInput placeholder="Total Outlets" [(ngModel)]="basicInfoInput.totalOutlets" name="totalOutlets" #totalOutlets="ngModel">
+            <md-error *ngIf="totalOutlets.errors && (totalOutlets.dirty || totalOutlets.touched)">
+                <md-error>
+                    <span [hidden]="!totalOutlets.errors.required">Enter outlet/outlets</span>
+                    <span [hidden]="!totalOutlets.errors.pattern">Enter digit only.</span>
+                </md-error>
+              </md-error>
+          </md-input-container>
+          <md-input-container fxFlex="45" fxFlexOffset="5">
+            <input type="text" (keydown.enter)="$event.preventDefault()" mdInput  required placeholder="Website URL" [(ngModel)]="basicInfoInput.webLink" pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" name="webLink" #webLink="ngModel">
+            <md-error *ngIf="webLink.errors && (webLink.dirty || webLink.touched)">
+              <md-error>
+                  <span [hidden]="!webLink.errors.required">Enter url</span>
+                <span [hidden]="!webLink.errors.pattern">Invalid url</span>
+              </md-error>
+            </md-error>
+          </md-input-container>
+        </div>
+        <div fxLayout="row">
+              <md-input-container fxFlex="50">
+                <input type="text" (keydown.enter)="$event.preventDefault()" mdInput placeholder="Search Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
+              </md-input-container>
+           
+              <md-input-container fxFlex="45" fxFlexOffset="5">
+                <input type="text" (keydown.enter)="$event.preventDefault()" mdInput placeholder="Lattitude, Longitutde" [(ngModel)]="basicInfoInput.latlon" name="latlon" #latlon="ngModel" [readonly]="isReadonly"> 
+               
+              </md-input-container>
+               <input type="hidden" [(ngModel)]="latitude" name="latitude">
+               <input type="hidden" [(ngModel)]="longitude" name="longitude">
+            </div>
+        <div fxLayout="row">
+          <div fxFlex="50">
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" (keydown.enter)="$event.preventDefault()" mdInput placeholder="State" [(ngModel)]="basicInfoInput.state" name="state" #state="ngModel" [readonly]="isReadonly">
+              </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" mdInput (keydown.enter)="$event.preventDefault()" placeholder="City" [(ngModel)]="basicInfoInput.city" name="city" #city="ngModel" [readonly]="isReadonly">
+              </md-input-container>
+            </div>            
+            <div fxLayout="row">
+              <md-input-container fxFlex="100">
+                <input type="text" (keydown.enter)="$event.preventDefault()" mdInput placeholder="Pincode" [readonly]="isReadonly" [(ngModel)]="basicInfoInput.pincode" name="pincode" #pincode="ngModel">
+              </md-input-container>
+            </div>
+          </div>
+          <div fxFlex="45" fxFlexOffset="5">
+            
+            <div fxLayout="row">
+              <div fxFlex="100" style="background: #ccc; color: white;height: 125px;">
+                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" *ngIf="!latitude == 0 && !longitude == 0">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+              </div>
+            </div>
+        </div> 
+      </div>
+      <div class="row">
+          <input type="hidden" [(ngModel)]="basicInfoInput.id" name="id" #id="ngModel">
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="btn-group">
+        <div [hidden]="isBasicInfoFieldset || isBasicInfoFormoOverlay || !basicForm.form.valid">
+          <button md-raised-button type="submit" class="primary">{{ basicInfoBtnText }}</button>
+        </div>
+      </div>
+  </form>
+</div>
+

@@ -1,0 +1,13 @@
+<h3>Location</h3>
+<p>{{user | json}}</p>
+
+<form #location="ngForm" (ngSubmit)="submitFrm()">
+  <fieldset>
+  <p><input type="text" placeholder="Latitute" [ngClass]="{'isBorder': true}" required [(ngModel)]="user.lat" name="lat" #lat="ngModel"></p>
+  <p><input type="text" placeholder="Longitude" [(ngModel)]="user.lon" name="lon" #lon="ngModel"></p>
+  <p><input type="checkbox"> Lorem</p>
+  <p>
+    <button type="submit" [hidden]="!location.form.valid">Submit</button>
+  </p>
+  </fieldset>
+</form>

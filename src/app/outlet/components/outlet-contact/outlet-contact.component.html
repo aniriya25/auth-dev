@@ -1,0 +1,74 @@
+
+<div class="form-control">
+<div fxLayout="row">
+  <div fxFlex="100" class="left">
+    <ul>
+      <li fxFlex="100"><md-icon>person</md-icon> Contact</li>
+    </ul>
+  </div>
+</div>
+
+<div fxLayout="row">     
+        <div  fxFlex="100" class="tab-body">
+          <div>
+            <div>
+              <div [ngClass]="{'form-overlay': isContactFormOverlay}">
+                <div [hidden]="isOutletContactBtn" style="position: absolute; right: 0; bottom: 0;"> 
+                  <button md-raised-button type="button" class="primary" (click)="edit()">EDIT</button>
+                </div>
+              </div>
+
+            <div style="padding:14px;font-weight: 500;">Contact <!-- <md-icon style="float:right; color: #2296fc; cursor: pointer">add</md-icon>--> </div>
+
+              <div [options]="tabOne" slimScroll style="height: 380px; width: 100%; background: transparent;">
+   <div>
+                
+                <form #outletContact="ngForm" (ngSubmit)="outletContactFrm()">
+                  <fieldset [disabled]="isContactFieldset">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Name" >
+                             
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Designation" >
+                            
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="email" mdInput placeholder="Email">
+                            
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Mobile">
+                             
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Landline">
+                          </md-input-container>
+                        </div>
+                     <div class="btn-group" [hidden]="isContactFormOverlay || isContactFieldset">
+                       <button md-raised-button type="submit" class="primary">SUBMIT</button>
+                    </div> 
+                    <!-- <hr> -->
+                    
+                  </fieldset>
+                </form>
+              </div>
+  </div>
+          </div>
+</div>
+          </div>
+    </div>
+</div>
+
+
+
+

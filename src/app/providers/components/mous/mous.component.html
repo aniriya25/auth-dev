@@ -1,0 +1,132 @@
+
+  <div style="position: relative;">
+  <div class="form-control" [ngClass]="{'active': isMouActiveForm}">
+  <div [ngClass]="{'form-overlay': isMouOverlay}">
+    <div [hidden]="isMouBtn" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edtFrm(mouInput)">EDIT</button> 
+    </div>
+  </div>
+ 
+<form #mous="ngForm" (ngSubmit)="submitFrm(mouInput)" (keydown.enter)="$event.preventDefault()">
+  <fieldset  [disabled]="isMouFieldset">
+    <p>MOU</p>
+
+    <div fxLayout="row">
+        <div fxFlex="colFirst">
+          <md-select fxFlex="95" placeholder="MOU Type" required [(ngModel)]="mouInput.mouTypeId" name="mouTypeId" (change)="getType(mouInput)" #mouTypeId="ngModel">
+            <md-option *ngFor="let mouType of mouTypes" [value]="mouType.id">
+              {{mouType.name}}
+            </md-option>
+          </md-select>
+           <md-error *ngIf="mouTypeId.errors && (mouTypeId.dirty || mouTypeId.touched)">
+              <md-error>
+                  <span [hidden]="!mouTypeId.errors.required">Select mou type</span>
+              </md-error>
+            </md-error>
+        </div>
+        <div fxFlex="colSecond">
+          <md-input-container fxFlex="95">
+            <input mdInput (focus)="startDate.open()" (change)="alert(0)"
+            [mdDatepicker]="startDate" 
+            placeholder="Start Date" 
+            required
+            (ngModelChange)="dosomething($event, 'startDat')"
+            [max]="maxDate"
+            [(ngModel)]="mouInput.validFromDate" name="validFromDate" #validFromDate="ngModel">
+            <button type="button" mdSuffix [mdDatepickerToggle]="startDate"></button>
+          </md-input-container>
+          <md-datepicker  #startDate ></md-datepicker>
+        </div>
+        <div fxFlex="colThird">
+            <md-input-container fxFlex="95">
+              <input mdInput (focus)="endDate.open()" 
+              [mdDatepicker]="endDate" 
+              placeholder="End Date" 
+              required
+              (ngModelChange)="dosomething($event, 'endDate')"
+              [min]="minDate"
+              [(ngModel)]="mouInput.validToDate" name="validToDate" #validToDate="ngModel">
+              <button type="button" mdSuffix [mdDatepickerToggle]="endDate"></button>
+            </md-input-container>
+            <md-datepicker  #endDate></md-datepicker>
+        </div>
+        <div fxFlex="25" [hidden]="versionNo">
+          <div >
+          <md-select fxFlex="100" placeholder="Version No." (change)="getVersionId(mouInput['versionId'])" [(ngModel)]="mouInput.versionId" name="versionId" #versionId="ngModel">
+            <md-option *ngFor="let version of mouVersions" [value]="version.id">
+              {{version.version}}
+            </md-option>
+          </md-select>
+          </div>
+        </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="30" class="pdf" [hidden]="!mouInput.compDocUrl">
+        <div class="mou-pdf">
+          <a href="{{mouInput.compDocUrl}}" target="_blank"><img src="assets/images/Adobe_Acrobat_Logo.png"></a>
+        </div>
+         <span *ngIf="versionId">Version - {{pdfversion}}</span>
+        <!-- <p *ngIf="mouInput.documentUrl">lksdjflksf</p> -->
+      </div>
+      <div fxFlex="fColsecond">
+        <file-drop headertext="UPLOAD KYC DOCUMENTS" (onFileDrop)="dropped($event)"></file-drop>
+      </div>
+    </div>
+    <table width="100%" border="1" style="border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th *ngIf="completeSec === 1">Start Page</th>
+          <th *ngIf="completeSec === 1">End Page</th>
+          <th *ngIf="partialSec === 2">Upload</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let annexure of annexures; let i = index;">
+          <td>{{annexure.name}}</td>
+
+          <td *ngIf="completeSec === 1"> 
+            <md-input-container>
+              <input mdInput type="text" pattern="[0-9]{1,}" (blur)="getAnnexure(annexure)" placeholder="Start Page" [(ngModel)]="annexure.startPage" name="startPage{{i}}" #startPage="ngModel">
+               <md-error *ngIf="startPage.errors && (startPage.dirty || startPage.touched)">
+                <md-error>
+                  <span [hidden]="!startPage.errors.pattern">Enter digit Only</span>
+                </md-error>
+                </md-error>
+            </md-input-container></td>
+          <td *ngIf="completeSec === 1"><md-input-container>
+              <input mdInput type="text" pattern="[0-9]{1,}" placeholder="End Page" [(ngModel)]="annexure.endPage" name="endPage{{i}}" #endPage="ngModel">
+               <md-error *ngIf="endPage.errors && (endPage.dirty || endPage.touched)">
+                  <md-error>
+                    <span [hidden]="!endPage.errors.pattern">Enter digit Only</span>
+                  </md-error>
+                </md-error>
+             </md-input-container></td>
+          <td *ngIf="partialSec === 2" class="upload">
+            <div fxLayout="row" >
+              <div fxFlex="60" class="file-upload">
+                <span class="file-upload__label" *ngIf="annexure.docUrl == '' || annexure.docUrl == undefined">Upload <md-icon class="md-18">file_upload</md-icon></span>
+                <input type="file" class="file-upload__input" *ngIf="annexure.docUrl == '' || annexure.docUrl == undefined" (change)="uploadFile($event, annexure)" accept=".pdf" >
+                <p *ngIf="annexure.docUrl" style="margin: 0px; margin-top: 5px;"> 
+                 <span mdTooltip="{{annexure.docUrl}}" [mdTooltipPosition]="position" style="text-align: left; border: 1px solid #28a745; border-radius: 2px; margin-top: 4px;color: #333; padding: 3px 12px;font-size: 12px;">
+                 <a href="{{annexure.docUrl}}" target="_blank"> {{annexure.docUrl | slice:0:10}}</a>
+                  </span><md-icon fxFlex="20" (click)="removeFile(annexure)">close</md-icon> </p>
+              </div>
+            </div>
+          </td>
+          <td><md-input-container>
+            <input mdInput type="text" placeholder="Remarks" [(ngModel)]="annexure.remarks" name="remarks{{i}}" #remarks{{i}}="ngModel">
+            </md-input-container></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <div class="btn-group">
+    <div [hidden]="isMouFieldset || !mous.form.valid || !mouInput.compDocUrl">
+      <button md-raised-button type="submit" class="primary">Submit</button>
+    </div>
+  </div>
+</form>
+</div>
+  </div>

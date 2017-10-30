@@ -1,0 +1,21 @@
+<!-- <form #{{subService.name}}="ngForm" (ngSubmit)="subServiceFrm(subService['name'+'ab'])">
+    <div fxLayout="row">
+        <md-input-container fxFlex="90">
+            <input type="text" mdInput placeholder="Enter name" [(ngModel)]="subService['name'+'ab'].name" name="name" #name="ngModel">
+        </md-input-container>
+    </div>
+    <div fxLayout="row">
+        <button md-raised-button type="submit" class="primary">SUBMIT</button>
+    </div>
+</form> -->
+
+<form #opd="ngForm" (ngSubmit)="submitFrm(myFormObj)">
+  <div fxLayout="row">
+    <md-input-container fxFlex="90">
+      <input type="text" mdInput placeholder="Name" name="yxz" #yxz="ngModel" [(ngModel)]="myFormObj.yxz">
+    </md-input-container>
+  </div>
+  <div fxLayout="row">
+      <button md-raised-button type="submit" class="primary">SUBMIT</button>
+  </div>
+</form>

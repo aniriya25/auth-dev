@@ -1,0 +1,170 @@
+<!-- // provider Signatory and contact -->
+<div class="form-control" [ngClass]="{'active': isContactActiveBorder}">
+<div fxLayout="row">
+  <div fxFlex="100" class="left">
+    <ul>
+      <li fxFlex="50" (click)="contacts = ''"><md-icon>person</md-icon> Signatory</li>
+      
+      <li fxFlex="50" (click)="contacts = 'contact'"><md-icon>person</md-icon> Contact</li>
+    </ul>
+  </div>
+</div>
+
+<div fxLayout="row">     
+        <div  fxFlex="100" class="tab-body">
+          <div [ngSwitch]="contacts">
+            <div *ngSwitchDefault ><div style="display: block; position: relative">
+              <div [ngClass]="{'form-overlay': isSginatoryFormOverlay}">
+              <div style="position: absolute; bottom: 0; right: 0;z-index: 9999;" [hidden]="isSignatoryButton">
+                <button md-raised-button type="button" class="primary" (click)="editFrm('signatory')">EDIT</button>
+              </div>
+            </div>
+            
+            <md-progress-bar *ngIf="signatoryProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>
+
+            <div style="padding:14px;font-weight: 500;">Authorised Signatory</div>
+
+  <div [options]="tabOne" slimScroll style="height: 380px; width:100%; background: transparent;">
+    <div *ngFor="let signatory of signatoryInput; let i = index; let last = last;">
+                  <form #signatoryFrm="ngForm" (ngSubmit)="SubmitSignatoryFrm(signatory)" (keydown.enter)="$event.preventDefault()">
+                     <fieldset [disabled]="isSignatoryFieldset">
+                       <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Name" required [(ngModel)]="signatory.name" name="name{{i}}" #name="ngModel">
+                            <md-error *ngIf="name.errors && (name.dirty || name.touched)">
+                              <md-error>
+                                <span [hidden]="!name.errors.required">Enter name</span>
+                              </md-error>
+                            </md-error>
+                          </md-input-container>
+                        </div>
+                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-input-container fxFlex="90">
+                          <input type="text" mdInput required placeholder="Designation" [(ngModel)]="signatory.designation" name="designation{{i}}" #designation="ngModel">
+                          <md-error *ngIf="designation.errors && (designation.dirty || designation.touched)">
+                              <md-error>
+                                <span [hidden]="!designation.errors.required">Enter designation</span>
+                              </md-error>
+                            </md-error>
+                        </md-input-container>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-input-container fxFlex="90">
+                          <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" mdInput placeholder="Email" [(ngModel)]="signatory.email" name="email{{i}}" #email="ngModel">
+                          <md-error *ngIf="email.errors && (email.dirty || email.touched)">
+                              <md-error>
+                                <span [hidden]="!email.errors.required">Enter valid email</span>
+                                <span [hidden]="!email.errors.pattern">Invalid email</span>
+                              </md-error>
+                            </md-error>
+                        </md-input-container>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="space-around center" >
+                        <md-input-container fxFlex="90">
+                          <input type="text" mdInput required pattern="[0-9]{10,10}" placeholder="Mobile" [(ngModel)]="signatory.mobile" name="mobile{{i}}" #mobile="ngModel">
+                          <md-error *ngIf="mobile.errors && (mobile.dirty || mobile.touched)">
+                              <md-error>
+                                <span [hidden]="!mobile.errors.required">Enter mobile number</span>
+                                <span [hidden]="!mobile.errors.pattern">Enter valid mobile number</span>
+                              </md-error>
+                            </md-error>
+                        </md-input-container>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-input-container fxFlex="90">
+                          <input type="text" mdInput placeholder="Landline" [(ngModel)]="signatory.landline" name="landline{{i}}" #landline{{i}}="ngModel">
+                        </md-input-container>
+                      </div>
+                         <div [hidden]="isSignatoryFieldset || isSginatoryFormOverlay || !signatoryFrm.form.valid">
+                           <button md-raised-button type="submit" class="primary">{{ signatoryBtnText }}</button>
+                        </div> 
+                        <hr *ngIf="signatoryInput.length != 1" [hidden]="last">
+                     </fieldset>
+                  </form>
+                </div>
+  </div>
+</div>
+</div>
+            
+            <div *ngSwitchCase="'contact'">  
+              <div style="display: block; position: relative">
+              <div [ngClass]="{'form-overlay': isContactFormOverlay}">
+              <div style="position: absolute; bottom: 0; right: 0;z-index: 9999;" [hidden]="isContactButton">
+                <button md-raised-button type="button" class="primary" (click)="editFrm('contact')">EDIT</button>
+              </div>
+            </div>
+
+            <md-progress-bar *ngIf="contactProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>
+
+            <div style="padding:14px;font-weight: 500;">Contact <md-icon *ngIf="isContactButton" style="float:right; color: #2296fc; cursor: pointer" (click)="addRec('contact')">add</md-icon></div>
+
+              <div [options]="tabTwo" slimScroll style="height: 380px; width: 100%; background: transparent;">
+   <div *ngFor="let userContact of contactInput; let i = index; let last = last;">
+                
+                <form #contact="ngForm" (ngSubmit)="submitContactFrm(userContact)" (keydown.enter)="$event.preventDefault()">
+                  <fieldset [disabled]="isContactFieldset">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" required mdInput placeholder="Name" [(ngModel)]="userContact.name" name="name{{i}}" #name="ngModel">
+                             <md-error *ngIf="name.errors && (name.dirty || name.touched)">
+                                <md-error>
+                                  <span [hidden]="!name.errors.required">Enter name</span>
+                                </md-error>
+                              </md-error>
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput required placeholder="Designation" [(ngModel)]="userContact.designation" name="designation{{i}}" #designation="ngModel">
+                            <md-error *ngIf="designation.errors && (designation.dirty || designation.touched)">
+                              <md-error>
+                                <span [hidden]="!designation.errors.required">Enter Designation</span>
+                              </md-error>
+                            </md-error>
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" mdInput placeholder="Email" [(ngModel)]="userContact.email" name="email{{i}}" #email="ngModel">
+                            <md-error *ngIf="email.errors && (email.dirty || email.touched)">
+                              <md-error>
+                                <span [hidden]="!email.errors.required">Enter valid email</span>
+                                <span [hidden]="!email.errors.pattern">Invalid email</span>
+                              </md-error>
+                            </md-error>
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput required pattern="[0-9]{10,10}" placeholder="Mobile" [(ngModel)]="userContact.mobile" name="mobile{{i}}" #mobile="ngModel">
+                             <md-error *ngIf="mobile.errors && (mobile.dirty || mobile.touched)">
+                              <md-error>
+                                <span [hidden]="!mobile.errors.required">Enter mobile number</span>
+                                <span [hidden]="!mobile.errors.pattern">Enter valid mobile number</span>
+                              </md-error>
+                            </md-error>
+                          </md-input-container>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                          <md-input-container fxFlex="90">
+                            <input type="text" mdInput placeholder="Landline" [(ngModel)]="userContact.landline" name="landline{{i}}" #landline{{i}}="ngModel">
+                          </md-input-container>
+                        </div>
+                     <div [hidden]="isContactFieldset || isContactFormOverlay || !contact.form.valid">
+                       <button md-raised-button type="submit" class="primary">{{ contactBtnText }}</button>
+                    </div> 
+                    <hr *ngIf="contactInput.length != 1" [hidden]="last">
+                    
+                  </fieldset>
+                </form>
+              </div>
+  </div>
+          </div>
+</div>
+          </div>
+    </div>
+  </div>
+</div>
+
+
+

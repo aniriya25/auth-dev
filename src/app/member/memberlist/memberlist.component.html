@@ -1,0 +1,71 @@
+
+
+
+<div class="container">
+  <h2>Members </h2>
+  <div fxLayout="row" fx-layout-align="center center">
+    <ul fxFlex="70" class="breacrumb">
+      <li (click)="removeObj(level, last)" *ngFor="let level of myObj; let last = last" mdTooltip="{{level.name}}" [mdTooltipPosition]="position">{{level.name | slice:0:10}} ...</li>
+    </ul>
+    
+    <div fxFlex="30">
+      <md-input-container fxFlex="100">
+        <input type="text" mdInput type='text' placeholder='Search member name...' (keyup)='updateFilter($event)' />
+      </md-input-container>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="100">
+        <ngx-datatable
+          #myTable
+          class='material'
+          [columnMode]="'force'"
+          [rows]="members"
+          [limit]="3"
+          (activate)="getLevel($event, members)"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [selected]="selected"
+          [selectionType]="'checkbox'"
+          (select)='onSelect($event)'
+          [scrollbarH]="true"
+          [messages]="{emptyMessage: 'No record'}">
+            <ngx-datatable-column
+              [width]="30"
+              [sortable]="false"
+              [canAutoResize]="false"
+              [draggable]="false"
+              [resizeable]="false"
+              name="chkbox"
+              [headerCheckboxable]="true"
+              [checkboxable]="true">
+            </ngx-datatable-column>
+          <ngx-datatable-column name="empId"></ngx-datatable-column>
+          <ngx-datatable-column name="Role"></ngx-datatable-column>
+          <ngx-datatable-column name="Name"></ngx-datatable-column>
+          <ngx-datatable-column name="Branch"></ngx-datatable-column>
+         <ngx-datatable-column name="Manager"></ngx-datatable-column>
+         <ngx-datatable-column name="Department"></ngx-datatable-column>
+         <ngx-datatable-column name="Designation"></ngx-datatable-column>
+         
+
+
+        <!--<ngx-datatable-column name="Name"></ngx-datatable-column>
+        <ngx-datatable-column name="Role"></ngx-datatable-column>
+        <ngx-datatable-column name="DOB"></ngx-datatable-column>
+        <ngx-datatable-column name="Gender"></ngx-datatable-column>
+        <ngx-datatable-column name="Created On"></ngx-datatable-column>-->
+    </ngx-datatable>
+      </div>
+  </div>
+
+  <div fxLayout="row">
+     <div fxFlex="50">
+      <a md-button routerLink="./../addmember"><md-icon>add</md-icon> Add Member</a>
+      <a md-button (click)="deleteAll()"><md-icon>delete</md-icon> Delete All</a>
+    </div>
+  </div>
+</div>
+  

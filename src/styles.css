@@ -1,0 +1,811 @@
+body, html {
+   margin: 0px;
+   padding: 0px;
+}
+
+body {
+   background: #f2f5fa ;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+.mat-input-flex {
+    border: 1px solid #000000 ;
+        padding: 5px 0px 0px 5px;
+            margin-top: 16px;
+            }
+.mat-fab.primary, .mat-mini-fab.primary, 
+.mat-raised-button.primary{
+    background-color: #2296fc;
+    color: #fff;
+}
+.mat-card{padding: 15px !important;}   
+.container h2::after {
+    content: '';
+    position: absolute;
+    width: 1%;
+    height: 1px;
+    bottom: 12px; left: 2px;
+    background: #4b5668;
+}
+.container h2::first-letter {
+    color: #4b5668;
+}
+._fxContainer {
+    position: relative; 
+    height:auto; 
+    width:100%; 
+    left:0; top:0; 
+    padding:25px 0;
+    /*min-height: 720px;*/
+    margin-bottom: 20px;
+}
+
+
+h2 {
+    font-size: 26px;
+    font-weight: normal;
+    padding-bottom: 8px;
+    margin: 0px;
+}
+
+.container h2 {
+    position: relative;
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+.mat-menu-content {background: #fff;padding-top: 0px !important;padding-bottom: 0px !important; }
+/* Data table */
+.ngx-datatable.material .datatable-header{
+    border: 1px solid #d2e3f9 !important;
+    background: #e4ecf9 !important;
+}
+.datatable-footer .datatable-pager li.active a {
+    background-color: #e4ecf9 !important;
+    font-weight: bold;
+}
+.ngx-datatable .datatable-body .datatable-row-wrapper {
+    height: auto !important;
+}
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    text-align: left;
+    padding: .5rem 1.2rem;
+    vertical-align: middle;
+    border-top: 0;
+    transition: width 0.3s ease;
+}
+.datatable-checkbox {
+    display: inline-flex;
+}
+.datatable-body-row{height:auto !important;border-bottom: 1px solid #ccc;}
+.datatable-body-cell{height:auto !important;white-space: normal !important;}
+/*.ngx-datatable .datatable-body .datatable-row-wrapper:hover {
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);border: 1px solid #d8d8d8;;
+}*/
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group{
+    background-color: #fff !important;
+    transition-property: background;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+.ngx-datatable.material .datatable-header .datatable-header-cell {
+    vertical-align: middle;
+}
+.ngx-datatable.material .datatable-footer {
+    border-top: none;
+    font-size: 16px;
+}
+.ngx-datatable.material .datatable-footer .page-count {color:#777575;}
+
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left
+}
+
+
+/* loader  */
+.loading {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    padding-top: 20%;
+}
+.loading > h2 {
+    color: #ccc;
+    margin: 0;
+    font: .8em verdana;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+/*
+ * Loading Dots
+ * Can we use pseudo elements here instead :after?
+ */
+.loading span {
+  display: inline-block;
+  vertical-align: middle;
+  width: .6em;
+  height: .6em;
+  margin: .19em;
+  background: #007DB6;
+  border-radius: .6em;
+  -webkit-animation: loading 1s infinite alternate;
+          animation: loading 1s infinite alternate;
+}
+
+/*
+ * Dots Colors
+ * Smarter targeting vs nth-of-type?
+ */
+.loading span:nth-of-type(2) {
+  background: #008FB2;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.loading span:nth-of-type(3) {
+  background: #009B9E;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.loading span:nth-of-type(4) {
+  background: #00A77D;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.loading span:nth-of-type(5) {
+  background: #00B247;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.loading span:nth-of-type(6) {
+  background: #5AB027;
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s;
+}
+.loading span:nth-of-type(7) {
+  background: #A0B61E;
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+@media (max-width: 767px) {
+    ._fxContainer {position: relative;width: auto; height: auto;}
+      .mat-calendar {width: 240px !important;}
+    .container h2::after {width: 0px;height: 0px;background: #ffffff;}
+    .loading {padding-top: 75%;}
+    
+  
+}
+/*
+ * Animation keyframes
+ * Use transition opacity instead of keyframes?
+ */
+@-webkit-keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loader {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    background: #000;
+    text-align: center;
+    padding-top: 10%;
+    opacity: 0.5;
+}
+.loader > h3 {
+    color: #ccc;
+    margin: 0;
+    font: .8em verdana;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+/*
+ * Loading Dots
+ * Can we use pseudo elements here instead :after?
+ */
+.loader span {
+  display: inline-block;
+  vertical-align: middle;
+  width: .6em;
+  height: .6em;
+  margin: .19em;
+  background: #007DB6;
+  border-radius: .6em;
+  -webkit-animation: loader 1s infinite alternate;
+          animation: loader 1s infinite alternate;
+}
+
+/*
+ * Dots Colors
+ * Smarter targeting vs nth-of-type?
+ */
+.loader span:nth-of-type(2) {
+  background: #008FB2;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.loader span:nth-of-type(3) {
+  background: #009B9E;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.loader span:nth-of-type(4) {
+  background: #00A77D;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.loader span:nth-of-type(5) {
+  background: #00B247;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.loader span:nth-of-type(6) {
+  background: #5AB027;
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s;
+}
+.loader span:nth-of-type(7) {
+  background: #A0B61E;
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+
+
+/*
+ * Animation keyframes
+ * Use transition opacity instead of keyframes?
+ */
+@-webkit-keyframes loader {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loader {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* form */
+fieldset {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border: 1px solid #ccc;
+    margin-top:20px;
+    padding-top:20px;
+}
+fieldset > legend {
+    font-size: 18px;
+    padding: 0px 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+
+input[readonly],
+textarea[readonly] {
+    color:gray;
+}
+md-select{
+    padding-top: 9px;
+}
+/* left border */
+.right-card{border-left: 1px solid #f1e7e7;}
+
+ ._fxContainer {
+    margin-top:15px;
+}
+a{text-decoration: none;}
+
+/*  Button  */
+.edit-btn.mat-raised-button{
+        padding: 0px;
+    line-height: 28px;
+    border-radius: 45px;
+    border: 1px solid #1F89FF;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+    font-weight:300;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding-right: 8px;
+    background: #1F89FF;
+    color:#fff;
+}
+.edit-btn.mat-raised-button:not([disabled]):focus,
+.edit-btn.mat-raised-button:not([disabled]):active,
+.edit-btn.mat-raised-button:not([disabled]):hover {
+    border-radius: 45px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+textarea.mat-input-element{
+    resize: none;
+}
+.input-res{border-bottom: none;}
+._brand {
+    display: table-cell; 
+    float:left;
+}
+._brand > img {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 4px;
+    -webkit-box-shadow: 0 0 10px #ddd inset;
+        box-shadow: 0 0 10px #ddd inset;
+}
+._providerbrand > img{
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 4px;
+    -webkit-box-shadow: 0 0 10px #ddd inset;
+        box-shadow: 0 0 10px #ddd inset;
+}
+.agmShaddow {
+    padding: 4px;
+    border: 1px solid #ddd;
+    padding: 4px;
+    -webkit-box-shadow: 0 0 10px #ddd inset;
+        box-shadow: 0 0 10px #ddd inset;
+}
+.drop-zone{
+    margin: auto;
+    height: 80px !important;
+    border: 3px dotted #d2d2d2 !important;
+    border-radius: 0px !important; 
+    margin-bottom: 10px !important;
+}
+.drop-zone.file-success{
+    border: 3px dotted #28a745 !important;
+    color:#28a745;
+}
+.drop-zone.file-danger{
+    border: 3px dotted #d71a1a !important;
+    color:#d71a1a;
+}
+.content{
+    color: #489eff;
+    height: 50px !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-family: raleway;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px;
+}
+.mat-input-element:disabled {
+    color: #000;
+}
+.mat-input-placeholder:not(.mat-empty) {
+    transition: none;
+    color: #86c5fd;
+}
+fieldset:disabled .mat-input-underline {
+  /* width: 100%;
+  height: 30px;
+  line-height: 30px; */
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  color:#000;
+}
+fieldset:disabled .mat-select-underline{
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  color:#000;
+}
+fieldset:disabled .mat-select{
+    pointer-events: none !important;
+}
+/**============ input ================**/
+.mat-input-element {
+    width: 90% !important;
+    text-overflow: ellipsis !important;
+    color:#000;
+}
+.mat-input-underline .mat-input-ripple {
+    position: absolute;
+    height: 49px !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform-origin: 50%;
+    transform: 0;
+    visibility: hidden;
+    transition: 0;
+    cursor: text;
+}
+.mat-input-underline:hover{
+    cursor: text;
+}
+.mat-input-ripple {
+    border: 1px solid #00b1ff;
+    background: none !important;
+    cursor: text;
+}
+.mat-input-placeholder-wrapper {
+    position: absolute;
+    left: 0;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    cursor: text;
+}
+.mat-input-placeholder {
+    position: absolute;
+    left: 10px !important;
+    font: inherit;
+    pointer-events: none;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transform: none;
+    -ms-transform: none;
+    transform-origin: none;
+    transition: none;
+    display: none;
+    cursor: text;
+    top: 25px;
+}
+.mat-input-placeholder:active{
+    color:#00b1ff;
+}
+.mat-focused .mat-input-placeholder{
+    color:#00b1ff;
+}
+.mat-input-element {
+    font: inherit;
+    background: 0 0;
+    color: #000;
+    border: none;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+.mat-input-infix{
+    color:#000;
+}
+.mat-input-underline {
+    border: 1px solid #d2d2d2;
+    background: rgba(255, 255, 255, /*0.33*/0);
+    position: absolute;
+    height: 50px !important;
+    width: 100%;
+    bottom: 15px !important;
+    z-index: -1 !important;
+}
+/* .mat-input-underline:disabled{
+    border:1px solid #fff !important;
+} */
+.mat-focused .mat-input-underline .mat-input-ripple, .mat-input-invalid .mat-input-underline .mat-input-ripple{
+visibility: visible;
+transform:scaleX(1) !important;
+transition:none !important;
+}
+.mat-input-invalid .mat-input-ripple {
+    border: 1px solid #f44336;
+    background: none;
+    cursor: text;
+}
+
+.mdTextAra.mat-input-container{
+border:1px solid #d2d2d2 !important;
+    margin-bottom: 10px;
+}
+.mdTextAra.mat-input-container .mat-input-underline .mat-input-ripple{
+    top: -2px !important;
+    height:65px !important;
+}
+.mdTextAra.mat-input-container .mat-input-underline{
+    border:none !important;
+}
+.mdTextAra.mat-input-container textarea{
+    overflow: hidden !important;
+}
+fieldset:disabled .mdTextAra.mat-input-container{
+    border:none !important;
+}
+/**================== dropdown ====================**/
+.mat-select-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px !important;
+}
+.mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-underline {
+    border: 1px solid #00b1ff;
+    background: none;
+}
+.mat-select-underline:visited{
+    border: 1px solid #00b1ff;
+    background: none;
+}
+.mat-select-placeholder {
+    position: relative;
+    padding: 0 2px 0 10px !important;
+    transform-origin: left top;
+    flex-grow: 1;
+}
+/* .mat-focused .mat-select-placeholder:active{
+    color:#00b1ff;
+}
+.mat-select-trigger .mat-select-placeholder{
+    color: #00b1ff;
+} */
+.mat-select-underline {
+    border: 1px solid #d2d2d2;
+    background: none;
+}
+/* .mat-select-arrow, .mat-select-trigger{
+    color: #00b1ff;
+} */
+.mat-select-placeholder.mat-floating-placeholder {
+    top: -22px;
+    left: 5px !important;
+    text-align: left;
+    transform: scale(.75);
+    color: #86c5fd;
+}
+.mat-select-value {
+    position: absolute;
+    max-width: calc(100% - 18px);
+    flex-grow: 1;
+    top: 0;
+    left: 10px !important;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+.mat-select:focus:not(.mat-select-disabled).mat-warn .mat-select-underline, .mat-select:not(:focus).ng-invalid.ng-touched:not(.mat-select-disabled) .mat-select-underline {
+    border: 1px solid #f44336;
+    background: none;
+}
+/**========================= textarea =======================**/
+textarea.mat-input-placeholder-wrapper {
+    top:-9px !important;
+}
+textarea.mat-input-element{
+    margin-bottom: -20px !important;
+}
+/**========================tabs======================**/
+.mat-tab-header, .mat-tab-nav-bar {
+    border-bottom: none !important;
+}
+ .mat-tab-label {
+     line-height: 48px;
+    height: 48px;
+    padding: 0 12px;
+    cursor: pointer;
+    box-sizing: border-box;
+    opacity: .6;
+    min-width: 130px !important;
+    text-align: center;
+    position: relative; 
+    border-right: 1px solid #c3c4c6;
+}
+.mat-tab-label:last-child{
+    border-right: none;
+}
+.mat-tab-list {
+    flex-grow: 1;
+    position: relative;
+    transition: transform .5s cubic-bezier(.35,0,.25,1);
+    border-bottom: 1px solid #c0c1c3;
+} 
+.mat-tab-group {
+    border:1px solid #c0c1c3;
+}
+.mat-ink-bar {
+    background-color: transparent !important;
+}
+.mat-tab-label md-icon{
+    vertical-align: middle;
+}
+/* @import "assets/styles/theme.css"; */
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none!important;
+}
+/* .mat-tab-labels {
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 10px;
+}
+.mat-tab-label:focus {
+    background-color: lightsteelblue;
+    border-right: 1px solid red;
+}
+.mat-tab-list {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative;
+    transition: -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    transition: transform .5s cubic-bezier(.35,0,.25,1);
+    transition: transform .5s cubic-bezier(.35,0,.25,1), -webkit-transform .5s cubic-bezier(.35,0,.25,1);
+    border-right: none; 
+    border-bottom: none; 
+    float: left; 
+}
+.mat-tab-body-wrapper {
+    position: absolute !important;
+    overflow: hidden;
+    display: flex;
+    transition: height .5s cubic-bezier(.35,0,.25,1);
+    width:98%;
+}
+
+.mat-tab-body {
+    position: relative !important;
+    top: 0;
+    left: 170px !important;
+    right: 0;
+    bottom: 0;
+    display: block;
+    overflow: hidden;
+}  */
+
+
+.tab-body .slimscroll-wrapper {
+    width:  99% !important;
+}
+
+/* ========== progress bar ==========*/
+.mat-progress-bar-buffer {
+    background-color: transparent !important;
+}
+[_nghost-c9] .mat-progress-bar-element[_ngcontent-c9], [_nghost-c9] .mat-progress-bar-fill[_ngcontent-c9]::after {
+    height: 50% !important;
+    position: absolute;
+    width: 100%;
+}
+
+/* image upload */
+/*.file-upload {
+    padding: 0px !important;
+    background-color: #f8f8f8;
+}
+.button {
+    cursor: pointer;
+    position: absolute !important;
+    padding: 0 !important;
+    color: white;
+    left: 0 !important;
+    bottom: 0 !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    display: inline-block;
+    float: left;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    text-align: center !important;
+    height: 20% !important;
+    padding-top: 10px !important;
+    width: 100% !important;
+}
+.clear {
+    background-color: transparent !important;
+    color: transparent !important;
+    box-shadow: none !important;
+}
+.image-container {
+    background-color: #fdfdfd;
+    padding: 0 10px 0 10px;
+}
+.image-upload{
+     --common-radius: 0px !important; 
+    --active-color: rgba(27, 29, 28, 0.8) !important;
+     position: absolute !important; 
+    border-radius: var(--common-radius);
+     border: none !important; 
+    font-family: sans-serif;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+}
+.image {
+    float: left;
+    display: inline-block;
+     margin: 0 !important; 
+    width: 100% !important;
+    height: 100% !important;
+    background: center center no-repeat #fff;
+    background-size: contain;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    background-color: #fff !important;
+}*/
+
+ /* .x-mark{
+    display: none;
+}  */
+
+
+
+.image-upload {
+    border: none!important;
+    padding: 0px!important;
+}
+.file-upload {
+    padding: 0px!important;
+    background: none!important;
+}
+.button {
+    padding: 8px!important;
+    font-weight: normal!important;
+    font-size: 12px!important;
+    display: block!important;
+    width: 90%!important;
+    background: #00b8ff!important;
+    box-shadow: none!important;
+    text-align: center;
+}
+.clear.button {
+    display: none!important;
+}
+.image-container {
+    padding: 0px!important;
+}
+.image {
+    width: 160px!important;
+    height: 96px!important;
+    margin: 0px!important;
+    margin-top: -14px!important;
+}
+[data-attr="banking"] .image {
+    margin-top: 0px!important;
+    width: 95%!important;
+}
+.ngx-datatable.material .empty-row {
+    text-align: center;
+    color: red;
+}

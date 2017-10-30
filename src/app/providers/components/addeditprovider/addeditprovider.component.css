@@ -1,0 +1,138 @@
+/* .myColor {
+    color: red;
+} */
+ #page {
+    padding: 0px 40px;
+}
+h2 {
+    margin: 0px;
+    padding: 20px 0px 10px 0px;
+    font-family: raleway;
+    font-weight: 600;
+    text-shadow: none;
+    color: #00b1ff;
+}
+h2 span{
+    color:#000;
+}
+h2 span md-icon{
+font-size: 25px;
+    vertical-align: middle;
+    color:#000;
+        font-weight: 600;
+} 
+/* .left-section{
+    /* padding-left: 65px; 
+    
+} */
+.right-section{
+    padding-left: 45px;
+    padding-top: 65px;
+    border-left: 1px solid #d2d2d2;
+}
+.right-section h3{
+    font-weight: 400;
+    text-align: center;
+}
+.profile-section{
+    /* padding-left: 65px; */
+    padding-top: 20px;
+}
+.contact-section{
+    padding-top: 20px;
+}
+.services{
+    padding-top: 20px;
+}
+.banking{
+    padding-top: 20px;
+}
+
+ .providerAside {
+    display: block;
+}
+/*
+.providerAside li.active {
+    color: green;
+}
+ul {
+    border-left:1px solid #d4d4d4;
+    list-style: none;
+}
+.providerAside > li span {
+    position: absolute;
+    border: 2px solid #adadad;
+    width: 10px;
+    border-radius: 12px;
+    height: 10px;
+    /* left: -47px; 
+    background: #fff;
+}
+ul > li ul {
+    border-left: none;
+} */
+
+ul {border-left:1px solid #d4d4d4;
+padding-left: 23px;}
+ul > li {
+    position: relative;
+    display: block;
+        padding-bottom: 12px;
+}
+
+ul > li span {
+    position: absolute;
+    border: 2px solid #adadad;
+    width: 10px;
+    border-radius: 12px;
+    height: 10px;
+    left: -30px;
+    background: #fff;
+}
+ul > li.active span{
+    border: 2px solid green;
+    background: white;
+}
+ul > li.active {
+    color:green;
+}
+ /* ul > li.active {
+    border: none;
+    color: #1f89ff;    background:none;
+font-weight:600;}  */
+
+ul > li div p span {
+    position: absolute;
+    border: 2px solid #adadad;
+    width: 10px;
+    border-radius: 12px;
+    height: 10px;
+    left: 0px;
+    background: #fff;
+}
+/* ul > li div p > a.active span {
+     border: 2px solid #1f89ff;    background: #1f89ff;
+}
+ul > li > div p > a.active label{
+    border: none;
+    color: #1f89ff;    background:none;
+} */
+ul > li div p label{
+    margin-left:30px;
+    font-size: 14px;
+    color:#000;
+    display: block;
+    
+}
+ul > li div p.active label {color: green;}
+ul > li div p.active span{
+    border: 2px solid green;
+    background: green;
+}
+ul > li > div {   
+    margin-top: 10px;
+}
+hr{    width: 10%;
+    border-bottom: 5px solid #a4a2a2;
+    border-radius: 7px;    margin-top: 25px;
+    margin-bottom: 25px;}

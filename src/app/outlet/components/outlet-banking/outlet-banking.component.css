@@ -1,0 +1,138 @@
+md-checkbox{
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+ md-select {
+    padding-top: 22px !important;
+} 
+ /* input, textarea {
+    border: 1px solid gray;
+    margin: 0px 20px;
+    outline: none;
+    color: black;
+    background:  none;
+}  */
+.form-control{
+    display: block;
+    position: relative;
+    z-index: 11;
+    padding: 24px;
+}
+
+.form-control.active{
+    border:1px solid #00b1ff;
+    
+}
+button {margin-left: 20px;}
+
+input:disabled,
+textarea:disabled {
+    border: none;
+    resize:  none;
+}
+/* .basicInfo{
+        margin-bottom: -15px;
+} */
+fieldset {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+fieldset > p{
+    padding-bottom: 35px;
+    -webkit-margin-before: 0 !important;
+}
+.profile-pic{
+    width: /*153px*/85%;
+    height: /*153px*/118px;
+    border: 2px solid #898989;
+    background: #e3e8ee;
+    margin-bottom: 24px;
+}
+.btn-group{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    /* top: 585px;
+    left: 426px; */
+}
+
+.form-overlay{
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;
+    left: 0; top: 0;
+   
+}
+
+.btn-group p{
+    display: block;
+    /* -webkit-margin-before: 0 !important; */
+    -webkit-margin-after:0 !important;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+p{
+    display: block;
+    /* -webkit-margin-before: 0 !important; */
+    -webkit-margin-after:0 !important;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.file-upload {
+	position: relative;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file-upload__label {
+  box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-weight: 500;
+    text-align: center;
+    /* margin: 10px 0px; */
+    min-width: 100%;
+    line-height: 114px;
+    padding: 0 16px;
+    border-radius: 2px;
+    background-color: transparent;
+    color: #000;
+    
+}
+.file-upload__label:hover {
+     cursor: pointer;
+  }
+
+    
+.file-upload__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* font-size: 13px; */
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+fieldset p{
+    font-size: 20px;
+    padding-bottom: 10px;
+}

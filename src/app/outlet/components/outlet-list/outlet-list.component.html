@@ -1,0 +1,99 @@
+<!--<p><a routerLink="/dashboard/provider/1/outlet/1">outlet - 1</a></p>
+<p><a routerLink="/dashboard/provider/1/outlet/2">outlet - 2</a></p>
+<p><a routerLink="/dashboard/provider/pid/outlet/add">create outlet</a></p>-->
+
+
+
+
+<div class="container">
+  
+  <div fxLayout="row" fxLayout.xs="column">
+    <div data-card="md-card" class="profileCard" fxFlex="100">
+    <!-- // left section -->
+      <div fxFlex="69" fxFlexOffset="1" class="left-card">
+        <h2>Outlets</h2>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="70">
+              <md-input-container fxFlex="70">
+                <input type="text" mdInput type='text' placeholder='Search Outlet' (keyup)='updateFilter($event)' />
+              </md-input-container>
+            </div>
+            <div fxFlex="30">
+              <a routerLink="/dashboard/provider/{{provderId}}/outlet/add">
+                <div class="btn-group">
+                  <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary"><md-icon>add</md-icon> CREATE</button>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+              <ngx-datatable
+                #outlet
+              class='material fullscreen'
+              [rows]='rows'
+              [limit]="4"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50">
+            <ngx-datatable-column name="Serial Number" prop="id">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{row.id}}
+              </ng-template>
+            </ngx-datatable-column>
+             <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <a routerLink="/dashboard/provider/{{this.provderId}}/outlet/{{row.id}}">{{row.name}}</a>
+              </ng-template>
+            </ngx-datatable-column>
+             <ngx-datatable-column name="Date" prop="date">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{row.date}}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+            </div>
+          </div>
+      </div>
+    
+
+    <!-- // right section -->
+      <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true" >
+       <hr>
+        <div fxLayout="row">
+          <div fxFlex="100" class="cp-para">
+            <h3><span>My Team</span></h3>
+            <label>View all team members <span>(15)</span></label><hr>
+            <div fxLayout="row" class="cp-margin">
+              <div fxFlex="33">
+                <span class="_brand providerIcon"><img src="assets/images/dummy_logo.png"></span>
+              </div>
+              <div fxFlex="67" >
+                <small><label>First Name Last Name</label></small>
+                <small><p><label>Area: New Delhi</label></p></small>
+                <small><label>10 PROVIDER</label> | <label>5 LEADS</label></small>
+              </div>
+            </div>
+            <div fxLayout="row" class="cp-margin">
+              <div fxFlex="33">
+                <span class="_brand providerIcon"><img src="assets/images/dummy_logo.png"></span>
+              </div>
+              <div fxFlex="67" >
+                <small><label>First Name Last Name</label></small>
+                <small><p><label>Area: New Delhi</label></p></small>
+                <small><label>10 PROVIDER</label> | <label>5 LEADS</label></small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<md-paginator [length]="100"
+              [pageSize]="10">
+        </md-paginator>-->
+          <hr>
+      </div>
+</div>
+</div>
+</div>
+
+
+ 

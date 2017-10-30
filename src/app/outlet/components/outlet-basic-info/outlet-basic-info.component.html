@@ -1,0 +1,112 @@
+<div class="form-control">
+  <div [ngClass]="{'form-overlay': outletBasicFormOnverlay}">
+     <div [hidden]="isOutletEditBtn" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edit()">EDIT</button>
+    </div>
+  </div>
+  <form  #outletBasicInfo="ngForm" (ngSubmit)="outletBasicInfoFrm(outletBasicInfoInput)">
+    <fieldset [disabled]="isOutletBasicFieldset">
+      <div data-attr="outlet-basic-info">
+        <div fxLayout="row">
+          <div fxFlex="44">
+            <div class="profile-pic"></div>
+          </div>
+          <div fxFlex="56">
+            <div fxLayout="row">
+               <md-input-container fxFlex="100">
+                 <input type="text" mdInput required placeholder="Company Name" name="companyName" [(ngModel)]="outletBasicInfoInput.companyName" #companyName="ngModel">
+                  <md-error *ngIf="companyName.errors && (companyName.dirty || companyName.touched)">
+                    <md-error>
+                        <!--<span [hidden]="!companyName.errors.required">Enter company name</span>-->
+                    </md-error>
+                  </md-error>
+               </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="100" class="mdTe xtAra">
+                <textarea mdInput required placeholder="Address" name="address" [(ngModel)]="outletBasicInfoInput.address" #address="ngModel">{{outletBasicInfoInput.address}}</textarea>
+                 <md-error *ngIf="address.errors && (address.dirty || address.touched)">
+                    <md-error>
+                        <!--<span [hidden]="!address.errors.required">Enter address</span>-->
+                    </md-error>
+                  </md-error>
+              </md-input-container>
+            </div>
+          </div> 
+        </div>
+        <div fxLayout="row">
+          <md-input-container fxFlex="100" class="mdTextAra">
+            <textarea mdInput required placeholder="Accreditation" name="accreditation" [(ngModel)]="outletBasicInfoInput.accreditation" #accreditation="ngModel">{{outletBasicInfoInput.accreditation}}</textarea>
+            <md-error *ngIf="accreditation.errors && (accreditation.dirty || accreditation.touched)">
+                <md-error>
+                    <!--<span [hidden]="!accreditation.errors.required">Enter accreditation</span>-->
+                </md-error>
+              </md-error>
+          </md-input-container>
+        </div>
+        <div fxLayout="row">
+          <md-input-container fxFlex="50">
+            <input type="text" mdInput required placeholder="Commercial Name" name="commercialName" [(ngModel)]="outletBasicInfoInput.commercialName" #commercialName="ngModel">
+            <md-error *ngIf="commercialName.errors && (commercialName.dirty || commercialName.touched)">
+              <md-error>
+                  <!--<span [hidden]="!commercialName.errors.required">Enter commercial name</span>-->
+              </md-error>
+            </md-error>
+          </md-input-container>
+          <md-input-container fxFlex="45" fxFlexOffset="5">
+            <input type="text" required pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" mdInput placeholder="Website URL" name="werbsiteUrl" [(ngModel)]="outletBasicInfoInput.werbsiteUrl" #werbsiteUrl="ngModel">
+            <md-error *ngIf="werbsiteUrl.errors && (werbsiteUrl.dirty || werbsiteUrl.touched)">
+              <md-error>
+                  <!--<span [hidden]="!werbsiteUrl.errors.required">Enter website url</span>-->
+                  <span [hidden]="!werbsiteUrl.errors.pattern">Invalid url</span>
+              </md-error>
+            </md-error>
+          </md-input-container>
+        </div>
+        <div fxLayout="row">
+            <md-input-container fxFlex="50">
+              <input type="text" mdInput placeholder="Search Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
+            </md-input-container>
+            <md-input-container fxFlex="45" fxFlexOffset="5">
+              <input type="text" readonly mdInput placeholder="Lattitude, Longitude" name="latlon" [(ngModel)]="outletBasicInfoInput.latlon" #latlon="ngModel">
+            </md-input-container>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="56">
+            <div fxLayout="row">
+             <md-input-container fxFlex="95">
+                <input type="text" readonly mdInput placeholder="State" name="state" [(ngModel)]="outletBasicInfoInput.state" #state="ngModel">
+              </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="95">
+                <input type="text" readonly mdInput placeholder="City" name="city" [(ngModel)]="outletBasicInfoInput.city" #city="ngModel">
+              </md-input-container>
+            </div>
+            <div fxLayout="row">
+              <md-input-container fxFlex="95">
+                <input type="text" readonly mdInput placeholder="Pincode" name="pincode" [(ngModel)]="outletBasicInfoInput.pincode" #pincode="ngModel">
+              </md-input-container>
+            </div>
+          </div>
+          <div fxFlex="44">
+            <!--<agm-map style="height: 185px;">
+              <agm-marker></agm-marker>
+            </agm-map>-->
+           <div style="background: #ccc; color: white;height: 185px;">
+            <agm-map style="height: 185px;" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" *ngIf="!latitude == 0 && !longitude == 0">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+              </agm-map>
+           </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="btn-group" [hidden]="isOutletBasicFieldset || outletBasicFormOnverlay || !outletBasicInfo.form.valid">
+       <button md-raised-button type="submit" class="primary" >{{btnText}}</button>
+    </div>
+   
+
+  </form>
+</div>

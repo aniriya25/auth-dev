@@ -1,0 +1,56 @@
+$mat-teal: #009688;
+$mat-indigo: #3f51b5;;
+$md-card: #ffffff;
+$cp-list:#4dbbfe;
+$chart-box-hw:250px;
+
+.mdindigo{ background:$mat-indigo;color: $md-card;border-radius: 5px;margin: 10px 0px;}
+.mdteal{background: $mat-teal;color:$md-card;border-radius:5px;margin:4px 10px}
+.mdindigo, .mdteal {
+  h4 {
+   font-size:18px;
+    font-weight: normal;
+    padding-bottom: 4px;
+    margin: 0px;
+  }
+}
+
+.chart-box{
+  max-width:$chart-box-hw;
+  max-height:$chart-box-hw;
+}
+.right-panel{
+  border-right: 1px solid #bababc;
+}
+.icongap{margin-right:15px;}
+hr{    width: 40%;
+  border-bottom: 5px solid #a4a2a2;
+  border-radius: 7px;    margin-top: 25px;
+  margin-bottom: 25px;} .cp {
+  position: relative;
+}
+
+.cp-para {
+  text-align: center;
+  font-size: 22px;
+  font-weight: normal;
+  h3 span {
+    position: relative;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+  }
+  > label {
+    position: relative;
+    color: $cp-list;
+  }
+  ul{
+    color: $cp-list;
+    list-style: none;
+    font-size: 16px;
+    text-align: center;
+    padding-left: 10px;
+    line-height: 1.5;
+  }
+}
+.tran{
+  padding: 10px;
+}

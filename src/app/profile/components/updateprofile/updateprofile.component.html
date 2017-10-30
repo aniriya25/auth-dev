@@ -1,0 +1,39 @@
+
+<!-- // profile panel -->
+<div fxLayout="row" fxLayout.xs="column" class="_fxContainer">
+    
+
+    <!-- // profile routing -->
+    <div fxFlex="77" fxFlex.xs="80" fxFlexOffset="2" fxFlexOffset.xs="0">
+      <div fxFlex="100" class="container">
+        <div data-card="md-card"> 
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div data-card="md-card" fxFlex="19" fxFlexOffset="1" fxFlex.xs="100" class="profileCard">
+      <div class="profileImg">
+        <img src="assets/images/user.jpg">
+        <div class="profileOverlap">
+          <p><img src="assets/images/user.jpg"></p>
+          <h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4>
+          <p>Type - L1</p>
+          <p>Status - Active</p>
+        </div>
+      </div>
+      <ul class="profileList" >
+          <li (click)="hideShow()" >
+            <p><md-icon *ngIf="_profileToggle == true">remove</md-icon><md-icon *ngIf="_profileToggle == false">add</md-icon><label>Profile</label></p>
+            <ul *ngIf="_profileToggle">
+              <a routerLink="personal" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">person</md-icon> Personal</li></a>
+              <a routerLink="contact_details" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">contact_mail</md-icon> Contact Details</li></a>
+              <a routerLink="corporate" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">business_center</md-icon> Corporate</li></a>
+              <a routerLink="biological" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">person</md-icon> Biological</li></a>
+              <a routerLink="identity" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">fingerprint</md-icon> Identity</li></a>
+              <a routerLink="banking" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon class="inActiveBtn">account_balance</md-icon> Banking</li></a>
+              <!--<a routerLink="social" (click)="hideShow()"><li *ngIf="_profileClick"><md-icon>public</md-icon> Social</li></a>-->
+            </ul>
+          </li>
+        <a routerLink="memberlist"><li><p><md-icon>group</md-icon> Members <span *ngIf="totalMember > 0">{{totalMember}}</span></p></li></a>
+      </ul>
+    </div>

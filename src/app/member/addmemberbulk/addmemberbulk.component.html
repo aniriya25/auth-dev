@@ -1,0 +1,13 @@
+<h3>Add Member (Bulk upload)</h3>
+<div style="position:relative">
+	<xlsx-file-upload (uploadedXls)="xlsxUploaded($event)"> 
+		<!--{{ uploaderContent | async }} -->
+		Drop xls or xlsx file here
+	</xlsx-file-upload>
+</div>
+<table>  
+	<tr ng-if="memberData && memberData.length>0" *ngFor="let member of memberData">
+		<td *ngFor="let m of member">{{m}}</td>
+	</tr>
+</table>
+

@@ -1,0 +1,82 @@
+$linkcolor:#4dbbfe;
+textarea.mat-input-element {
+    overflow: auto;
+    height: 100px;
+}
+.file-upload{
+    height: 95px;
+    border: 2px dashed #cccccc;
+   
+    md-icon{
+        position: absolute;
+    }
+}
+span{
+    font-size:18px;
+}
+.btnupload{
+    height: 95px;
+    width: 100%;
+    opacity: 0;
+}
+label{
+    font-size: 20px;
+    font-weight: 300;
+    font-family: "Oswald",Helvetica,Arial,sans-serif;
+}
+.cp{position: relative}
+
+.cp-para{
+    text-align: center; 
+    font-size: 22px;
+    font-weight: normal;
+    ul{
+        list-style: none;
+        position: relative;
+        font-size: 16px;
+        color: #56befe;
+        line-height: 2;
+        padding-left: 0px;
+    }
+}
+
+.cp-para h3 span{position: relative;font-family: "Oswald",Helvetica,Arial,sans-serif;}
+.cp-para h3 span::after{
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 1px;
+    bottom: -8px;
+    left: 0;
+    background: #4b5668;
+} 
+hr{    width: 10%;
+    border-bottom: 5px solid #a4a2a2;
+    border-radius: 7px;    margin-top: 25px;
+    margin-bottom: 25px;}
+
+    ol{
+        list-style: none;
+        float: left;
+        li{
+          font-size: 14px;
+          font-weight:500;
+          span{
+            color:$linkcolor;
+          }
+          a{
+              cursor: pointer;
+          }
+        }
+      }
+      .mat-mini-fab {
+          height: 25px !important;
+          width: 25px !important;
+          margin-top: 10px;
+
+          md-icon{
+            position: relative;
+            top:-7px;
+            font-size: 17px;
+          }
+      }

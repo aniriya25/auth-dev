@@ -1,0 +1,102 @@
+<div class="form-control" [ngClass]="{'active': isBankingActiveForm}">
+  <div [ngClass]="{'form-overlay': isBankFormOverlay}">
+    <div [hidden]="isBankingBtn" style="position: absolute; right: 0; bottom: 0;">
+      <button md-raised-button type="button" class="primary" (click)="edtFrm(bankingUser)">EDIT</button> 
+    </div>
+  </div>   
+ 
+  <form #providerBanking="ngForm" (ngSubmit)="submitProviderBanking(bankingUser)" (keydown.enter)="$event.preventDefault()">
+    <fieldset [disabled]="isBankingFieldset">
+        <md-progress-bar *ngIf="bankingProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>
+      <p>Banking</p>
+      <div data-attr="banking">
+          <div fxLayout="row">
+            <div fxFlex="50">
+              <div fxLayout="row">
+                <md-input-container fxFlex="100">
+                  <input type="text" pattern="[0-9]{3,}" mdInput placeholder="Bank Account No." required name="accountNo" #accountNo="ngModel" [(ngModel)]="bankingUser.accountNo">
+                  <md-error *ngIf="accountNo.errors && (accountNo.dirty || accountNo.touched)">
+                    <md-error>
+                        <span [hidden]="!accountNo.errors.required">Enter Account Number</span>
+                        <span [hidden]="!accountNo.errors.pattern">Enter digit only</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container>
+              </div>
+              <div fxLayout="row">
+                <md-select placeholder="Account Type" required fxFlex="100" [(ngModel)]="bankingUser.type" name="type" #type="ngModel">
+                  <md-option *ngFor="let accountType of accountTypes" [value]="accountType.value">
+                    {{accountType.name}}
+                  </md-option>
+                </md-select>
+                <md-error *ngIf="type.errors && (type.dirty || type.touched)">
+                    <!--<md-error>
+                        <span [hidden]="!type.errors.required">Select account type</span>
+                    </md-error>-->
+                  </md-error>
+              </div>
+            </div>
+            <div fxFlex="45" fxFlexOffset="5">
+              <div fxFlex="100"> 
+                <!--<div style="border: 2px solid #d2d2d2;padding: 10px;height: 150px;width: 150px;position: relative;">-->
+                <div style="position: relative; overflow: hidden;height: 125px;">
+                  <image-upload [max]="1" [preview]="true" [extensions]="['image/*']" [dropBoxMessage]="''" [buttonCaption]="'Upload cancel cheque'"  (onFileUploadFinish)="imageUploaded($event)">
+                  </image-upload>
+                  <div *ngIf="cancelChequeImg">
+                    <!--<i (click)="removeImg()">x</i>-->
+                    <img [src]="cancelChequeImg" style="height: 96px; width: auto; display: block; margin: 0px auto;" alt="" height="100" width="100">
+                  </div>
+                </div>
+                
+              </div>
+              <!--<div fxFlex="100" class="profile-pic">
+                <div class="file-upload" style="margin-right: 10px;">
+                  <label class="file-upload__label">Upload cancelled Cheque</label>
+                  <input [disabled]="isReadOnly" accept="image/*" class="file-upload__input" type="file" (change)="getFileFx($event, 'driving')" name="pix3">
+                </div>
+              </div>-->
+            </div>
+          </div>
+          <div fxLayout="row">
+                <md-input-container fxFlex="50">
+                  <input type="text" mdInput required placeholder="IFSC Code" (blur)="getUserAcc(bankingUser.ifsc)" name="ifsc" #ifsc="ngModel" [(ngModel)]="bankingUser.ifsc">
+                  <md-error *ngIf="ifsc.errors && (ifsc.dirty || ifsc.touched)">
+                    <md-error>
+                        <span [hidden]="!ifsc.errors.required">Enter IFSC Code</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container>
+          
+            <md-input-container fxFlex="45" fxFlexOffset="5">
+              <input type="text" mdInput placeholder="Bank Name" name="name" #name="ngModel" [(ngModel)]="bankingUser.name">
+            </md-input-container>
+          </div>
+          <div fxLayout="row">
+            <md-select placeholder="Branch Name" fxFlex="50" [(ngModel)]="bankingUser.refBankId" name="branch">
+              <md-option *ngFor="let branch of branches" [value]="branch.id">
+                {{branch.branch}}
+              </md-option>
+            </md-select>
+          
+            <md-input-container fxFlex="45" fxFlexOffset="5" class="mdTextAra">
+              <textarea mdInput placeholder="Address" name="address" #address="ngModel" [(ngModel)]="bankingUser.address">{{bankingUser.address}}</textarea>
+            </md-input-container>
+          </div>
+          <div fxLayout="row">
+            <md-input-container fxFlex="50">
+              <input type="text" mdInput placeholder="City" name="city" #city="ngModel" [(ngModel)]="bankingUser.city">
+            </md-input-container>
+            <md-input-container fxFlex="45" fxFlexOffset="5">
+              <input type="text" mdInput placeholder="State" name="state" #state="ngModel" [(ngModel)]="bankingUser.state">
+            </md-input-container>
+          </div>
+      </div>
+
+      <div class="btn-group">
+        <div [hidden]="isBankingFieldset || isBankFormOverlay || !providerBanking.form.valid">
+          <button md-raised-button type="submit" class="primary">{{bankingBtn}}</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

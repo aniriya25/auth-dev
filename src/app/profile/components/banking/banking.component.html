@@ -1,0 +1,103 @@
+<div>
+    <h2>Banking
+      <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+      <button class="pull-right" md-raised-button fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+          </h2>
+
+          <form class="form" fxLayout="column" #banking="ngForm" (ngSubmit)="submitFrm(user)">
+            <fieldset>
+              <legend>{{user.name}}</legend>
+            
+            <div fxLayout="row" fxLayout.xs="column">             
+              
+               <div fxFlex="33" fxFlex.xs="100">
+              <md-input-container fxFlex="90">
+                <input type="text" mdInput placeholder="IFSC Code" required [(ngModel)]="user.ifsc" name="ifscCode" #ifscCode="ngModel"/>
+                <md-error *ngIf="ifscCode.errors && (ifscCode.dirty || ifscCode.touched)">
+                    <md-error>
+                      <span [hidden]="!ifscCode.errors.required">Please provide Valid IFSC Code</span>
+                    </md-error>
+                  </md-error>
+              </md-input-container>
+              </div>
+              
+               <div fxFlex="33" fxFlex.xs="100">
+               <md-input-container fxFlex="90" style="border:none;">
+                  <input mdInput placeholder="Account No" pattern="\d*" minlength="10"  maxlength="14" required [(ngModel)]="user.accountNo" name="accountNo" #accountNo="ngModel">
+                  <md-error *ngIf="accountNo.errors && (accountNo.dirty || accountNo.touched)">
+                    <md-error>
+                      <span [hidden]="!accountNo.errors.required">Provide account number</span>
+                      <span [hidden]="!accountNo.errors.pattern">Account Number require</span>
+                      <span [hidden]="!accountNo.errors.minlength">Should be between 10 and 14 digit</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container>
+              </div>
+                            
+              <div fxFlex="100" fxFlex.xs="100">
+                 <md-select fxFlex="90" placeholder="Account Type" name="type" #accountTypeID="ngModel" [(ngModel)]="user.type">
+                    <md-option *ngFor="let accountType of accountTypes" value={{accountType.type}}>{{accountType.value}}</md-option>
+                </md-select> 
+              </div>     
+                                      
+            </div>
+
+            <div fxLayout="row" fxLayout.xs="column">
+             
+             <div fxFlex="50" fxFlex.xs="100">
+                <md-input-container fxFlex="90">
+                <input type="text" mdInput placeholder="Bank Name" required [(ngModel)]="user.name" name="bankName" #bankName="ngModel">
+     
+
+                  <md-error *ngIf="bankName.errors && (bankName.dirty || bankName.touched)">
+                    <md-error>
+                      <span [hidden]="!bankName.errors.required">Please provide Bank Name</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+             
+
+                <div fxFlex="50" fxFlex.xs="100">
+                <md-input-container fxFlex="90">
+                <input type="text" mdInput placeholder="Branch Name" required [(ngModel)]="user.branch" name="branchName" #branchName="ngModel">
+                <md-error *ngIf="branchName.errors && (branchName.dirty || branchName.touched)">
+                    <md-error>
+                      <span [hidden]="!branchName.errors.required">Please provide Bank Name</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container> 
+              </div>
+             
+              <div fxFlex="50" fxFlex.xs="100">
+                <md-input-container fxFlex="90">
+                  <textarea mdInput placeholder="Address" required [(ngModel)]="user.address" name="address" #address="ngModel" class="profile_banking_tex"></textarea>
+                  <md-error *ngIf="address.errors && (address.dirty || address.touched)">
+                    <md-error>
+                      <span [hidden]="!address.errors.required">Please provide Address</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container>
+              </div>
+            
+             
+            </div>
+         
+            <!--<div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="95" fxFlex.xs="100">
+                <md-input-container fxFlex="100">
+                  <textarea mdInput placeholder="UPI Address" required [(ngModel)]="user.upiAddress" name="upiAddress" #upiAddress="ngModel"></textarea>
+                  <md-error *ngIf="upiAddress.errors && (upiAddress.dirty || upiAddress.touched)">
+                    <md-error>
+                      <span [hidden]="!upiAddress.errors.required">Please provide UPI Address</span>
+                    </md-error>
+                  </md-error>
+                </md-input-container>
+              </div>
+            </div>-->
+            </fieldset>
+          <div class="button-row" fxLayoutAlign="left">
+            <button fxFlex="9" fxFlexOffset="1" md-raised-button class="primary">UPDATE</button>
+          </div>
+          </form>
+</div>

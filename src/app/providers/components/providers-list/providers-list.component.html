@@ -1,0 +1,198 @@
+<div class="container">
+ 
+    <div fxLayout="row">
+    <div data-card="md-card" class="profileCard" fxFlex="100">
+      <div fxFlex="69" fxFlexOffset="1" class="left-card">
+        <h2>Providers </h2>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
+            <div fxFlex="24" (click)="_getProviderType('all')">
+              <div class="recBox totalProvider">
+                <span class="triangle-bottomleft" [ngClass]="{'active': selectedItem == 'all'}"></span>
+                <p>
+                  <md-icon class="mainIcon">contacts</md-icon> 
+                  <span class="num">{{this.rows.length}}<!--{{records[0].totalProvider}}--></span>
+                </p>
+              </div>
+              <div class="_caption" [ngClass]="{'totalProvider': selectedItem == 'all'}">Total Provider</div>
+            </div>
+
+            <div fxFlex="24" (click)="_getProviderType('newApproval')">
+              <div class="recBox newApproval">
+                <span class="triangle-bottomleft" [ngClass]="{'active': selectedItem == 'newApproval'}"></span>
+                <p>
+                  <md-icon class="mainIcon">add_box</md-icon> 
+                  <span class="num">5<!--{{records[0].newApproval}}--></span>
+                </p>
+              </div>
+              <div class="_caption" [ngClass]="{'newApproval': selectedItem == 'newApproval'}">New Approval</div>
+            </div>
+
+            <div fxFlex="24" (click)="_getProviderType('inProgress')">
+              <div class="recBox inProgress">
+                <span class="triangle-bottomleft" [ngClass]="{'active': selectedItem == 'inProgress'}"></span>
+                <p>
+                  <md-icon class="mainIcon">timeline</md-icon> 
+                  <span class="num">6<!--{{records[0].inProgress}}--></span>
+                </p>
+              </div>
+              <div class="_caption" [ngClass]="{'inProgress': selectedItem == 'inProgress'}">In Progress</div>
+            </div>
+
+            <div fxFlex="24" (click)="_getProviderType('approval')">
+              <div class="recBox approved">
+                <span class="triangle-bottomleft" [ngClass]="{'active': selectedItem == 'approval'}"></span>
+                <p>
+                  <md-icon class="mainIcon">thumb_up</md-icon> 
+                  <span class="num">9<!--{{records[0].approved}}--></span>
+                </p>
+              </div>
+              <div class="_caption" [ngClass]="{'approved': selectedItem == 'approval'}">Approved Provider</div>
+            </div>
+        </div>
+
+    <p>&nbsp;</p>
+   <div fxLayout="row">
+    <div fxFlex="7"><md-icon class="icon">report_problem</md-icon></div>
+    <div fxFlex="93">
+        <small><label (click)="myfX()">10<!--{{records[0].pendingProvider}}--> Provider</label> are pending from past 2 Weeks</small>
+        <small><p><label> 8<!--{{records[0].newProvider}}--> New Provider</label> need your attention</p></small>
+    </div>
+  </div> 
+
+  <div fxLayout="row" fx-layout-align="center center">
+    <div fxFlex="80" class="v_align">
+        <md-input-container fxFlex="70">
+        <input type="text" mdInput type='text' placeholder='Search provider by city..' (keyup)='updateFilter($event)' />
+      </md-input-container>
+    </div>
+    <div fxFlex="20" >
+        <!-- <md-input-container fxFlex="90" >
+        <input mdInput [mdDatepicker]="picker" placeholder="Start Date">
+        <button type="button" mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker (selectedChanged)="fetchRecByDate($event)"></md-datepicker> -->
+      </div>
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="100">
+        <ngx-datatable
+        #myTable
+        class='material fullscreen'
+        [rows]='rows'
+        [limit]="4"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [loadingIndicator]="loadingIndicator"
+        [scrollbarV]="false"
+        [scrollbarH]="true">
+
+      <ngx-datatable-row-detail [rowHeight]="auto">
+        <ng-template ngx-datatable-row-detail-template let-row="row">
+          <table width="100%" border="1" style="border-collapse: collapse">
+            <tr>
+              <td>first</td>
+              <td>second</td>
+              <td>third</td>
+            </tr>
+          </table>
+        </ng-template>
+      </ngx-datatable-row-detail>
+
+        <ngx-datatable-column name="Name" prop="Name" width="200">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <span class="_providerbrand providerIcon"><img src="{{row.logoLink}}" alt=""></span>  
+              <label><a routerLink="provider/{{row.id}}" class="link">{{row.name}}</a></label><address>{{row.city}}</address>
+              <label>UDID</label>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Registered Date" prop="regdStartDate">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.regdStartDate}}
+          </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column name="Contact Person" prop="regdName">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.regdName}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Location" prop="location">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+           {{row.city}}, {{row.state}}
+          </ng-template>
+        </ngx-datatable-column>
+
+         <ngx-datatable-column name="Services Details">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Provider Type" prop="providerType">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.providerType}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Total No. of Outlet" prop="totalOutlets">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.totalOutlets}}
+          </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column name="Status">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+           
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+
+      <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true" >
+       <hr>
+        <div fxLayout="row">
+          <div fxFlex="100" class="cp-para">
+            <h3><span>My Team</span></h3>
+            <label>View all team members <span>(15)</span></label><hr>
+            <div fxLayout="row" class="cp-margin">
+              <div fxFlex="33">
+                <span class="_brand providerIcon"><img src="assets/images/dummy_logo.png"></span>
+              </div>
+              <div fxFlex="67" >
+                <small><label>First Name Last Name</label></small>
+                <small><p><label>Area: New Delhi</label></p></small>
+                <small><label>10 PROVIDER</label> | <label>5 LEADS</label></small>
+              </div>
+            </div>
+            <div fxLayout="row" class="cp-margin">
+              <div fxFlex="33">
+                <span class="_brand providerIcon"><img src="assets/images/dummy_logo.png"></span>
+              </div>
+              <div fxFlex="67" >
+                <small><label>First Name Last Name</label></small>
+                <small><p><label>Area: New Delhi</label></p></small>
+                <small><label>10 PROVIDER</label> | <label>5 LEADS</label></small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<md-paginator [length]="100"
+              [pageSize]="10">
+        </md-paginator>-->
+          <hr>
+      </div>
+  </div>
+    </div>
+</div>
+
+<div *ngFor="let provider of providers">
+  <p><a routerLink="editproviderprofile/{{provider.id}}">{{provider.name}}</a></p>
+</div>
+

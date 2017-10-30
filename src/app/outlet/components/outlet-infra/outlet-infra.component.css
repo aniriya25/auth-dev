@@ -1,0 +1,82 @@
+md-select{
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+ /* input, textarea {
+    border: 1px solid gray;
+    margin: 0px 20px;
+    outline: none;
+    color: black;
+    background:  none;
+}  */
+.form-control{
+    display: block;
+    position: relative;
+    z-index: 11;
+    padding: 24px;
+}
+
+.form-control.active{
+    border:1px solid #00b1ff;
+    
+}
+button {margin-left: 20px;}
+
+input:disabled,
+textarea:disabled {
+    border: none;
+    resize:  none;
+}
+/* .basicInfo{
+        margin-bottom: -15px;
+} */
+fieldset {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+.profile-pic{
+    width: /*153px*/85%;
+    height: /*153px*/118px;
+    border: 2px solid #898989;
+    background: #e3e8ee;
+    margin-bottom: 24px;
+}
+.btn-group{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    /* top: 585px;
+    left: 426px; */
+}
+
+.form-overlay{
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;
+    left: 0; top: 0;
+   
+}
+
+.btn-group p{
+    display: block;
+    /* -webkit-margin-before: 0 !important; */
+    -webkit-margin-after:0 !important;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+p{
+    display: block;
+    /* -webkit-margin-before: 0 !important; */
+    -webkit-margin-after:0 !important;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+ md-select {
+    padding-top: 22px !important;
+} 
+md-checkbox{
+    padding-bottom:20px;
+}

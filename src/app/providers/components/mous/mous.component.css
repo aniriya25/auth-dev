@@ -1,0 +1,196 @@
+.form-overlay{
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;
+    left: 0; top: 0;
+   
+}
+fieldset {
+    margin: 0px;
+    border: none;
+}
+fieldset p{
+    color:#acadb1;
+}
+fieldset md-icon{
+    vertical-align: middle;
+}
+.dropMous {
+    display: block;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    padding: 0px;
+}
+.dropMous > li {
+    display: inline-block;
+    width: 48%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+ul > li > div{
+    background: #e3e7f0;
+    border: 3px dotted #d2d2d2 !important;
+    padding: 24px;
+}
+.close {
+    float: right;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: red;
+    /* text-shadow: 0 1px 0 #fff; */
+    filter: alpha(opacity=20);
+    opacity: 1;
+}
+button.close {
+    -webkit-appearance: none;
+    padding: 10px;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.mou-pdf{
+    background: #fff; 
+    border: 1px solid #d2d2d2; 
+    height: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-right: 10px;
+}
+.mou-pdf img{
+    width: 38%;
+    height: auto;
+}
+md-select {
+    padding-top: 22px !important;
+}
+table{
+    border: transparent;
+}
+th{
+    padding: 10px;
+    font-weight: 400;
+    color: rgba(0,0,0,.87);
+   background: #e4ecf9 !important;
+    border-left: none;
+    border-top: 1px solid #d2e3f9;
+    border-bottom: 1px solid #d2e3f9;
+    border-right:none;
+}
+th:first-child{
+    border-left: 1px solid #d2e3f9;
+}
+th:last-child{
+    border-right: 1px solid #d2e3f9;
+}
+td{
+    padding: 5px;
+    text-align: left;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid #d2d2d2;
+}
+td:first-child{
+    border-left: none;
+}
+td:last-child{
+    border-right:none;
+}
+table tr:last-child td{
+    border-bottom:transparent;
+}
+.file-upload {
+	position: relative;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file-upload__label {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
+    font-size: 12px;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-weight: 400;
+    text-align: center;
+    line-height: 25px;
+    padding: 0px 10px;
+    border-radius: 2px;
+    background-color: #2296fc;
+    color: #fff;    
+}
+.file-upload__label:hover {
+     cursor: pointer;
+  }
+.file-upload__label > md-icon{
+    vertical-align: middle;
+    text-align: right;
+    font-size: 16px;
+    line-height: 22px;
+}    
+.file-upload__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* font-size: 13px; */
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.dropContent{
+    border: 1px solid #d2d2d2;
+    /* padding: 7%; */
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: auto;
+}
+.pdf{
+    position: relative
+}
+.pdf > span{
+    font-size: 13px;
+    color: #d30303;
+    -webkit-transform: rotate(90deg) translateX(35px);
+    -moz-transform: rotate(90deg) translateX(35px);
+    -ms-transform: rotate(90deg) translateX(35px);
+    transform: rotate(90deg) translateX(35px);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+}
+.file-upload > p > md-icon{
+    color:#d83636;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 28px;
+    padding-left: 5px;
+}

@@ -1,0 +1,26 @@
+<!-- // provider services -->
+<div class="form-control" [ngClass]="{'active': isServiceActiveBorder}">
+  <div [ngClass]="{'form-overlay': isServiceFormOverlay}">
+    <p style="position: absolute; bottom: 0; right: 0;" [hidden]="isServiceButton">
+        <button md-raised-button type="button" class="primary" (click)="editFrm(false)">EDIT</button>
+    </p>
+  </div>
+  <form>
+    <fieldset [disabled]="isServiceFieldset">
+        <p>Services</p>
+         <md-progress-bar *ngIf="servicesProgress" mode="indeterminate" style="margin-bottom: 4px; margin-top: 5px;"></md-progress-bar>
+        <div data-attr="services">
+            <div fxLayout="row">
+                <ul class="providerServices">
+                    <li *ngFor="let service of services; let i = index;">
+                        <label>
+                            <input type="checkbox" name="service{{i}}" value="{{service.id}}" [(ngModel)]="service.isChecked" (change)="updateService(service)" />    
+                            <div class="btn btn-sık"><span>{{service.name}}</span></div>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+  </form>
+</div>

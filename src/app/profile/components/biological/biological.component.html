@@ -1,0 +1,42 @@
+
+<div>
+
+        <h2>Biological
+          <!--<button class="pull-right edit-btn" md-raised-button fxHide fxShow.sm fxShow.md fxShow.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon> EDIT</button>
+  <button class="pull-right" md-raised-button fxShow fxHide.md fxHide.sm fxHide.lg md-button (click)="editFrm()" *ngIf="edited"><md-icon md-18>edit</md-icon></button>-->
+        </h2>
+       
+       
+        <form class="form" fxLayout="column" #biological="ngForm" (ngSubmit)="submitFrm(user)">
+              <md-select placeholder="Blood Group" fxFlex="95" required #bloodGroupID="ngModel" [(ngModel)]="user.refBloodGroupId" name="bloodGroup">
+                      
+                      <md-option *ngFor="let blood of bloods" value="{{blood.id}}">{{blood.name}}</md-option>
+            </md-select>
+            <br/>
+          <div fxLayout="row">
+              <div fxFlex="15" class="slidetop">
+                 <span>Height (cm)</span>
+              </div>
+              
+                <input type="text" fxFlex="5" readonly="readonly" [value]="user.height" class="input">
+               
+              <div fxFlex="78" fxFlexOffset="2">
+                  <md-slider [value]="user.height" fxFlex="99" (change)="heightfX($event)" [min]="min" [max]="max"  [step]="step"  [thumb-label]="thumbLabel"></md-slider>
+             </div>
+          </div>
+         
+            <div fxLayout="row ">
+              <div fxFlex="15" class="slidetop">
+                 <span>Weight (KG)</span>
+              </div>
+              <input type="text" fxFlex="5" readonly="readonly" [value]="user.weight" class="input">
+              <div fxFlex="78" fxFlexOffset="2">
+                  <md-slider [value]="user.weight" fxFlex="99" (change)="weightFx($event)" [min]="min" [max]="maxvalue"  [step]="step"  [thumb-label]="valueLabel"></md-slider>
+              </div>
+            </div>
+             <div class="button-row">
+            <button md-raised-button class="primary">UPDATE</button>
+          </div>      
+        </form>
+
+</div>

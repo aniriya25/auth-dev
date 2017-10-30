@@ -1,0 +1,147 @@
+<!-- <div fxLayout="row" class="layoutgap">
+  <div fxFlex="70" >
+    <div fxFlex="17">
+      <h2>PROVIDER</h2>
+    </div>
+    <div fxFlex="53">
+      <span><md-icon>chevron_right</md-icon> ADD</span>
+    </div>
+  </div>
+  <div fxFlex="30" >
+
+  </div>
+</div> -->
+
+<div>
+  <form>
+    <fieldset [disabled]="false">
+      <div fxLayout="row">
+        <md-input-container fxFlex="100">
+          <input type="text" mdInput placeholder="Input">
+        </md-input-container>
+      </div>
+      <div fxLayout="row">
+        <md-input-container fxFlex="100" class="mdTextAra">
+          <textarea mdInput placeholder="Textarea"></textarea>
+        </md-input-container>
+      </div>
+      <br><br><br>
+      <div fxLayout="row">
+        <md-select placeholder="Provider Type" fxFlexOffset="5" fxFlex="45">
+              <md-option value="0">-- Select --</md-option>
+          </md-select>
+      </div>
+      <br><br><br>
+      <!-- <md-tab-group>
+        <md-tab label="Tab 1">
+          <div fxLayout="row">
+            <md-checkbox fxFlex="100">Do you know IFSC Code</md-checkbox>  
+          </div>
+          <div fxLayout="row">
+            <md-input-container fxFlex="100">
+                <input type="text" mdInput required placeholder="IFSC Code">
+            </md-input-container>
+          </div>
+        </md-tab>
+        <md-tab label="Tab 2">Content 2</md-tab>
+      </md-tab-group> -->
+      <br><br><br>
+      <md-progress-bar *ngIf="demoProgress" mode="indeterminate" style="margin-bottom: 5px;"></md-progress-bar>
+      <div fxLayout="row">
+        <div fxFlex="100" class="tab-header">
+          <p>Specialtisation</p>  
+        </div> 
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="12" class="left">
+          <ul>
+            <li (click)="specialities = 'specialities1'">specialities1</li>
+            <li (click)="specialities = 'specialities2'">specialities2</li>
+            <li (click)="specialities = 'specialities3'">specialities3</li>
+            <li (click)="specialities = ''">zzzzzz</li>
+          </ul>
+        </div>
+        <div  fxFlex="88" class="right">
+          <div [ngSwitch]="specialities">
+            <div *ngSwitchCase="'specialities1'">specialities1</div>
+            <div *ngSwitchCase="'specialities2'">specialities2</div>
+            <div *ngSwitchCase="'specialities3'">specialities3</div>
+            <div *ngSwitchDefault>zzzzzz</div>
+          </div>
+        </div>
+      </div>
+      <br><br><br>
+      <!-- <a href="" class="profile-pic"> -->
+        <div class="profile-pic">
+          <div class="upload-pic">
+            <span><md-icon>file_upload</md-icon></span>
+            <span>Change Photo</span>
+          </div>
+        </div>
+      <!-- </a> -->
+    </fieldset>
+    <br><br><br>
+  </form>
+</div>
+
+
+
+<!-- <div fxLayout="row">
+    <div fxFlex="100" class="_fxContainer container">
+     <md-card>
+      <div fxFlex="69" fxFlex.xs="100" fxFlexOffset="1"  class="left-card">
+        <h2>Add new lead</h2>
+        <form #testing="ngForm" (ngSubmit)="subFrms(user)">
+        <div>
+          <md-input-container fxFlex="30">
+            <input type="text" mdInput placeholder="Type name here.." [(ngModel)]="user.name" name="name" #name="ngModel">
+          </md-input-container>
+        </div>
+        <br>
+        <div>
+          <md-select fxFlex="95" required placeholder="Select account" [(ngModel)]="user.accountType" name="accountType" #accountType="ngModel">
+            <md-option [value]="1">Saving Account</md-option>
+            <md-option [value]="2">Personal Account</md-option>
+            <md-option [value]="3">Home Safe Account</md-option>
+          </md-select>  
+        </div>
+        <br>
+        <div>
+           <md-input-container fxFlex="95" class="example-full-width">
+            <textarea mdInput required placeholder="Address" [(ngModel)]="user.address" name="address" #address="ngModel">1600 Amphitheatre Pkwy</textarea>
+          </md-input-container>
+        </div>
+        <br>
+        <div>
+          <md-input-container fxFlex="95">
+            <input mdInput required placeholder="State" [(ngModel)]="user.state" [mdAutocomplete]="auto" name="state" #state="ngModel" (keyup)="updateFilter($event)">
+          </md-input-container>
+          <md-autocomplete #auto="mdAutocomplete">
+             <md-option *ngFor="let state of states" value="{{state.name}}" (enter)="getVal()">
+               {{ state.name }}
+             </md-option>
+          </md-autocomplete>
+        </div>
+
+        <div>
+          <button type="submit" md-raised-button>Submit</button>
+        </div>
+        </form>
+      </div>
+
+      <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+        <div fxLayout="row" fxLayout.xs="column" class="card_r">
+          <div fxLayoutAlign="space-around center" fxFlex="20" fxFlexOffset="40" class="cp">
+              <img src="assets/images/building.jpg">
+          </div>
+      </div>
+      <div fxLayout="row" class="card_r">
+        <div fxFlex="100" class="cp-para">
+          <p>Company Information <br>&<br/> Personal Information</p>
+          <label>To add outlets, download the sample outlet excel file.</label>
+        </div>
+      </div><hr>
+   </div>
+      </md-card>
+    </div>
+</div> -->
