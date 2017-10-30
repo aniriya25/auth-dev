@@ -64,10 +64,10 @@ export class AppConfig {
 }
 
 export const APP_DI_CONFIG: AppConfig = {
-  //api_base_url: 'http://182.71.190.154/v2/',
-  //api_base_url: 'http://192.168.9.50:8081/',
-  //api_base_url: 'http://192.168.9.50:80/nerveapi/',
-  api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
+      api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
+
+ 
+  // api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
   //api_base_url: 'http://182.71.190.154/nerveapi/',
   login_url:"auth/login",
   nerve_token_key:"h3u_nerve_usertoken",
