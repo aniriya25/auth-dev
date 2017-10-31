@@ -8,12 +8,12 @@
                   <div fxFlex="100" class="v_align" >
                    <!--Card Number:  {{user.cardNumber}}<br>-->
                     <md-input-container fxFlex="45">
-                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" disabled=true>
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel">
                     </md-input-container>
-                     
-                    <md-input-container fxFlex="50" fxFlexOffset="4">
-                        <input type="text" mdInput type='text' placeholder='Enter Request Number'/>
-                      </md-input-container>
+                     <div fxFlex="45" style="padding-left:20px;">
+                       <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTrasnctionData()">Verify</button>
+                     </div>
+
                     </div>
                 </div>
                 <div fxLayout="row" fxLayout.xs="column">
