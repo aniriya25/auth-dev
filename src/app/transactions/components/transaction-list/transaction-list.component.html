@@ -1,8 +1,9 @@
 <div class="container">
   <div fxLayout="row">
     <md-card class="profileCard" fxFlex="100">
-        <div fxFlex="69" fxFlexOffset="1" class="left-card">
-            <h2>Transaction List</h2>
+        <div fxFlex="95" fxFlexOffset="1" class="left-card">
+         <h2>Transaction List</h2>
+           
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="80" fxFlex.xs="98">
@@ -35,57 +36,59 @@
                     [rowHeight]="'auto'">
                     (activate)="onActivate($event, modal)"
                     <ngx-datatable-column name="REF ID" prop="id">
-                      
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                        4251
                       </ng-template>
                     </ngx-datatable-column> 
-                      <ngx-datatable-column name="NAME" prop="name">
+                      <ngx-datatable-column name="PATIENT DETAILS" prop="name">
                         <!-- Row Detail Template -->
                         <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                          Poornima
+                         <span>Poornima</span>
+                          <p>Female</p>
+                          <p class="tabspan">9876543210</p>
                         </ng-template>
                       </ngx-datatable-column> 
-                      <ngx-datatable-column name="DATE" prop="date" width="100">
-                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                          12/01/2017
-                        </ng-template>
-                      </ngx-datatable-column>
-                      <ngx-datatable-column name="TYPE" prop="type" width="100">
+                     
+                      <ngx-datatable-column name="SERVICE TYPE" prop="type" width="100">
                         <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                           <span>Service</span>
-                          <span class="tabspan">Subservice</span>
+                          <p >Subservice</p>
+                          <p class="tabspan">Dr Amit Bakshi</p>
                         </ng-template>
                       </ngx-datatable-column>
                      
                       <ngx-datatable-column name="AMOUNT" prop="amnt" [flexGrow]="1">
                         <ng-template let-value="value" ngx-datatable-cell-template>
-                         Rs 2500
+                         <span>Rs 2500</span>
+                         <p class="tabspan">Paid</p>
                         </ng-template>
                       </ngx-datatable-column>
-                      <ngx-datatable-column name="DETAILS (Card/pkg)" prop="detail" [flexGrow]="3">
-                          <ng-template let-value="value" ngx-datatable-cell-template>
-                            <span>card no</span>
-                            <span class="tabspan">Coupon no</span>
+                      <ngx-datatable-column name="DATE" prop="date" width="100">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            12/01/2017
                           </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="REMARKS" prop="remark">
+                      <ngx-datatable-column name="STATUS" prop="detail" [flexGrow]="3">
+                          <ng-template let-value="value" ngx-datatable-cell-template>
+                            Pending
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="CREATED BY" prop="remark">
                             <ng-template let-value="value" ngx-datatable-cell-template>
-                            Not applicable
+                           
                             </ng-template>
                           </ngx-datatable-column>
                     </ngx-datatable>
                   </div>
-               
                 </div>
         </div>
-        <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+        <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
             <div fxLayout="row">
               <div fxFlex="100" class="cp-para">
                 
               </div>
             </div>
-          </div>
+          </div> -->
     </md-card>
   </div>
 </div>
