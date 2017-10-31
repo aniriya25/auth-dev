@@ -119,11 +119,14 @@ margin-right:10px;
 }
 /* side navbar */
 a:link,
-a:active,
+
 a:hover,
 a:visited {
     text-decoration: none;
     outline: none;
+}
+a:active{
+    background: #000;
 }
 .mat-sidenav {
     background: #4b5668;
@@ -155,7 +158,7 @@ ul.nav a li p:first-child {
 }
 
 ul.nav a:hover,
-ul.nav a.active,
+ul.nav a:active,
 ul.nav a:hover{
     background: #000;
     color: white;

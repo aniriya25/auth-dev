@@ -7,17 +7,25 @@ body {
    background: #f2f5fa ;
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
-.mat-input-flex {
+
+.mat-input-container{
+    border: 1px solid #d2d2d2;
+    background: none;
+      padding: 5px 0px 0px 5px;
+      height: 50px;
+}
+/*.mat-input-flex {
     border: 1px solid #000000 ;
         padding: 5px 0px 0px 5px;
             margin-top: 16px;
-            }
+            }*/
+         
 .mat-fab.primary, .mat-mini-fab.primary, 
 .mat-raised-button.primary{
     background-color: #2296fc;
     color: #fff;
 }
-.mat-card{padding: 15px !important;}   
+/*.mat-card{padding: 15px !important;}   */
 .container h2::after {
     content: '';
     position: absolute;
@@ -458,7 +466,7 @@ fieldset:disabled .mat-select{
     cursor: text;
 }
 .mat-input-ripple {
-    border: 1px solid #00b1ff;
+    /*border: 1px solid #00b1ff;*/
     background: none !important;
     cursor: text;
 }
@@ -510,7 +518,7 @@ fieldset:disabled .mat-select{
     color:#000;
 }
 .mat-input-underline {
-    border: 1px solid #d2d2d2;
+    /*border: 1px solid #d2d2d2;*/
     background: rgba(255, 255, 255, /*0.33*/0);
     position: absolute;
     height: 50px !important;
@@ -558,11 +566,11 @@ fieldset:disabled .mdTextAra.mat-input-container{
     height: 50px !important;
 }
 .mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-underline {
-    border: 1px solid #00b1ff;
+    /*border: 1px solid #00b1ff;*/
     background: none;
 }
 .mat-select-underline:visited{
-    border: 1px solid #00b1ff;
+    /*border: 1px solid #00b1ff;*/
     background: none;
 }
 .mat-select-placeholder {
