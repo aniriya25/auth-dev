@@ -4,7 +4,7 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 const routes: Routes = [
   {path:'', component:TransactionComponent},
-  {path:'transaction-list', component:TransactionListComponent},
+  {path:'transaction-list', component:TransactionListComponent}  
 ];
 
 @NgModule({

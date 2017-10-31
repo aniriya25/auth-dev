@@ -6,9 +6,11 @@
               <h2>Transaction</h2>
               <div fxLayout="row" fx-layout-align="center center">
                   <div fxFlex="100" class="v_align" >
+                   <!--Card Number:  {{user.cardNumber}}<br>-->
                     <md-input-container fxFlex="45">
-                      <input type="text" mdInput type='text' placeholder='Enter Card Number' [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel">
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" disabled=true>
                     </md-input-container>
+                     
                     <md-input-container fxFlex="50" fxFlexOffset="4">
                         <input type="text" mdInput type='text' placeholder='Enter Request Number'/>
                       </md-input-container>
