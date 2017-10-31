@@ -19,7 +19,7 @@
         </div>-->
         <div fxLayout="row" fxFlex="100">
           <md-input-container fxLayout="column" fxFlex="100">
-            <input mdInput [formControl]="" placeholder="Please provide card number or Request No" value="">
+            <input mdInput placeholder="Please provide card number or Request No" [(ngModel)]="user.cardNo" name="cardNo" #crdNo="ngModel">
           </md-input-container>
         </div>
         <div fxLayout="row" fxFlex="100">
