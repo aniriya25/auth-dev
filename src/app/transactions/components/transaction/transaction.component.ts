@@ -3,6 +3,7 @@ import { TransactionService } from './../../../services/transactions/transaction
 import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
@@ -21,6 +22,7 @@ user : any = {};
 identity: any = [];
 isReadOnly:boolean = true;
 edited:boolean = true;
+abc:any;
 
 services = [
     {value: '0', viewValue: 'OPD'},
@@ -36,25 +38,31 @@ services = [
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
-    public snackBar: MdSnackBar
+    public snackBar: MdSnackBar,
+    private _route: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-
+    
+    this.route.queryParams.subscribe(queryParams => this.abc=queryParams['page']);
+   // console.log(this.abc);
     this.getTrasnctionData();
     this.getIdentityData(); 
     this.getPersonalData(); 
-     this.rows = [
-        {"name":"Poornima",}
-      ];
+    //  this.rows = [
+    //     {"name":"Poornima",}
+    //   ];
       this.temp = this.rows;
   }
 
   getTrasnctionData(){
-    this._transaction.getTransaction(this.cardNumber)
+    this._transaction.getTransaction(this.abc)
         .subscribe(data => {
           //this.accountTypes = ''+this.user['type']+'';
-          this.rows = data.data; 
+          this.rows = data.data;
+          this.user.cardNumber = this.rows[0]["cardNumber"];
+          debugger;
           console.log(data.data);
         })
   }

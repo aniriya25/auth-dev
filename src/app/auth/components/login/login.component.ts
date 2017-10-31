@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
   }
   private checkForFirstTime(token){
         var decodedToken = this.jwtHelper.decodeToken(token);
+        debugger;
         if(decodedToken && decodedToken.isTempPassword && decodedToken.isTempPassword=="True")
         return true;
         else
