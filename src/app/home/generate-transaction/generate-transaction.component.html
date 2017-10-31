@@ -10,7 +10,7 @@
       </md-card-title-group>
     </md-card-header>
     <md-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100" >
+      <form (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100" >
         <!--<div fxLayout="row" fxFlex="100">
           <md-radio-group name="codeType" [formControl]="codeType" fxFlex="100">
             <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="card">Card Number</md-radio-button>
@@ -23,7 +23,7 @@
           </md-input-container>
         </div>
         <div fxLayout="row" fxFlex="100">
-          <a md-raised-button class="primary" routerLink="/dashboard/transactions">Submit</a>
+          <a md-raised-button class="primary" (click)="getTransaction();">Submit</a>
         </div>
       </form>
     </md-card-content>

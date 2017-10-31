@@ -1,0 +1,91 @@
+<div class="container">
+  <div fxLayout="row">
+    <md-card class="profileCard" fxFlex="100">
+        <div fxFlex="69" fxFlexOffset="1" class="left-card">
+            <h2>Transaction List</h2>
+            <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
+              <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
+                <md-input-container fxFlex="80" fxFlex.xs="98">
+                  <input type="text" mdInput type='text' placeholder='Search transaction...' (keyup)='updateFilter($event)' />
+                </md-input-container>
+                </div>
+              <div fxFlex="40" fxFlex.xs="100">
+                <md-input-container fxFlex="95" fxFlex.xs="80">
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date">
+                  <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
+                </md-input-container>              
+                <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
+                <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
+                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date">
+                  <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+                </md-input-container>
+                <md-datepicker #endDatePicker (selectedChanged)="fetchRecByEndDate($event)"></md-datepicker>
+              </div>
+            </div>
+              <div fxLayout="row" fxLayout.xs="column">
+                
+                  <div fxFlex="100">
+                    <ngx-datatable #myTable class='material fullscreen expandable'          
+                    [rows]='rows'
+                    [limit]="PageSize"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [scrollbarV]="false" 
+                    [rowHeight]="'auto'">
+                    (activate)="onActivate($event, modal)"
+                    <ngx-datatable-column name="REF ID" prop="id">
+                      
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                       4251
+                      </ng-template>
+                    </ngx-datatable-column> 
+                      <ngx-datatable-column name="NAME" prop="name">
+                        <!-- Row Detail Template -->
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                          Poornima
+                        </ng-template>
+                      </ngx-datatable-column> 
+                      <ngx-datatable-column name="DATE" prop="date" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          12/01/2017
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="TYPE" prop="type" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          <span>Service</span>
+                          <span class="tabspan">Subservice</span>
+                        </ng-template>
+                      </ngx-datatable-column>
+                     
+                      <ngx-datatable-column name="AMOUNT" prop="amnt" [flexGrow]="1">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                         Rs 2500
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="DETAILS (Card/pkg)" prop="detail" [flexGrow]="3">
+                          <ng-template let-value="value" ngx-datatable-cell-template>
+                            <span>card no</span>
+                            <span class="tabspan">Coupon no</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="REMARKS" prop="remark">
+                            <ng-template let-value="value" ngx-datatable-cell-template>
+                            Not applicable
+                            </ng-template>
+                          </ngx-datatable-column>
+                    </ngx-datatable>
+                  </div>
+               
+                </div>
+        </div>
+        <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+            <div fxLayout="row">
+              <div fxFlex="100" class="cp-para">
+                
+              </div>
+            </div>
+          </div>
+    </md-card>
+  </div>
+</div>
