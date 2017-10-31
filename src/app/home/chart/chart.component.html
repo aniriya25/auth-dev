@@ -11,11 +11,8 @@
   </div>
   <button (click)="randomize()">Update</button>
 </div>-->
-<md-card fxLayout fxFlexOrder="1" fxLayoutGap="10px">
-    
-<div style="height:20px;"></div>
-<div fxFlexOrder="1" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px" fxLayout.xs="column">
-
+<md-card class="chartcard">
+<div fxFlexOrder="1" fxLayout="row" fxFlex="100" fxLayoutAlign="center" fxLayoutGap="10px" fxLayout.xs="column">
     <div fxFlex="32" fxFlexAlign="center" style="display: block;height:300px;width:300px">
         <canvas baseChart width="400" height="400" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
             [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
