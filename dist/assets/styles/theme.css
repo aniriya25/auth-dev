@@ -1,0 +1,15 @@
+.layoutgap{
+    padding: 50px 0 0 40px;
+}
+h2 {
+    color:#00b1ff;
+    font-weight:600;
+}
+span {
+    color:#231f20;
+    font-weight:600;
+    font-size: 18px;
+}
+span > .material-icons{
+    font-size:30px;
+}
