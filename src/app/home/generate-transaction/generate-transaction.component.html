@@ -1,31 +1,30 @@
-<md-card>
-  <md-card-header>
-    <md-card-title-group>
-      <md-card-title>
-        <h2>Transactions</h2>
-      </md-card-title>
-      <md-card-subtitle>
-        You can creat transactions via Card number or Coupon number
-      </md-card-subtitle>
-    </md-card-title-group>
-  </md-card-header>
-  <md-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100">
-      <div fxLayout="row" fxFlex="100">
-        <!--<md-radio-group name="codeType" [formControl]="codeType" fxFlex="100">
-          <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="card">Card Number</md-radio-button>
-          <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="coupon">    Coupon Number</md-radio-button>
-        </md-radio-group>-->
-      </div>
-      <div fxLayout="row" fxFlex="100">
-        <md-input-container fxLayout="column" fxFlex="100">
-          <input mdInput [formControl]="
-          " placeholder="Please provide card number or Request No" value="">
-        </md-input-container>
-      </div>
-      <div fxLayout="row" fxFlex="100">
-        <a md-raised-button class="primary" routerLink="/dashboard/transactions">Submit</a>
-      </div>
-    </form>
-  </md-card-content>
-</md-card>
+<md-card class="dash">
+    <md-card-header>
+      <md-card-title-group>
+        <md-card-title>
+          <h2>Transactions</h2>
+        </md-card-title>
+        <md-card-subtitle>
+          You can creat transactions via Card number or Coupon number
+        </md-card-subtitle>
+      </md-card-title-group>
+    </md-card-header>
+    <md-card-content>
+      <form (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100" >
+        <!--<div fxLayout="row" fxFlex="100">
+          <md-radio-group name="codeType" [formControl]="codeType" fxFlex="100">
+            <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="card">Card Number</md-radio-button>
+            <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="coupon">    Coupon Number</md-radio-button>
+          </md-radio-group>
+        </div>-->
+        <div fxLayout="row" fxFlex="100">
+          <md-input-container fxLayout="column" fxFlex="100">
+            <input mdInput placeholder="Please provide card number or Request No">
+          </md-input-container>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+          <a md-raised-button class="primary" (click)="getTransaction();">Submit</a>
+        </div>
+      </form>
+    </md-card-content>
+  </md-card>
