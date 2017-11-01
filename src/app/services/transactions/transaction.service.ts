@@ -8,7 +8,7 @@ import { AuthHttp } from 'angular2-jwt';
 export class TransactionService {
 
   constructor(
-    private _http: Http,
+     private _http: Http,
      private authhttp: AuthHttp,
      @Inject(APP_CONFIG) private config: AppConfig
   ) { }
@@ -18,6 +18,14 @@ export class TransactionService {
       .map(data => {
           data.json();
           return data.json();
+      });
+  }
+
+  getAllServices() {
+    return this.authhttp.get(this.config.api_base_url+this.config.services_url)
+      .map(data => {
+          data.json();
+          return data.json();          
       });
   }
 

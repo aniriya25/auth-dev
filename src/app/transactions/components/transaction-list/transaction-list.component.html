@@ -1,9 +1,10 @@
 <div class="container">
   <div fxLayout="row">
     <md-card class="profileCard" fxFlex="100">
-        <div fxFlex="95" fxFlexOffset="1" class="left-card">
-         <h2>Transaction List</h2>
-           <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
+        <div fxFlex="98" fxFlexOffset="1" class="left-card">
+         <h2><span  fxFlex="80">Transaction List</span>
+         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
+         </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="80" fxFlex.xs="98">
@@ -24,8 +25,11 @@
               </div>
             </div>
               <div fxLayout="row" fxLayout.xs="column">
-                
                <div fxFlex="100">
+                  <small>
+                      <a #expandButton (click)="onExpandClick()">Expand All</a> | 
+                      <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+                    </small>
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
                     [limit]="PageSize"
@@ -35,7 +39,16 @@
                     [scrollbarV]="false" 
                     [rowHeight]="'auto'">
                     (activate)="onActivate($event, modal)"
-                     <ngx-datatable-column name="TRANSACTION ID" prop="id">
+                    <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                          <ul fxFlex="100" fxLayoutAlign="center center">
+                          <li fxFlex="80">Status:Pending</li>
+                          <li fxFlex="80">Remarks:Pending</li>
+                          <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
+                          </ul>
+                        </ng-template>
+                      </ngx-datatable-row-detail>
+                     <ngx-datatable-column name="Txn ID" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                        4251
                       </ng-template>
@@ -77,28 +90,10 @@
                           <span><strong>2200</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-                      
-                      <ngx-datatable-column name="STATUS" prop="status" >
-                          <ng-template let-value="value" ngx-datatable-cell-template>
-                            Pending
-                          </ng-template>
-                        </ngx-datatable-column>
 
-                         <ngx-datatable-column name="REMARK" prop="remark" >
-                          <ng-template let-value="value" ngx-datatable-cell-template>
-                            Pending
-                          </ng-template>
-                        </ngx-datatable-column>
-
-                        <ngx-datatable-column name="CREATED BY" prop="created">
+                          <ngx-datatable-column name="PRINT" prop="print">
                             <ng-template let-value="value" ngx-datatable-cell-template>
-                             Mr. Devesh Kumar
-                            </ng-template>
-                          </ngx-datatable-column>
-
-                          <ngx-datatable-column name="Print" prop="print">
-                            <ng-template let-value="value" ngx-datatable-cell-template>
-                        
+                              <a>Print</a>
                             </ng-template>
                           </ngx-datatable-column>
                     </ngx-datatable>
