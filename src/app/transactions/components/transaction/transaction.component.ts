@@ -52,6 +52,7 @@ export class TransactionComponent implements OnInit {
     this.getTrasnctionData();
     // this.getIdentityData();
     // this.getPersonalData();
+
   }
 
   getTrasnctionData() {
@@ -60,7 +61,7 @@ export class TransactionComponent implements OnInit {
         debugger;
         this.rows = data.data;
         this.user.cardNumber = data.data[0]["cardNumber"];
-        //console.log(this.user.cardNumber);
+        console.log(this.user.cardNumber);
       })
   }
   
