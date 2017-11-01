@@ -46,20 +46,32 @@ export class TransactionComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
+     
+    this.getTrasnctionData1();  
     this.getTrasnctionData();
-    //this.getIdentityData();
-    //this.getPersonalData();
+    // this.getIdentityData();
+    // this.getPersonalData();
+
   }
 
   getTrasnctionData() {
     this._transaction.getTransaction(this.abc)
       .subscribe(data => {
-        //debugger;
+        debugger;
         this.rows = data.data;
         this.user.cardNumber = data.data[0]["cardNumber"];
         console.log(this.user.cardNumber);
+      })
+  }
+  
+getTrasnctionData1() {
+    this._transaction.getTransaction(this.user.cardNumber)
+      .subscribe(data => {
+        debugger;
+        this.rows = data.data;
+        //this.user.cardNumber = data.data[0]["cardNumber"];
+        //console.log(this.user.cardNumber);
       })
   }
 

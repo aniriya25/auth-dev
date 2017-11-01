@@ -3,7 +3,7 @@
     <md-card class="profileCard" fxFlex="100">
         <div fxFlex="95" fxFlexOffset="1" class="left-card">
          <h2>Transaction List</h2>
-           
+           <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="80" fxFlex.xs="98">
@@ -25,7 +25,7 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                 
-                  <div fxFlex="100">
+               <div fxFlex="100">
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
                     [limit]="PageSize"
@@ -35,47 +35,92 @@
                     [scrollbarV]="false" 
                     [rowHeight]="'auto'">
                     (activate)="onActivate($event, modal)"
+                     <ngx-datatable-column name="SNo." prop="id">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                       4251
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                     <ngx-datatable-column name="DATE" prop="date" width="100">
+                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                            12/01/2017
+                          </ng-template>
+                     </ngx-datatable-column> 
+
                     <ngx-datatable-column name="REF ID" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                        4251
                       </ng-template>
                     </ngx-datatable-column> 
-                      <ngx-datatable-column name="PATIENT DETAILS" prop="name">
-                        <!-- Row Detail Template -->
-                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                         <span>Poornima</span>
-                          <p>Female</p>
-                          <p class="tabspan">9876543210</p>
-                        </ng-template>
-                      </ngx-datatable-column> 
                      
-                      <ngx-datatable-column name="SERVICE TYPE" prop="type" width="100">
+                     <ngx-datatable-column name="SERVICE TYPE" prop="type" width="100">
                         <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                          <span>Service</span>
-                          <p >Subservice</p>
+                          <span>OPD</span>
+                          <p>Dental</p>
                           <p class="tabspan">Dr Amit Bakshi</p>
                         </ng-template>
                       </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Card No" prop="type" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          <span>123456789123</span> 
+                        </ng-template>                         
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Cupon Code" prop="type" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          <span>8F245G</span>
+                        </ng-template>
+                      </ngx-datatable-column>
+                     
+                     <ngx-datatable-column name="PATIENT DETAILS" prop="name">
+                        <!-- Row Detail Template -->
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                         <span>Poornima</span>
+                         <p>Female</p>
+                         <p class="tabspan">9876543210</p>
+                        </ng-template>
+                      </ngx-datatable-column> 
                      
                       <ngx-datatable-column name="AMOUNT" prop="amnt" [flexGrow]="1">
                         <ng-template let-value="value" ngx-datatable-cell-template>
-                         <span>Rs 2500</span>
-                         <p class="tabspan">Paid</p>
+                         <span>Rs 2500</span>                        
                         </ng-template>
                       </ngx-datatable-column>
-                      <ngx-datatable-column name="DATE" prop="date" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            12/01/2017
-                          </ng-template>
-                        </ngx-datatable-column>
+
+                       <ngx-datatable-column name="Approve Amount" prop="amnt" [flexGrow]="1">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                         <span>Rs 2000</span>                         
+                        </ng-template>
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Paybal Amount" prop="amnt" [flexGrow]="1">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                         <span>Rs 2000</span>                         
+                        </ng-template>
+                      </ngx-datatable-column>
+                      
                       <ngx-datatable-column name="STATUS" prop="detail" [flexGrow]="3">
                           <ng-template let-value="value" ngx-datatable-cell-template>
                             Pending
                           </ng-template>
                         </ngx-datatable-column>
+
+                         <ngx-datatable-column name="Remark" prop="detail" [flexGrow]="3">
+                          <ng-template let-value="value" ngx-datatable-cell-template>
+                            Pending
+                          </ng-template>
+                        </ngx-datatable-column>
+
+                         <ngx-datatable-column name="Id Proof" prop="detail" [flexGrow]="3">
+                          <ng-template let-value="value" ngx-datatable-cell-template>
+                            Addar Card
+                          </ng-template>
+                        </ngx-datatable-column>
+
                         <ngx-datatable-column name="CREATED BY" prop="remark">
                             <ng-template let-value="value" ngx-datatable-cell-template>
-                           
+                             Mr. Devesh Kumar
                             </ng-template>
                           </ngx-datatable-column>
                     </ngx-datatable>

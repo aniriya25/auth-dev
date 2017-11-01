@@ -5,16 +5,16 @@
           <div fxFlex="69" fxFlexOffset="1" class="left-card">
               <h2>Transaction</h2>
               <div fxLayout="row" fx-layout-align="center center">
-                  <div fxFlex="100" class="v_align" >
-                   <!--Card Number:  {{user.cardNumber}}<br>-->
-                   
+                  <div fxFlex="100" class="v_align" >                   
+                   <form (ngSubmit)="onSubmit()">
                     <md-input-container fxFlex="45">
-                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel">
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
                     </md-input-container>
                      <div fxFlex="45" style="padding-left:20px;">
-                       <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTrasnctionData()">Verify</button>
+                       <!--<button md-raised-button class="primary" >UPDATE</button>-->
+                       <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
                      </div>
-
+                   </form>
 
                     </div>
                 </div>
