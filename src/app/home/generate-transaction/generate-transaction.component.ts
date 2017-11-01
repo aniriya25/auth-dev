@@ -34,7 +34,7 @@ export class GenerateTransactionComponent implements OnInit {
   }
 
   getTransaction(){
-    this._route.navigate(['dashboard/transactions/transaction'],{queryParams:{page:this.user.crdNo}});
+    this._route.navigate(['dashboard/transactions/transaction'],{queryParams:{page:this.user.cardNo}});
   }
 
 }

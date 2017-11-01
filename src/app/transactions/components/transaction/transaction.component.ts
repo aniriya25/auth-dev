@@ -49,8 +49,8 @@ export class TransactionComponent implements OnInit {
 
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
     this.getTrasnctionData();
-    this.getIdentityData();
-    this.getPersonalData();
+    //this.getIdentityData();
+    //this.getPersonalData();
   }
 
   getTrasnctionData() {
@@ -59,7 +59,7 @@ export class TransactionComponent implements OnInit {
         //debugger;
         this.rows = data.data;
         this.user.cardNumber = data.data[0]["cardNumber"];
-        //console.log(this.user.cardNumber);
+        console.log(this.user.cardNumber);
       })
   }
 
