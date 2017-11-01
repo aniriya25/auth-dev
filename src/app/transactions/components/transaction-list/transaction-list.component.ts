@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class TransactionListComponent implements OnInit {
 
-   @ViewChild('myTable') table: any;
+ @ViewChild('myTable') table: any;
   rows = [];
   temp = [];
   isLimits: number = 10;

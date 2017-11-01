@@ -21,4 +21,12 @@ export class TransactionService {
       });
   }
 
+  getTransactionList(id: number) {
+    return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+id)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
 }
