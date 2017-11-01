@@ -24,17 +24,17 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
 
-  services = [
-    { value: '0', viewValue: 'OPD' },
-    { value: '1', viewValue: 'Pharmacy' },
-    { value: '2', viewValue: 'Diagnostic' }
-  ];
-  speciality = [
-    { value: '0', viewValue: 'Cardiology' },
-    { value: '1', viewValue: 'Ent' },
-    { value: '2', viewValue: 'Gynocologist' },
-    { value: '3', viewValue: 'Dental' }
-  ];
+  // services = [
+  //   { value: '0', viewValue: 'OPD' },
+  //   { value: '1', viewValue: 'Pharmacy' },
+  //   { value: '2', viewValue: 'Diagnostic' }
+  // ];
+  // speciality = [
+  //   { value: '0', viewValue: 'Cardiology' },
+  //   { value: '1', viewValue: 'Ent' },
+  //   { value: '2', viewValue: 'Gynocologist' },
+  //   { value: '3', viewValue: 'Dental' }
+  // ];
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
@@ -50,15 +50,22 @@ export class TransactionComponent implements OnInit {
      
     this.getTrasnctionData1();  
     this.getTrasnctionData();
+    this.getServicesData();
     // this.getIdentityData();
     // this.getPersonalData();
-
+  }
+   getServicesData() {
+    this._transaction.getServiceList()
+      .subscribe(data => {
+        debugger;
+        this.user = data.data;       
+      })
   }
 
   getTrasnctionData() {
     this._transaction.getTransaction(this.abc)
       .subscribe(data => {
-        debugger;
+        //debugger;
         this.rows = data.data;
         this.user.cardNumber = data.data[0]["cardNumber"];
         console.log(this.user.cardNumber);
@@ -68,136 +75,12 @@ export class TransactionComponent implements OnInit {
 getTrasnctionData1() {
     this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-        debugger;
+       // debugger;
         this.rows = data.data;
         //this.user.cardNumber = data.data[0]["cardNumber"];
         //console.log(this.user.cardNumber);
       })
   }
-
-  getIdentityData() {
-    this._profile.getIdentity()
-      .subscribe(data => {
-        this.user = data.data;
-        //console.log(this.user);
-        this.user.forEach((element: any) => {
-          //debugger;
-          //console.log(element.idNo);
-          switch (element.refIdentityTypeId) {
-            case 1:
-              this.user.addharNo = element.idNo;
-              //console.log(this.user.addharNo);
-              break;
-            case 2:
-              this.user.passportNumber = element.idNo;
-              this.user.passportExpDate = moment(element.expiryDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-              break;
-            case 3:
-              this.user.panNumber = element.idNo;
-              this.user.pancardPix = element.imageUrl;
-              break;
-            case 4:
-              this.user.voterIdNumber = element.idNo;
-              break;
-            case 5:
-              this.user.dlNumber = element.idNo;
-              this.user.DrivingExpDate = moment(element.expiryDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-              break;
-          }
-        });
-
-      });
-  }
-
-  submitFrm(users: any) {
-    users.forEach(element => {
-      //debugger;
-      switch (element.refIdentityTypeId) {
-        case 1:
-          element.idNo = users.addharNo;
-          element.imageUrl = users.adharPix;
-          this.identity.push({ idNo: element.idNo, imageUrl: element.imageUrl });
-          break;
-        case 2:
-          element.idNo = users.passportNumber;
-          element.imageUrl = users.passportPix;
-          element.expiryDate = moment(users.passportExpDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-          this.identity.push({ idNo: element.idNo, expiryDate: element.expiryDate, imageUrl: element.imageUrl });
-          break;
-        case 5:
-          element.idNo = users.dlNumber;
-          element.imageUrl = users.drivingPix;
-          element.expiryDate = moment(users.DrivingExpDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-          this.identity.push({ idNo: element.idNo, expiryDate: element.expiryDate, imageUrl: element.imageUrl });
-          break;
-        case 3:
-          element.idNo = users.panNumber;
-          element.imageUrl = users.pancardPix;
-          this.identity.push({ idNo: element.idNo, imageUrl: element.imageUrl });
-          break;
-      }
-    });
-
-    this._profile.updateIdentity(this.identity)
-      .subscribe(data => {
-        if (data.message) {
-          this.snackBar.open("Updated successfully", "", { duration: 5000 });
-          return false;
-        }
-      }, Error => {
-        this.snackBar.open("Somthing went wrong!", "", { duration: 5000 });
-      });
-
-    this.identity = [];
-
-    users['dob'] = moment(users['dob'], "DD/MMM/YYYY").format('DD/MMM/YYYY');
-    this._profile.updatePersonalInfo(users)
-      .subscribe(data => {
-        if (data.message) {
-          this.snackBar.open("Updated successfully", "", { duration: 5000 });
-          return false;
-        }
-      }, Error => {
-        this.snackBar.open("Somthing went wrong!", "", { duration: 5000 });
-      });
-  }
-
-  editFrm() {
-    this.isReadOnly = !this.isReadOnly;
-    this.edited = false;
-  }
-
-  getFileFx(eve, id) {
-    //console.log(eve.target.value);
-    // console.log(id);
-    switch (id) {
-      case 1:
-        this.user['adharPix'] = eve.target.value;
-        break;
-      case 2:
-        this.user['passportPix'] = eve.target.value;
-        break;
-      case 5:
-        this.user['drivingPix'] = eve.target.value;
-        break;
-      case 3:
-        this.user['pancardPix'] = eve.target.value;
-        break;
-    }
-  }
-
-
-
-  getPersonalData() {
-    this._profile.getPersonalInfo()
-      .subscribe(data => {
-        this.user = data.data;
-        // this.user['dob'] = moment(this.user['dob'],"DD/MM/YYYY").format('MM/DD/YYYY');
-        console.log(data.data);
-      });
-  }
-
-
 
 
 }

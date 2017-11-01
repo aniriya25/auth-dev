@@ -61,6 +61,10 @@ export class AppConfig {
   // Transtions
   transaction_url:string;
 
+// Master
+
+  services_url: string;
+
 }
 
 export const APP_DI_CONFIG: AppConfig = {
@@ -112,7 +116,11 @@ export const APP_DI_CONFIG: AppConfig = {
   outlet: 'Outlet/',
 
   //transaction
-  transaction_url:'cards/'
+  transaction_url:'cards/',
+
+  // master
+
+  services_url:"masters/servicecategories"
 
 };
 

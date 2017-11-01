@@ -39,9 +39,6 @@
                     [scrollbarV]="false" 
                     [rowHeight]="'auto'">
                     (activate)="onActivate($event, modal)"
-<<<<<<< HEAD
-                     <ngx-datatable-column name="TRANSACTION ID" prop="id">
-=======
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                           <ul fxFlex="100" fxLayoutAlign="center center">
@@ -52,7 +49,6 @@
                         </ng-template>
                       </ngx-datatable-row-detail>
                      <ngx-datatable-column name="Txn ID" prop="id">
->>>>>>> 837ae22ba6b17b519813e5a106ed74a4c2bd2d8d
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                        4251
                       </ng-template>
@@ -94,33 +90,10 @@
                           <span><strong>2200</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-<<<<<<< HEAD
-                      
-                      <ngx-datatable-column name="STATUS" prop="status" >
-                          <ng-template let-value="value" ngx-datatable-cell-template>
-                            Pending
-                          </ng-template>
-                        </ngx-datatable-column>
-
-                         <ngx-datatable-column name="REMARK" prop="remark" >
-                          <ng-template let-value="value" ngx-datatable-cell-template>
-                            Pending
-                          </ng-template>
-                        </ngx-datatable-column>
-
-                        <ngx-datatable-column name="CREATED BY" prop="created">
-=======
 
                           <ngx-datatable-column name="PRINT" prop="print">
->>>>>>> 837ae22ba6b17b519813e5a106ed74a4c2bd2d8d
                             <ng-template let-value="value" ngx-datatable-cell-template>
                               <a>Print</a>
-                            </ng-template>
-                          </ngx-datatable-column>
-
-                          <ngx-datatable-column name="Print" prop="print">
-                            <ng-template let-value="value" ngx-datatable-cell-template>
-                        
                             </ng-template>
                           </ngx-datatable-column>
                     </ngx-datatable>

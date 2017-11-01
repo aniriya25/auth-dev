@@ -21,9 +21,9 @@
                     <fieldset fxFlex="100">
                         <legend>Services</legend>
                     <div fxLayout="row" fxFlex="97">
-                        <md-select placeholder="Select Service" fxFlex="50">
-                            <md-option *ngFor="let service of services" [value]="service.value">
-                              {{ service.viewValue }}
+                        <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="user.name" name="name" #name="ngModel">
+                            <md-option *ngFor="let service of services" value= {{user.name}}>
+                              {{ user.name }}
                             </md-option>
                           </md-select>
                           <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
@@ -103,48 +103,7 @@
                     </div>
                   </fieldset>
                   </div>
-                  <!-- <div fxLayout="row" fxLayout.xs="column">
-                      <fieldset fxFlex="40">
-                          <legend>Member ID</legend>
-                          <md-card fxFlex="100">
-                              <img md-card-image src="assets/images/user1.jpg" alt="user profile photo">
-                              <md-card-content>
-                                  <span fxFlex="50" fxLayoutAlign="start">{{user.firstName}} {{user.lastName}}</span>
-                                 <span fxFlex="50" fxLayoutAlign="end">{{user.Relation}}</span>
-                                </md-card-content>
-                          </md-card>
-                       
-                      </fieldset>
-                      <fieldset fxFlex="60">
-                          <legend>Member ID Proof</legend>
-                          <md-card fxFlex="100">
-                              <div fxLayout="row">
-                                  <md-input-container fxFlex="100">
-                                      <input type="text" mdInput type='text' placeholder='Date of Birth' [(ngModel)]="user.dob" #dob="ngModel" />
-                                    </md-input-container>
-                              </div><br/>
-                            <div fxLayout="row">
-                                <md-input-container fxFlex="50">
-                                    <input type="text" mdInput type='text' [(ngModel)]="user.refIdentityTypeId"  placeholder='ID Proof No' />
-                                  </md-input-container>
-                            
-                                    <md-input-container fxFlex="48" fxFlexOffset="2">
-                                      <input type="text" mdInput type='text' pattern="^\d{4}\s\d{4}\s\d{4}$" placeholder='ID Proof No' [(ngModel)]="user.addharNo" #number="ngModel" />
-                                    </md-input-container>
-                            </div>  <br>
-                            <div fxLayout="row">
-                                <md-input-container fxFlex="50">
-                                    <input type="text" mdInput type='text' placeholder='Gender' [(ngModel)]="user.gender" />
-                                  </md-input-container>
-                            
-                                    <md-input-container fxFlex="48" fxFlexOffset="2">
-                                      <input type="text" mdInput type='text' placeholder='Age' [(ngModel)]="user.Age"  />
-                                    </md-input-container>
-                            </div>  
-                        
-                          </md-card>
-                      </fieldset>
-                  </div> -->
+                 
                   <div fxLayout="row" fxLayout.xs="column">
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
