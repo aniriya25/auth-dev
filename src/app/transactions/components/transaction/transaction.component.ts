@@ -15,6 +15,8 @@ export class TransactionComponent implements OnInit {
   @ViewChild('myTable') table: any;
   cardNumber: any;
   rows = [];
+  service = [];
+  cardData = [];
   temp = [];
   isLimits: number = 10;
   records: any;
@@ -23,12 +25,13 @@ export class TransactionComponent implements OnInit {
   isReadOnly: boolean = true;
   edited: boolean = true;
   abc: any;
+  selctedServices: any;
 
-  services = [
-    { value: '0', viewValue: 'OPD' },
-    { value: '1', viewValue: 'Pharmacy' },
-    { value: '2', viewValue: 'Diagnostic' }
-  ];
+  // services = [
+  //   { value: '0', viewValue: 'OPD' },
+  //   { value: '1', viewValue: 'Pharmacy' },
+  //   { value: '2', viewValue: 'Diagnostic' }
+  // ];
   speciality = [
     { value: '0', viewValue: 'Cardiology' },
     { value: '1', viewValue: 'Ent' },
@@ -47,20 +50,31 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-     
+    this.getServiceData();
     this.getTrasnctionData1();  
     this.getTrasnctionData();
+    
     // this.getIdentityData();
     // this.getPersonalData();
 
   }
 
+  getServiceData() {
+    this._transaction.getServiceList()
+      .subscribe(data => {
+        debugger;
+        this.service = data.data;
+        //this.user.cardNumber = data.data[0]["cardNumber"];
+       // console.log(this.user.cardNumber);
+      })
+  }
+
   getTrasnctionData() {
     this._transaction.getTransaction(this.abc)
       .subscribe(data => {
-        debugger;
+        //debugger;
         this.rows = data.data;
-        this.user.cardNumber = data.data[0]["cardNumber"];
+        this.user.cardNumber = this.rows[0]["cardNumber"];
         console.log(this.user.cardNumber);
       })
   }
@@ -68,8 +82,8 @@ export class TransactionComponent implements OnInit {
 getTrasnctionData1() {
     this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-        debugger;
-        this.rows = data.data;
+        //debugger;
+        this.cardData = data.data;
         //this.user.cardNumber = data.data[0]["cardNumber"];
         //console.log(this.user.cardNumber);
       })
