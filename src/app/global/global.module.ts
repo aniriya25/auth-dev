@@ -62,19 +62,18 @@ export class AppConfig {
   transaction_url:string;
 
 // Master
+
   services_url: string;
 
 }
 
 export const APP_DI_CONFIG: AppConfig = {
 
-  api_base_url: 'http://192.168.9.50/v2/apis/auth/',
-  //api_base_url: 'https://www.h3u.com/v2/apis/auth/',
-
-   //api_base_url: 'https://www.h3u.com/v2/apis/nerveapi/',
-  //api_base_url: 'http://182.71.190.154/nerveapi/',
+  api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
   
-  login_url:"auth/login",
+   // api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
+    //api_base_url: 'http://182.71.190.154/nerveapi/',
+    login_url:"auth/login",
   nerve_token_key:"h3u_nerve_usertoken",
   profile_personal_info_url:"users/me/profile/personal",
   profile_communication_url: "users/me/profile/communication",
@@ -117,9 +116,10 @@ export const APP_DI_CONFIG: AppConfig = {
   outlet: 'Outlet/',
 
   //transaction
-  transaction_url:'transactions/',
+  transaction_url:'cards/',
 
   // master
+
   services_url:"masters/servicecategories"
 
 };

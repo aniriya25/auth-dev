@@ -13,7 +13,6 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class TransactionComponent implements OnInit {
   @ViewChild('myTable') table: any;
-
   cardNumber: any;
   rows = [];
   temp = [];
@@ -26,22 +25,19 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
 
-
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
-    private route: ActivatedRoute,
-    public kyc = false,
+    private route: ActivatedRoute
   ) {
     
   }
-  
 
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-    
+     
     this.getTrasnctionData1();  
     this.getTrasnctionData();
     this.getServicesData();

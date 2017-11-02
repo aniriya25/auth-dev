@@ -22,7 +22,7 @@
                         <legend>Services</legend>
                     <div fxLayout="row" fxFlex="97">
                         <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="service.name" name="service" #service="ngModel">
-                            <md-option *ngFor="let service of services" value = {{service.consultationTypeId}}>
+                            <md-option *ngFor="let service of services" value= {{service.id}}>
                               {{ service.name }}
                             </md-option>
                           </md-select>
@@ -104,7 +104,7 @@
                   </fieldset>
                   </div>
                  
-                  <div fxLayout="row" fxLayout.xs="column" *ngif="kyc">
+                  <div fxLayout="row" fxLayout.xs="column">
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
                           <md-card fxFlex="100">
