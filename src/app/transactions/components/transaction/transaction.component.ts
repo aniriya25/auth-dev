@@ -4,6 +4,8 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-transaction',
@@ -34,7 +36,14 @@ export class TransactionComponent implements OnInit {
     private route: ActivatedRoute,
     
   ) {}
-
+  myControl: FormControl = new FormControl();
+  
+    options = [
+      'One',
+      'Two',
+      'Three'
+     ];
+  
   ngOnInit() {
     
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);

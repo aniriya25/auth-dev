@@ -22,12 +22,20 @@
                         <fieldset fxFlex="100">
                               <legend>Services</legend>
                           <div fxLayout="row" fxFlex="97">
-                              
-                            <md-select placeholder="Select Service" fxFlex="50">
+                             
+                                    <input type="text" placeholder="Pick one" aria-label="Number" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
+                                
+                                    <md-autocomplete #auto="mdAutocomplete">
+                                      <md-option *ngFor="let user of service" name="selctedServices" [value]="user.id">
+                                          {{user.name}}
+                                      </md-option>
+                                    </md-autocomplete>
+                                  
+                            <!-- <md-select placeholder="Select Service" fxFlex="50">
                                   <md-option *ngFor="let user of service" name="selctedServices" [value]="user.id">
                                     {{user.name}}
                                   </md-option>
-                                </md-select>
+                                </md-select> -->
                                 <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
                                  <md-option *ngFor="let speciality of speciality" [value]="speciality.value">
                                     {{ speciality.viewValue }}
