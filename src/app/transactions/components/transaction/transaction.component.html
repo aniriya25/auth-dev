@@ -21,9 +21,9 @@
                     <fieldset fxFlex="100">
                         <legend>Services</legend>
                     <div fxLayout="row" fxFlex="97">
-                        <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="user.name" name="name" #name="ngModel">
-                            <md-option *ngFor="let service of services" value= {{user.name}}>
-                              {{ user.name }}
+                        <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="service.name" name="service" #service="ngModel">
+                            <md-option *ngFor="let service of services" value = {{service.consultationTypeId}}>
+                              {{ service.name }}
                             </md-option>
                           </md-select>
                           <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
@@ -104,7 +104,7 @@
                   </fieldset>
                   </div>
                  
-                  <div fxLayout="row" fxLayout.xs="column">
+                  <div fxLayout="row" fxLayout.xs="column" *ngif="kyc">
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
                           <md-card fxFlex="100">

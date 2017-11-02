@@ -13,9 +13,11 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class TransactionComponent implements OnInit {
   @ViewChild('myTable') table: any;
+
   cardNumber: any;
   rows = [];
   temp = [];
+  services =[];
   isLimits: number = 10;
   records: any;
   user: any = {};
@@ -24,30 +26,21 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
 
-  // services = [
-  //   { value: '0', viewValue: 'OPD' },
-  //   { value: '1', viewValue: 'Pharmacy' },
-  //   { value: '2', viewValue: 'Diagnostic' }
-  // ];
-  // speciality = [
-  //   { value: '0', viewValue: 'Cardiology' },
-  //   { value: '1', viewValue: 'Ent' },
-  //   { value: '2', viewValue: 'Gynocologist' },
-  //   { value: '3', viewValue: 'Dental' }
-  // ];
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public kyc = false,
   ) {
     
   }
+  
 
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-     
+    
     this.getTrasnctionData1();  
     this.getTrasnctionData();
     this.getServicesData();
@@ -58,7 +51,7 @@ export class TransactionComponent implements OnInit {
     this._transaction.getServiceList()
       .subscribe(data => {
         debugger;
-        this.user = data.data;       
+        this.services = data.data;       
       })
   }
 
