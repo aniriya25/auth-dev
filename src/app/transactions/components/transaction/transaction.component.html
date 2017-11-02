@@ -21,16 +21,18 @@
                     <fieldset fxFlex="100">
                         <legend>Services</legend>
                     <div fxLayout="row" fxFlex="97">
-                        <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="service.name" name="service" #service="ngModel">
-                            <md-option *ngFor="let service of services" value= {{service.id}}>
-                              {{ service.name }}
+                        <md-select placeholder="Select Service" fxFlex="50" (change)="getSubService($event.value);" [(ngModel)]="user.service" name="service" #service="ngModel">
+                            <md-option *ngFor="let service of services" value= {{service.serviceId}}>
+                              {{ service.serviceName }}
                             </md-option>
                           </md-select>
-                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
-                           <md-option *ngFor="let speciality of speciality" [value]="speciality.value">
-                              {{ speciality.viewValue }}
+
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subservice" name="subservice" #subservice="ngModel">
+                           <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}}>
+                              {{ speciality.subServiceName }}
                             </md-option>
                           </md-select>
+
                     </div><br>
                     <div fxLayout="row" fxFlex="97">
                         <md-input-container fxFlex="50">
@@ -58,8 +60,8 @@
                       [footerHeight]="50"
                       [scrollbarV]="false" 
                       [rowHeight]="'auto'">
-                      (activate)="onActivate($event, modal)"-->
-                      <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+
+                      <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                             <ol fxFlex="100" fxLayoutAlign="center center">
                             <li fxFlex="35"><span> Aadhar Card </span>{{user.addharNo}}</li>
@@ -68,34 +70,34 @@
 
                             </ol>
                           </ng-template>
-                        </ngx-datatable-row-detail>
+                        </ngx-datatable-row-detail>-->
                         <ngx-datatable-column name="NAME" prop="name" >
                           <!-- Row Detail Template -->
                           <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                           <a (click)="kycShow()" style="color:blue;cursor:hand;">{{row.MemberName}}</a>
+                           <a (click)="kycShow(row)" style="color:blue;cursor:hand;">{{row.name}}</a>
                           </ng-template>
                         </ngx-datatable-column> 
                         <ngx-datatable-column name="GENDER" prop="gender" width="100">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Gender}}
+                            {{row.gender}}
                           </ng-template>
                         </ngx-datatable-column>
                       
                         <ngx-datatable-column name="DATE OF BIRTH" prop="dob">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Dob}}
+                            {{row.dob}}
                           </ng-template>
                         </ngx-datatable-column>  
 
                         <ngx-datatable-column name="RELATION" prop="relation" width="100">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Relation}}
+                            {{row.relation}}
                           </ng-template>
                         </ngx-datatable-column> 
 
                         <ngx-datatable-column name="AGE" prop="age" width="100">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Age}}
+                            {{row.age}}
                           </ng-template>
                         </ngx-datatable-column> 
                        
@@ -104,32 +106,30 @@
                   </fieldset>
                   </div>
                  
-                  <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow==false" >
+                  <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow" >
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
                           <md-card fxFlex="100">
                               <img md-card-image src="assets/images/user1.jpg" alt="user profile photo">
                               <md-card-content>
-                                 <span fxFlex="50" fxLayoutAlign="start">Amit Chopra</span>
-                                 <span fxFlex="50" fxLayoutAlign="end">Self</span>
+                                 <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
+                                 <span fxFlex="50" fxLayoutAlign="end">{{user.relation}}</span>
                                 </md-card-content>
                           </md-card>
                       </fieldset>
                       <fieldset fxFlex="60">
                           <legend>Member ID Proof</legend>
                           <md-card fxFlex="100">
-                            <div fxLayout="row">
-                                <md-select placeholder="ID proof type" fxFlex="100">
-                                    <md-option>Pan card</md-option>                                  
-                                    <md-option>Passport</md-option>
-                                    <md-option>Driving Licence</md-option> 
-                                    <md-option>Passport</md-option>  
-                                  </md-select>
+                            <div fxLayout="row">  
+                           <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
+                            <md-option *ngFor="let Identity of Identities" value = {{Identity.id}}>{{Identity.name}}</md-option>
+                          </md-select> 
                             </div><br>
-                                  <div fxLayout="row"  fxLayoutGap="10px">
-                                    <md-input-container fxFlex="100">
-                                      <input type="text" mdInput type='text' placeholder='ID Proof No' />
-                                    </md-input-container>
+                           
+                           <div fxLayout="row"  fxLayoutGap="10px">
+                               <md-input-container fxFlex="100">
+                                <input type="text" mdInput type='text' placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
+                                </md-input-container>
                             </div>  
                             <div>
                               <p>Upload ID proof</p>
