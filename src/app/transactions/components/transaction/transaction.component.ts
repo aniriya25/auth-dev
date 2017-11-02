@@ -26,6 +26,7 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
 
+
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
