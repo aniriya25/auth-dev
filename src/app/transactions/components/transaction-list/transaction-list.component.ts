@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-transaction-list',
@@ -8,15 +8,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class TransactionListComponent implements OnInit {
 
    @ViewChild('myTable') table: any;
+   @ViewChild('expand') exp: ElementRef;
+   expand
   rows = [];
   temp = [];
   isLimits: number = 10;
   records: any;
+  onExpandClick() {
+    this.table.rowDetail.expandAllRows();
+  }
   constructor() { }
   ngOnInit() {
     this.rows = [
-     { "company": "98.4 Pharmacy G2 Block Market, Sarita Vihar", "service": "Pharmacy", "firstName": "Dr Anupam anupam.bakshi@gmail.com +91-9810012345", "comment": "Good" },
      ];
   }
 
 }
+
