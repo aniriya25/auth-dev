@@ -122,6 +122,8 @@ export const APP_DI_CONFIG: AppConfig = {
 
   services_url:"masters/servicecategories"
 
+  //Mast
+  // services_url:"masters/servicecategories"
 };
 
 @NgModule({
