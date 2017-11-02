@@ -1,55 +1,35 @@
-
 <div class="container">
     <div fxLayout="row">
       <md-card class="profileCard" fxFlex="100">
-          <div fxFlex="69" fxFlexOffset="1" class="left-card">
-              <h2>Transaction</h2>
-              <div fxLayout="row" fx-layout-align="center center">
-                  <div fxFlex="100" class="v_align" >                   
-                   <form (ngSubmit)="onSubmit()">
-                    <md-input-container fxFlex="45">
-                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
-                    </md-input-container>
-                     <div fxFlex="45" style="padding-left:20px;">
-                       <!--<button md-raised-button class="primary" >UPDATE</button>-->
-                       <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
-                     </div>
-                   </form>
-                    </div>
-                </div>
-                <div fxLayout="row" fxLayout.xs="column">
-                    <fieldset fxFlex="100">
-                        <legend>Services</legend>
-                    <div fxLayout="row" fxFlex="97">
-                        <md-select placeholder="Select Service" fxFlex="50" [(ngModel)]="service.name" name="service" #service="ngModel">
-                            <md-option *ngFor="let service of services" value= {{service.id}}>
-                              {{ service.name }}
-                            </md-option>
-                          </md-select>
-                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2">
-                           <md-option *ngFor="let speciality of speciality" [value]="speciality.value">
-                              {{ speciality.viewValue }}
-                            </md-option>
-                          </md-select>
-                    </div><br>
-                    <div fxLayout="row" fxFlex="97">
-                        <md-input-container fxFlex="50">
-                            <input type="text" mdInput type='text'  placeholder='Doctor Name' />
-                          </md-input-container>
-                          <md-input-container fxFlex="50" fxFlexOffset="2">
-                              <input type="text" mdInput type='text'  placeholder='Amount' />
-                            </md-input-container>
-                    </div>
-                  </fieldset>
+          <div fxFlex="98" fxFlexOffset="1" class="left-card">
+           <h2><span  fxFlex="80">Transaction List</span>
+           <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
+           </h2>
+              <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
+                <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
+                  <md-input-container fxFlex="80" fxFlex.xs="98">
+                    <input type="text" mdInput type='text' placeholder='Search transaction...' (keyup)='updateFilter($event)' />
+                  </md-input-container>
                   </div>
+                <div fxFlex="40" fxFlex.xs="100">
+                  <md-input-container fxFlex="95" fxFlex.xs="80">
+                    <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date">
+                    <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
+                  </md-input-container>              
+                  <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
+                  <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
+                    <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date">
+                    <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+                  </md-input-container>
+                  <md-datepicker #endDatePicker (selectedChanged)="fetchRecByEndDate($event)"></md-datepicker>
+                </div>
+              </div>
                 <div fxLayout="row" fxLayout.xs="column">
-                    <fieldset fxFlex="100">
-                        <legend>Member</legend>
-                    <div fxFlex="100">
-                        <small>
-                            <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
-                            <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
-                          </small>
+                 <div fxFlex="100">
+                    <small>
+                        <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
+                        <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+                      </small>
                       <ngx-datatable #myTable class='material fullscreen expandable'          
                       [rows]='rows'
                       [limit]="PageSize"
@@ -58,118 +38,75 @@
                       [footerHeight]="50"
                       [scrollbarV]="false" 
                       [rowHeight]="'auto'">
-                      (activate)="onActivate($event, modal)"-->
+                      (activate)="onActivate($event, modal)"
                       <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                            <ol fxFlex="100" fxLayoutAlign="center center">
-                            <li fxFlex="35"><span> Aadhar Card </span>{{user.addharNo}}</li>
-                            <li fxFlex="13">adharcardlink</li>
-                            <li fxFlex="80"><a><button md-mini-fab ><md-icon>remove_red_eye</md-icon></button></a></li>
-
-                            </ol>
+                            <ul fxFlex="100" fxLayoutAlign="center center">
+                            <li fxFlex="80">Status:Pending</li>
+                            <li fxFlex="80">Remarks:Pending</li>
+                            <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
+                            </ul>
                           </ng-template>
                         </ngx-datatable-row-detail>
-                        <ngx-datatable-column name="NAME" prop="name" >
-                          <!-- Row Detail Template -->
-                          <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                           {{row.MemberName}}
-                          </ng-template>
-                        </ngx-datatable-column> 
-                        <ngx-datatable-column name="GENDER" prop="gender" width="100">
+                       <ngx-datatable-column name="Txn ID" prop="id">
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                         4251
+                        </ng-template>
+                      </ngx-datatable-column>
+  
+                       <ngx-datatable-column name="DATE" prop="date" width="100">
+                            <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                              12/01/2017
+                            </ng-template>
+                       </ngx-datatable-column> 
+  
+                       <ngx-datatable-column name="TYPE" prop="type">
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                          <span>Discount</span>
+                          <p>Card No</p>
+                          <p class="tabspan">Coupon no</p>
+                        </ng-template>
+                      </ngx-datatable-column> 
+  
+                      <ngx-datatable-column name="PATIENT" prop="patient">
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                          <span>Name</span>
+                          <p>Aadhar card</p>
+                          <p class="tabspan">9876543210</p>
+                        </ng-template>
+                      </ngx-datatable-column> 
+                       
+                      <ngx-datatable-column name="SERVICE" prop="service" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          <span>service</span>
+                          <p class="tabspan">subservice</p>
+                        </ng-template>
+                      </ngx-datatable-column>
+  
+                       <ngx-datatable-column name="AMOUNT" prop="amnt" width="100">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Gender}}
+                            <span>2500</span>
+                            <p title="discount">-300</p>
+                            <span><strong>2200</strong></span>
                           </ng-template>
                         </ngx-datatable-column>
-                      
-                        <ngx-datatable-column name="DATE OF BIRTH" prop="dob">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Dob}}
-                          </ng-template>
-                        </ngx-datatable-column>  
-
-                        <ngx-datatable-column name="RELATION" prop="relation" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Relation}}
-                          </ng-template>
-                        </ngx-datatable-column> 
-
-                        <ngx-datatable-column name="AGE" prop="age" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.Age}}
-                          </ng-template>
-                        </ngx-datatable-column> 
+  
+                            <ngx-datatable-column name="PRINT" prop="print">
+                              <ng-template let-value="value" ngx-datatable-cell-template>
+                                <a>Print</a>
+                              </ng-template>
+                            </ngx-datatable-column>
                       </ngx-datatable>
                     </div>
-                  </fieldset>
-                  </div>
-<<<<<<< HEAD
-                
-                  <div fxLayout="row" fxLayout.xs="column" *ngif="kyc">
-=======
-                 
-                  <div fxLayout="row" fxLayout.xs="column">
->>>>>>> 62ddbaeb8f96ff9626c744a29419c35973923093
-                      <fieldset fxFlex="40">
-                          <legend>Member ID</legend>
-                          <md-card fxFlex="100">
-                              <img md-card-image src="assets/images/user1.jpg" alt="user profile photo">
-                              <md-card-content>
-                                 <span fxFlex="50" fxLayoutAlign="start">Amit Chopra</span>
-                                 <span fxFlex="50" fxLayoutAlign="end">Self</span>
-                                </md-card-content>
-                          </md-card>
-                      </fieldset>
-                      <fieldset fxFlex="60">
-                          <legend>Member ID Proof</legend>
-                          <md-card fxFlex="100">
-                            <div fxLayout="row">
-                                <md-select placeholder="ID proof type" fxFlex="100">
-                                    <md-option>Pan card</md-option>                                  
-                                    <md-option>Passport</md-option>
-                                    <md-option>Driving Licence</md-option> 
-                                    <md-option>Passport</md-option>  
-                                  </md-select>
-                            </div><br>
-                                  <div fxLayout="row"  fxLayoutGap="10px">
-                                    <md-input-container fxFlex="100">
-                                      <input type="text" mdInput type='text' placeholder='ID Proof No' />
-                                    </md-input-container>
-                            </div>  
-                            <div>
-                              <p>Upload ID proof</p>
-                            <div class="file-upload" fxLayout fxLayoutAlign="center center">
-                               <input id="upload" class="btnupload" type="file" name="file-upload">
-                               <md-icon>file_upload</md-icon>
-                            </div>
-                            </div>
-                          </md-card>
-                      </fieldset>
-                  </div>
-                  <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                    <button md-raised-button class="primary">Submit</button>
                   </div>
           </div>
-          <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+          <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
               <div fxLayout="row">
                 <div fxFlex="100" class="cp-para">
-                  <h3><label>Recent Users</label></h3>
-                  <ul>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                  </ul>
+                  
                 </div>
               </div>
-              <hr>
-            </div>
+            </div> -->
       </md-card>
     </div>
   </div>
-  
