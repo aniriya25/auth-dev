@@ -23,26 +23,26 @@ export class TransactionComponent implements OnInit {
   identity: any = [];
   isReadOnly: boolean = true;
   edited: boolean = true;
-  abc: any;
+  abc: any; 
+  kycshow: boolean = false;
 
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute,
     
-  }
+  ) {}
 
   ngOnInit() {
+    
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-     
+    
     this.getTrasnctionData1();  
     this.getTrasnctionData();
     this.getServicesData();
-    // this.getIdentityData();
-    // this.getPersonalData();
+    this.kycShow(); 
   }
    getServicesData() {
     this._transaction.getServiceList()
@@ -70,6 +70,9 @@ getTrasnctionData1() {
         //this.user.cardNumber = data.data[0]["cardNumber"];
         //console.log(this.user.cardNumber);
       })
+  }
+  kycShow(){  
+    this.kycshow = !this.kycshow;
   }
 
 

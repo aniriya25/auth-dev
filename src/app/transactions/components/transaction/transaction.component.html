@@ -72,7 +72,7 @@
                         <ngx-datatable-column name="NAME" prop="name" >
                           <!-- Row Detail Template -->
                           <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                           {{row.MemberName}}
+                           <a (click)="kycShow()" style="color:blue;cursor:hand;">{{row.MemberName}}</a>
                           </ng-template>
                         </ngx-datatable-column> 
                         <ngx-datatable-column name="GENDER" prop="gender" width="100">
@@ -104,7 +104,7 @@
                   </fieldset>
                   </div>
                  
-                  <div fxLayout="row" fxLayout.xs="column">
+                  <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow==false" >
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
                           <md-card fxFlex="100">
