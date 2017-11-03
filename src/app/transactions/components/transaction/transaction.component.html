@@ -117,12 +117,13 @@
                                 </md-card-content>
                           </md-card>
                       </fieldset>
+
                       <fieldset fxFlex="60">
                           <legend>Member ID Proof</legend>
                           <md-card fxFlex="100">
                             <div fxLayout="row">  
                            <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
-                            <md-option *ngFor="let Identity of Identities" value = {{Identity.id}}>{{Identity.name}}</md-option>
+                            <md-option></md-option>
                           </md-select> 
                             </div><br>
                            
@@ -140,7 +141,37 @@
                             </div>
                           </md-card>
                       </fieldset>
-                  </div>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayout.xs="column">
+                     <fieldset fxFlex="100">
+                        <legend>Payment</legend>
+                       <div fxLayout="row" fxFlex="97">                        
+                         <md-input-container fxFlex="30">
+                            <input type="text" mdInput type='text'  placeholder='Total Amount' />
+                          </md-input-container>                        
+                        <md-select placeholder="Payment Mode" fxFlex="30" (change)="getSubService($event.value);" [(ngModel)]="user.service" name="service" #service="ngModel">
+                            <md-option *ngFor="let service of services" value= {{service.serviceId}}>{{service.serviceName}}</md-option>
+                        </md-select>
+                        <md-input-container fxFlex="30">
+                            <input type="text" mdInput type='text'  placeholder='Payment Ref Id' />
+                        </md-input-container> 
+                    </div><br>
+
+                    <div fxLayout="row" fxFlex="97">
+                        
+                        <md-input-container fxFlex="50">
+                            <input type="text" mdInput type='text'  placeholder='Approved Amount' />
+                        </md-input-container>
+                        <md-input-container fxFlex="50" fxFlexOffset="2">
+                            <input type="text" mdInput type='text'  placeholder='Payable Amount' />
+                        </md-input-container>
+                    </div>
+                  </fieldset>   
+                      
+                    </div>  
+
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
                     <button md-raised-button class="primary">Submit</button>
                   </div>

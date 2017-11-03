@@ -28,7 +28,7 @@
       "scripts": [
         "../node_modules/moment/min/moment.min.js",
         "./../node_modules/chart.js/dist/Chart.bundle.js",
-        "./../node_modules/chart.js/dist/Chart.min.js"   
+        "./../node_modules/chart.js/dist/Chart.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -62,5 +62,8 @@
     "styleExt": "scss",
     "component": {
     }
+  },
+  "warnings": {
+    "typescriptMismatch": false
   }
 }
