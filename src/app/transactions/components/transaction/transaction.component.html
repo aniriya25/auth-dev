@@ -22,9 +22,7 @@
                         <fieldset fxFlex="100">
                               <legend>Services</legend>
                           <div fxLayout="row" fxFlex="97">
-                             
                                     <input type="text" placeholder="Pick one" aria-label="Number" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-                                
                                     <md-autocomplete #auto="mdAutocomplete">
                                       <md-option *ngFor="let user of service" name="selctedServices" [value]="user.id">
                                           {{user.name}}
