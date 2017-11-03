@@ -4,8 +4,6 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-import {FormControl} from '@angular/forms';
-
 
 @Component({
   selector: 'app-transaction',
@@ -18,70 +16,83 @@ export class TransactionComponent implements OnInit {
   cardNumber: any;
   rows = [];
   temp = [];
-  services =[];
+  Identities = [];
+  services: object;
+  speciality: object;
   isLimits: number = 10;
   records: any;
   user: any = {};
   identity: any = [];
   isReadOnly: boolean = true;
   edited: boolean = true;
-  abc: any; 
+  abc: any;
   kycshow: boolean = false;
-
+  alldatavalue: object;
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
     private route: ActivatedRoute,
-    
-  ) {}
-  myControl: FormControl = new FormControl();
-  
-    options = [
-      'One',
-      'Two',
-      'Three'
-     ];
-  
+
+  ) { }
+
   ngOnInit() {
-    
+    //debugger;
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-    
-    this.getTrasnctionData1();  
-    this.getTrasnctionData();
-    this.getServicesData();
-    this.kycShow(); 
+    if (this.user.cardNumber != "" && this.user.cardNumber != undefined) {
+      this.getTrasnctionData1();
+    }
+    else if (this.abc != "" && this.abc != undefined) {
+      this.getTrasnctionData();
+    }
+  
+    this.getIdentityData();
+      this.kycshow = false;
   }
-   getServicesData() {
-    this._transaction.getServiceList()
-      .subscribe(data => {
-        debugger;
-        this.services = data.data;       
+
+getIdentityData() {
+    this._transaction.getIdentity()
+      .subscribe(data => {       
+        this.Identities = data.data;       
       })
   }
 
   getTrasnctionData() {
     this._transaction.getTransaction(this.abc)
       .subscribe(data => {
-        //debugger;
-        this.rows = data.data;
-        this.user.cardNumber = data.data[0]["cardNumber"];
-        console.log(this.user.cardNumber);
+       this.alldatavalue= data.data;
+       this.rows = data.data["Members"];
+       this.services = data.data["Services"];
+       debugger
+        this.user.cardNumber = data.data["cardNumber"];
       })
   }
-  
-getTrasnctionData1() {
+
+  getTrasnctionData1() {
     this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-       // debugger;
-        this.rows = data.data;
-        //this.user.cardNumber = data.data[0]["cardNumber"];
-        //console.log(this.user.cardNumber);
+       //debugger;
+       this.alldatavalue= data.data;
+       this.rows = data.data["Members"];
+       this.services = data.data["Services"];
+      
       })
   }
-  kycShow(){  
-    this.kycshow = !this.kycshow;
+  kycShow(value) {
+    //debugger;
+    this.kycshow = true;
+    this.user.idProofTypeId = value.idProofTypeId;
+    this.user.idProofNumber = value.idProofNumber;
+    this.user.idProoImg = value.idProoImg;
+    this.user.name = value.name;
+    this.user.relation = value.relation;
+  }
+
+  getSubService(value){
+    //alert(value);
+    //debugger
+    this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
   }
 
 

@@ -29,8 +29,8 @@ export class TransactionService {
       });
   }
 
-  getServiceList() {
-    return this.authhttp.get(this.config.api_base_url+this.config.services_url)
+  getIdentity() {
+    return this.authhttp.get(this.config.api_base_url+this.config.Identity_url)
       .map(data => {
           data.json();
           return data.json();
