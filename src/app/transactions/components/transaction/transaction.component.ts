@@ -4,7 +4,8 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -36,7 +37,17 @@ export class TransactionComponent implements OnInit {
     private route: ActivatedRoute,
 
   ) { }
-
+  myControl: FormControl = new FormControl();
+  
+    options = [
+      'Cash',
+      'Debit Card',
+      'Credit Card',
+      'Paytm Wallets',
+      'Others'
+     ];
+     filteredOptions: Observable<string[]>;
+     
   ngOnInit() {
     //debugger;
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
@@ -49,6 +60,14 @@ export class TransactionComponent implements OnInit {
   
     this.getIdentityData();
       this.kycshow = false;
+      this.filteredOptions = this.myControl.valueChanges
+      .startWith(null)
+      .map(val => val ? this.filter(val) : this.options.slice());
+}
+
+ filter(val: string): string[] {
+   return this.options.filter(option =>
+     option.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 
 getIdentityData() {
