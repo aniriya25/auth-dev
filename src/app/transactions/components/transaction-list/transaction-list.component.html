@@ -27,8 +27,7 @@
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
                   <small>
-                      <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
-                      <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+                       <a #expandButton (click)="onExpandClick()"></a>    
                     </small>
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'

@@ -4,6 +4,7 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-transaction',
@@ -28,6 +29,8 @@ export class TransactionComponent implements OnInit {
   abc: any;
   kycshow: boolean = false;
   alldatavalue: object;
+  model: any = {};
+  
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
@@ -37,23 +40,34 @@ export class TransactionComponent implements OnInit {
 
   ) { }
 
+   myControl: FormControl = new FormControl();
+   paymentMode = [
+    { refPayModeId: 1, name: "Cash" },
+    { refPayModeId: 2, name: "Debt Card"},
+    { refPayModeId: 3, name: "Credit Card"},
+    { refPayModeId: 4, name: "Paytm Wallet"},
+    { refPayModeId: 5, name: "Others"}
+  ]
+
   ngOnInit() {
     //debugger;
+    this.getIdentityData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
     if (this.user.cardNumber != "" && this.user.cardNumber != undefined) {
       this.getTrasnctionData1();
     }
     else if (this.abc != "" && this.abc != undefined) {
-      this.getTrasnctionData();
+      this.getTrasnctionData();      
     }
-  
-    this.getIdentityData();
-      this.kycshow = false;
+    
+    this.kycshow = false;
+      
   }
 
 getIdentityData() {
     this._transaction.getIdentity()
-      .subscribe(data => {       
+      .subscribe(data => {
+       // debugger;       
         this.Identities = data.data;       
       })
   }
@@ -64,21 +78,22 @@ getIdentityData() {
        this.alldatavalue= data.data;
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
-       debugger
-        this.user.cardNumber = data.data["cardNumber"];
+       //debugger
+       this.user.cardNumber = data.data["cardNumber"];
       })
   }
 
   getTrasnctionData1() {
     this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-       //debugger;
+       debugger;
        this.alldatavalue= data.data;
+       this.user.refCardId =data.data["refCardId"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
-      
       })
   }
+
   kycShow(value) {
     //debugger;
     this.kycshow = true;
@@ -87,6 +102,7 @@ getIdentityData() {
     this.user.idProoImg = value.idProoImg;
     this.user.name = value.name;
     this.user.relation = value.relation;
+    this.user.refDependentId = value.refDependentId;
   }
 
   getSubService(value){
@@ -95,5 +111,39 @@ getIdentityData() {
     this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
   }
 
+
+ submitFrm() {
+    //console.log(users);
+    //this.user['dob'] = moment(this.user['dob'],"DD/MMM/YYYY").format('DD/MMM/YYYY');
+    //debugger;
+    this.model.refCardId =  this.user.refCardId;
+    this.model.serviceId = this.user.serviceId;
+    this.model.subServiceId = this.user.subServiceId;
+    this.model.refDependentId = this.user.refDependentId;
+    this.model.idProofTypeId = this.user.idProofTypeId;
+    this.model.docter = this.user.docter;
+    this.model.payTransectionNo = this.user.payTransectionNo;
+    this.model.totalAmount = this.user.totalAmount;
+    this.model.discountAmount = this.user.discountAmount;
+    this.model.payableAmount = this.user.payableAmount;
+    this.model.refPayModeId = this.user.refPayModeId;
+
+
+    this._transaction.updateTransaction(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          this.snackBar.open("Updated successfully","",{duration:5000});
+          return false;
+        }
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      });     
+  }
+  
+   // edit readonly fields
+   editFrm() {
+     this.isReadOnly = !this.isReadOnly;
+     this.edited = false; 
+   }
 
 }

@@ -634,3 +634,7 @@ textarea.mat-input-element{
     text-align: center;
     color: red;
 }
+.mat-select-value {
+    left: 5px !important;
+    top: 10px !important;
+}

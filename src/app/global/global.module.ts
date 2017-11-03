@@ -60,6 +60,7 @@ export class AppConfig {
 
   // Transtions
   transaction_url:string;
+  cardDetails_update_url: string;
 
 // Master
   services_url: string;
@@ -120,7 +121,7 @@ export const APP_DI_CONFIG: AppConfig = {
 
   //transaction
   transaction_url:'products/',
-
+  cardDetails_update_url:'transactions',
   // master
 
   services_url:"masters/servicecategories",
