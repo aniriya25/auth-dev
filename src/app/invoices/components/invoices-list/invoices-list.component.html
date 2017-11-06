@@ -3,7 +3,7 @@
     <md-card class="profileCard" fxFlex="100">
         <div fxFlex="98" fxFlexOffset="1" class="left-card">
          <h2><span  fxFlex="80">Invoices List</span>
-         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="#">New Invoice</button>
+         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/invoices/invoice">New Invoice</button>
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
@@ -63,8 +63,8 @@
 
                     <ngx-datatable-column name="OUTLET DETAILS" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <span>Name</span>
-                        <p>Aadhar card</p>
+                        <span>Outlet Name</span>
+                        <p>98.4 Pharmacy G2 Block Market, Sarita Vihar</p>
                         <p class="tabspan">9876543210</p>
                       </ng-template>
                     </ngx-datatable-column> 

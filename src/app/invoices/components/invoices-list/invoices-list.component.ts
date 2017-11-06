@@ -16,7 +16,8 @@ export class InvoicesListComponent implements OnInit {
 
   ngOnInit() {
     this.rows = [
-      ];
+     { "company": "", "service": "", "comment": "" },
+     ];
   }
 
 }
