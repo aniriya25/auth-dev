@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-invoices-list',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoices-list.component.scss']
 })
 export class InvoicesListComponent implements OnInit {
-
+  @ViewChild('myTable') table: any;
+   rows = [];
+   temp = [];
+   isLimits: number = 10;
+   records: any;
+   
   constructor() { }
 
   ngOnInit() {
+    this.rows = [
+      ];
   }
 
 }
+
+
+
