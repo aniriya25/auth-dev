@@ -36,14 +36,13 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-                    [rowHeight]="'auto'">
-                    (activate)="onActivate($event, modal)"
+                    [rowHeight]="'auto'">                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                           <ul fxFlex="100" fxLayoutAlign="center center">
                           <li fxFlex="80">Status:Pending</li>
                           <li fxFlex="80">Remarks:Pending</li>
-                          <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
+                          <li fxFlex="80">Created By: <a>{{row.patientName}}</a></li>
                           </ul>
                         </ng-template>
                       </ngx-datatable-row-detail>
@@ -57,44 +56,44 @@
                     </ngx-datatable-column>
                      <ngx-datatable-column name="Txn ID" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                       4251
+                       {{row.transactionId}}
                       </ng-template>
                     </ngx-datatable-column>
 
                      <ngx-datatable-column name="DATE" prop="date" width="100">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            12/01/2017
+                             {{row.transactionDate}}
                           </ng-template>
                      </ngx-datatable-column> 
 
                      <ngx-datatable-column name="TYPE" prop="type">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <span>Discount</span>
-                        <p>Card No</p>
-                        <p class="tabspan">Coupon no</p>
+                        <span>{{row.discountAmount}}</span>
+                        <p>{{row.cardNumber}}</p>
+                        <p class="tabspan">{{row.couponCode}}</p>
                       </ng-template>
                     </ngx-datatable-column> 
 
                     <ngx-datatable-column name="PATIENT" prop="patient">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <span>Name</span>
-                        <p>Aadhar card</p>
+                        <span>{{row.patientName}}</span>
+                        <p>{{row.idProofType}}</p>
                         <p class="tabspan">9876543210</p>
                       </ng-template>
                     </ngx-datatable-column> 
                      
                     <ngx-datatable-column name="SERVICE" prop="service" width="100">
                       <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                        <span>service</span>
-                        <p class="tabspan">subservice</p>
+                        <span>{{row.refServiceId}}</span>
+                        <p class="tabspan">{{row.refSubServiceId}}</p>
                       </ng-template>
                     </ngx-datatable-column>
 
                      <ngx-datatable-column name="AMOUNT" prop="amnt" width="100">
                         <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                          <span>2500</span>
-                          <p title="discount">-300</p>
-                          <span><strong>2200</strong></span>
+                          <span>{{row.totalAmount}}</span>
+                          <p title="discount">-{{row.discountAmount}}</p>
+                          <span><strong>{{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
 

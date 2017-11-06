@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -28,7 +29,10 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
   kycshow: boolean = false;
+  payshow: boolean =false;
   alldatavalue: object;
+  model: any = {};
+  
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
@@ -37,68 +41,71 @@ export class TransactionComponent implements OnInit {
     private route: ActivatedRoute,
 
   ) { }
-  
-  myControl: FormControl = new FormControl();
-  
-    options = [
-      'Cash',
-      'Debit Card',
-      'Credit Card',
-      'Paytm Wallets',
-      'Others'
-     ];
-     filteredOptions: Observable<string[]>;
-     
-  ngOnInit() {
-    //debugger;
-    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-    if (this.user.cardNumber != "" && this.user.cardNumber != undefined) {
-      this.getTrasnctionData1();
-    }
-    else if (this.abc != "" && this.abc != undefined) {
-      this.getTrasnctionData();
-    }
-  
-    this.getIdentityData();
-      this.kycshow = false;
-      this.filteredOptions = this.myControl.valueChanges
-      .startWith(null)
-      .map(val => val ? this.filter(val) : this.options.slice());
-}
 
- filter(val: string): string[] {
-   return this.options.filter(option =>
-     option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+
+   myControl: FormControl = new FormControl();
+   paymentMode = [
+    { refPayModeId: 1, name: "Cash" },
+    { refPayModeId: 2, name: "Debt Card"},
+    { refPayModeId: 3, name: "Credit Card"},
+    { refPayModeId: 4, name: "Paytm Wallet"},
+    { refPayModeId: 5, name: "Others"}
+  ]
+
+  ngOnInit() {
+    debugger;
+    this.getIdentityData();
+    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
+    if(this.abc != "" && this.abc != undefined)
+    {
+       this.user.cardNumber = this.abc;
+       this.getTrasnctionData1();
+     }  
+    this.kycshow = false;    
   }
 
 getIdentityData() {
     this._transaction.getIdentity()
-      .subscribe(data => {       
+      .subscribe(data => {
+       // debugger;       
         this.Identities = data.data;       
       })
   }
 
-  getTrasnctionData() {
-    this._transaction.getTransaction(this.abc)
+  getTrasnctionData1() {
+    //debugger
+    if(this.user.cardNumber.length <= 7)
+    {
+      this._transaction.getCouponTransaction(this.user.cardNumber)
       .subscribe(data => {
-       this.alldatavalue= data.data;
+       debugger;
+       this.alldatavalue = data.data;
+       this.user.refCardId = data.data["refCardId"];
+       this.user.refcouponId =data.data["refcouponId"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
-       debugger
-        this.user.cardNumber = data.data["cardNumber"];
+       this.user.serviceId = this.services[0]["serviceId"];
+       this.speciality= data.data["SubServices"];
+       this.user.subServiceId = this.speciality[0]["subServiceId"];
+       this.user.totalAmount = data.data["totalAmount"];
+       this.user.discountAmount = data.data["discountAmount"];
+       this.user.payableAmount = data.data["payableAmount"];
+      })  
+    }
+    else{
+      this._transaction.getTransaction(this.user.cardNumber)
+      .subscribe(data => {
+       debugger;
+       this.alldatavalue= data.data;
+       this.user.refCardId =data.data["refCardId"];
+       this.user.refcouponId =data.data["refcouponId"];
+       this.rows = data.data["Members"];
+       this.services = data.data["Services"];    
+    
       })
+    }         
   }
 
-  getTrasnctionData1() {
-    this._transaction.getTransaction(this.user.cardNumber)
-      .subscribe(data => {
-       //debugger;
-       this.alldatavalue= data.data;
-       this.rows = data.data["Members"];
-       this.services = data.data["Services"];
-      
-      })
-  }
   kycShow(value) {
     //debugger;
     this.kycshow = true;
@@ -107,7 +114,9 @@ getIdentityData() {
     this.user.idProoImg = value.idProoImg;
     this.user.name = value.name;
     this.user.relation = value.relation;
+    this.user.refDependentId = value.refDependentId;
   }
+
 
   getSubService(value){
     //alert(value);
@@ -115,5 +124,40 @@ getIdentityData() {
     this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
   }
 
+ 
+ submitFrm() {
+    //console.log(users);
+    //this.user['dob'] = moment(this.user['dob'],"DD/MMM/YYYY").format('DD/MMM/YYYY');
+    //debugger;
+    this.model.refCardId =  this.user.refCardId;
+    this.model.serviceId = this.user.serviceId;
+    this.model.subServiceId = this.user.subServiceId;
+    this.model.refDependentId = this.user.refDependentId;
+    this.model.idProofTypeId = this.user.idProofTypeId;
+    this.model.docter = this.user.docter;
+    this.model.payTransectionNo = this.user.payTransectionNo;
+    this.model.totalAmount = this.user.totalAmount;
+    this.model.discountAmount = this.user.discountAmount;
+    this.model.payableAmount = this.user.payableAmount;
+    this.model.refPayModeId = this.user.refPayModeId;
+    this.model.refcouponId = this.user.refcouponId;
+
+
+    this._transaction.updateTransaction(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          this.snackBar.open("Updated successfully","",{duration:5000});
+          return false;
+        }
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      });     
+  }
+  
+   // edit readonly fields
+   editFrm() {
+     this.isReadOnly = !this.isReadOnly;
+     this.edited = false; 
+   }
 
 }

@@ -7,25 +7,36 @@ import { TransactionService } from './../../../services/transactions/transaction
    providers: [TransactionService],
 })
 export class TransactionListComponent implements OnInit {
-
  @ViewChild('myTable') table: any;
  @ViewChild('expandButton') el: ElementRef;
-  rows = [];
+   rows = [];
   temp = [];
   isLimits: number = 10;
   records: any;
+  allTransction: object = {};
+  outletId: number;
+  user: any = {};
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor() { }
+  constructor(private _alltransaction: TransactionService) { }
   ngOnInit() {
-    let el = this.el.nativeElement;
-    setTimeout(function () {
-      el.click();
-    }, );
-    this.rows = [
-     { "company": "98.4 Pharmacy G2 Block Market, Sarita Vihar", "service": "Pharmacy", "firstName": "Dr Anupam anupam.bakshi@gmail.com +91-9810012345", "comment": "Good" },
-     ];
-  }
+   
 
+    // this.rows = [
+    //  { "company": "98.4 Pharmacy G2 Block Market, Sarita Vihar", "service": "Pharmacy", "firstName": "Dr Anupam anupam.bakshi@gmail.com +91-9810012345", "comment": "Good" },
+    //  ];
+     this.getTransctionData();
+  }
+  getTransctionData() {
+      this._alltransaction.getAllTransactionList()
+      .subscribe(data => {   
+        debugger         
+       this.rows = data.data;      
+      })
+      let el = this.el.nativeElement;
+      setTimeout(function () {
+        el.click();
+      }, );
+  }
 }

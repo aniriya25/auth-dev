@@ -22,8 +22,9 @@
             <input mdInput placeholder="Please provide card number or Request No"  [(ngModel)]="user.cardNo" name="cardNo" #crdNo="ngModel">
           </md-input-container>
         </div>
-        <span>
-          <button md-raised-button class="primary" (click)="getTransaction();">Submit</button>
+
+        <span   fxFlex="30">
+          <button md-raised-button  class="primary" (click)="getTransaction();">Submit</button>
         </span>
       </form>
     </md-card-content>

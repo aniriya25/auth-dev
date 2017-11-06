@@ -1,65 +1,51 @@
 <div class="container">
-  <div fxLayout="row">
-    <md-card class="profileCard" fxFlex="100">
-        <div fxFlex="69" fxFlexOffset="1" class="left-card">
-            <h2>Transaction</h2>
-            <div fxLayout="row" fx-layout-align="center center">
-                <div fxFlex="100" class="v_align" >                   
-                 <form (ngSubmit)="onSubmit()">
-                  <md-input-container fxFlex="45">
-                      <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
-                  </md-input-container>
-                   <div fxFlex="45" style="padding-left:20px;">
-                     <!--<button md-raised-button class="primary" >UPDATE</button>-->
-                     <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
-                   </div>
-                 </form>
-                  </div>
-              </div>
-              <div fxLayout="row" fxLayout.xs="column">
-                  <fieldset fxFlex="100">
-                      <legend>Services</legend>
-                  <div fxLayout="row" fxFlex="97">
+    <div fxLayout="row">
+      <md-card class="profileCard" fxFlex="100">
+          <div fxFlex="69" fxFlexOffset="1" class="left-card">
+              <h2>Transaction</h2>
+              <div fxLayout="row" fx-layout-align="center center">
+                <div fxFlex="100" class="v_align" > 
+               <form class="form" (ngSubmit)="submitFrm(user)">
+                                 
+                    
+                    <md-input-container fxFlex="45">
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
+                    </md-input-container>
+                     <div fxFlex="45" style="padding-left:20px;">
+                       <!--<button md-raised-button class="primary" >UPDATE</button>-->
+                       <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
+                     </div>
+                    </form> 
+                    </div>
+                </div>
 
-                      <!-- <md-select placeholder="Select Service" fxFlex="50" (change)="getSubService($event.value);" [(ngModel)]="user.service" name="service" #service="ngModel">
-                          <md-option *ngFor="let service of services" value= {{service.serviceId}}>
-                            {{ service.serviceName }}
-                          </md-option>
-                        </md-select> -->
-                        <md-input-container fxFlex="49" fxFlex.xs="94">
-                            <input type="text"  placeholder="Select Service" aria-label="Number" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-                            <md-autocomplete #auto="mdAutocomplete">
-                              <md-option *ngFor="let option of options" [value]="option">
-                                {{ option }}
-                              </md-option>
-                            </md-autocomplete> 
+                <div fxLayout="row" fxLayout.xs="column">
+                    <fieldset fxFlex="100">
+                        <legend>Services</legend>
+                    <div fxLayout="row" fxFlex="97">
+                        <md-select placeholder="Select Service" fxFlex="50" (change)="getSubService($event.value);" [(ngModel)]="user.serviceId" name="serviceId" #serviceId="ngModel">
+                            <md-option *ngFor="let service of services" value= {{service.serviceId}} select="user.serviceId">
+                              {{ service.serviceName }}
+                        </md-option>
+                          </md-select>
+
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel">
+                           <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}} select ="this.user.subServiceId">
+                              {{ speciality.subServiceName }}
+                            </md-option>
+                          </md-select>
+
+                    </div><br>
+                    <div fxLayout="row" fxFlex="97">
+                        <md-input-container fxFlex="50">
+                            <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.docter" name="docter" #docter="ngModel"/>
                           </md-input-container>
-
-                          <md-input-container fxFlex="49" fxFlex.xs="94" fxFlexOffset="2" >
-                              <input type="text" placeholder="Speciality" aria-label="Number" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-                              <md-autocomplete #auto="mdAutocomplete">
-                                <md-option *ngFor="let option of options" [value]="option">
-                                  {{ option }}
-                                </md-option>
-                              </md-autocomplete> 
-                            </md-input-container>
-
-                        <!-- <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subservice" name="subservice" #subservice="ngModel">
-                         <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}}>
-                            {{ speciality.subServiceName }}
-                          </md-option>
-                        </md-select> -->
-
-                  </div><br>
-                  <div fxLayout="row" fxFlex="97">
-                      <md-input-container fxFlex="50">
-                          <input type="text" mdInput type='text'  placeholder='Doctor Name' />
-                        </md-input-container>
-                        <md-input-container fxFlex="50" fxFlexOffset="2">
-                            <input type="text" mdInput type='text'  placeholder='Amount' />
-                          </md-input-container>
-                  </div>
-                </fieldset>
+                          <!--<md-input-container fxFlex="50" fxFlexOffset="2">
+                              <input type="text" mdInput type='text'  placeholder='Amount' />
+                          </md-input-container>-->
+                    </div>
+                  </fieldset>
+                  
                 </div>
               <div fxLayout="row" fxLayout.xs="column">
                   <fieldset fxFlex="100">
@@ -121,99 +107,104 @@
                     </ngx-datatable>
                   </div>
                 </fieldset>
-                </div>
-               
-                <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow" >
-                    <fieldset fxFlex="40">
-                        <legend>Member ID</legend>
-                        <md-card fxFlex="100">
-                            <img md-card-image src="assets/images/user1.jpg" alt="user profile photo">
-                            <md-card-content>
-                               <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
-                               <span fxFlex="50" fxLayoutAlign="end">{{user.relation}}</span>
-                              </md-card-content>
-                        </md-card>
-                    </fieldset>
-
-                    <fieldset fxFlex="60">
-                        <legend>Member ID Proof</legend>
-                        <md-card fxFlex="100">
-                          <div fxLayout="row">  
-                         <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
-                          <md-option></md-option>
-                        </md-select> 
-                          </div><br>
-                         
-                         <div fxLayout="row"  fxLayoutGap="10px">
-                             <md-input-container fxFlex="100">
-                              <input type="text" mdInput type='text' placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
-                              </md-input-container>
-                          </div>  
-                          <div>
-                            <p>Upload ID proof</p>
-                          <div class="file-upload" fxLayout fxLayoutAlign="center center">
-                             <input id="upload" class="btnupload" type="file" name="file-upload">
-                             <md-icon>file_upload</md-icon>
-                          </div>
-                          </div>
-                        </md-card>
-                    </fieldset>
-                  </div>
-
-                  <div fxLayout="row" fxLayout.xs="column">
-                   <fieldset fxFlex="100">
-                      <legend>Payment</legend>
-                     <div fxLayout="row" fxFlex="97">                        
-                       <md-input-container fxFlex="32" fxFlex.xs="94">
-                          <input type="text" mdInput type='text'  placeholder='Total Amount' />
-                        </md-input-container> 
-
-                      <md-select class="opt" placeholder="Payment Mode" fxFlex="32" fxFlexOffset="2">
-                          <md-option>a</md-option>
-                      </md-select> 
-
-                      <md-input-container fxFlex="32" fxFlexOffset="2">
-                          <input type="text" mdInput type='text'  placeholder='Payment Ref Id' />
-                      </md-input-container> 
-                  </div><br>
-
-                  <div fxLayout="row" fxFlex="97">
-                      
-                      <md-input-container fxFlex="50">
-                          <input type="text" mdInput type='text'  placeholder='Approved Amount' />
-                      </md-input-container>
-                      <md-input-container fxFlex="50" fxFlexOffset="2">
-                          <input type="text" mdInput type='text'  placeholder='Payable Amount' />
-                      </md-input-container>
-                  </div>
-                </fieldset>   
-                    
-                  </div>  
-
-                <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                  <button md-raised-button class="primary">Submit</button>
-                </div>
-        </div>
-        <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
-            <div fxLayout="row">
-              <div fxFlex="100" class="cp-para">
-                <h3><label>Recent Users</label></h3>
-                <ul>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                  <li>Poornima</li>
-                </ul>
               </div>
+
+                  <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow" >
+                      <fieldset fxFlex="40">
+                          <legend>Member ID</legend>
+                          <md-card fxFlex="100">
+                              <img md-card-image src="{{user.idProoImg}}" alt="user profile photo">
+                              <md-card-content>
+                                 <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
+                                 <span fxFlex="50" fxLayoutAlign="end">{{user.relation}}</span>
+                                </md-card-content>
+                              </md-card>
+                            </fieldset>
+                      
+                      <fieldset fxFlex="60">
+                          <legend>Member ID Proof</legend>
+                          <md-card fxFlex="100">
+                            <div fxLayout="row">  
+                            <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
+                              <md-option *ngFor="let Identity of Identities" value = {{Identity.id}}> {{ Identity.name }} </md-option>
+                            </md-select> 
+                            </div><br>
+                           
+                           <div fxLayout="row"  fxLayoutGap="10px">
+                               <md-input-container fxFlex="100">
+                                <input type="text" mdInput type='text' placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
+                                </md-input-container>
+                            </div>  
+                            <div>
+                              <p>Upload ID proof</p>
+                            <div class="file-upload" fxLayout fxLayoutAlign="center center">
+                               <input id="upload" class="btnupload" type="file" name="file-upload">
+                               <md-icon>file_upload</md-icon>
+                            </div>
+                            </div>
+                            <a md-raised-button class="primary" (click)="payshow = true">Verify</a>
+                            <a md-raised-button class="primary" >Reject</a>
+                          </md-card>
+                        </fieldset>
+                      </div>
+
+                  
+                    <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
+                     <fieldset fxFlex="100">
+                        <legend>Payment</legend>
+                       <div fxLayout="row" fxFlex="97">                        
+                         <md-input-container fxFlex="32">
+                            <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" />
+                          </md-input-container>                        
+                      
+                      <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt">
+                            <md-option *ngFor="let option of paymentMode" value= {{option.refPayModeId}}> {{ option.name }} </md-option>
+                      </md-select>
+
+                        <md-input-container fxFlex="32" fxFlexOffset="2">
+                            <input type="text" mdInput type='text'  placeholder='Payment Ref Id' [(ngModel)]="user.payTransectionNo" name="payTransectionNo" #payTransectionNo="ngModel" />
+                        </md-input-container> 
+                        </div>
+
+                    <div fxLayout="row" fxFlex="97">
+                        
+                        <md-input-container fxFlex="50">
+                            <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "user.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
+                        </md-input-container>
+                        <md-input-container fxFlex="50" fxFlexOffset="2">
+                            <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "user.payableAmount" name="payableAmount" #payableAmount="ngModel" />
+                        </md-input-container>
+                    </div>
+               </fieldset>
+                      
+                    </div>  
+                
+                  <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
+                    <button md-raised-button class="primary">Submit</button>
+                  </div>
+                  
+                </div>
+           
+        <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+          <div fxLayout="row">
+            <div fxFlex="100" class="cp-para">
+              <h3><label>Recent Users</label></h3>
+              <ul>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+                <li>Poornima</li>
+              </ul>
             </div>
-            <hr>
           </div>
-    </md-card>
+          <hr>
+        </div>
+      </md-card>
+    </div>
   </div>
-</div>

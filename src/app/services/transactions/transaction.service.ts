@@ -21,6 +21,25 @@ export class TransactionService {
       });
   }
 
+  getCouponTransaction(couponNumber:any) {
+    return this.authhttp.get(this.config.api_base_url+this.config.transaction_cupon_url+couponNumber)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+    updateTransaction(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.cardDetails_update_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
   getTransactionList(id: number) {
     return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+id)
       .map(data => {
@@ -37,4 +56,14 @@ export class TransactionService {
       });
   }
 
+   getAllTransactionList() {
+    return this.authhttp.get(this.config.api_base_url+this.config.transactionList_url)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+
 }
+
