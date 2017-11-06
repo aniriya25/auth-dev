@@ -50,18 +50,15 @@ export class TransactionComponent implements OnInit {
   ]
 
   ngOnInit() {
-    //debugger;
+    debugger;
     this.getIdentityData();
-    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-    if (this.user.cardNumber != "" && this.user.cardNumber != undefined) {
-      this.getTrasnctionData1();
-    }
-    else if (this.abc != "" && this.abc != undefined) {
-      this.getTrasnctionData();      
-    }
-    
-    this.kycshow = false;
-      
+    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
+    if(this.abc != "" && this.abc != undefined)
+    {
+       this.user.cardNumber = this.abc;
+       this.getTrasnctionData1();
+     }  
+    this.kycshow = false;      
   }
 
 getIdentityData() {
@@ -72,26 +69,38 @@ getIdentityData() {
       })
   }
 
-  getTrasnctionData() {
-    this._transaction.getTransaction(this.abc)
+  getTrasnctionData1() {
+    //debugger
+    if(this.user.cardNumber.length <= 7)
+    {
+      this._transaction.getCouponTransaction(this.user.cardNumber)
       .subscribe(data => {
-       this.alldatavalue= data.data;
+       debugger;
+       this.alldatavalue = data.data;
+       this.user.refCardId = data.data["refCardId"];
+       this.user.refcouponId =data.data["refcouponId"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
-       //debugger
-       this.user.cardNumber = data.data["cardNumber"];
-      })
-  }
-
-  getTrasnctionData1() {
-    this._transaction.getTransaction(this.user.cardNumber)
+       this.user.serviceId = this.services[0]["serviceId"];
+       this.speciality= data.data["SubServices"];
+       this.user.subServiceId = this.speciality[0]["subServiceId"];
+       this.user.totalAmount = data.data["totalAmount"];
+       this.user.discountAmount = data.data["discountAmount"];
+       this.user.payableAmount = data.data["payableAmount"];
+      })  
+    }
+    else{
+      this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
        debugger;
        this.alldatavalue= data.data;
        this.user.refCardId =data.data["refCardId"];
+       this.user.refcouponId =data.data["refcouponId"];
        this.rows = data.data["Members"];
-       this.services = data.data["Services"];
+       this.services = data.data["Services"];    
+    
       })
+    }         
   }
 
   kycShow(value) {
@@ -127,6 +136,7 @@ getIdentityData() {
     this.model.discountAmount = this.user.discountAmount;
     this.model.payableAmount = this.user.payableAmount;
     this.model.refPayModeId = this.user.refPayModeId;
+    this.model.refcouponId = this.user.refcouponId;
 
 
     this._transaction.updateTransaction(this.model)

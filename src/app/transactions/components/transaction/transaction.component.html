@@ -24,13 +24,13 @@
                         <legend>Services</legend>
                     <div fxLayout="row" fxFlex="97">
                         <md-select placeholder="Select Service" fxFlex="50" (change)="getSubService($event.value);" [(ngModel)]="user.serviceId" name="serviceId" #serviceId="ngModel">
-                            <md-option *ngFor="let service of services" value= {{service.serviceId}}>
+                            <md-option *ngFor="let service of services" value= {{service.serviceId}} select="user.serviceId">
                               {{ service.serviceName }}
                         </md-option>
                           </md-select>
 
                           <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel">
-                           <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}}>
+                           <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}} select ="this.user.subServiceId">
                               {{ speciality.subServiceName }}
                             </md-option>
                           </md-select>
@@ -40,9 +40,9 @@
                         <md-input-container fxFlex="50">
                             <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.docter" name="docter" #docter="ngModel"/>
                           </md-input-container>
-                          <md-input-container fxFlex="50" fxFlexOffset="2">
+                          <!--<md-input-container fxFlex="50" fxFlexOffset="2">
                               <input type="text" mdInput type='text'  placeholder='Amount' />
-                          </md-input-container>
+                          </md-input-container>-->
                     </div>
                   </fieldset>
                   </div>
@@ -166,7 +166,7 @@
                     <div fxLayout="row" fxFlex="97">
                         
                         <md-input-container fxFlex="50">
-                            <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "user.discountAmount" name="discountAmount" #discountAmount="ngModel" />
+                            <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "user.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
                         </md-input-container>
                         <md-input-container fxFlex="50" fxFlexOffset="2">
                             <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "user.payableAmount" name="payableAmount" #payableAmount="ngModel" />
@@ -186,16 +186,7 @@
                 <div fxFlex="100" class="cp-para">
                   <h3><label>Recent Users</label></h3>
                   <ul>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
-                    <li>Poornima</li>
+                    <li>Testing</li>                  
                   </ul>
                 </div>
               </div>
