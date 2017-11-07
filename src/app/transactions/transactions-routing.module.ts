@@ -7,7 +7,7 @@ import { RejectComponent } from './components/reject/reject.component';
 const routes: Routes = [
   {path:'transaction', component:TransactionComponent},
   {path:'transaction-list', component:TransactionListComponent},
-  {path:'', component:TransactionListComponent}    
+  {path:'reject', component:RejectComponent}    
 ];
 
 @NgModule({

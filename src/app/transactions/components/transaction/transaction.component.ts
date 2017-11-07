@@ -7,6 +7,9 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {MdDialog} from '@angular/material';
+import { RejectComponent } from '../reject/reject.component';
+
+
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -44,12 +47,6 @@ export class TransactionComponent implements OnInit {
  
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent);
-    
-
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
    myControl: FormControl = new FormControl();
@@ -174,4 +171,3 @@ getIdentityData() {
 
 }
 
-export class RejectComponent {}

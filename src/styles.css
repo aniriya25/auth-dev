@@ -7,11 +7,7 @@ body {
    background: #f2f5fa ;
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
-.mat-dialog-container {
-    margin: 30% 95%;
-    height: 500px !important;
-    width: 500px !important;
-}
+
  
 .mat-input-table{
     border: 1px solid #d3d9e0;
