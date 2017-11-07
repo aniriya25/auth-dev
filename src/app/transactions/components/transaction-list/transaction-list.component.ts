@@ -32,11 +32,12 @@ export class TransactionListComponent implements OnInit {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
         debugger         
-       this.rows = data.data;      
+       this.rows = data.data;  
+       let el = this.el.nativeElement;
+       setTimeout(function () {
+         el.click();
+       }, );    
       })
-      let el = this.el.nativeElement;
-      setTimeout(function () {
-        el.click();
-      }, );
+     
   }
 }
