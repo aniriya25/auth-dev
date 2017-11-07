@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-
+import {MdDialog} from '@angular/material';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -32,16 +32,23 @@ export class TransactionComponent implements OnInit {
   payshow: boolean =false;
   alldatavalue: object;
   model: any = {};
-  
+  verified: any= true;
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
     private route: ActivatedRoute,
-
+    public dialog: MdDialog
   ) { }
+ 
+  openDialog() {
+    const dialogRef = this.dialog.open(TransactionComponent);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
    myControl: FormControl = new FormControl();
    paymentMode = [
@@ -116,7 +123,10 @@ getIdentityData() {
     this.user.relation = value.relation;
     this.user.refDependentId = value.refDependentId;
   }
-
+  pay(){
+    this.payshow = true;
+    this.verified = false;
+}
 
   getSubService(value){
     //alert(value);

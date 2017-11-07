@@ -4,7 +4,7 @@ textarea.mat-input-element {
     height: 100px;
 }
 .file-upload{
-    height: 95px;
+    height: 70px;
     border: 2px dashed #cccccc;
    
     md-icon{
@@ -14,13 +14,13 @@ textarea.mat-input-element {
 .opt{
     margin-top: 6px
 }
- 
+
 
 // span{
 //     font-size:18px;
 // }
 .btnupload{
-    height: 95px;
+    height: 70px;
     width: 100%;
     opacity: 0;
 }
@@ -44,7 +44,9 @@ label{
         padding-left: 0px;
     }
 }
-
+.fixh{
+    min-height: 405px;
+}
 .cp-para h3 span{position: relative;font-family: "Oswald",Helvetica,Arial,sans-serif;}
 .cp-para h3 span::after{
     content: '';

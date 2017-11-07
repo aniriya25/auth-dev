@@ -112,7 +112,7 @@
                   <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow" >
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
-                          <md-card fxFlex="100">
+                          <md-card fxFlex="100" class="fixh">
                               <img md-card-image src="{{user.idProoImg}}" alt="user profile photo">
                               <md-card-content>
                                  <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
@@ -123,7 +123,7 @@
                       
                       <fieldset fxFlex="60">
                           <legend>Member ID Proof</legend>
-                          <md-card fxFlex="100">
+                          <md-card fxFlex="100" class="fixh">
                             <div fxLayout="row">  
                             <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
                               <md-option *ngFor="let Identity of Identities" value = {{Identity.id}}> {{ Identity.name }} </md-option>
@@ -142,12 +142,13 @@
                                <md-icon>file_upload</md-icon>
                             </div>
                             </div>
-                            <a md-raised-button class="primary" (click)="payshow = true">Verify</a>
-                            <a md-raised-button class="primary" >Reject</a>
+                            <br>
+                            <a md-raised-button class="primary" (click)="pay()">Verify</a>
+                            <a md-raised-button class="primary" (click)="openDialog()">Reject</a>
+                            
                           </md-card>
                         </fieldset>
                       </div>
-
                   
                     <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
                      <fieldset fxFlex="100">
@@ -180,7 +181,7 @@
                     </div>  
                 
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                    <button md-raised-button class="primary">Submit</button>
+                    <button md-raised-button class="primary" [disabled] = "verified">Submit</button>
                   </div>
                   
                 </div>
