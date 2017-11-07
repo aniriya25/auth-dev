@@ -43,7 +43,9 @@ export class TransactionComponent implements OnInit {
   ) { }
  
   openDialog() {
-    const dialogRef = this.dialog.open(TransactionComponent);
+    const dialogRef = this.dialog.open(RejectComponent);
+    
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -171,3 +173,5 @@ getIdentityData() {
    }
 
 }
+
+export class RejectComponent {}
