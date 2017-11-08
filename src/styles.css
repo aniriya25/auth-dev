@@ -8,10 +8,9 @@ body {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
- 
 .mat-input-table{
     border: 1px solid #d3d9e0;
-    height: 30px;
+    min-height: 30px;
     padding-top: 20px;
 }
 .ngx-datatable.material .datatable-body .datatable-row-detail{
@@ -19,6 +18,12 @@ body {
     padding: 10px;
     border-bottom: 5px solid #cccccc ;
   }
+  /* .mdTextAra.mat-input-container textarea {
+    overflow: hidden !important;
+    border: 1px solid !important;
+    height: 60px !important;
+    padding-top: 20px;
+} */
 .mat-select-trigger {
     border: 1px solid #d3d9e0;
     padding: 36px 5px 16px 5px;

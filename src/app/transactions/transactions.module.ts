@@ -6,6 +6,7 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { RejectComponent } from './components/reject/reject.component';
 import { ReviewComponent } from './components/review/review.component';
+import { SummaryComponent } from './components/summary/summary.component';
 // const swal = require('sweetalert2')
 
 @NgModule({
@@ -14,6 +15,6 @@ import { ReviewComponent } from './components/review/review.component';
     TransactionsRoutingModule,
     GlobalModule
   ],
-  declarations: [TransactionComponent, TransactionListComponent, RejectComponent, ReviewComponent]
+  declarations: [TransactionComponent, TransactionListComponent, RejectComponent, ReviewComponent, SummaryComponent]
 })
 export class TransactionsModule { }
