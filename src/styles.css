@@ -638,3 +638,8 @@ textarea.mat-input-element{
     left: 5px !important;
     top: 10px !important;
 }
+.ngx-datatable.material .datatable-body .datatable-row-detail{
+    background: #f7f7f7;
+    padding: 10px;
+    border-bottom: 5px solid #cfcfcf;
+  }

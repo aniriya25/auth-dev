@@ -21,20 +21,22 @@ export class TransactionListComponent implements OnInit {
   }
   constructor(private _alltransaction: TransactionService) { }
   ngOnInit() {
-    let el = this.el.nativeElement;
-    setTimeout(function () {
-      el.click();
-    }, );
-    // this.rows = [
-    //  { "company": "98.4 Pharmacy G2 Block Market, Sarita Vihar", "service": "Pharmacy", "firstName": "Dr Anupam anupam.bakshi@gmail.com +91-9810012345", "comment": "Good" },
-    //  ];
+  
      this.getTransctionData();
   }
+  
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
         debugger         
-       this.rows = data.data;      
+       this.rows = data.data;  
+       let el = this.el.nativeElement;
+       setTimeout(function () {
+         el.click();
+       }, );    
       })
+     
   }
+
+
 }

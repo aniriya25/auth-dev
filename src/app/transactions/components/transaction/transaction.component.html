@@ -1,24 +1,22 @@
-
 <div class="container">
     <div fxLayout="row">
       <md-card class="profileCard" fxFlex="100">
           <div fxFlex="69" fxFlexOffset="1" class="left-card">
               <h2>Transaction</h2>
-               <form class="form" (ngSubmit)="submitFrm(user)">
-                <div fxLayout="row" fx-layout-align="center center">
-                  <div fxFlex="100" class="v_align" >                   
-                    
+               <form class="form" (ngSubmit)="submitFrm(user)"> 
+              <div fxLayout="row" fx-layout-align="center center">
+                <div fxFlex="100" class="v_align" >  
                     <md-input-container fxFlex="45">
-                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (blur)="getTrasnctionData1($event);" maxlength="20">
                     </md-input-container>
                      <div fxFlex="45" style="padding-left:20px;">
                        <!--<button md-raised-button class="primary" >UPDATE</button>-->
                        <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
                      </div>
-
-                   
+                    
                     </div>
                 </div>
+
                 <div fxLayout="row" fxLayout.xs="column">
                     <fieldset fxFlex="100">
                         <legend>Services</legend>
@@ -45,84 +43,85 @@
                           </md-input-container>-->
                     </div>
                   </fieldset>
+                  
+                </div>
+              <div fxLayout="row" fxLayout.xs="column">
+                  <fieldset fxFlex="100">
+                      <legend>Member</legend>
+                  <div fxFlex="100">
+                      <small>
+                          <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
+                          <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
+                        </small>
+                    <ngx-datatable #myTable class='material fullscreen expandable'          
+                    [rows]='rows'
+                    [limit]="PageSize"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [scrollbarV]="false" 
+                    [rowHeight]="'auto'">
+
+                    <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                          <ol fxFlex="100" fxLayoutAlign="center center">
+                          <li fxFlex="35"><span> Aadhar Card </span>{{user.addharNo}}</li>
+                          <li fxFlex="13">adharcardlink</li>
+                          <li fxFlex="80"><a><button md-mini-fab ><md-icon>remove_red_eye</md-icon></button></a></li>
+
+                          </ol>
+                        </ng-template>
+                      </ngx-datatable-row-detail>-->
+                      <ngx-datatable-column name="NAME" prop="name" >
+                        <!-- Row Detail Template -->
+                        <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                         <a (click)="kycShow(row)" style="color:blue;cursor:hand;">{{row.name}}</a>
+                        </ng-template>
+                      </ngx-datatable-column> 
+                      <ngx-datatable-column name="GENDER" prop="gender" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          {{row.gender}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                    
+                      <ngx-datatable-column name="DATE OF BIRTH" prop="dob">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          {{row.dob}}
+                        </ng-template>
+                      </ngx-datatable-column>  
+
+                      <ngx-datatable-column name="RELATION" prop="relation" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          {{row.relation}}
+                        </ng-template>
+                      </ngx-datatable-column> 
+
+                      <ngx-datatable-column name="AGE" prop="age" width="100">
+                        <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                          {{row.age}}
+                        </ng-template>
+                      </ngx-datatable-column> 
+                     
+                    </ngx-datatable>
                   </div>
-                <div fxLayout="row" fxLayout.xs="column">
-                    <fieldset fxFlex="100">
-                        <legend>Member</legend>
-                    <div fxFlex="100">
-                        <small>
-                            <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
-                            <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
-                          </small>
-                      <ngx-datatable #myTable class='material fullscreen expandable'          
-                      [rows]='rows'
-                      [limit]="PageSize"
-                      [columnMode]="'force'"
-                      [headerHeight]="50"
-                      [footerHeight]="50"
-                      [scrollbarV]="false" 
-                      [rowHeight]="'auto'">
+                </fieldset>
+              </div>
 
-                      <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
-                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                            <ol fxFlex="100" fxLayoutAlign="center center">
-                            <li fxFlex="35"><span> Aadhar Card </span>{{user.addharNo}}</li>
-                            <li fxFlex="13">adharcardlink</li>
-                            <li fxFlex="80"><a><button md-mini-fab ><md-icon>remove_red_eye</md-icon></button></a></li>
-
-                            </ol>
-                          </ng-template>
-                        </ngx-datatable-row-detail>-->
-                        <ngx-datatable-column name="NAME" prop="name" >
-                          <!-- Row Detail Template -->
-                          <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                           <a (click)="kycShow(row)" style="color:blue;cursor:hand;">{{row.name}}</a>
-                          </ng-template>
-                        </ngx-datatable-column> 
-                        <ngx-datatable-column name="GENDER" prop="gender" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.gender}}
-                          </ng-template>
-                        </ngx-datatable-column>
-                      
-                        <ngx-datatable-column name="DATE OF BIRTH" prop="dob">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.dob}}
-                          </ng-template>
-                        </ngx-datatable-column>  
-
-                        <ngx-datatable-column name="RELATION" prop="relation" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.relation}}
-                          </ng-template>
-                        </ngx-datatable-column> 
-
-                        <ngx-datatable-column name="AGE" prop="age" width="100">
-                          <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                            {{row.age}}
-                          </ng-template>
-                        </ngx-datatable-column> 
-                       
-                      </ngx-datatable>
-                    </div>
-                  </fieldset>
-                  </div>
-                 
                   <div fxLayout="row" fxLayout.xs="column" *ngIf="kycshow" >
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
-                          <md-card fxFlex="100">
+                          <md-card fxFlex="100" class="fixh">
                               <img md-card-image src="{{user.idProoImg}}" alt="user profile photo">
                               <md-card-content>
                                  <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
                                  <span fxFlex="50" fxLayoutAlign="end">{{user.relation}}</span>
                                 </md-card-content>
-                          </md-card>
-                      </fieldset>
-
+                              </md-card>
+                            </fieldset>
+                      
                       <fieldset fxFlex="60">
                           <legend>Member ID Proof</legend>
-                          <md-card fxFlex="100">
+                          <md-card fxFlex="100" class="fixh">
                             <div fxLayout="row">  
                             <md-select placeholder="ID proof type" fxFlex="100" [(ngModel)] = user.idProofTypeId name="idProofTypeId" #idProofTypeId="ngModel">
                               <md-option *ngFor="let Identity of Identities" value = {{Identity.id}}> {{ Identity.name }} </md-option>
@@ -134,24 +133,26 @@
                                 <input type="text" mdInput type='text' placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
                                 </md-input-container>
                             </div>  
-                            <div>
-                              <p>Upload ID proof</p>
+                            <div *ngIf="IdValue">
+                            <p>Upload ID proof</p>
                             <div class="file-upload" fxLayout fxLayoutAlign="center center">
                                <input id="upload" class="btnupload" type="file" name="file-upload">
                                <md-icon>file_upload</md-icon>
                             </div>
                             </div>
+                            <a md-raised-button class="primary" (click)="showpay();">Verify</a>
+                            <a md-raised-button class="primary" (click)="openDialog()">Reject</a>
                           </md-card>
-                      </fieldset>
+                        </fieldset>
+                      </div>
 
-                    </div>
-
-                    <div fxLayout="row" fxLayout.xs="column">
+                  
+                    <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
                      <fieldset fxFlex="100">
                         <legend>Payment</legend>
                        <div fxLayout="row" fxFlex="97">                        
-                         <md-input-container fxFlex="32">
-                            <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" />
+                         <md-input-container fxFlex="32"> 
+                            <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (ngModelChange)="getPayableAmountData($event);" />
                           </md-input-container>                        
                       
                       <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt">
@@ -161,38 +162,38 @@
                         <md-input-container fxFlex="32" fxFlexOffset="2">
                             <input type="text" mdInput type='text'  placeholder='Payment Ref Id' [(ngModel)]="user.payTransectionNo" name="payTransectionNo" #payTransectionNo="ngModel" />
                         </md-input-container> 
-                    </div><br>
+                        </div>
 
                     <div fxLayout="row" fxFlex="97">
                         
                         <md-input-container fxFlex="50">
-                            <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "user.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
+                            <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "payableTotalAmount.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
                         </md-input-container>
                         <md-input-container fxFlex="50" fxFlexOffset="2">
-                            <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "user.payableAmount" name="payableAmount" #payableAmount="ngModel" />
+                            <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "payableTotalAmount.payableAmount" name="payableAmount" #payableAmount="ngModel" />
                         </md-input-container>
                     </div>
-                  </fieldset>   
+               </fieldset>
                       
                     </div>  
                 
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                    <button md-raised-button class="primary">Submit</button>
+                    <button md-raised-button class="primary" [disabled] ="button">Submit</button>
                   </div>
-              </form>       
+               </form>   
           </div>
-          <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
-              <div fxLayout="row">
-                <div fxFlex="100" class="cp-para">
-                  <h3><label>Recent Users</label></h3>
-                  <ul>
-                    <li>Testing</li>                  
-                  </ul>
-                </div>
-              </div>
-              <hr>
+           
+        <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+          <div fxLayout="row">
+            <div fxFlex="100" class="cp-para">
+              <h3><label>Recent Users</label></h3>
+              <ul>
+                <li>Save Transaction</li>                
+              </ul>
             </div>
+          </div>
+          <hr>
+        </div>
       </md-card>
     </div>
   </div>
-  

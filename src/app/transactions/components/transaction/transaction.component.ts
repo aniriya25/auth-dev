@@ -5,7 +5,9 @@ import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
-
+import {Observable} from 'rxjs/Observable';
+import {MdDialog} from '@angular/material';
+import { RejectComponent } from '../reject/reject.component';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -28,8 +30,12 @@ export class TransactionComponent implements OnInit {
   edited: boolean = true;
   abc: any;
   kycshow: boolean = false;
+  payshow: boolean =false;
   alldatavalue: object;
   model: any = {};
+  IdValue: any;
+  payableTotalAmount:any = {};
+  button:any = true;
   
   constructor(
     private _transaction: TransactionService,
@@ -37,20 +43,25 @@ export class TransactionComponent implements OnInit {
     public snackBar: MdSnackBar,
     private _route: Router,
     private route: ActivatedRoute,
-
+    public dialog: MdDialog
   ) { }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(RejectComponent);
+  }
 
    myControl: FormControl = new FormControl();
    paymentMode = [
     { refPayModeId: 1, name: "Cash" },
-    { refPayModeId: 2, name: "Debt Card"},
+    { refPayModeId: 2, name: "Cashless" },
     { refPayModeId: 3, name: "Credit Card"},
-    { refPayModeId: 4, name: "Paytm Wallet"},
-    { refPayModeId: 5, name: "Others"}
+    { refPayModeId: 4, name: "Debt Card"},
+    { refPayModeId: 5, name: "Paytm Wallet"},
+    { refPayModeId: 6, name: "Others"}
   ]
-
   ngOnInit() {
-    debugger;
+    //debugger;
     this.getIdentityData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
     if(this.abc != "" && this.abc != undefined)
@@ -58,9 +69,10 @@ export class TransactionComponent implements OnInit {
        this.user.cardNumber = this.abc;
        this.getTrasnctionData1();
      }  
-    this.kycshow = false;      
+    this.kycshow = false;
+    this.IdValue = false;
+    this.getPayableAmountData();
   }
-
 getIdentityData() {
     this._transaction.getIdentity()
       .subscribe(data => {
@@ -69,13 +81,22 @@ getIdentityData() {
       })
   }
 
+getPayableAmountData() {
+    this._transaction.getpayableAmount({totalAmount: this.user.totalAmount})
+      .subscribe(data => {
+        //debugger;       
+        this.payableTotalAmount = data.data;
+        console.log(this.payableTotalAmount);
+      })
+  }
+
   getTrasnctionData1() {
-    //debugger
-    if(this.user.cardNumber.length <= 7)
+    //debugger;
+    if(this.user.cardNumber.length == 6)
     {
       this._transaction.getCouponTransaction(this.user.cardNumber)
       .subscribe(data => {
-       debugger;
+       //debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId =data.data["refcouponId"];
@@ -89,20 +110,20 @@ getIdentityData() {
        this.user.payableAmount = data.data["payableAmount"];
       })  
     }
-    else{
+    else if(this.user.cardNumber.length == 16){
       this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-       debugger;
-       this.alldatavalue= data.data;
-       this.user.refCardId =data.data["refCardId"];
-       this.user.refcouponId =data.data["refcouponId"];
+       //debugger;
+       this.alldatavalue = data.data;
+       this.user.refCardId = data.data["refCardId"];
+       this.user.refcouponId = data.data["refcouponId"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];    
-    
       })
-    }         
+    }else{
+      this.snackBar.open("Please enter the valid Card No / Cupon No.","",{duration:5000});
+    }   
   }
-
   kycShow(value) {
     //debugger;
     this.kycshow = true;
@@ -111,7 +132,15 @@ getIdentityData() {
     this.user.idProoImg = value.idProoImg;
     this.user.name = value.name;
     this.user.relation = value.relation;
-    this.user.refDependentId = value.refDependentId;
+    this.user.refDependentId = value.refDependentId;   
+    if(this.user.idProoImg === ""){
+    this.IdValue = true;
+    }
+  }
+  
+  showpay(){
+    this.payshow = true;
+    this.button = false;
   }
 
   getSubService(value){
@@ -119,12 +148,11 @@ getIdentityData() {
     //debugger
     this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
   }
-
-
+ 
  submitFrm() {
     //console.log(users);
     //this.user['dob'] = moment(this.user['dob'],"DD/MMM/YYYY").format('DD/MMM/YYYY');
-    //debugger;
+    debugger;
     this.model.refCardId =  this.user.refCardId;
     this.model.serviceId = this.user.serviceId;
     this.model.subServiceId = this.user.subServiceId;
@@ -133,12 +161,10 @@ getIdentityData() {
     this.model.docter = this.user.docter;
     this.model.payTransectionNo = this.user.payTransectionNo;
     this.model.totalAmount = this.user.totalAmount;
-    this.model.discountAmount = this.user.discountAmount;
-    this.model.payableAmount = this.user.payableAmount;
+    this.model.discountAmount = this.payableTotalAmount.discountAmount;
+    this.model.payableAmount = this.payableTotalAmount.payableAmount;
     this.model.refPayModeId = this.user.refPayModeId;
     this.model.refcouponId = this.user.refcouponId;
-
-
     this._transaction.updateTransaction(this.model)
       .subscribe(data => {    
          if(data.message) {
@@ -156,4 +182,5 @@ getIdentityData() {
      this.edited = false; 
    }
 
+   
 }

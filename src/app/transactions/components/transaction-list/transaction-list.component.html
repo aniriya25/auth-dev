@@ -40,7 +40,7 @@
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                           <ul fxFlex="100" fxLayoutAlign="center center">
-                          <li fxFlex="80">Status:Pending</li>
+                          <li fxFlex="80">Status:{{row.status}}</li>
                           <li fxFlex="80">Remarks:Pending</li>
                           <li fxFlex="80">Created By: <a>{{row.patientName}}</a></li>
                           </ul>
@@ -77,15 +77,16 @@
                     <ngx-datatable-column name="PATIENT" prop="patient">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         <span>{{row.patientName}}</span>
-                        <p>{{row.idProofType}}</p>
-                        <p class="tabspan">9876543210</p>
+                        <p>Id: {{row.idProofType}}</p>
+                        <p>G: {{row.gender}}</p>
+                        <p class="tabspan">M: {{row.contactNo}}</p>
                       </ng-template>
                     </ngx-datatable-column> 
                      
                     <ngx-datatable-column name="SERVICE" prop="service" width="100">
                       <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                        <span>{{row.refServiceId}}</span>
-                        <p class="tabspan">{{row.refSubServiceId}}</p>
+                        <span>{{row.service}}</span>
+                        <p class="tabspan">{{row.subService}}</p>
                       </ng-template>
                     </ngx-datatable-column>
 

@@ -1,0 +1,24 @@
+                <div fxLayout="row" fxLayout.xs="column">
+                    <fieldset fxFlex="100">
+                        <legend>Services</legend>
+                    <div fxLayout="row" fxFlex="97">
+                        <md-input-container fxFlex="100">
+                            <input type="text" mdInput type='text' readonly ([ngModel]) = "user.cardNo"/>
+                          </md-input-container>
+                    </div>
+                        <div fxLayout="row" fxFlex="97">
+                       <span fxFlex="30">
+                         Message:
+                       </span>
+                          <md-input-container fxFlex="65" fxFlexOffset="3">
+                            <input type="text" mdInput type='text'  placeholder='Remark' readonly/>
+                          </md-input-container>
+
+                         </div>
+                         <div fxLayout="row" fxFlex="97">
+                    <button md-raised-button class="primary" >Submit</button>
+                         </div>
+
+                  </fieldset>
+                  
+                </div>
