@@ -6,8 +6,6 @@
               <div fxLayout="row" fx-layout-align="center center">
                 <div fxFlex="100" class="v_align" > 
                <form class="form" (ngSubmit)="submitFrm(user)">
-                                 
-                    
                     <md-input-container fxFlex="45">
                         <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (ngModelChange)="getTrasnctionData1($event);">
                     </md-input-container>
@@ -181,7 +179,7 @@
                     </div>  
                 
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                    <button md-raised-button class="primary" [disabled] = "verified">Submit</button>
+                    <button md-raised-button class="primary" (click)="openreview()" [disabled] = "verified">Submit</button>
                   </div>
                   
                 </div>

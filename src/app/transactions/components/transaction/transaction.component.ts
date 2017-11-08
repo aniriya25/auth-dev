@@ -8,7 +8,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {MdDialog} from '@angular/material';
 import { RejectComponent } from '../reject/reject.component';
-
+import { ReviewComponent } from '../review/review.component';
 
 @Component({
   selector: 'app-transaction',
@@ -47,6 +47,9 @@ export class TransactionComponent implements OnInit {
  
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent);
+  }
+  openreview() {
+    const dialogRef = this.dialog.open(ReviewComponent);
   }
 
    myControl: FormControl = new FormControl();
