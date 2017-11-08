@@ -6,6 +6,8 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { RejectComponent } from './components/reject/reject.component';
 import { ReviewComponent } from './components/review/review.component';
+// const swal = require('sweetalert2')
+
 @NgModule({
   imports: [
     CommonModule,

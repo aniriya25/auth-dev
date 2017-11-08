@@ -9,9 +9,8 @@ import {Observable} from 'rxjs/Observable';
 import {MdDialog} from '@angular/material';
 import { RejectComponent } from '../reject/reject.component';
 import { ReviewComponent } from '../review/review.component';
-
+import swal from 'sweetalert2';
 @Component({
-  selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss'],
   providers: [TransactionService, ProfileService, MdSnackBar]
@@ -47,11 +46,12 @@ export class TransactionComponent implements OnInit {
  
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent);
+    
   }
   openreview() {
     const dialogRef = this.dialog.open(ReviewComponent);
   }
-
+  
    myControl: FormControl = new FormControl();
    paymentMode = [
     { refPayModeId: 1, name: "Cash" },
