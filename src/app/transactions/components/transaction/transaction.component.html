@@ -3,7 +3,7 @@
       <md-card class="profileCard" fxFlex="100">
           <div fxFlex="69" fxFlexOffset="1" class="left-card">
               <h2>Transaction</h2>
-               <form class="form" (ngSubmit)="submitFrm(user)"> 
+               <form class="form"> 
               <div fxLayout="row" fx-layout-align="center center">
                 <div fxFlex="100" class="v_align" >  
                     <md-input-container fxFlex="45">
@@ -27,7 +27,7 @@
                         </md-option>
                           </md-select>
 
-                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel">
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel" (change)="getSubServiceName($event.value)">
                            <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}} select ="this.user.subServiceId">
                               {{ speciality.subServiceName }}
                             </md-option>
@@ -155,7 +155,7 @@
                             <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (ngModelChange)="getPayableAmountData($event);" />
                           </md-input-container>                        
                       
-                      <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt">
+                      <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt" [disabled] ="amoutP">
                             <md-option *ngFor="let option of paymentMode" value= {{option.refPayModeId}}> {{ option.name }} </md-option>
                       </md-select>
 
@@ -178,7 +178,7 @@
                     </div>  
                 
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
-                    <button md-raised-button class="primary" [disabled] ="button">Submit</button>
+                    <button md-raised-button class="primary" (click)="openreview()" [disabled] ="button">Submit</button>
                   </div>
                </form>   
           </div>

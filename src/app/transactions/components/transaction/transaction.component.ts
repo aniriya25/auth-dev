@@ -8,6 +8,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {MdDialog} from '@angular/material';
 import { RejectComponent } from '../reject/reject.component';
+import { ReviewComponent } from '../review/review.component';                              
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -36,6 +37,7 @@ export class TransactionComponent implements OnInit {
   IdValue: any;
   payableTotalAmount:any = {};
   button:any = true;
+  amoutP:any = false;
   
   constructor(
     private _transaction: TransactionService,
@@ -50,15 +52,37 @@ export class TransactionComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent);
   }
+  
+  openreview() {
+     const dialogRef = this.dialog.open(ReviewComponent,{data:{
+       
+       refCardId: this.user.refCardId,
+       serviceId: this.user.serviceId,
+       subServiceId: this.user.subServiceId,
+       refDependentId: this.user.refDependentId,
+       idProofTypeId: this.user.idProofTypeId,
+       docter: this.user.docter,
+       payTransectionNo: this.user.payTransectionNo,
+       refPayModeId: this.user.refPayModeId,
+       refcouponId:this.user.refcouponId,
 
+       cardNumber: this.user.cardNumber,
+       serviceName: this.user.serviceName,
+       subServiceName: this.user.subServiceName, 
+       totalAmount: this.user.totalAmount,
+       discountAmount: this.user.discountAmount,
+       payableAmount: this.user.payableAmount, 
+       UserName: this.user.name,
+       cardOnName: this.user.cardOnName,       
+  }});
+  }
    myControl: FormControl = new FormControl();
    paymentMode = [
-    { refPayModeId: 1, name: "Cash" },
-    { refPayModeId: 2, name: "Cashless" },
-    { refPayModeId: 3, name: "Credit Card"},
-    { refPayModeId: 4, name: "Debt Card"},
-    { refPayModeId: 5, name: "Paytm Wallet"},
-    { refPayModeId: 6, name: "Others"}
+    { refPayModeId: 1, name: "Cash" },   
+    { refPayModeId: 2, name: "Credit Card"},
+    { refPayModeId: 3, name: "Debt Card"},
+    { refPayModeId: 4, name: "Paytm Wallet"},
+    { refPayModeId: 5, name: "Others"}
   ]
   ngOnInit() {
     //debugger;
@@ -75,17 +99,24 @@ export class TransactionComponent implements OnInit {
   }
 getIdentityData() {
     this._transaction.getIdentity()
-      .subscribe(data => {
-       // debugger;       
-        this.Identities = data.data;       
+      .subscribe(data => {         
+        this.Identities = data.data; 
+        //console.log(this.Identities);   
       })
   }
 
 getPayableAmountData() {
-    this._transaction.getpayableAmount({totalAmount: this.user.totalAmount})
+      this._transaction.getpayableAmount({totalAmount: this.user.totalAmount})
       .subscribe(data => {
-        //debugger;       
+       // debugger;       
         this.payableTotalAmount = data.data;
+        this.user.discountAmount = data.data["discountAmount"];
+        this.user.payableAmount = data.data["payableAmount"];
+        if(this.payableTotalAmount.payableAmount === 0){          
+          this.amoutP = true;
+        }else{
+           this.amoutP = false;
+        }
         console.log(this.payableTotalAmount);
       })
   }
@@ -108,17 +139,19 @@ getPayableAmountData() {
        this.user.totalAmount = data.data["totalAmount"];
        this.user.discountAmount = data.data["discountAmount"];
        this.user.payableAmount = data.data["payableAmount"];
+       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];
       })  
     }
     else if(this.user.cardNumber.length == 16){
       this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-       //debugger;
+       debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId = data.data["refcouponId"];
        this.rows = data.data["Members"];
-       this.services = data.data["Services"];    
+       this.services = data.data["Services"];
+       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];    
       })
     }else{
       this.snackBar.open("Please enter the valid Card No / Cupon No.","",{duration:5000});
@@ -131,56 +164,31 @@ getPayableAmountData() {
     this.user.idProofNumber = value.idProofNumber;
     this.user.idProoImg = value.idProoImg;
     this.user.name = value.name;
+    this.user.
     this.user.relation = value.relation;
     this.user.refDependentId = value.refDependentId;   
     if(this.user.idProoImg === ""){
     this.IdValue = true;
     }
   }
-  
   showpay(){
     this.payshow = true;
     this.button = false;
   }
-
   getSubService(value){
-    //alert(value);
-    //debugger
-    this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
-  }
- 
- submitFrm() {
-    //console.log(users);
-    //this.user['dob'] = moment(this.user['dob'],"DD/MMM/YYYY").format('DD/MMM/YYYY');
-    debugger;
-    this.model.refCardId =  this.user.refCardId;
-    this.model.serviceId = this.user.serviceId;
-    this.model.subServiceId = this.user.subServiceId;
-    this.model.refDependentId = this.user.refDependentId;
-    this.model.idProofTypeId = this.user.idProofTypeId;
-    this.model.docter = this.user.docter;
-    this.model.payTransectionNo = this.user.payTransectionNo;
-    this.model.totalAmount = this.user.totalAmount;
-    this.model.discountAmount = this.payableTotalAmount.discountAmount;
-    this.model.payableAmount = this.payableTotalAmount.payableAmount;
-    this.model.refPayModeId = this.user.refPayModeId;
-    this.model.refcouponId = this.user.refcouponId;
-    this._transaction.updateTransaction(this.model)
-      .subscribe(data => {    
-         if(data.message) {
-          this.snackBar.open("Updated successfully","",{duration:5000});
-          return false;
-        }
-      }, Error => {
-        this.snackBar.open("Somthing went wrong!","",{duration:5000});
-      });     
-  }
-  
+   this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
+
+   this.user.serviceName=  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
+   
+  }  
    // edit readonly fields
    editFrm() {
      this.isReadOnly = !this.isReadOnly;
-     this.edited = false; 
-   }
+     this.edited = false;  
+  }
 
-   
+    getSubServiceName(value){
+      this.user.subServiceName=  this.alldatavalue["SubServices"].filter(function (a) { return a.subServiceId === value; })[0]["subServiceName"];
+    }    
+  
 }

@@ -1,0 +1,61 @@
+<div fxLayout="row" fxLayout.xs="column">
+    <form class="form" (ngSubmit)="submitFrm(user)">      
+    <fieldset fxFlex="100">
+        <legend> 
+          <img fxFlexAlign="center" class="logo" src="assets/images/H3U_Logo_201x132.png" />
+            Transaction Review</legend>
+        <div fxLayout="row" fxFlex="100">
+            <md-input-container fxFlex="49">
+                <input type="text" mdInput type='text' placeholder='Card Holder Name' [(ngModel)]="user.cardOnName" name="cardOnName" #cardOnName="ngModel" />
+            </md-input-container>
+            <md-input-container fxFlex="49" fxFlexOffset="2">
+                <input type="text" mdInput type='text' placeholder='Patient Name' [(ngModel)]="user.name" name="name" #name="ngModel" />
+            </md-input-container>
+
+        </div>
+        <div fxLayout="row" fxFlex="100">
+            <md-input-container fxFlex="49">
+                <input type="text" mdInput type='text' placeholder='Provider Name' value="Hyuing Ooi" />
+            </md-input-container>
+            <md-input-container fxFlex="49" fxFlexOffset="2">
+                <input type="text" mdInput type='text' placeholder='Provider code' value="0001" name="docter" />
+            </md-input-container>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+            <md-input-container fxFlex="49">
+                <input type="text" mdInput type='text' placeholder='Coupon code' name="docter" />
+            </md-input-container>
+            <md-input-container fxFlex="49" fxFlexOffset="2">
+                <input type="text" mdInput type='text' placeholder='Card No'  [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel"/>
+            </md-input-container>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+                <md-input-container fxFlex="49">
+                    <input type="text" mdInput type='text' placeholder='Service' [(ngModel)]="user.serviceName" name="serviceName" #serviceName="ngModel"/>
+                </md-input-container>
+                <md-input-container fxFlex="49" fxFlexOffset="2">
+                    <input type="text" mdInput type='text' placeholder='Subservice' [(ngModel)]="user.subServiceName" name="subServiceName" #subServiceName="ngModel"/>
+                </md-input-container>
+            </div>
+        <div fxLayout="row" fxFlex="100">
+            <md-input-container fxFlex="32">
+                <input type="text" mdInput type='text' placeholder='Total OPD Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel"/>
+            </md-input-container>
+            <md-input-container fxFlex="32" fxFlexOffset="2">
+                <input type="text" mdInput type='text' placeholder='Amount Approved'  [(ngModel)]= "payableTotalAmount.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
+            </md-input-container>
+            <md-input-container fxFlex="32" fxFlexOffset="2">
+                    <input type="text" mdInput type='text' placeholder='Amount to be collected from patient' [(ngModel)] = "payableTotalAmount.payableAmount" name="payableAmount" #payableAmount="ngModel"/>
+                </md-input-container>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+           
+        </div>
+        <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
+            <button md-raised-button class="primary" md-dialog-close>Close</button>
+                
+            <button md-raised-button class="primary" fxFlexOffset="2">Approve</button>
+          </div>
+    </fieldset>
+ </form>
+</div>
