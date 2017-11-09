@@ -64,6 +64,8 @@ export class AppConfig {
   cardDetails_update_url: string;
   transactionList_url:string;
   amountvalidate_url:string;
+  sendOTP_url:string;
+  verifyOTP_url:string;
 
 // Master
   services_url: string;
@@ -128,6 +130,8 @@ export const APP_DI_CONFIG: AppConfig = {
   cardDetails_update_url:'transactions',
   transactionList_url: 'me/transactions',
   amountvalidate_url:'transactions/validate',
+  sendOTP_url:'sendOTP',
+  verifyOTP_url:'verifyOTP',
 
   // master
 

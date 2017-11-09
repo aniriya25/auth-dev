@@ -38,6 +38,8 @@ export class TransactionComponent implements OnInit {
   payableTotalAmount:any = {};
   button:any = true;
   amoutP:any = false;
+  showotp: boolean = false;
+  detailspay: boolean = false;
   
   constructor(
     private _transaction: TransactionService,
@@ -111,14 +113,15 @@ getPayableAmountData() {
        // debugger;       
         this.payableTotalAmount = data.data;
         this.user.discountAmount = data.data["discountAmount"];
-        this.user.payableAmount = data.data["payableAmount"];
+        this.user.payableAmount = data.data["payableAmount"];        
         if(this.payableTotalAmount.payableAmount === 0){          
           this.amoutP = true;
+          this.amoutP.option.value === 0;
         }else{
            this.amoutP = false;
         }
-        console.log(this.payableTotalAmount);
-      })
+       // console.log(this.payableTotalAmount);
+      })      
   }
 
   getTrasnctionData1() {
@@ -145,7 +148,7 @@ getPayableAmountData() {
     else if(this.user.cardNumber.length == 16){
       this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-       debugger;
+      // debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId = data.data["refcouponId"];
@@ -158,22 +161,30 @@ getPayableAmountData() {
     }   
   }
   kycShow(value) {
-    //debugger;
+    debugger;
     this.kycshow = true;
     this.user.idProofTypeId = value.idProofTypeId;
     this.user.idProofNumber = value.idProofNumber;
     this.user.idProoImg = value.idProoImg;
     this.user.name = value.name;
-    this.user.
+    this.user.contactNo = value.contactNo;
     this.user.relation = value.relation;
     this.user.refDependentId = value.refDependentId;   
     if(this.user.idProoImg === ""){
     this.IdValue = true;
     }
   }
+  otpshow(){
+    this.showotp = true;
+    this.button = true;
+  }
+  paydetails(){
+    this.detailspay = true;
+    this.button = false;
+  }
   showpay(){
     this.payshow = true;
-    this.button = false;
+    this.button = true;
   }
   getSubService(value){
    this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
@@ -189,6 +200,36 @@ getPayableAmountData() {
 
     getSubServiceName(value){
       this.user.subServiceName=  this.alldatavalue["SubServices"].filter(function (a) { return a.subServiceId === value; })[0]["subServiceName"];
-    }    
+    }
+
+     postOTP() {
+      //debugger; 
+      this.model.mobileNo = this.user.contactNo;
+      this._transaction.sendOTP(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          // this.snackBar.open("Updated successfully","",{duration:5000});
+          // return false;
+        }
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      }); 
+     }
+
+     verifyOTP() {
+      //debugger; 
+      this.model.mobileNo = this.user.contactNo;
+      this.model.otp = this.user.otp;
+      this._transaction.verifyOTP(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          this.showpay();
+          }else if(data && data.error && data.error.message){
+            this.snackBar.open("Somthing went wrong!, Please Check OTP Code","",{duration:5000});
+          }        
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      }); 
+     }      
   
 }
