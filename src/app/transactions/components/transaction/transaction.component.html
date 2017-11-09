@@ -34,9 +34,7 @@
 
                     </div><br>
                     <div fxLayout="row" fxFlex="97">
-                        <md-input-container fxFlex="50">
-                            <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.docter" name="docter" #docter="ngModel"/>
-                          </md-input-container>
+                       
                           <!--<md-input-container fxFlex="50" fxFlexOffset="2">
                               <input type="text" mdInput type='text'  placeholder='Amount' />
                           </md-input-container>-->
@@ -146,30 +144,48 @@
                           </md-card>
                         </fieldset>
                       </div>
-                  
+
+                      <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
+                          <fieldset fxFlex="100">
+                          <legend>OTP Request</legend>
+                           <md-input-container fxFlex="98"> 
+                              <input type="text" mdInput type='text' placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
+                           </md-input-container>   
+                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="showpay();">Verify</button></span>
+                        </fieldset>
+                       </div>
+
+                       <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
+                          <fieldset fxFlex="100">
+                          <legend>Amount</legend>
+                          <md-input-container fxFlex="98">
+                              <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" />
+                            </md-input-container>  
+                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="showpay();">Verify</button></span>
+                        </fieldset>
+                       </div>
+
                     <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
                      <fieldset fxFlex="100">
                         <legend>Payment</legend>
                        <div fxLayout="row" fxFlex="97">                        
-                         <md-input-container fxFlex="32">
-                            <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" />
-                          </md-input-container>                        
-                      
-                      <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt">
+                      <md-select placeholder="Select Payment Mode" fxFlex="48"  [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt">
                             <md-option *ngFor="let option of paymentMode" value= {{option.refPayModeId}}> {{ option.name }} </md-option>
                       </md-select>
 
-                        <md-input-container fxFlex="32" fxFlexOffset="2">
+                        <md-input-container fxFlex="48" fxFlexOffset="2">
                             <input type="text" mdInput type='text'  placeholder='Payment Ref Id' [(ngModel)]="user.payTransectionNo" name="payTransectionNo" #payTransectionNo="ngModel" />
                         </md-input-container> 
                         </div>
 
                     <div fxLayout="row" fxFlex="97">
-                        
-                        <md-input-container fxFlex="50">
+                        <md-input-container fxFlex="32">
+                            <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.docter" name="docter" #docter="ngModel"/>
+                          </md-input-container>
+                        <md-input-container fxFlex="32">
                             <input type="text" mdInput type='text'  placeholder='Approved Amount' [(ngModel)]= "user.discountAmount" name="discountAmount" #discountAmount="ngModel"/>
                         </md-input-container>
-                        <md-input-container fxFlex="50" fxFlexOffset="2">
+                        <md-input-container fxFlex="32" fxFlexOffset="2">
                             <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "user.payableAmount" name="payableAmount" #payableAmount="ngModel" />
                         </md-input-container>
                     </div>
