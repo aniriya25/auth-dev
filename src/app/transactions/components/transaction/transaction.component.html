@@ -144,14 +144,14 @@
                           </md-card>
                         </fieldset>
                       </div>
-
+                      <div *ngIf="demo">You have entered wrong OTP</div>
                       <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
                           <fieldset fxFlex="100">
                           <legend>OTP Request</legend>
                            <md-input-container fxFlex="98"> 
                               <input type="text" mdInput type='text' placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
                            </md-input-container>   
-                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="showpay();">Verify</button></span>
+                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="alertpop()">Verify</button></span>
                         </fieldset>
                        </div>
 

@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-
+show:boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
-
+showto(){
+  this.show=true;
+}
 }

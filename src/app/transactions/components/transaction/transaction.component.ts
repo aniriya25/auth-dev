@@ -32,6 +32,7 @@ export class TransactionComponent implements OnInit {
   abc: any;
   kycshow: boolean = false;
   payshow: boolean =false;
+  demo: boolean =false;
   alldatavalue: object;
   model: any = {};
   verified: any= true;
@@ -128,8 +129,11 @@ getIdentityData() {
   pay(){
     this.payshow = true;
     this.verified = false;
-}
-
+    
+  }
+  alertpop(){
+    this.demo = true;
+  }
   getSubService(value){
     //alert(value);
     //debugger
@@ -173,4 +177,5 @@ getIdentityData() {
    }
 
 }
+
 
