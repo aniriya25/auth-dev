@@ -3,10 +3,13 @@ textarea.mat-input-element {
     overflow: auto;
     height: 100px;
 }
+.fixh{
+    min-height: 405px;
+}
 .file-upload{
     height: 70px;
     border: 2px dashed #cccccc;
-   
+    margin-bottom: 20px;
     md-icon{
         position: absolute;
     }

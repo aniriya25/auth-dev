@@ -1,7 +1,215 @@
-<p>
+<!-- <p>
   invoice works!
 </p>
 <button (click)="showto()">click</button>
 <div *ngIf="show" class="popup">you have entered wrong OTP
 <button>X</button>
+</div> -->
+
+
+<div class="container">
+  <md-card fxFlex="100">
+    <ol>
+      <li>
+      <img fxFlexAlign="center" class="logo" src="assets/images/H3U_Logo_201x132.png" />
+      </li>
+      <!-- <li>
+        <p>Watsapp no</p>
+        <p>1800-1234-438 </p>
+      </li> -->
+    </ol>
+    <div fxLayout="row" fxLayout.xs="column">
+      <fieldset fxFlex="97" class="field">
+          <fieldset fxFlex="100">
+              <legend> Patient Information</legend>
+          <div fxLayout="row" fxLayout.xs="column">
+         <ul fxFlex="60">
+              <li>
+                  <strong fxFlex="40">Patient Name:</strong>
+                <span> Nil Nitin Mukesh</span>
+              </li>
+            <li>
+              <strong fxFlex="40">Card Holder Name:</strong>
+              <span fxFlex="60"> Nil Nitin Mukesh</span>
+            </li>
+            <li>
+                <strong fxFlex="40">Age:</strong>
+              <span> 50</span>
+            </li>
+            <li>
+                <strong fxFlex="40">Gender:</strong>
+              <span> Male</span>
+            </li>
+            <li>
+                <strong fxFlex="40">Address:</strong>
+              <span> 345, udhyog vihar, phase V Gurugram</span>
+            </li>
+          </ul>
+          <ul fxFlex="40">
+            <li>
+                <strong fxFlex="40"> UHID:</strong>
+            </li>
+            <li>
+              <span style="color:red"> BarCode</span>
+            </li>
+           
+          </ul>
+        </div>
+</fieldset>
+<fieldset fxFlex="100">
+    <legend> Provider Information</legend>
+        <div fxLayout="row" fxLayout.xs="column" >
+            <ul fxFlex="60">
+              <li>
+                <strong fxFlex="40">Provider/Outlet Name:</strong>
+                <span> Nil Nitin Mukesh</span>
+              </li>
+              <li>
+                  <strong fxFlex="40">Provider/Outlet Code:</strong>
+                <span>DS34564</span>
+              </li>
+              <li>
+                  <strong fxFlex="40">Address:</strong>
+                <span> 345, udhyog vihar, phase V Gurugram</span>
+              </li>
+              <li>
+                  <strong fxFlex="40"> User ID:</strong>
+                <span> UID456</span>
+              </li>
+              <li>
+                  <strong fxFlex="40">Doctor Name:</strong>
+                  <span> Nil Nitin Mukesh</span>
+                </li>
+            </ul>
+            <ul fxFlex="40">
+                <li>
+                    <strong fxFlex="40"> GST No:</strong> <span> 1524163</span>
+                </li>
+              
+              <li>
+                <span style="color:red">BarCode</span>
+              </li>
+            </ul>
+          </div>
+          </fieldset>
+          <fieldset fxFlex="100">
+              <legend> Transaction Information</legend>
+              <div fxLayout="row" fxLayout.xs="column" >
+                  <ul fxFlex="60">
+                    <li>
+                      <strong fxFlex="40">Txn ID:</strong>
+                      <span> Nil Nitin Mukesh</span>
+                    </li>
+                    <li>
+                      <strong fxFlex="40">Card No:</strong>
+                      <span>45678934564</span>
+                    </li>
+              
+                    <li>
+                        <strong fxFlex="40"> Request ID:</strong>
+                      <span> RQD456</span>
+                    </li>
+                  </ul>
+                  <ul fxFlex="40">
+                    <li>
+                        <strong fxFlex="40"> Date/Time:</strong><span>12/10/2017  <b>4:00pm</b></span>
+                    </li>
+                    <li>
+                      <span style="color:red">BarCode</span>
+                    </li>
+                  </ul>
+                </div>
+          </fieldset>
+
+          <div fxLayout="row" fxLayout.xs="column" >
+              <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable'          
+              [rows]='rows'
+              [limit]="PageSize"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [scrollbarV]="false" 
+              [rowHeight]="'auto'">
+                <ngx-datatable-column name="S.No." prop="s no" >
+                  <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                    1
+                  </ng-template>
+                </ngx-datatable-column> 
+                <ngx-datatable-column name="SERVICE CODE" prop="alias" width="100">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                    123456
+                  </ng-template>
+                </ngx-datatable-column>
+              
+                <ngx-datatable-column name="SERVICE" prop="serv">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                      <span>Service</span>
+                      <p class="tabspan">Subservice</p>
+                  </ng-template>
+                </ngx-datatable-column>  
+
+                <ngx-datatable-column name="DESCRIPTION" prop="relation" width="100">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                   Apollo HealthCheckup
+                  </ng-template>
+                </ngx-datatable-column> 
+
+               
+                <ngx-datatable-column name="AMOUNT" prop="age" width="100">
+                    <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                        <span>2500</span>
+                        <p> <b>-0.00</b></p>
+                        <span><strong>2500</strong></span>
+                    </ng-template>
+                  </ngx-datatable-column> 
+              </ngx-datatable>
+
+                <ngx-datatable-column name="PAYABLE" prop="age" width="100">
+                    <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                     
+                    </ng-template>
+                  </ngx-datatable-column> 
+          </div>
+          <div fxLayout="row" fxLayout.xs="column">
+          <ul fxFlex="100" class="amnt">
+              <li>
+                  <strong fxFlex="80">Total Bill Amount:</strong>
+                <span> 2500/-</span>
+              </li>
+              <li>
+                  <strong fxFlex="80"> GST(Tax):</strong>
+                <span> 0.00/-</span>
+              </li>
+              <li>
+                  <strong fxFlex="80"> Net Payable Amount:</strong>
+                <span> 2500/-</span>
+              </li>
+              <li>
+                  <strong>In Words:</strong>
+                <span> Two Thousands Five Hundread</span>
+              </li>
+            </ul>
+            </div>
+            <div class="inst" fxLayout="row" fxLayout.xs="column">
+                <p fxFlex="80">No Tax is payable on reverse charge basis</p>
+                  <p> Authorized Signatory</p>
+                 </div>
+           <div class="foot" fxLayout="row" fxLayout.xs="column">
+            <p fxFlex="30"><a fxFlex.xs="80" routerLink="https://www.h3u.com">www.h3u.com</a></p>
+              <p fxFlex="30"><a href="mailto:enquiry@h3u.com">enquiry@h3u.com</a></p>
+              <p fxFlex="30" fxLayoutAlign="end">
+                <a routerLink="https://twitter.com/h3uIndia" title="Twitter">
+                  <img src="assets/images/twitter-1.png" alt="Twitter">
+                </a>
+                <a routerLink="https://www.facebook.com/H3Uindia/" title="Facebook">
+                  <img src="assets/images/facebook-1.png" alt="Facebook">
+                </a>
+              </p>
+             </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+          <button md-raised-button class="primary">Print</button>
+        </div>
+      </fieldset>
+    </div>
+  </md-card>
 </div>

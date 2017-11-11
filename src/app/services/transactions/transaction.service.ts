@@ -40,6 +40,36 @@ export class TransactionService {
       });
   }
 
+   sendOTP(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.sendOTP_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   verifyOTP(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.verifyOTP_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   getpayableAmount(value:any) {
+    return this.authhttp.post(this.config.api_base_url+this.config.amountvalidate_url, value)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
   getTransactionList(id: number) {
     return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+id)
       .map(data => {
@@ -62,8 +92,6 @@ export class TransactionService {
           data.json();
           return data.json();
       });
-  }
-
+  }  
 
 }
-

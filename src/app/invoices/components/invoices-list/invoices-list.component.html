@@ -3,7 +3,7 @@
     <md-card class="profileCard" fxFlex="100">
         <div fxFlex="98" fxFlexOffset="1" class="left-card">
          <h2><span  fxFlex="80">Invoices List</span>
-         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/invoices/invoice">New Invoice</button>
+         <!-- <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/invoices/invoice">New Invoice</button> -->
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
@@ -57,7 +57,7 @@
                     </ngx-datatable-column>
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                       4251
+                      <a routerLink="/dashboard/invoices/invoice"> 4251</a>
                       </ng-template>
                     </ngx-datatable-column> 
 

@@ -21,13 +21,11 @@ export class TransactionListComponent implements OnInit {
   }
   constructor(private _alltransaction: TransactionService) { }
   ngOnInit() {
-   
 
-    // this.rows = [
-    //  { "company": "98.4 Pharmacy G2 Block Market, Sarita Vihar", "service": "Pharmacy", "firstName": "Dr Anupam anupam.bakshi@gmail.com +91-9810012345", "comment": "Good" },
-    //  ];
+  
      this.getTransctionData();
   }
+  
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
@@ -40,4 +38,6 @@ export class TransactionListComponent implements OnInit {
       })
      
   }
+
+
 }

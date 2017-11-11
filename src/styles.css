@@ -18,12 +18,7 @@ body {
     padding: 10px;
     border-bottom: 5px solid #cccccc ;
   }
-  /* .mdTextAra.mat-input-container textarea {
-    overflow: hidden !important;
-    border: 1px solid !important;
-    height: 60px !important;
-    padding-top: 20px;
-} */
+
 .mat-select-trigger {
     border: 1px solid #d3d9e0;
     padding: 36px 5px 16px 5px;

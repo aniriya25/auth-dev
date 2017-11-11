@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-invoice',
@@ -6,12 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-show:boolean = false;
+// show:boolean = false;
+@ViewChild('myTable') table: any;
+rows = [];
+temp = [];
+isLimits: number = 10;
+records: any;
   constructor() { }
 
   ngOnInit() {
+    this.rows = [
+      { "company": "", "service": "", "comment": "" },
+      ];
   }
-showto(){
-  this.show=true;
-}
+// showto(){
+//   this.show=true;
+// }
+
+
 }
