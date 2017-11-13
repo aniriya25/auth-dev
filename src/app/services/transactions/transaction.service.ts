@@ -29,7 +29,7 @@ export class TransactionService {
       });
   }
 
-    updateTransaction(value:any) {    
+  updateTransaction(value:any) {    
     return this.authhttp.post(
         this.config.api_base_url+this.config.cardDetails_update_url, 
         value
@@ -40,7 +40,18 @@ export class TransactionService {
       });
   }
 
-   sendOTP(value:any) {    
+ rejectTransaction(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.reject_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+  sendOTP(value:any) {    
     return this.authhttp.post(
         this.config.api_base_url+this.config.sendOTP_url, 
         value
