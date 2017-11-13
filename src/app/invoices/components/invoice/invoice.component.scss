@@ -1,14 +1,25 @@
-// .popup{
-//     border: 0px solid;
-//     width: 20%;
-//     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-//     min-height: 150px;
-//     text-align: center;
-//     padding: 20px;
-//    position: fixed;
-//    left:400px;
-//    top: 300px;
-// }
+//  .popup{
+//     /* Hidden by default */
+//     position: fixed; /* Stay in place */
+//     z-index: 1; /* Sit on top */
+//     padding-top: 100px; /* Location of the box */
+//     left: 0;
+//     top: 0;
+//     width: 100%; /* Full width */
+//     height: 100%; /* Full height */
+//     overflow: hidden; /* Enable scroll if needed */
+//     background-color: rgb(0,0,0); /* Fallback color */
+//     background-color: rgba(0,0,0,0.4);
+
+//  }
+//  .pop{
+//      background: #ffffff;
+//      width: 40%;
+//      margin: auto;
+//      padding: 20px;
+
+    
+//  }
 
 .logo{
     vertical-align: middle;
@@ -32,9 +43,7 @@ ol{
     list-style: none;
    
 }
-.ngx-datatable.material {
-    overflow-x:scroll !important;
-  }
+
   .tabspan{
     font-size: 12px;
     color: #489cce;
@@ -63,8 +72,13 @@ ol{
     margin: 20px 0px;
     a{
         color: #ffffff;
+        padding: 0px 10px;
         img{
-            padding: 0px 10px;
+            padding: 0px 2px;
+            height: 20px;
+        }
+        span{
+            vertical-align: top;
         }
     }
 }
@@ -76,4 +90,13 @@ ol{
     padding: 0px 30px;
     color: #000000
 }
-
+.supp{
+    margin-bottom: 0px;
+    li{
+        line-height: 0.5;
+       p{
+           font-weight: normal;
+           font-size: 12px;
+       }
+    }
+}

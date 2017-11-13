@@ -13,7 +13,7 @@
                        <!--<button md-raised-button class="primary" >UPDATE</button>-->
                        <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
                      </div>
-                    
+                   
                     </div>
                 </div>
 
@@ -47,10 +47,7 @@
                   <fieldset fxFlex="100">
                       <legend>Member</legend>
                   <div fxFlex="100">
-                      <small>
-                          <a   (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
-                          <a   (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
-                        </small>
+                      
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
                     [limit]="PageSize"
