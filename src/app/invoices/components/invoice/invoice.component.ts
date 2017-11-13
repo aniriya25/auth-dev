@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-// show:boolean = false;
+show:boolean = false;
 @ViewChild('myTable') table: any;
 rows = [];
 temp = [];
@@ -19,9 +19,9 @@ records: any;
       { "company": "", "service": "", "comment": "" },
       ];
   }
-// showto(){
-//   this.show=true;
-// }
+ showto(){
+   this.show=true;
+}
 
 
 }
