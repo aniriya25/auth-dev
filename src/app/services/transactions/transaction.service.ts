@@ -8,7 +8,7 @@ import { AuthHttp } from 'angular2-jwt';
 export class TransactionService {
 
   constructor(
-     private _http: Http,
+    private _http: Http,
      private authhttp: AuthHttp,
      @Inject(APP_CONFIG) private config: AppConfig
   ) { }
@@ -21,11 +21,52 @@ export class TransactionService {
       });
   }
 
-  getAllServices() {
-    return this.authhttp.get(this.config.api_base_url+this.config.services_url)
+  getCouponTransaction(couponNumber:any) {
+    return this.authhttp.get(this.config.api_base_url+this.config.transaction_cupon_url+couponNumber)
       .map(data => {
           data.json();
-          return data.json();          
+          return data.json();
+      });
+  }
+
+    updateTransaction(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.cardDetails_update_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   sendOTP(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.sendOTP_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   verifyOTP(value:any) {    
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.verifyOTP_url, 
+        value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   getpayableAmount(value:any) {
+    return this.authhttp.post(this.config.api_base_url+this.config.amountvalidate_url, value)
+      .map(data => {
+          data.json();
+          return data.json();
       });
   }
 
@@ -36,5 +77,21 @@ export class TransactionService {
           return data.json();
       });
   }
+
+  getIdentity() {
+    return this.authhttp.get(this.config.api_base_url+this.config.Identity_url)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+   getAllTransactionList() {
+    return this.authhttp.get(this.config.api_base_url+this.config.transactionList_url)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }  
 
 }

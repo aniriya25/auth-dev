@@ -8,12 +8,17 @@ body {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
- 
 .mat-input-table{
     border: 1px solid #d3d9e0;
-    height: 30px;
+    min-height: 30px;
     padding-top: 20px;
 }
+.ngx-datatable.material .datatable-body .datatable-row-detail{
+    background: none ; 
+    padding: 10px;
+    border-bottom: 5px solid #cccccc ;
+  }
+
 .mat-select-trigger {
     border: 1px solid #d3d9e0;
     padding: 36px 5px 16px 5px;
@@ -499,6 +504,9 @@ fieldset:disabled .mat-input-underline {
 .mat-input-infix{
     color:#000;
 }
+.mat-select-value {
+    left: 5px !important;
+}
 .mat-input-underline {
     background: rgba(255, 255, 255, /*0.33*/0);
     position: absolute;
@@ -506,6 +514,8 @@ fieldset:disabled .mat-input-underline {
     width: 100%;
     bottom: 15px !important;
     z-index: -1 !important;
+    border-color: transparent;
+    
 }
 
 .mat-focused .mat-input-underline .mat-input-ripple, .mat-input-invalid .mat-input-underline .mat-input-ripple{
@@ -633,4 +643,8 @@ textarea.mat-input-element{
 .ngx-datatable.material .empty-row {
     text-align: center;
     color: red;
+}
+.mat-select-value {
+    left: 5px !important;
+    top: 10px !important;
 }
