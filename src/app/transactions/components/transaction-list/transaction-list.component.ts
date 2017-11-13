@@ -21,7 +21,6 @@ export class TransactionListComponent implements OnInit {
   }
   constructor(private _alltransaction: TransactionService) { }
   ngOnInit() {
-
   
      this.getTransctionData();
   }

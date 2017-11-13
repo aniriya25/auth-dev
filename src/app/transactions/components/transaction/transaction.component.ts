@@ -10,6 +10,7 @@ import {MdDialog} from '@angular/material';
 import { RejectComponent } from '../reject/reject.component';
 import { ReviewComponent } from '../review/review.component';                              
 @Component({
+  selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss'],
   providers: [TransactionService, ProfileService, MdSnackBar]
@@ -31,7 +32,6 @@ export class TransactionComponent implements OnInit {
   abc: any;
   kycshow: boolean = false;
   payshow: boolean =false;
-
   alldatavalue: object;
   model: any = {};
   IdValue: any;
@@ -49,7 +49,6 @@ export class TransactionComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MdDialog
   ) { }
-
 
 
   openDialog() {
@@ -96,7 +95,6 @@ export class TransactionComponent implements OnInit {
        this.user.cardNumber = this.abc;
        this.getTrasnctionData1();
      }  
-
     this.kycshow = false;
     this.IdValue = false;
     this.getPayableAmountData();
@@ -176,8 +174,6 @@ getPayableAmountData() {
     this.IdValue = true;
     }
   }
-
-
   otpshow(){
     this.showotp = true;
     this.button = true;
@@ -191,29 +187,9 @@ getPayableAmountData() {
     this.button = true;
   }
   getSubService(value){
-  this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
-}
+   this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
 
- 
- submitFrm() {
-    //console.log(users);
-    //this.user['dob'] = moment(this.user['dob'],"DD/MMM/YYYY").format('DD/MMM/YYYY');
-    //debugger;
-    this.model.refCardId =  this.user.refCardId;
-    this.model.serviceId = this.user.serviceId;
-    this.model.subServiceId = this.user.subServiceId;
-    this.model.refDependentId = this.user.refDependentId;
-    this.model.idProofTypeId = this.user.idProofTypeId;
-    this.model.docter = this.user.docter;
-    this.model.payTransectionNo = this.user.payTransectionNo;
-    this.model.totalAmount = this.user.totalAmount;
-    this.model.discountAmount = this.user.discountAmount;
-    this.model.payableAmount = this.user.payableAmount;
-    this.model.refPayModeId = this.user.refPayModeId;
-    this.model.refcouponId = this.user.refcouponId;
-
-
-  //  this.user.serviceName=  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
+   this.user.serviceName=  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
    
   }  
    // edit readonly fields
@@ -239,9 +215,6 @@ getPayableAmountData() {
         this.snackBar.open("Somthing went wrong!","",{duration:5000});
       }); 
      }
-
-
-
 
      verifyOTP() {
       //debugger; 

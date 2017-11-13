@@ -1,4 +1,3 @@
-
 import { Component, OnInit,Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { TransactionService } from './../../../services/transactions/transaction.service';
@@ -41,7 +40,6 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
    submitFrm() {
     //console.log(users);
