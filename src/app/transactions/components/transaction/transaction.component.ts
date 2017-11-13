@@ -230,6 +230,8 @@ getPayableAmountData() {
       }, Error => {
         this.snackBar.open("Somthing went wrong!","",{duration:5000});
       }); 
-     }      
+     }
+
+        
   
 }

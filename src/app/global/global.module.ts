@@ -66,6 +66,7 @@ export class AppConfig {
   amountvalidate_url:string;
   sendOTP_url:string;
   verifyOTP_url:string;
+  rejectTransaction_url:string;
 
 // Master
   services_url: string;
@@ -132,6 +133,7 @@ export const APP_DI_CONFIG: AppConfig = {
   amountvalidate_url:'transactions/validate',
   sendOTP_url:'sendOTP',
   verifyOTP_url:'verifyOTP',
+  rejectTransaction_url:'reject',
 
   // master
 
