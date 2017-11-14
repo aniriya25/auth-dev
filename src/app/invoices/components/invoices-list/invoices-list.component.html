@@ -13,7 +13,7 @@
                 </div>
               <div fxFlex="40" fxFlex.xs="100">
                 <md-input-container fxFlex="95" fxFlex.xs="80">
-                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date">
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date" >
                   <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
                 </md-input-container>              
                 <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
