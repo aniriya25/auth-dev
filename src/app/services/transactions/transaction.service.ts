@@ -35,10 +35,10 @@ invoiceData: any[] = [];
         value
       )
       .map(data => {
-        //  debugger;
-        this.invoiceData = data.json();
-         data.json();
-         return data.json();
+        //debugger;
+        // this.invoiceData = data.json();
+        data.json();
+        return data.json();
       });
   }
 

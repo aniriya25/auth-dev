@@ -40,7 +40,8 @@ export class TransactionComponent implements OnInit {
   amoutP:any = false;
   showotp: boolean = false;
   detailspay: boolean = false;
-  
+  proData: any = {};
+
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
@@ -58,6 +59,7 @@ export class TransactionComponent implements OnInit {
   }
   
   openreview() {
+     //debugger;
      const dialogRef = this.dialog.open(ReviewComponent,{data:{
        
        refCardId: this.user.refCardId,
@@ -78,7 +80,8 @@ export class TransactionComponent implements OnInit {
        discountAmount: this.user.discountAmount,
        payableAmount: this.user.payableAmount, 
        UserName: this.user.name,
-       cardOnName: this.user.cardOnName,       
+       cardOnName: this.user.cardOnName,
+       proName: this.proData.firstName+" "+this.proData.lastName  
   }});
   }
    myControl: FormControl = new FormControl();
@@ -90,8 +93,9 @@ export class TransactionComponent implements OnInit {
     { refPayModeId: 5, name: "Others"}
   ]
   ngOnInit() {
-    //debugger;
+    
     this.getIdentityData();
+    this.getProviderData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
     if(this.abc != "" && this.abc != undefined)
     {
@@ -103,10 +107,19 @@ export class TransactionComponent implements OnInit {
     this.getPayableAmountData();
   }
 getIdentityData() {
+    
     this._transaction.getIdentity()
       .subscribe(data => {         
         this.Identities = data.data; 
         //console.log(this.Identities);   
+      })
+  }
+
+ getProviderData() {
+     this._profile.getPersonalInfo()
+      .subscribe(data => {         
+      // debugger;
+        this.proData = data.data;         
       })
   }
 
@@ -166,7 +179,7 @@ getPayableAmountData() {
     }   
   }
   kycShow(value) {
-    debugger;
+    //debugger;
     this.kycshow = true;
     this.user.idProofTypeId = value.idProofTypeId;
     this.user.idProofNumber = value.idProofNumber;

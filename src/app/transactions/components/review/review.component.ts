@@ -3,21 +3,26 @@ import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { TransactionService } from './../../../services/transactions/transaction.service';
 import { InvoiceComponent } from './../../../invoices/components/invoice/invoice.component';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { ProfileService } from './../../../services/profile/profile.service';
+
 // import {Invoice}  from './../../../model/invoce';
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss'],
-  providers: [TransactionService, MdSnackBar]
+  providers: [TransactionService, MdSnackBar, ProfileService]
 })
 export class ReviewComponent implements OnInit {
   user: any = {};
   model: any = {}; 
   payableTotalAmount:any = {};
-  revertData:any = [];
+  invoiceData:any = [];
+  proData: any = {};
+
   constructor(public dialogRef: MdDialogRef<ReviewComponent>,@Inject(MD_DIALOG_DATA) public data: any,
-  private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router
+  private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router,
+  private _profile: ProfileService
   ) {
 
    //alert(this.data.cardOnName);
@@ -41,6 +46,7 @@ export class ReviewComponent implements OnInit {
       this.payableTotalAmount.payableAmount = this.data.payableAmount;
       this.user.name = this.data.UserName;
       this.user.cardOnName = this.data.cardOnName;
+      this.user.proName = this.data.proName;
    }
 
   ngOnInit() {
@@ -66,13 +72,13 @@ export class ReviewComponent implements OnInit {
     this._transaction.updateTransaction(this.model)
       .subscribe(data => {    
          debugger;
-         if(data) {         
-         this.revertData = data.data;
+         if(data) {        
          this.snackBar.open("Updated successfully","",{duration:5000});
          setTimeout((_route: Router) => {
            this.dialogRef.close();             
            this._route.navigate(['dashboard/invoices/invoice']);
-           }, 5100);
+          }, 5100);
+          this.invoiceData = data.data;
           return false;
         }
       }, Error => {
