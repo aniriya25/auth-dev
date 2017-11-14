@@ -1,44 +1,94 @@
 
 <!--<router-outlet></router-outlet>-->
-<md-card>
-        <md-card-title>
-      <div fxLayout="row">
-        <h2 fxFlex="97"  fxFlex.xs="85">Offers</h2>
-         <a routerLink="/Packages" md-mini-fab><md-icon>add</md-icon></a>
+<div class="container _fxContainer">
+    <md-card fxFlex="100">
+       <h2>Package</h2>
+    <form>
+    <div fxLayout="row">
+      <label fxFlex="25" fxFlex.xs="50">Service Type</label>
+      <md-radio-group fxFlex="70">
+      <md-radio-button value="1">OPD</md-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <md-radio-button value="2">Diagnostic</md-radio-button>
+    </md-radio-group>
+    </div>
+    
+     <div fxLayout="row" fxLayout.xs="column">
+      <md-input-container fxFlex="100">
+        <input mdInput placeholder="Name" required [(ngModel)]="user.Name" name="Name" #Name="ngModel">
+        <md-error *ngIf="Name.errors && (Name.dirty || Name.touched)">
+                        <md-error>
+                          <span [hidden]="!Name.errors.required">requied</span>
+                        </md-error>
+                      </md-error>
+      </md-input-container>
       </div>
-        </md-card-title>
-        <md-card-content>
-          <form fxLayout="column" fxLayoutGap="10px" fxFlex="100" fxFlex.xs="95">
-            <div fxLayout="row" fxLayout.xs="column" fxFlex="100" fxFlex.xs="95">
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center"> 
-               <md-icon class="icongap">style</md-icon>
-                <h4>Campaigns</h4>
-              </md-card>
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center">
-                <md-icon class="icongap">email</md-icon>
-                <h4>Customers</h4>
-              </md-card>
-            </div>
-            <div fxLayout="row" fxLayout.xs="column" fxFlex="100">
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center"> 
-                <md-icon class="icongap">notifications</md-icon>
-                <h4>Notifications</h4>
-              </md-card>
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center">
-                <md-icon class="icongap">style</md-icon>
-                <h4>Campaigns</h4>
-              </md-card>
-            </div>
-            <div fxLayout="row" fxLayout.xs="column" fxFlex="100">
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center"> 
-                <md-icon class="icongap">notifications</md-icon>
-                <h4>Notifications</h4>
-              </md-card>
-              <md-card class="mdteal" fxFlex="45" fxFlex.xs="95" fxLayoutAlign="center center">
-                <md-icon class="icongap">style</md-icon>
-                <h4>Campaigns</h4>
-              </md-card>
-            </div>
-          </form>
-        </md-card-content>
-      </md-card>
+    
+    <div fxLayout="row" fxLayout.xs="column">
+      <md-input-container fxFlex="100">
+        <input mdInput placeholder="Offer Type">
+        
+      </md-input-container> 
+      <!-- <md-select placeholder="Offer Type" fxFlex="48">
+      <md-option *ngFor="let offer of offers" [value]="offer.value">
+        {{ offer.viewValue }}
+      </md-option>
+    </md-select> -->
+    
+      <md-input-container fxFlex="24" fxFlexOffset="2" fxFlexOffset.xs="0">
+        <input mdInput placeholder="Percentage Value" required [(ngModel)]="Percentage.Name" name="Percentage" #Percentage="ngModel">
+        <md-error *ngIf="Percentage.errors && (Percentage.dirty || Percentage.touched)">
+                        <md-error>
+                          <span [hidden]="!Percentage.errors.required">requied</span>
+                        </md-error>
+                      </md-error>
+      </md-input-container>
+    
+      <md-input-container fxFlex="24" fxFlexOffset="2" fxFlexOffset.xs="0">
+        <input mdInput placeholder="H3U Price" required [(ngModel)]="Price.Name" name="Price" #Price="ngModel">
+         <md-error *ngIf="Price.errors && (Price.dirty || Price.touched)">
+                        <md-error>
+                          <span [hidden]="!Price.errors.required">requied</span>
+                        </md-error>
+                      </md-error>
+      </md-input-container>
+    </div>
+    
+    <div fxLayout="row" fxLayout.xs="column">
+    <md-input-container fxFlex="31">
+      <input mdInput [mdDatepicker]="dpicker" placeholder="Start date">
+      <button mdSuffix [mdDatepickerToggle]="dpicker"></button>
+    </md-input-container>
+    <md-datepicker #dpicker></md-datepicker>
+    <md-input-container  fxFlex="32" fxFlexOffset="3" fxFlexOffset.xs="0">
+      <input mdInput [mdDatepicker]="picker" placeholder="Expire date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+    <md-input-container fxFlex="31" fxFlexOffset="3" fxFlexOffset.xs="0">
+        <input mdInput placeholder="Timing" required [(ngModel)]="Timing.Name" name="Timing" #Timing="ngModel">
+         <md-error *ngIf="Timing.errors && (Timing.dirty || Timing.touched)">
+                        <md-error>
+                          <span [hidden]="!Timing.errors.required">requied</span>
+                        </md-error>
+                      </md-error>
+      </md-input-container>
+    </div>
+    
+    <div fxLayout="row" fxLayout.xs="column">
+       <md-input-container fxFlex="100">
+        <input mdInput placeholder="Terms Link/URL" >
+      </md-input-container>
+    </div>
+    
+    <div fxLayout="row" fxLayout.xs="column">
+    <button md-raised-button color="primary">Create Package</button>
+    </div>
+    </form>
+    </md-card>
+    </div>
+    
+    
+    
+    
+    
+    
