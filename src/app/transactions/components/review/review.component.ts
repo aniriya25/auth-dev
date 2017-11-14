@@ -65,7 +65,8 @@ export class ReviewComponent implements OnInit {
     this.model.refcouponId = this.user.refcouponId;
     this._transaction.updateTransaction(this.model)
       .subscribe(data => {    
-         if(data.message) {
+         debugger;
+         if(data) {         
          this.revertData = data.data;
          this.snackBar.open("Updated successfully","",{duration:5000});
          setTimeout((_route: Router) => {
