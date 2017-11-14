@@ -52,7 +52,9 @@ export class TransactionComponent implements OnInit {
 
 
   openDialog() {
-    const dialogRef = this.dialog.open(RejectComponent);
+    const dialogRef = this.dialog.open(RejectComponent,{data:{
+      cardNumber: this.user.cardNumber
+    }});
   }
   
   openreview() {
@@ -67,6 +69,7 @@ export class TransactionComponent implements OnInit {
        payTransectionNo: this.user.payTransectionNo,
        refPayModeId: this.user.refPayModeId,
        refcouponId:this.user.refcouponId,
+       consultationType: this.user.consultationType,
 
        cardNumber: this.user.cardNumber,
        serviceName: this.user.serviceName,
@@ -133,7 +136,8 @@ getPayableAmountData() {
        //debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
-       this.user.refcouponId =data.data["refcouponId"];
+       this.user.refcouponId = data.data["refcouponId"];
+       this.user.consultationType = data.data["consultationType"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
        this.user.serviceId = this.services[0]["serviceId"];
@@ -152,6 +156,7 @@ getPayableAmountData() {
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId = data.data["refcouponId"];
+       this.user.consultationType = data.data["consultationType"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
        this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];    

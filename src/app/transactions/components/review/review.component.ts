@@ -1,6 +1,10 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { TransactionService } from './../../../services/transactions/transaction.service';
+import { InvoiceComponent } from './../../../invoices/components/invoice/invoice.component';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+// import {Invoice}  from './../../../model/invoce';
+
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -11,14 +15,15 @@ export class ReviewComponent implements OnInit {
   user: any = {};
   model: any = {}; 
   payableTotalAmount:any = {};
-  
+  revertData:any = [];
   constructor(public dialogRef: MdDialogRef<ReviewComponent>,@Inject(MD_DIALOG_DATA) public data: any,
-  private _transaction: TransactionService, public snackBar: MdSnackBar
+  private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router
   ) {
 
    //alert(this.data.cardOnName);
       //debugger;
       this.user.refCardId = this.data.refCardId;
+      this.user.consultationType = this.data.consultationType;
       this.user.serviceId = this.data.serviceId;
       this.user.subServiceId = this.data.subServiceId;
       this.user.refDependentId = this.data.refDependentId;
@@ -47,6 +52,7 @@ export class ReviewComponent implements OnInit {
     //debugger;
     this.model.refCardId =  this.user.refCardId;
     this.model.serviceId = this.user.serviceId;
+    this.model.consultationType = this.user.consultationType;
     this.model.subServiceId = this.user.subServiceId;
     this.model.refDependentId = this.user.refDependentId;
     this.model.idProofTypeId = this.user.idProofTypeId;
@@ -60,7 +66,12 @@ export class ReviewComponent implements OnInit {
     this._transaction.updateTransaction(this.model)
       .subscribe(data => {    
          if(data.message) {
-          this.snackBar.open("Updated successfully","",{duration:5000});
+         this.revertData = data.data;
+         this.snackBar.open("Updated successfully","",{duration:5000});
+         setTimeout((_route: Router) => {
+           this.dialogRef.close();             
+           this._route.navigate(['dashboard/invoices/invoice']);
+           }, 5100);
           return false;
         }
       }, Error => {

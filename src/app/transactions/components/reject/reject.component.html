@@ -9,13 +9,13 @@
 
     <div fxLayout="row" fxFlex="100">
       <md-input-container fxFlex="100">
-        <textarea matInput placeholder="Leave a comment" class="texta"></textarea>
+        <textarea matInput placeholder="Leave a comment" class="texta" [(ngModel)] ="user.remark" name="remark" #remark="ngModel"></textarea>
       </md-input-container>
     </div>
 
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-      <button md-raised-button class="primary">Close</button>&nbsp;
-      <button md-raised-button class="primary">Submit</button>
+      <button md-raised-button class="primary"  md-dialog-close>Close</button>&nbsp;
+      <button md-raised-button class="primary" (click) = "rejectTransaction();">Submit</button>
     </div>
   </fieldset>
 

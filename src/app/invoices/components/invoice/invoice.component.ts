@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+// import { TransactionService } from './../../../services/transactions/transaction.service';
+// import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-invoice',
@@ -12,16 +14,21 @@ rows = [];
 temp = [];
 isLimits: number = 10;
 records: any;
-  constructor() { }
+model: any = {};
+  constructor(
+    // private _transaction: TransactionService,   
+    // public snackBar: MdSnackBar
+    ) { 
+      // this.model=  localStorage.getItem("xyz");
+    }
+   ngOnInit() {
+    // debugger;  
+    // this.model =  this._transaction.invoiceData;
+   //console.log(this.model);
 
-  ngOnInit() {
-    this.rows = [
+   this.rows = [
       { "company": "", "service": "", "comment": "" },
       ];
   }
-// showto(){
-//   this.show=true;
-// }
-
 
 }
