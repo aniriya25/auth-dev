@@ -156,9 +156,7 @@ ul.nav a li p {
 ul.nav a li p:first-child {
     margin-bottom: 10px;
 }
-/* ul.nav a:focus {
-    background: #000;
-} */
+
 
 ul.nav a:focus,
 ul.nav a:hover,
