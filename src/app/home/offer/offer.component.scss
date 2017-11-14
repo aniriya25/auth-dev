@@ -4,8 +4,8 @@ $md-card: #ffffff;
 $cp-list:#4dbbfe;
 $chart-box-hw:250px;
 
-.mdindigo{ background:$mat-indigo;color: $md-card;border-radius: 5px;margin: 10px 0px;}
-.mdteal{background: $mat-teal;color:$md-card;border-radius:5px;margin:4px 10px}
+.mdindigo{ background:$mat-indigo;color:$md-card;border-radius:5px;margin:4px 10px;height: 70px;}
+.mdteal{background: $mat-teal;color:$md-card;border-radius:5px;margin:4px 10px;height: 70px;}
 .mdindigo, .mdteal {
   h4 {
    font-size:18px;
@@ -23,7 +23,7 @@ $chart-box-hw:250px;
   border-right: 1px solid #bababc;
 }
 .icongap{margin-right:15px;}
-hr{    width: 40%;
+hr{width: 40%;
   border-bottom: 5px solid #a4a2a2;
   border-radius: 7px;    margin-top: 25px;
   margin-bottom: 25px;} .cp {
@@ -56,4 +56,11 @@ hr{    width: 40%;
 }
 .dash{
   min-height: 260px;
+}
+.offer{
+  height: 175px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar 
+{   width: 3px; height:3px;  background-color:#cccccc;
 }
