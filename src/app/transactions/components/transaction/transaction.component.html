@@ -159,7 +159,7 @@
                           <fieldset fxFlex="100">
                           <legend>Payment</legend>
                           <md-input-container fxFlex="98">
-                              <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" />
+                              <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (onChange) = "getPayableAmountData();" />
                             </md-input-container>  
                            <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="getPayableAmountData(); paydetails();">Verify</button></span>
                         </fieldset>

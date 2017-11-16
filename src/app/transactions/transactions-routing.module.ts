@@ -5,13 +5,15 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import { RejectComponent } from './components/reject/reject.component';
 import { ReviewComponent } from './components/review/review.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { TransactionInvoiceComponent } from './components/transaction-invoice/transaction-invoice.component';
 
 const routes: Routes = [
   {path:'transaction', component:TransactionComponent},
   {path:'', component:TransactionListComponent},
   {path:'reject', component:RejectComponent},
   {path:'review', component:ReviewComponent},    
-  {path:'summary', component:SummaryComponent} 
+  {path:'summary', component:SummaryComponent},
+  {path:'transactionInvoice', component:TransactionInvoiceComponent}  
 ];
 
 @NgModule({

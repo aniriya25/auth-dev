@@ -5,8 +5,7 @@ import { MdSnackBar } from '@angular/material';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.scss'],
-  providers: [TransactionService],
+  styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
 // show:boolean = false;
@@ -22,26 +21,12 @@ invoiceData: any = {};
     public snackBar: MdSnackBar
     ) { }
 
-   ngOnInit() {
-    //  debugger;  
-    //  this.model =  this._transaction.invoiceData;
-  
-   //console.log(this.model);
-
-  //  this.rows = [
-  //     { "company": "", "service": "", "comment": "" },
-  //     ];
-  // }
-  this.getInvoiceData();
+   ngOnInit() {    
+     //debugger;  
+     this.model =  this._transaction.invoiceData;  
+     console.log(this.model);
+ 
 
 }
-
- getInvoiceData() {
-     this._transaction.updateTransaction(this.model)
-      .subscribe(data => {         
-      debugger;
-      this.model = this.invoiceData;
-      })
-  }
 
 }  

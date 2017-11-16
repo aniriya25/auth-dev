@@ -67,7 +67,7 @@ export class TransactionComponent implements OnInit {
        subServiceId: this.user.subServiceId,
        refDependentId: this.user.refDependentId,
        idProofTypeId: this.user.idProofTypeId,
-       docter: this.user.docter,
+       doctor: this.user.doctor,
        payTransectionNo: this.user.payTransectionNo,
        refPayModeId: this.user.refPayModeId,
        refcouponId:this.user.refcouponId,

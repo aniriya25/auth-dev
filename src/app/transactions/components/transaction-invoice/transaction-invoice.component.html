@@ -25,7 +25,7 @@
               </li>
               <li>
                 <strong fxFlex="40">Card Holder Name:</strong>
-                <span fxFlex="60">Admin Kumar Gupta</span>
+                <span fxFlex="60">{{model.cardHolderName}}</span>
               </li>
               <li>
                 <strong fxFlex="40">Age:</strong>
@@ -56,7 +56,7 @@
 
               <li>
                 <strong fxFlex="40">Booking ID:</strong>
-                <span>RQD456</span>
+                <span>{{model.bookingId}}</span>
               </li>
             </ul>
           </div>
@@ -75,11 +75,11 @@
               </li>
               <li>
                 <strong fxFlex="40">Address:</strong>
-                <span> 345, udhyog vihar, phase V Gurugram</span>
+                <span>{{model.outletAddress}}</span>
               </li>
               <li>
                 <strong fxFlex="40"> User ID:</strong>
-                <span> UID456</span>
+                <span> {{model.uhid}}</span>
               </li>
               <li>
                 <strong fxFlex="40">Doctor Name:</strong>
@@ -89,7 +89,7 @@
             <ul fxFlex="40" style="border-left:1px solid #cccccc">
               <li>
                 <strong fxFlex="40">Txn ID:</strong>
-                <span>190</span>
+                <span>{{model.txnId}}</span>
               </li>
               <li>
                 <strong fxFlex="40"> Date/Time:</strong>
@@ -132,43 +132,43 @@
             [headerHeight]="50" [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
             <ngx-datatable-column name="S.No." prop="s no" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                1
+               2323
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="SERVICE CODE" prop="alias" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                123456
+               232424
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="SERVICE" prop="serv">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>{{model.serviceId}}</span>
-                <p class="tabspan">{{model.subServiceId}}</p>
+                <span>4554</span>
+                <p class="tabspan">125</p>
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="DESCRIPTION" prop="relation" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                {{model.description}}
+                ererwe
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="PRICE" prop="age" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>3300</span>
+                <span>132213</span>
 
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="DISCOUNT" prop="age" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                -2500
+                -1212
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="AMOUNT" prop="age" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>
-                  <strong>800</strong>
+                  <strong>1212</strong>
                 </span>
               </ng-template>
             </ngx-datatable-column>
@@ -179,7 +179,7 @@
           <ul fxFlex="100" class="amnt">
             <li>
               <strong fxFlex="80">Total Bill Amount:</strong>
-              <span>800/-</span>
+              <span>12121/-</span>
             </li>
             <li>
               <strong fxFlex="80"> GST(Tax):</strong>
@@ -187,7 +187,7 @@
             </li>
             <li>
               <strong fxFlex="80"> Net Payable Amount:</strong>
-              <span class="txtBold">800/-</span>
+              <span class="txtBold">12121/-</span>
             </li>
             <li>
               <strong>In Words:</strong>
@@ -218,7 +218,7 @@
           </p>
         </div>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-          <button md-raised-button class="primary" (click)="showto()">Print</button>
+          <button md-raised-button class="primary" (click)=getpdf(model.path);>Print</button>
         </div>
         <!-- <div *ngIf="show" class="popup">
           <div class="pop">you have entered wrong OTP

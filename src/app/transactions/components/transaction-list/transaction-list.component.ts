@@ -28,7 +28,7 @@ export class TransactionListComponent implements OnInit {
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
-        debugger         
+       //debugger         
        this.rows = data.data;  
        let el = this.el.nativeElement;
        setTimeout(function () {

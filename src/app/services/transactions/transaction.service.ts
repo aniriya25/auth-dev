@@ -6,7 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class TransactionService {
-invoiceData: any[] = [];
+invoiceData: any = {};
   constructor(
     private _http: Http,
      private authhttp: AuthHttp,
@@ -36,7 +36,7 @@ invoiceData: any[] = [];
       )
       .map(data => {
         //debugger;
-        // this.invoiceData = data.json();
+        this.invoiceData = data.json();
         data.json();
         return data.json();
       });
