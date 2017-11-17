@@ -2,6 +2,8 @@
 
 # compiled output
 
+/dist/index.html
+
 /tmp
 /out-tsc
 
