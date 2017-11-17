@@ -43,7 +43,7 @@
             <ul fxFlex="40" style="border-left:1px solid #cccccc">
               <li>
                 <strong fxFlex="40"> UHID:</strong>
-                <span>{{model.patientAddress}}</span>
+                <span>{{model.uhid}}</span>
               </li>
               <li>
                   <span style="color:red"> BarCode</span>
@@ -67,11 +67,11 @@
             <ul fxFlex="60">
               <li>
                 <strong fxFlex="40">Provider/Outlet Name:</strong>
-                <span>{{model.provider_OutletName}}</span>
+                <span>{{model.outletName}}</span>
               </li>
               <li>
                 <strong fxFlex="40">Provider/Outlet Code:</strong>
-                <span>{{model.provider_OutletCode}}</span>
+                <span>{{model.outletCode}}</span>
               </li>
               <li>
                 <strong fxFlex="40">Address:</strong>
@@ -79,7 +79,7 @@
               </li>
               <li>
                 <strong fxFlex="40"> User ID:</strong>
-                <span> {{model.uhid}}</span>
+                <span> {{model.puhid}}</span>
               </li>
               <li>
                 <strong fxFlex="40">Doctor Name:</strong>
@@ -93,12 +93,12 @@
               </li>
               <li>
                 <strong fxFlex="40"> Date/Time:</strong>
-                <span>{{model.DateTime}} </span>
+                <span>{{model.txnDateTime}} </span>
               </li>
               <hr>
               <li>
                 <strong fxFlex="40"> GST No:</strong>
-                <span>{{model.GSTNo}}</span>
+                <span>{{model.gstNo}}</span>
               </li>
 
               <li>
@@ -127,59 +127,42 @@
           </div>
         </fieldset> -->
 
-        <div fxLayout="row" fxLayout.xs="column">
-          <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable' [rows]='rows' [limit]="PageSize" [columnMode]="'force'"
-            [headerHeight]="50" [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
-            <ngx-datatable-column name="S.No." prop="s no" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-               2323
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="SERVICE CODE" prop="alias" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-               232424
-              </ng-template>
-            </ngx-datatable-column>
+        <div fxLayout="row" fxLayout.xs="column">      
 
-            <ngx-datatable-column name="SERVICE" prop="serv">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>4554</span>
-                <p class="tabspan">125</p>
-              </ng-template>
-            </ngx-datatable-column>
+           <table class="tabl">
+            <tr>
+                <th style="width:50px;">S.No.</th>
+                <th>SERVICE CODE</th>
+                <th>SERVICE</th>
+                <th>DESCRIPTION</th>
+                <th>PRICE</th>
+                <th>DISCOUNT</th>
+                <th>AMOUNT</th>
+               
+            </tr>
+                <tr>
+                    <td>{{model.srNo}}</td>
+                    <td>{{model.serviceCode}}</td>
 
-            <ngx-datatable-column name="DESCRIPTION" prop="relation" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                ererwe
-              </ng-template>
-            </ngx-datatable-column>
+                    <td> <p>{{model.ServiceName}}</p>
+                      <p class="tabspan">{{model.subServiceName}}</p>
+                    </td>
 
-            <ngx-datatable-column name="PRICE" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>132213</span>
-
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="DISCOUNT" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                -1212
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="AMOUNT" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>
-                  <strong>1212</strong>
-                </span>
-              </ng-template>
-            </ngx-datatable-column>
-          </ngx-datatable>
+                    <td>{{model.description}}</td>
+                    <td><span>{{model.price}}</span></td>
+                    <td>{{model.discount}}</td>
+                    <td><span>
+              <strong>{{model.amount}}</strong>
+            </span></td>
+                </tr>
+        </table>
 
         </div>
         <div fxLayout="row" fxLayout.xs="column">
           <ul fxFlex="100" class="amnt">
             <li>
               <strong fxFlex="80">Total Bill Amount:</strong>
-              <span>12121/-</span>
+              <span>{{model.amount}}/-</span>
             </li>
             <li>
               <strong fxFlex="80"> GST(Tax):</strong>
@@ -187,12 +170,12 @@
             </li>
             <li>
               <strong fxFlex="80"> Net Payable Amount:</strong>
-              <span class="txtBold">12121/-</span>
+              <span class="txtBold">{{model.amount}}/-</span>
             </li>
-            <li>
+            <!--<li>
               <strong>In Words:</strong>
               <span class="txtBold">Eight Hundread Only</span>
-            </li>
+            </li>-->
           </ul>
         </div>
         <div class="inst" fxLayout="row" fxLayout.xs="column">
@@ -218,7 +201,8 @@
           </p>
         </div>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-          <button md-raised-button class="primary" (click)=getpdf(model.path);>Print</button>
+          <a md-raised-button class="primary" [attr.href]="model.path" target="_blank" >Print</a>
+          <!--<button md-raised-button class="primary" [routerLink]="model.path">Print</button>-->
         </div>
         <!-- <div *ngIf="show" class="popup">
           <div class="pop">you have entered wrong OTP

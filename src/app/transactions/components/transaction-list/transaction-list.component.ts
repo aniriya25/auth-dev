@@ -4,18 +4,21 @@ import { TransactionService } from './../../../services/transactions/transaction
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
-   providers: [TransactionService],
+   providers: [TransactionService]
 })
 export class TransactionListComponent implements OnInit {
  @ViewChild('myTable') table: any;
  @ViewChild('expandButton') el: ElementRef;
-   rows = [];
+  rows = [];
   temp = [];
   isLimits: number = 10;
   records: any;
   allTransction: object = {};
   outletId: number;
   user: any = {};
+  InvoiceData:any;
+  abc:any;
+  
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
@@ -25,6 +28,18 @@ export class TransactionListComponent implements OnInit {
      this.getTransctionData();
   }
   
+   getTransctionInvoiceData(id) {
+     // alert(value);
+      debugger;
+      this.user.transactionId = id;
+      this._alltransaction.getTransactionInvoce(this.user.transactionId)
+      .subscribe(data => {   
+       this.user.path = data.data["path"];
+       window.open(this.user.path).print();
+       
+      })     
+  }
+
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
@@ -34,8 +49,12 @@ export class TransactionListComponent implements OnInit {
        setTimeout(function () {
          el.click();
        }, );    
-      })
-     
+      })     
+  }
+  
+  invoiceShow(){
+
+
   }
 
 

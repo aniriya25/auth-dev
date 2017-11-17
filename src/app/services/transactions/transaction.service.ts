@@ -7,6 +7,7 @@ import { AuthHttp } from 'angular2-jwt';
 @Injectable()
 export class TransactionService {
 invoiceData: any = {};
+getpdf:any;
   constructor(
     private _http: Http,
      private authhttp: AuthHttp,
@@ -25,6 +26,15 @@ invoiceData: any = {};
     return this.authhttp.get(this.config.api_base_url+this.config.transaction_cupon_url+couponNumber)
       .map(data => {
           data.json();
+          return data.json();
+      });
+  }
+
+  getTransactionInvoce(id:any) {
+    debugger;
+    return this.authhttp.get(this.config.api_base_url+this.config.transactionInvoice_url+id+"/invoice")
+      .map(data => {         
+         data.json();
           return data.json();
       });
   }

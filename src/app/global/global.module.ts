@@ -60,6 +60,7 @@ export class AppConfig {
 
   // Transtions
   transaction_url:string;
+  transactionInvoice_url:string;
   transaction_cupon_url:string;
   cardDetails_update_url: string;
   transactionList_url:string;
@@ -82,7 +83,7 @@ export const APP_DI_CONFIG: AppConfig = {
   
   //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
   // api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
- //api_base_url: 'http://182.71.190.154/nerveapi/',
+  //api_base_url: 'http://182.71.190.154/nerveapi/',
   login_url:"auth/login",
   nerve_token_key:"h3u_nerve_usertoken",
   profile_personal_info_url:"users/me/profile/personal",
@@ -127,6 +128,7 @@ export const APP_DI_CONFIG: AppConfig = {
 
   //transaction
   transaction_url:'products/',
+  transactionInvoice_url:'transactions/',
   transaction_cupon_url:'requests/',
   cardDetails_update_url:'transactions',
   transactionList_url: 'me/transactions',
