@@ -108,28 +108,9 @@
             </ul>
           </div>
         </fieldset>
-        <!-- <fieldset fxFlex="100">
-          <legend> Transaction Information</legend>
-          <div fxLayout="row" fxLayout.xs="column">
-            <ul fxFlex="60">
-              <li>
-                <strong fxFlex="40">Txn ID:</strong>
-                <span> PA0987</span>
-              </li>
-              
-             
-            </ul>
-            <ul fxFlex="40">
-              
-              <li>
-                <span style="color:red">BarCode</span>
-              </li>
-            </ul>
-          </div>
-        </fieldset> -->
 
         <div fxLayout="row" fxLayout.xs="column">
-          <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable' [rows]='rows' [limit]="PageSize" [columnMode]="'force'"
+          <!-- <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable' [rows]='rows' [limit]="PageSize" [columnMode]="'force'"
             [headerHeight]="50" [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
             <ngx-datatable-column name="S.No." prop="s no" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
@@ -173,7 +154,34 @@
                 </span>
               </ng-template>
             </ngx-datatable-column>
-          </ngx-datatable>
+          </ngx-datatable> -->
+          <table class="tabl">
+            <tr>
+                <th style="width:50px;">S.No.</th>
+                <th>SERVICE CODE</th>
+                <th>SERVICE</th>
+                <th>DESCRIPTION</th>
+                <th>PRICE</th>
+                <th>DISCOUNT</th>
+                <th>AMOUNT</th>
+               
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td >123456</td>
+
+                    <td> <p>Service</p>
+                      <p class="tabspan">Subservice</p>
+                    </td>
+
+                    <td> DESCRIPTION</td>
+                    <td>  <span>Price</span></td>
+                    <td> discount</td>
+                    <td><span>
+              <strong>Amount</strong>
+            </span></td>
+                </tr>
+        </table>
 
         </div>
         <div fxLayout="row" fxLayout.xs="column">
