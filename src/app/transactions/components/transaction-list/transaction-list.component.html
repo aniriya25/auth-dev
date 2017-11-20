@@ -37,14 +37,13 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-
                     [rowHeight]="'auto'">                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                          <ul fxFlex="90" fxLayoutAlign="center center">
-                          <li fxFlex="80">Status:{{row.status}}</li>
-                          <li fxFlex="80">Remarks:Pending</li>
-                          <li fxFlex="80">Created By: <a>{{row.patientName}}</a></li>
+                          <ul fxFlex="92" fxLayoutAlign="center center">
+                          <li fxFlex="30">Status:{{row.status}}</li>
+                          <li fxFlex="30">Remarks:Pending</li>
+                          <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>
                           <li fxFlex="20" fxLayoutAlign="end"><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
