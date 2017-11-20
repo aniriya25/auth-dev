@@ -41,6 +41,7 @@ export class TransactionComponent implements OnInit {
   showotp: boolean = false;
   detailspay: boolean = false;
   proData: any = {};
+  getMembers:any = {};
 
   constructor(
     private _transaction: TransactionService,
@@ -54,7 +55,8 @@ export class TransactionComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent,{data:{
-      cardNumber: this.user.cardNumber
+      cardNumber: this.user.cardNumber,
+      // coupnNumber: this.user.cuponNumber
     }});
   }
   
@@ -74,6 +76,7 @@ export class TransactionComponent implements OnInit {
        consultationType: this.user.consultationType,
 
        cardNumber: this.user.cardNumber,
+       cuponNumber: this.user.cuponNumber,
        serviceName: this.user.serviceName,
        subServiceName: this.user.subServiceName, 
        totalAmount: this.user.totalAmount,
@@ -86,14 +89,16 @@ export class TransactionComponent implements OnInit {
   }
    myControl: FormControl = new FormControl();
    paymentMode = [
-    { refPayModeId: 1, name: "Cash" },   
-    { refPayModeId: 2, name: "Credit Card"},
-    { refPayModeId: 3, name: "Debt Card"},
-    { refPayModeId: 4, name: "Paytm Wallet"},
-    { refPayModeId: 5, name: "Others"}
+    { id: 1, name: "Cash" },   
+    { id: 2, name: "Credit Card"},
+    { id: 3, name: "Debt Card"},
+    { id: 4, name: "Paytm Wallet"},
+    { id: 5, name: "Others"}
   ]
   ngOnInit() {
-    
+
+    this.user['refPayModeId'] = "1";
+
     this.getIdentityData();
     this.getProviderData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
@@ -149,13 +154,16 @@ getPayableAmountData() {
        //debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
+      //  this.user.cardNumber = data.data["cardNumber"];
        this.user.refcouponId = data.data["refcouponId"];
        this.user.consultationType = data.data["consultationType"];
        this.rows = data.data["Members"];
        this.services = data.data["Services"];
        this.user.serviceId = this.services[0]["serviceId"];
+       this.user.serviceName = this.services[0]["serviceName"];
        this.speciality= data.data["SubServices"];
        this.user.subServiceId = this.speciality[0]["subServiceId"];
+       this.user.subServiceName = this.speciality[0]["subServiceName"];
        this.user.totalAmount = data.data["totalAmount"];
        this.user.discountAmount = data.data["discountAmount"];
        this.user.payableAmount = data.data["payableAmount"];
@@ -165,19 +173,21 @@ getPayableAmountData() {
     else if(this.user.cardNumber.length == 16){
       this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
-      // debugger;
+       //debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId = data.data["refcouponId"];
        this.user.consultationType = data.data["consultationType"];
-       this.rows = data.data["Members"];
+      //  this.rows = data.data["Members"];
        this.services = data.data["Services"];
+       this.speciality= data.data["SubServices"];
        this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];    
       })
     }else{
       this.snackBar.open("Please enter the valid Card No / Cupon No.","",{duration:5000});
     }   
   }
+
   kycShow(value) {
     //debugger;
     this.kycshow = true;
@@ -204,10 +214,16 @@ getPayableAmountData() {
     this.payshow = true;
     this.button = true;
   }
+
+  getMemberData(value){
+     //debugger;
+     this.rows = this.alldatavalue["Members"];  
+    }
+
   getSubService(value){
    this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
 
-   this.user.serviceName=  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
+   this.user.serviceName =  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
    
   }  
    // edit readonly fields
@@ -217,6 +233,7 @@ getPayableAmountData() {
   }
 
     getSubServiceName(value){
+      //debugger;
       this.user.subServiceName=  this.alldatavalue["SubServices"].filter(function (a) { return a.subServiceId === value; })[0]["subServiceName"];
     }
 

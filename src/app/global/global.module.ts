@@ -45,6 +45,8 @@ export class AppConfig {
   mou_type_master: string;
   mou_annexures: string;
 
+  providerProfile:string;
+
   // profile
   profile_personal_update_url:string;
   profile_corporate_update_url:string;
@@ -75,14 +77,22 @@ export class AppConfig {
 
 }
 
+let getHostName = window.location.hostname;
+if(getHostName == "localhost") {
+  var _hostName = "http://192.168.9.50/";
+  //var _hostName = "https://www.h3u.com/";
+} else {
+  var _hostName = "https://www.h3u.com/";
+}
+
 export const APP_DI_CONFIG: AppConfig = {
 
-  //api_base_url: 'http://192.168.9.50/v2/apis/auth/',
+  api_base_url: 'http://192.168.9.50/v2/apis/auth/',
   
-  api_base_url: 'https://www.h3u.com/v2/apis/auth/',
+  //api_base_url: 'https://www.h3u.com/v2/apis/auth/',
   
   //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
-  // api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
+  //api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
   //api_base_url: 'http://182.71.190.154/nerveapi/',
   login_url:"auth/login",
   nerve_token_key:"h3u_nerve_usertoken",
@@ -113,6 +123,8 @@ export const APP_DI_CONFIG: AppConfig = {
 
   mou_type_master: 'masters/mouTypes',
   mou_annexures: 'masters/mouAnnexures',
+
+  providerProfile:'me/profile',
 
   // profiles
   profile_personal_update_url:'users/profile/personal',

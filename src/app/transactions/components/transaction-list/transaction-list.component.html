@@ -32,7 +32,7 @@
                    </small>
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
-                    [limit]="PageSize"
+                    [limit]="10"
                     [columnMode]="'force'"
                     [headerHeight]="50"
                     [footerHeight]="50"
@@ -41,10 +41,11 @@
                     [rowHeight]="'auto'">                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                          <ul fxFlex="100" fxLayoutAlign="center center">
-                          <li fxFlex="80">Status:{{row.status}}</li>
-                          <li fxFlex="80">Remarks:Pending</li>
-                          <li fxFlex="80">Created By: <a>{{row.patientName}}</a></li>
+                         <ul fxFlex="92" fxLayoutAlign="center center">
+                          <li fxFlex="30">Status:{{row.status}}</li>
+                          <li fxFlex="30">Remarks:Pending</li>
+                          <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>
+                          <li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
                       </ngx-datatable-row-detail>
@@ -62,13 +63,13 @@
                       </ng-template>
                     </ngx-datatable-column>
 
-                     <ngx-datatable-column name="DATE" prop="date" [width]="160" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                     <ngx-datatable-column name="DATE" prop="date" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                              {{row.transactionDate}}
                           </ng-template>
                      </ngx-datatable-column> 
 
-                     <ngx-datatable-column name="TYPE" prop="type" [width]="160" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                     <ngx-datatable-column name="TYPE" prop="type" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         <span>{{row.discountAmount}}</span>
                         <p>{{row.cardNumber}}</p>
@@ -100,11 +101,7 @@
                         </ng-template>
                       </ngx-datatable-column>
 
-                          <ngx-datatable-column name="PRINT" prop="print" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>                         
-                              <a title="Print" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><md-icon class="print">print</md-icon></a>
-                            </ng-template>
-                          </ngx-datatable-column>
+                          
                     </ngx-datatable>
                   </div>
                 </div>

@@ -9,9 +9,10 @@
                     <md-input-container fxFlex="45">
                         <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (blur)="getTrasnctionData1($event);" maxlength="20">
                     </md-input-container>
-                     <div fxFlex="45" style="padding-left:20px;">
-                       <!--<button md-raised-button class="primary" >UPDATE</button>-->
-                       <!--<button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="getTransaction();">Verify</button>-->
+                     <div fxFlex="100" style="padding-left:20px;">
+                      <md-input-container fxFlex="45">
+                        <input type="text" mdInput placeholder="Cupon Number" required [(ngModel)]="user.cuponNumber" name="cuponNumber" #cuponNumber="ngModel" maxlength="20">
+                    </md-input-container>
                      </div>
                     
                     </div>
@@ -27,7 +28,7 @@
                         </md-option>
                           </md-select>
 
-                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel" (change)="getSubServiceName($event.value)">
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel" (change)="getMemberData($event.value); getSubServiceName($event.value)">
                            <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}} select ="this.user.subServiceId">
                               {{ speciality.subServiceName }}
                             </md-option>
@@ -148,27 +149,34 @@
                   <div fxLayout="row" fxLayout.xs="column" *ngIf="showotp" >
                           <fieldset fxFlex="100">
                           <legend>OTP Request</legend>
+                          <div fxFlex="100"  fxFlex.xs="100">
+                           <md-input-container fxFlex="80"> 
+                              <input type="text" mdInput type='text' placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
+                           </md-input-container>   
+                           <button md-raised-button fxFlexOffset="5" class="btn_contain primary" (click)="verifyOTP();">Verify</button>
+                           </div>
+                           
+<!--                           
                            <md-input-container fxFlex="98"> 
                               <input type="text" mdInput type='text' placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
                            </md-input-container>   
-                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="verifyOTP();">Verify</button></span>
+                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="verifyOTP();">Verify</button></span>-->
                         </fieldset>
                        </div>
 
                        <div fxLayout="row" fxLayout.xs="column" *ngIf="payshow" >
                           <fieldset fxFlex="100">
                           <legend>Payment</legend>
-                          <md-input-container fxFlex="98">
+                          <div fxFlex="100"  fxFlex.xs="100">
+                          <md-input-container fxFlex="80">
                               <input type="text" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (onChange) = "getPayableAmountData();" />
                             </md-input-container>  
-                           <span fxLayoutAlign="end"><button md-raised-button class="primary" (click)="getPayableAmountData(); paydetails();">Verify</button></span>
-                        </fieldset>
-                       </div>
-
-                    
+                           <button md-raised-button fxFlexOffset="5" class="btn_contain primary"  (click)="getPayableAmountData(); paydetails();">Verify</button>
+                          </div>
+                          
                     <div fxLayout="row" fxLayout.xs="column" *ngIf="detailspay" >
-                     <fieldset fxFlex="100">
-                        <legend>Payment Details</legend>
+                     <fieldset fxFlex="100" class="field">
+                      
                        <div fxLayout="row" fxFlex="98">     
                                             
                         <md-input-container fxFlex="49"  >
@@ -186,8 +194,9 @@
                             <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.doctor" name="doctor" #doctor="ngModel"/>
                         </md-input-container>
                         
+                       
                         <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt" [disabled] ="amoutP">
-                            <md-option *ngFor="let option of paymentMode" value= {{option.refPayModeId}}> {{ option.name }} </md-option>
+                            <md-option *ngFor="let _option of paymentMode" value= {{_option.id}}> {{ _option.name }} </md-option>
                         </md-select>
 
                         <md-input-container fxFlex="32" fxFlexOffset="2">
@@ -199,6 +208,10 @@
                </fieldset>
                       
                     </div>  
+                        </fieldset>
+                       </div>
+
+                    
                 
                   <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="end">
                     <button md-raised-button class="primary" (click)="openreview()" [disabled] ="button">Submit</button>

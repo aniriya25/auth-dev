@@ -35,9 +35,14 @@ export class TransactionListComponent implements OnInit {
       this._alltransaction.getTransactionInvoce(this.user.transactionId)
       .subscribe(data => {   
        this.user.path = data.data["path"];
-       window.open(this.user.path).print();
-       
+      //  window.open(this.user.path).print();
+      this.getPrint();       
       })     
+  }
+ getPrint()
+  {
+      var printPage = window.open(this.user.path, '_blank').print();     
+            
   }
 
   getTransctionData() {

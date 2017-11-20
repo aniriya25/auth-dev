@@ -15,18 +15,31 @@ export class DashboardMenuComponent implements OnInit {
   isOpened:boolean = true;
   isOpenSide:string = 'side';
   providerLength: number = 0; 
+  id:number;
+
   constructor(
     private loginService:LoginService,
     private router:Router,
     private userProfile: ProfileService,
     private providerService: ProviderService
     ) {
-        this.providerService.getAllProvider()
-          .subscribe(data => {
-            this.providerLength = data.data.length;
-            console.log(this.providerLength);
-          })
+        // this.providerService.getAllProvider()
+        //   .subscribe(data => {
+        //     this.providerLength = data.data.length;
+        //     console.log(this.providerLength);
+        //   })
      }
+
+
+    getUserProviderProfile() {
+      this.providerService.getProviderProfileData() 
+      .subscribe(data => {
+        this.profile = data.data;
+        console.log("Get Provider ID:");
+        console.log(data.data);
+      })
+  }
+   
 
   ngOnInit() {
     this.getUserProfile();
