@@ -22,21 +22,18 @@ export class TransactionListComponent implements OnInit {
   user: any = {};
   InvoiceData:any;
   abc:any;
+  alldatavalue: any = [];
   
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService,  public dialog: MdDialog) { }
+  constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { }
   ngOnInit() {
   
      this.getTransctionData();
   }
   
-openDialog() {
-    const dialogRef = this.dialog.open(SummaryComponent);
-  }
-
-   getTransctionInvoiceData(id) {
+ getTransctionInvoiceData(id) {
      // alert(value);
       debugger;
       this.user.transactionId = id;
@@ -65,23 +62,22 @@ openDialog() {
   }
 
   onSelect({ selected }) {
-    console.log('Select Event', selected, this.selected);
+    //console.log('Select Event', selected, this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+    this.alldatavalue = this.selected;
   }
 
   onActivate(event) {
     console.log('Activate Event', event);
   }
   
-  //  onSelect({ selected }) {
-  //   debugger;
-  //   this.selected.splice(0, this.selected.length);
-  //   this.selected.push(selected);
-  // }
 
-  // selectCheck(row, column, value) {
-  //   return row.id;
-  // }
+   openreview() {
+     debugger;       
+       const dialogRef = this.dialog.open(SummaryComponent,{data:{
+       rows:  this.alldatavalue
+  }});
+  }
 
 }

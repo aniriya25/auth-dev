@@ -98,7 +98,6 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
 
     this.user['refPayModeId'] = "1";
-
     this.getIdentityData();
     this.getProviderData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  

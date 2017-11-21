@@ -31,7 +31,7 @@ getpdf:any;
   }
 
   getTransactionInvoce(id:any) {
-    debugger;
+   // debugger;
     return this.authhttp.get(this.config.api_base_url+this.config.transactionInvoice_url+id+"/invoice")
       .map(data => {         
          data.json();

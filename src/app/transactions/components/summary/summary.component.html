@@ -37,23 +37,23 @@
             [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
             <ngx-datatable-column name="DESCRIPTION" prop="id">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span>Txn ID</span>
-                <p>Card No</p>
+                <span>{{row.id}}</span>
+                <p>{{row.cardNumber}}</p>
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="PATIENT" prop="outlet">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span> Name</span>
-                <p>Gender</p>
+                <span>{{ row.patientName}}</span>
+                <p>{{row.gender}}</p>
                 <p class="tabspan">Relationship</p>
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="SERVICE" prop="outlet">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span> Service</span>
-                <p class="tabspan">Subservice</p>
+                <span> {{row.service}}</span>
+                <p class="tabspan">{{row.subService}}</p>
               </ng-template>
             </ngx-datatable-column>
 
@@ -66,9 +66,9 @@
 
             <ngx-datatable-column name="PRICE" prop="date" width="100">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span> Total Amnt</span>
-                <p class="tabspan">Discount</p>
-                <p>Paid By</p>
+                <span>{{row.totalAmount}}</span>
+                <p class="tabspan">{{row.discountAmount}}</p>
+                <p>{{row.payableAmount}}</p>
               </ng-template>
             </ngx-datatable-column>
 
