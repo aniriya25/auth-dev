@@ -62,7 +62,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   onSelect({ selected }) {
-    //console.log('Select Event', selected, this.selected);
+    console.log('Select Event', this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
     this.alldatavalue = this.selected;
@@ -72,12 +72,11 @@ export class TransactionListComponent implements OnInit {
     console.log('Activate Event', event);
   }
   
-
-   openreview() {
+  openreview() {
      debugger;       
-       const dialogRef = this.dialog.open(SummaryComponent,{data:{
-       rows:  this.alldatavalue
-  }});
+       const dialogRef = this.dialog.open(SummaryComponent,{data:[
+        this.rows = this.alldatavalue
+       ]});
   }
 
 }

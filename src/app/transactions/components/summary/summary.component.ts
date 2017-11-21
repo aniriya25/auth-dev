@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject} from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { TransactionService } from './../../../services/transactions/transaction.service';
 import { InvoiceComponent } from './../../../invoices/components/invoice/invoice.component';
@@ -16,23 +16,18 @@ export class SummaryComponent implements OnInit {
   // @ViewChild('myTable') table: any;
   rows = [];
   temp = [];
-  isLimits: number = 10;
-
-  constructor(public dialogRef: MdDialogRef<SummaryComponent>,@Inject(MD_DIALOG_DATA) public data: any,
+  isLimits: number = 3;
+ 
+  constructor(public dialogRef: MdDialogRef<SummaryComponent>,@Inject(MD_DIALOG_DATA) public data:any = [],
   private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router,
   private _profile: ProfileService) {
-
     debugger;
-    this.rows = this.data;
+    this.rows = this.data[0];   
    }
 
   ngOnInit() {
-     this.getSelectedData();
+
   }
-
-  getSelectedData(){
-    this.rows = this.data;
-
-  }  
-
+a
+ 
 }
