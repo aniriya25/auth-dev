@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransactionService } from './../../../services/transactions/transaction.service';
+import {MdDialog} from '@angular/material';
+import { SummaryComponent } from '../summary/summary.component';  
+
+
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
@@ -22,12 +26,16 @@ export class TransactionListComponent implements OnInit {
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService) { }
+  constructor(private _alltransaction: TransactionService,  public dialog: MdDialog) { }
   ngOnInit() {
   
      this.getTransctionData();
   }
   
+openDialog() {
+    const dialogRef = this.dialog.open(SummaryComponent);
+  }
+
    getTransctionInvoiceData(id) {
      // alert(value);
       debugger;

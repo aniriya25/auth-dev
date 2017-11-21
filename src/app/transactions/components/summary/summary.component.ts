@@ -6,17 +6,17 @@ import { Component, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent implements OnInit {
-  @ViewChild('myTable') table: any;
-  rows = [];
-  temp = [];
-  isLimits: number = 10;
-  records: any;
+  // @ViewChild('myTable') table: any;
+  // rows = [];
+  // temp = [];
+  // isLimits: number = 10;
+  // records: any;
+
+   rows = [ {} ];
+
   constructor() { }
 
-  ngOnInit() {
-    this.rows = [
-      { "company": "", "service": "", "comment": "" },
-      ];
-  }
+  ngOnInit() {}
+  
 
 }

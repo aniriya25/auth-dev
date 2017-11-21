@@ -2,8 +2,9 @@
   <div fxLayout="row">
     <md-card class="profileCard" fxFlex="100">
         <div fxFlex="98" fxFlexOffset="1" class="left-card">
-         <h2><span  fxFlex="80">Transaction List</span>
-         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
+        <h2><span  fxFlex="70">Transaction List</span>
+          <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="openDialog()">Generate Invoice</button>
+         <button md-raised-button type="button" fxFlexOffset="2" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
