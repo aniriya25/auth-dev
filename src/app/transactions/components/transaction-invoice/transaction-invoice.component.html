@@ -20,25 +20,25 @@
           <legend> Patient Information</legend>
           <div fxLayout="row" fxLayout.xs="column">
             <ul fxFlex="60">
-               <li>
-                <strong fxFlex="25">Card Holder Name:</strong>
-                <span fxFlex="70">{{model.cardHolderName}}</span>
-              </li>
+               
               <li>
-                <strong fxFlex="25">Patient Name:</strong>
-                <span fxFlex="30">{{model.patientName}}</span>
-                <strong fxFlex="15">Age:</strong>
-                <span>{{model.age}}</span>
+                <strong fxFlex="25">Name:</strong>
+                <span fxFlex="30">{{model.patientName}}</span>               
               </li>
-             
-         
+                      
               <li>
                 <strong fxFlex="25">Gender:</strong>
-                <span> {{model.gender}}</span>
+                <span fxFlex="30"> {{model.gender}}</span>
+                 <strong fxFlex="15">Age:</strong>
+                <span>{{model.age}}</span>
               </li>
               <li>
                 <strong fxFlex="25">Address:</strong>
                 <span>{{model.patientAddress}}</span>
+              </li>
+              <li>
+                <strong fxFlex="25">Card Holder:</strong>
+                <span fxFlex="70">{{model.cardHolderName}}</span>
               </li>
             </ul>
             <ul fxFlex="40" style="border-left:1px solid #cccccc">
@@ -114,25 +114,24 @@
                 <th>SERVICE CODE</th>
                 <th>SERVICE</th>
                 <th>DESCRIPTION</th>
-                <th>PRICE</th>
-               
                 <th>AMOUNT</th>
+<!--               
+                <th>AMOUNT</th>-->
                
             </tr>
                 <tr>
                     <td>{{model.srNo}}</td>
                     <td>{{model.serviceCode}}</td>
-
-                    <td> <p>{{model.ServiceName}}</p>
+                    <td>
+                      <p>{{model.serviceName}}</p>
                       <p class="tabspan">{{model.subServiceName}}</p>
                     </td>
-
                     <td>{{model.description}}</td>
                     <td><span>{{model.price}}</span></td>
                     <!--<td></td>-->
-                    <td><span>
+                    <!--<td><span>
               <strong>{{model.amount}}</strong>
-            </span></td>
+            </span></td>-->
                 </tr>
         </table>
 
@@ -140,17 +139,21 @@
         <div fxLayout="row" fxLayout.xs="column">
           <ul fxFlex="100" class="amnt">
             <li>
-              <strong fxFlex="80">Total Bill Amount:</strong>
-              <span>{{model.amount}}/-</span>
+              <strong fxFlex="80">Total:</strong>
+              <span>{{model.price}}/-</span>
             </li>
+             <li>
+                <strong fxFlex="80"> Discount:</strong>
+                <span> {{model.discount}}/-</span>
+             </li>
+             <li>
+              <strong fxFlex="80">Total Billed Amount:</strong>
+              <span class="txtBold">{{model.amount}}/-</span>
+             </li> 
             <li>
               <strong fxFlex="80"> GST(Tax):</strong>
               <span>0.00/-</span>
             </li>
-             <li>
-                    <strong fxFlex="80"> Discount:</strong>
-                    <span> {{model.discount}}/-</span>
-                  </li>
             <li>
               <strong fxFlex="80"> Net Payable Amount:</strong>
               <span class="txtBold">{{model.amount}}/-</span>
