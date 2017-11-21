@@ -14,7 +14,9 @@ body {
     min-height: 30px;
     padding-top: 20px;
 }
-
+datatable-body-row{
+    width: 100% !important;
+}
 .ngx-datatable.material .datatable-body .datatable-row-detail{
     background: none ; 
     padding: 10px;
