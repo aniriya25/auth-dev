@@ -10,9 +10,7 @@
       <li fxFlex="20">
         Vipul Medcare Pvt Ltd
         <p>534, Udyog Vihar, Phase V</p>
-
-        <p>Gurgaon, Haryana-122016</p>
-        
+        <p>Gurgaon, Haryana-122016</p>        
         <p style="font-weight:bold;">0124-4803182 </p>
       </li>
     </ul>
@@ -22,23 +20,24 @@
           <legend> Patient Information</legend>
           <div fxLayout="row" fxLayout.xs="column">
             <ul fxFlex="60">
+               <li>
+                <strong fxFlex="25">Card Holder Name:</strong>
+                <span fxFlex="70">{{model.cardHolderName}}</span>
+              </li>
               <li>
-                <strong fxFlex="30">Patient Name:</strong>
-                <span>{{model.patientName}}</span>
-                <strong fxFlex="20">Age:</strong>
+                <strong fxFlex="25">Patient Name:</strong>
+                <span fxFlex="30">{{model.patientName}}</span>
+                <strong fxFlex="15">Age:</strong>
                 <span>{{model.age}}</span>
               </li>
-              <li>
-                <strong fxFlex="30">Card Holder Name:</strong>
-                <span fxFlex="60">{{model.cardHolderName}}</span>
-              </li>
+             
          
               <li>
-                <strong fxFlex="40">Gender:</strong>
+                <strong fxFlex="25">Gender:</strong>
                 <span> {{model.gender}}</span>
               </li>
               <li>
-                <strong fxFlex="40">Address:</strong>
+                <strong fxFlex="25">Address:</strong>
                 <span>{{model.patientAddress}}</span>
               </li>
             </ul>
@@ -68,21 +67,21 @@
           <div fxLayout="row" fxLayout.xs="column">
             <ul fxFlex="60">
               <li>
-                <strong fxFlex="30">Name:</strong>
-                <span>{{model.outletName}}</span>
-                <strong fxFlex="20"> Code:</strong>
+                <strong fxFlex="25">Name:</strong>
+                <span fxFlex="30">{{model.outletName}}</span>
+                <strong fxFlex="15"> Code:</strong>
                 <span>{{model.outletCode}}</span>
               </li>
            
               <li>
-                <strong fxFlex="30">Doctor Name:</strong>
-                <span>{{model.doctorName}}</span>
-                 <strong fxFlex="20"> User ID:</strong>
+                <strong fxFlex="25">Doctor Name:</strong>
+                <span fxFlex="30">{{model.doctorName}}</span>
+                 <strong fxFlex="15"> User ID:</strong>
                 <span> {{model.puhid}}</span>
               </li>
                <li>
-                <strong fxFlex="40">Address:</strong>
-                <span>{{model.outletAddress}}</span>
+                <strong fxFlex="25">Address:</strong>
+                <span fxFlex="70">{{model.outletAddress}}</span>
               </li>
             </ul>
             <ul fxFlex="40" style="border-left:1px solid #cccccc">
@@ -106,25 +105,6 @@
             </ul>
           </div>
         </fieldset>
-        <!-- <fieldset fxFlex="100">
-          <legend> Transaction Information</legend>
-          <div fxLayout="row" fxLayout.xs="column">
-            <ul fxFlex="60">
-              <li>
-                <strong fxFlex="40">Txn ID:</strong>
-                <span> PA0987</span>
-              </li>
-              
-             
-            </ul>
-            <ul fxFlex="40">
-              
-              <li>
-                <span style="color:red">BarCode</span>
-              </li>
-            </ul>
-          </div>
-        </fieldset> -->
 
         <div fxLayout="row" fxLayout.xs="column">      
 
@@ -149,7 +129,7 @@
 
                     <td>{{model.description}}</td>
                     <td><span>{{model.price}}</span></td>
-                    <td>{{model.discount}}</td>
+                    <!--<td></td>-->
                     <td><span>
               <strong>{{model.amount}}</strong>
             </span></td>
@@ -169,7 +149,7 @@
             </li>
              <li>
                     <strong fxFlex="80"> Discount:</strong>
-                    <span> 0.00/-</span>
+                    <span> {{model.discount}}/-</span>
                   </li>
             <li>
               <strong fxFlex="80"> Net Payable Amount:</strong>

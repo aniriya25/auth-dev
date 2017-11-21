@@ -10,7 +10,7 @@ export class TransactionListComponent implements OnInit {
  @ViewChild('myTable') table: any;
  @ViewChild('expandButton') el: ElementRef;
   rows = [];
-  temp = [];
+  selected = [];
   isLimits: number = 10;
   records: any;
   allTransction: object = {};
@@ -41,8 +41,7 @@ export class TransactionListComponent implements OnInit {
   }
  getPrint()
   {
-      var printPage = window.open(this.user.path, '_blank').print();     
-            
+      var printPage = window.open(this.user.path, '_blank');
   }
 
   getTransctionData() {
@@ -56,11 +55,25 @@ export class TransactionListComponent implements OnInit {
        }, );    
       })     
   }
-  
-  invoiceShow(){
 
-
+  onSelect({ selected }) {
+    console.log('Select Event', selected, this.selected);
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
   }
 
+  onActivate(event) {
+    console.log('Activate Event', event);
+  }
+  
+  //  onSelect({ selected }) {
+  //   debugger;
+  //   this.selected.splice(0, this.selected.length);
+  //   this.selected.push(selected);
+  // }
+
+  // selectCheck(row, column, value) {
+  //   return row.id;
+  // }
 
 }

@@ -28,7 +28,6 @@ export class ReviewComponent implements OnInit {
    //alert(this.data.cardOnName);
       //debugger;
       this.user.refCardId = this.data.refCardId;
-      this.user.refcouponId = this.data.refcouponId;
       this.user.consultationType = this.data.consultationType;
       this.user.serviceId = this.data.serviceId;
       this.user.subServiceId = this.data.subServiceId;
@@ -40,7 +39,6 @@ export class ReviewComponent implements OnInit {
       this.user.refcouponId = this.data.refcouponId;
 
       this.user.cardNumber = this.data.cardNumber;
-      this.user.cuponNumber = this.data.cuponNumber;
       this.user.serviceName = this.data.serviceName;
       this.user.subServiceName = this.data.subServiceName;
       this.user.totalAmount = this.data.totalAmount;
