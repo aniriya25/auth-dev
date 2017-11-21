@@ -1,9 +1,10 @@
 <div class="container">
   <div fxLayout="row">
-    <md-card class="profileCard" fxFlex="100">
+    <md-card class="profileCard" fxFlex="100" >
         <div fxFlex="98" fxFlexOffset="1" class="left-card">
-         <h2><span  fxFlex="80">Transaction List</span>
-         <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
+         <h2><span  fxFlex="70">Transaction List</span>
+          <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" (click)="openDialog()">Generate Invoice</button>
+         <button md-raised-button type="button" fxFlexOffset="2" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/transactions/transaction">Add Transaction</button>
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
@@ -40,11 +41,11 @@
                     [rowHeight]="'auto'">                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                          <ul fxFlex="97" fxLayoutAlign="start center">
+                          <ul fxFlex="98" fxLayoutAlign="start center">
                           <li fxFlex="20">Status:{{row.status}}</li>
                           <li fxFlex="20">Remarks:Pending</li>
                           <li fxFlex="20">Created By: <a>{{row.patientName}}</a></li>
-                          <li fxFlex="15" fxLayoutAlign="end" ><a title="Print"><md-icon class="print">print</md-icon></a></li>
+                          <li fxFlex="16" fxLayoutAlign="end" ><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
                       </ngx-datatable-row-detail>
@@ -99,7 +100,6 @@
                           <span><strong>{{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-
                          
                     </ngx-datatable>
                   </div>
