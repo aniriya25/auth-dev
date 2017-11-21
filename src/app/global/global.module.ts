@@ -87,9 +87,9 @@ export class AppConfig {
 
 export const APP_DI_CONFIG: AppConfig = {
 
-  api_base_url: 'http://192.168.9.50/v2/apis/auth/',
+  //api_base_url: 'http://192.168.9.50/v2/apis/auth/',
   
-  //api_base_url: 'https://www.h3u.com/v2/apis/auth/',
+  api_base_url: 'https://www.h3u.com/v2/apis/auth/',
   
   //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
   //api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
