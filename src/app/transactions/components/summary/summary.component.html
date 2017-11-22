@@ -39,6 +39,17 @@
            [scrollbarV]="false"
            [rowHeight]="'auto'"
             >
+
+          <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                         <ul fxFlex="92" fxLayoutAlign="center center">
+                          <li fxFlex="30">Status:{{row.status}}</li>
+                          <li fxFlex="30">Remarks:Pending</li>
+                          <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>                         
+                          </ul>
+                        </ng-template>
+            </ngx-datatable-row-detail>              
+
             <ngx-datatable-column name="DESCRIPTION" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>{{row.id}}</span>
@@ -54,7 +65,7 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="SERVICE" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
+            <ngx-datatable-column name="SERVICE" prop="outlet" [width]="120" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> {{row.service}}</span>
                 <p class="tabspan">{{row.subService}}</p>
@@ -68,21 +79,21 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PRICE" prop="date" [width]="80" [canAutoResize]="false"  [resizeable]="false">
+            <ngx-datatable-column name="PRICE" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>{{row.totalAmount}}</span>              
-                <p>{{row.payableAmount}}</p>
+                <span>Total - {{row.totalAmount}}</span>              
+                <p>Payble - {{row.payableAmount}}</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="TAX" prop="date" [width]="75" [canAutoResize]="false"  [resizeable]="false">
+            <ngx-datatable-column name="TAX" prop="date" [width]="70" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>0%</span>
                 <p>0.00</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="H3U APPROVED" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+            <ngx-datatable-column name="H3U APPROVED" prop="date" [width]="165" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                <span><strong> {{row.discountAmount}} </strong></span>
               </ng-template>
