@@ -22,6 +22,7 @@ export class TransactionListComponent implements OnInit {
   user: any = {};
   InvoiceData:any;
   abc:any;
+  allrows = [];
   alldatavalue: any = [];
   
   onExpandClick() {
@@ -77,11 +78,8 @@ export class TransactionListComponent implements OnInit {
   openreview() {
        //debugger;       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
-        this.rows = this.alldatavalue
+        this.allrows = this.alldatavalue
        ], disableClose: true});
-      //  this. getTransctionData();
-       this.selected = [];
-       this. getTransctionData();
-  }
+   }
 
 }

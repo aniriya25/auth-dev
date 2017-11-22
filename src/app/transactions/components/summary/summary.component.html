@@ -79,10 +79,10 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PRICE" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
+            <ngx-datatable-column name="PRICE" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>Total - {{row.totalAmount}}</span>              
-                <p>Payble - {{row.payableAmount}}</p>
+                <p>Paid by User - {{row.payableAmount}}</p>
               </ng-template>
             </ngx-datatable-column>
 
@@ -113,7 +113,7 @@
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
           <button md-raised-button class="primary">Submit</button>
-          <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close (click)=editInvoice();>Edit</button>
+          <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
         </div>
         
     </div>

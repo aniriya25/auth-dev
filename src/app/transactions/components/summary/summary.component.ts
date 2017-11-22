@@ -17,6 +17,7 @@ export class SummaryComponent implements OnInit {
   rows = [];
   InvoiceViewData:any;
   user: any = {};
+  allrows = [];
   //temp = [];
   //isLimits: number = 3;
  
@@ -24,7 +25,8 @@ export class SummaryComponent implements OnInit {
   private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router,
   private _profile: ProfileService) {
     //debugger;
-    this.rows = this.data[0];     
+    this.allrows = this.rows;
+    this.rows = this.data[0];   
    }
    
    getSum(totalAmount) : number {
@@ -38,10 +40,6 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.getInvoiceViewData();
   }
-
- editInvoice(){
-   this.rows = [];   
- }  
 
  getInvoiceViewData() {
     debugger;
