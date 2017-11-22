@@ -6,34 +6,30 @@
         <h2>Transaction Summary</h2>
         <div fxLayout="row" fxLayout.xs="column">
             <ul class="supp" fxFlex="100">
-                <li fxFlex="10">
-                    <img src="https://www.h3u.com/bucket/assets/h3u/logos/H3U_Logo_SVG.svg" alt="H3U" class="logo" style="height:50px; width:auto; margin:0px ;">
-                   
+                <li fxFlex="9">
+                    <img src={{user.companyLogo}} alt="H3U" class="logo" style="height:50px; width:auto; margin:0px ;">
                 </li>
-                <li fxFlex="60">
-                    <span style="font-weight:bold;">Vipul Medcare Pvt Ltd</span>
-                    <p>534, Udyog Vihar, Phase V</p>
-                    <p>Gurgaon, Haryana-122016</p>
-                    <p style="font-weight:bold;">0124-4803182 </p>
+                <li fxFlex="50">
+                    <span style="font-weight:bold;">{{user.companyName}}</span>
+                    <p>{{user.companyAddress}}</p>                   
+                    <p style="font-weight:bold;">{{user.companyPhoneNo}}</p>
                 </li>
                 <li fxFlex="10">
-                    <img src="https://www.h3u.com/bucket/assets/h3u/logos/H3U_Logo_SVG.svg" alt="H3U" class="logo" style="height:50px; width:auto; margin:0px ;">
+                  <span class="_brand providerIcon"><img src={{user.outletLogo}} alt="H3U"></span>
                    
                 </li>
-                <li fxFlex="20">
-                    Provider Name
-                  <p>458, Udyog Vihar, Phase V</p>
-                  <p>Gurgaon, Haryana-122016</p>
-                  <p style="font-weight:bold;">GST No</p>
+                <li fxFlex="27" fxFlexOffset="3">
+                    {{user.outletName}}
+                  <p>{{user.outletAddress}}</p>                  
+                  <p style="font-weight:bold;">{{user.outletPhoneNo}}</p>
+                  <p>{{user.outletGstNo}}</p>                  
                  
                 </li>
               </ul>
               </div>
       <div fxLayout="row" fxLayout.xs="column">
         <div fxFlex="100">
-          <small>
-            <a #expandButton (click)="onExpandClick()"></a>
-          </small>
+         
           <ngx-datatable #myTable class='material fullscreen expandable'
            [rows]='rows'
            [limit]="10"
@@ -43,54 +39,52 @@
            [scrollbarV]="false"
            [rowHeight]="'auto'"
             >
-            <ngx-datatable-column name="DESCRIPTION" prop="id">
+            <ngx-datatable-column name="DESCRIPTION" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>{{row.id}}</span>
                 <p>{{row.cardNumber}}</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PATIENT" prop="outlet">
+            <ngx-datatable-column name="PATIENT" prop="outlet"  [width]="200" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>{{ row.patientName}}</span>
-                <p>{{row.gender}}</p>
-                <p class="tabspan">Relationship</p>
+                <p>{{row.gender}} ( {{row.age}} )</p>
+                <p class="tabspan">{{row.relation}}</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="SERVICE" prop="outlet">
+            <ngx-datatable-column name="SERVICE" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> {{row.service}}</span>
                 <p class="tabspan">{{row.subService}}</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="HSN" prop="outlet">
+            <ngx-datatable-column name="HSN" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> HSN Name</span>
                 <p>HSN Code</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PRICE" prop="date" width="100">
+            <ngx-datatable-column name="PRICE" prop="date" [width]="80" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>{{row.totalAmount}}</span>
-                <p class="tabspan">{{row.discountAmount}}</p>
+                <span>{{row.totalAmount}}</span>              
                 <p>{{row.payableAmount}}</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="TAX" prop="date" width="100">
+            <ngx-datatable-column name="TAX" prop="date" [width]="75" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>0%</span>
                 <p>0.00</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="TOTAL AMNT" prop="date" width="100">
+            <ngx-datatable-column name="H3U APPROVED" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>0%</span>
-                <p>0.00</p>
+               <span><strong> {{row.discountAmount}} </strong></span>
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
@@ -100,15 +94,15 @@
       <div fxLayout="row" fxLayout.xs="column">
         <ul fxFlex="100" class="amnt">
           <li>
-            <strong>In Words:</strong>
-            <span> Two Thousands Five Hundread</span>
+            <strong>G.Total: {{getSum(0)}}</strong>
+            <!--<span> Two Thousands Five Hundread</span>-->
           </li>
         </ul>
       </div>
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-          <button md-raised-button class="primary">Approve</button>
-          <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
+          <button md-raised-button class="primary">Submit</button>
+          <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close (click)=editInvoice();>Edit</button>
         </div>
         
     </div>

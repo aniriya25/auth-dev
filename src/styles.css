@@ -520,10 +520,14 @@ fieldset:disabled .mat-input-underline {
     z-index: -1 !important;
     border-color: transparent;
     border: 1px solid #cccccc!important;
-     padding-top: 5px;
-    
+     padding-top: 5px;   
     
 }
+
+.datatable-scroll{
+    width: 100% !important;
+}
+
 /* 
 .mat-focused .mat-input-underline .mat-input-ripple, .mat-input-invalid .mat-input-underline .mat-input-ripple{
 visibility: visible;

@@ -35,7 +35,7 @@ export class TransactionListComponent implements OnInit {
   
  getTransctionInvoiceData(id) {
      // alert(value);
-      debugger;
+     // debugger;
       this.user.transactionId = id;
       this._alltransaction.getTransactionInvoce(this.user.transactionId)
       .subscribe(data => {   
@@ -52,7 +52,7 @@ export class TransactionListComponent implements OnInit {
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
-       //debugger         
+       //debugger;
        this.rows = data.data;  
        let el = this.el.nativeElement;
        setTimeout(function () {
@@ -62,7 +62,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   onSelect({ selected }) {
-    console.log('Select Event', this.selected);
+    //console.log('Select Event', this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
     this.alldatavalue = this.selected;
@@ -73,10 +73,13 @@ export class TransactionListComponent implements OnInit {
   }
   
   openreview() {
-     debugger;       
-       const dialogRef = this.dialog.open(SummaryComponent,{data:[
+     //debugger;       
+        const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.rows = this.alldatavalue
        ]});
+      //  this. getTransctionData();
+       this.selected = [];
+       this. getTransctionData();
   }
 
 }

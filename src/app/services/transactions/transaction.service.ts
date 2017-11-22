@@ -39,6 +39,16 @@ getpdf:any;
       });
   }
 
+  getViewInvoicedata() {
+    debugger;
+    return this.authhttp.get(this.config.api_base_url+this.config.getBasicDetails_url)
+      .map(data => {         
+         data.json();
+          return data.json();
+      });
+  }
+
+
   updateTransaction(value:any) {    
     return this.authhttp.post(
         this.config.api_base_url+this.config.cardDetails_update_url, 

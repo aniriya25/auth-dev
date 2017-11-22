@@ -71,6 +71,10 @@ export class AppConfig {
   verifyOTP_url:string;
   reject_url: string;
 
+  //Invoice
+  getBasicDetails_url:string;
+
+
 // Master
   services_url: string;
   Identity_url: string;
@@ -148,6 +152,9 @@ export const APP_DI_CONFIG: AppConfig = {
   sendOTP_url:'sendOTP',
   verifyOTP_url:'verifyOTP',
   reject_url:'transactions/reject',
+  
+  //Invoice
+  getBasicDetails_url:'me/basicdetails',
 
   // master
 
