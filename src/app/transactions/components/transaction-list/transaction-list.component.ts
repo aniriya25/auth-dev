@@ -27,7 +27,9 @@ export class TransactionListComponent implements OnInit {
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { }
+  constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { 
+    
+  }
   ngOnInit() {
   
      this.getTransctionData();
@@ -76,7 +78,7 @@ export class TransactionListComponent implements OnInit {
        //debugger;       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.rows = this.alldatavalue
-       ]});
+       ], disableClose: true});
       //  this. getTransctionData();
        this.selected = [];
        this. getTransctionData();

@@ -549,7 +549,7 @@ var TransactionListComponent = /** @class */ (function () {
         //debugger;       
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__summary_summary_component__["a" /* SummaryComponent */], { data: [
                 this.rows = this.alldatavalue
-            ] });
+            ], disableClose: true });
         //  this. getTransctionData();
         this.selected = [];
         this.getTransctionData();

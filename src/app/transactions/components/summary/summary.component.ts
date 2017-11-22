@@ -24,7 +24,7 @@ export class SummaryComponent implements OnInit {
   private _transaction: TransactionService, public snackBar: MdSnackBar, private _route: Router,
   private _profile: ProfileService) {
     //debugger;
-    this.rows = this.data[0];
+    this.rows = this.data[0];     
    }
    
    getSum(totalAmount) : number {
@@ -59,7 +59,6 @@ export class SummaryComponent implements OnInit {
         this.user.outletGstNo = data.data['outletGstNo'];
         this.user.hsnCode = data.data['hsnCode'];
         this.user.hsnName = data.data['hsnName'];
-
 
         console.log(this.InvoiceViewData);   
       })
