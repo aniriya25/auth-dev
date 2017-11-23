@@ -23,7 +23,7 @@ export class TransactionListComponent implements OnInit {
   abc:any;
   allrows = [];
   alldatavalue: any = [];
-  allrows = [];
+  
   
   onExpandClick() {
     this.table.rowDetail.expandAllRows();

@@ -26,11 +26,8 @@ export class SummaryComponent implements OnInit {
   private _profile: ProfileService) {
     //debugger;
     this.allrows = this.rows;
-<<<<<<< HEAD
     this.rows = this.data[0];     
-=======
-    this.rows = this.data[0];   
->>>>>>> 7a6bbef4ce6af489aa5dfd9ba5784c5a40bb42dc
+
    }
    
    getSum(totalAmount) : number {
