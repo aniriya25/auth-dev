@@ -3,7 +3,6 @@ import { TransactionService } from './../../../services/transactions/transaction
 import {MdDialog} from '@angular/material';
 import { SummaryComponent } from '../summary/summary.component';  
 
-
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
@@ -33,6 +32,7 @@ export class TransactionListComponent implements OnInit {
   ngOnInit() {
   
      this.getTransctionData();
+     this.getSelected(this.user);
   }
   
  getTransctionInvoiceData(id) {
@@ -79,9 +79,18 @@ export class TransactionListComponent implements OnInit {
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.rows = this.alldatavalue
        ], disableClose: true});
-      //  this. getTransctionData();
-       this.selected = [];
-       this. getTransctionData();
+     
+     this.getSelected(this.selected);
+          
+  }
+  getSelected(transactionId) : number {
+    let selected = 0;
+    for(let i = 0; i < this.alldatavalue.length; i++) {
+      selected = this.alldatavalue[i]['transactionId'];
+      this.alldatavalue.push = this.user;
+      console.log("selected");
+    }
+    return selected;
   }
 
 }
