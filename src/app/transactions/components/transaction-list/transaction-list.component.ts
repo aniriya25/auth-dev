@@ -10,9 +10,10 @@ import { SummaryComponent } from '../summary/summary.component';
    providers: [TransactionService]
 })
 export class TransactionListComponent implements OnInit {
- @ViewChild('myTable') table: any;
+ @ViewChild('Table') table: any;
  @ViewChild('expandButton') el: ElementRef;
   rows = [];
+  temp = [];
   selected = [];
   isLimits: number = 10;
   records: any;
@@ -25,9 +26,9 @@ export class TransactionListComponent implements OnInit {
   alldatavalue: any = [];
   
   
-  onExpandClick() {
-    this.table.rowDetail.expandAllRows();
-  }
+  // onExpandClick() {
+  //   this.table.rowDetail.expandAllRows();
+  // }
   constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { 
     
   }
@@ -57,11 +58,12 @@ export class TransactionListComponent implements OnInit {
       .subscribe(data => {   
        //debugger;
        this.rows = data.data;  
+       this.temp = data.data;
        let el = this.el.nativeElement;
        setTimeout(function () {
          el.click();
        }, );    
-      })     
+      }) 
   }
 
   onSelect({ selected }) {
@@ -81,6 +83,17 @@ export class TransactionListComponent implements OnInit {
         this.allrows = this.alldatavalue
        ], disableClose: true}); 
   }
+
+
+   updateFilter(event) {
+    const val = event.target.value.toLowerCase();  
+    const temp = this.temp.filter(function(d) {
+      return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val;      
+    });
+    this.rows = temp;
+    this.table.offset = 0;
+  }
+
 
 
 }
