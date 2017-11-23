@@ -85,7 +85,7 @@ export class TransactionComponent implements OnInit {
        UserName: this.user.name,
        cardOnName: this.user.cardOnName,
        proName: this.proData.firstName+" "+this.proData.lastName  
-  }});
+  } , disableClose: true});
   }
    myControl: FormControl = new FormControl();
    paymentMode = [

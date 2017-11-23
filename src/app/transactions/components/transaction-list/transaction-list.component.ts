@@ -22,6 +22,7 @@ export class TransactionListComponent implements OnInit {
   InvoiceData:any;
   abc:any;
   alldatavalue: any = [];
+  allrows = [];
   
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
@@ -32,7 +33,6 @@ export class TransactionListComponent implements OnInit {
   ngOnInit() {
   
      this.getTransctionData();
-     this.getSelected(this.user);
   }
   
  getTransctionInvoiceData(id) {
@@ -77,20 +77,9 @@ export class TransactionListComponent implements OnInit {
   openreview() {
        //debugger;       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
-        this.rows = this.alldatavalue
-       ], disableClose: true});
-     
-     this.getSelected(this.selected);
+        this.allrows = this.alldatavalue
+       ], disableClose: true});    
           
-  }
-  getSelected(transactionId) : number {
-    let selected = 0;
-    for(let i = 0; i < this.alldatavalue.length; i++) {
-      selected = this.alldatavalue[i]['transactionId'];
-      this.alldatavalue.push = this.user;
-      console.log("selected");
-    }
-    return selected;
   }
 
 }
