@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransactionService } from './../../../services/transactions/transaction.service';
 import {MdDialog} from '@angular/material';
 import { SummaryComponent } from '../summary/summary.component';                              
+import { window } from 'rxjs/operator/window';
 
 @Component({
   selector: 'app-transaction-list',
@@ -29,11 +30,15 @@ export class TransactionListComponent implements OnInit {
   ngOnInit() {
   
      this.getTransctionData();
+   
   }
   
   openDialog() {
     const dialogRef = this.dialog.open(SummaryComponent);
+    
   }
+
+ 
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   

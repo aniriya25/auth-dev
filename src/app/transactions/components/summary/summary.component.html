@@ -35,14 +35,14 @@
           </small>
           <ngx-datatable #myTable class='material fullscreen expandable' [rows]='rows' [limit]="10" [columnMode]="'force'" [headerHeight]="50"
             [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
-            <ngx-datatable-column name="DESCRIPTION" prop="id">
+            <ngx-datatable-column name="DESCRIPTION" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>Txn ID</span>
                 <p>Card No</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PATIENT" prop="outlet">
+            <ngx-datatable-column name="PATIENT" prop="patient" [width]="150" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> Name</span>
                 <p>Gender</p>
@@ -50,21 +50,21 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="SERVICE" prop="outlet">
+            <ngx-datatable-column name="SERVICE" prop="service">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> Service</span>
                 <p class="tabspan">Subservice</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="HSN" prop="outlet">
+            <ngx-datatable-column name="HSN" prop="hsn">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span> HSN Name</span>
                 <p>HSN Code</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="PRICE" prop="date" width="100">
+            <ngx-datatable-column name="PRICE" prop="price">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span> Total Amnt</span>
                 <p class="tabspan">Discount</p>
@@ -72,14 +72,14 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="TAX" prop="date" width="100">
+            <ngx-datatable-column name="TAX" prop="tax"  [width]="100" [canAutoResize]="false"  [resizeable]="false">
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>0%</span>
                 <p>0.00</p>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="TOTAL AMNT" prop="date" width="100">
+            <ngx-datatable-column name="TOTAL AMNT" prop="amnt" >
               <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                 <span>0%</span>
                 <p>0.00</p>
@@ -88,7 +88,6 @@
           </ngx-datatable>
         </div>
       </div>
-
       <div fxLayout="row" fxLayout.xs="column">
         <ul fxFlex="100" class="amnt">
           <li>
@@ -98,11 +97,11 @@
         </ul>
       </div>
 
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" class="popbtn"> 
           <button md-raised-button class="primary">Approve</button>
           <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
-        </div>
-        
+      </div>
+
     </div>
   </div>
 
