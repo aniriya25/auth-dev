@@ -30,7 +30,7 @@
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
-                    <ngx-datatable #table class='material fullscreen expandable'          
+                    <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
                     [limit]="10"
                     [columnMode]="'force'"
@@ -46,8 +46,8 @@
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                          <ul fxFlex="92" fxLayoutAlign="center center">
                           <li fxFlex="30">Status:{{row.status}}</li>
-                          <li fxFlex="30">Remarks:Pending</li>
-                          <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>
+                          <li fxFlex="30">Remarks:{{row.remarks}}</li>
+                          <li fxFlex="30">Created By: <a>{{row.createdBy}}</a></li>
                           <li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
