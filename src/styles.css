@@ -8,15 +8,19 @@ body {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 .mat-card{
-    background: rgba(251, 251, 251, 0);
+
+    background: transparent;
 }
 .mat-input-table{
     min-height: 30px;
     padding-top: 20px;
 }
+
 datatable-body-row{
     width: 100% !important;
 }
+
+
 .ngx-datatable.material .datatable-body .datatable-row-detail{
     background: none ; 
     padding: 10px;
@@ -456,6 +460,7 @@ fieldset:disabled .mat-input-underline {
     visibility: hidden;
     transition: 0;
     cursor: text;
+   
 }
 .mat-input-underline:hover{
     cursor: text;
@@ -523,9 +528,14 @@ fieldset:disabled .mat-input-underline {
     z-index: -1 !important;
     border-color: transparent;
     border: 1px solid #cccccc!important;
-    
+     padding-top: 5px;   
     
 }
+
+.datatable-scroll{
+    width: 100% !important;
+}
+
 /* 
 .mat-focused .mat-input-underline .mat-input-ripple, .mat-input-invalid .mat-input-underline .mat-input-ripple{
 visibility: visible;

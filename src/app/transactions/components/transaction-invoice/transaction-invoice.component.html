@@ -1,0 +1,201 @@
+<div class="container">
+  <md-card fxFlex="100">
+    <ul class="supp">
+      <li fxFlex="40">
+       <img src="https://www.h3u.com/bucket/assets/h3u/logos/H3U_Logo_SVG.svg" alt="H3U" class="logo" style="height:80px; width:auto; margin:10px 0;">
+      </li>
+       <li fxFlex="40">
+        <h2>Transaction Invoice</h2>
+      </li>
+      <li fxFlex="20">
+        Vipul Medcare Pvt Ltd
+        <p>534, Udyog Vihar, Phase V</p>
+        <p>Gurgaon, Haryana-122016</p>        
+        <p style="font-weight:bold;">0124-4803182 </p>
+      </li>
+    </ul>
+    <div fxLayout="row" fxLayout.xs="column">
+      <fieldset fxFlex="97" class="field">
+        <fieldset fxFlex="100">
+          <legend> Patient Information</legend>
+          <div fxLayout="row" fxLayout.xs="column">
+            <ul fxFlex="60">
+               
+              <li>
+                <strong fxFlex="25">Name:</strong>
+                <span fxFlex="30">{{model.patientName}}</span>               
+              </li>
+                      
+              <li>
+                <strong fxFlex="25">Gender:</strong>
+                <span fxFlex="30"> {{model.gender}}</span>
+                 <strong fxFlex="15">Age:</strong>
+                <span>{{model.age}}</span>
+              </li>
+              <li>
+                <strong fxFlex="25">Address:</strong>
+                <span>{{model.patientAddress}}</span>
+              </li>
+              <li>
+                <strong fxFlex="25">Card Holder:</strong>
+                <span fxFlex="70">{{model.cardHolderName}}</span>
+              </li>
+            </ul>
+            <ul fxFlex="40" style="border-left:1px solid #cccccc">
+              <li>
+                <strong fxFlex="40"> UHID:</strong>
+                <span>{{model.uhid}}</span>
+              </li>
+              <li>
+                  <span style="color:red"> BarCode</span>
+                </li>
+                <hr>
+              <li>
+                <strong fxFlex="40">Card No:</strong>
+                <span>{{model.cardNo}}</span>
+              </li>
+
+              <li>
+                <strong fxFlex="40">Booking ID:</strong>
+                <span>{{model.bookingId}}</span>
+              </li>
+            </ul>
+          </div>
+        </fieldset>
+        <fieldset fxFlex="100">
+          <legend> Provider Information</legend>
+          <div fxLayout="row" fxLayout.xs="column">
+            <ul fxFlex="60">
+              <li>
+                <strong fxFlex="25">Name:</strong>
+                <span fxFlex="30">{{model.outletName}}</span>
+                <strong fxFlex="15"> Code:</strong>
+                <span>{{model.outletCode}}</span>
+              </li>
+           
+              <li>
+                <strong fxFlex="25">Doctor Name:</strong>
+                <span fxFlex="30">{{model.doctorName}}</span>
+                 <strong fxFlex="15"> User ID:</strong>
+                <span> {{model.puhid}}</span>
+              </li>
+               <li>
+                <strong fxFlex="25">Address:</strong>
+                <span fxFlex="70">{{model.outletAddress}}</span>
+              </li>
+            </ul>
+            <ul fxFlex="40" style="border-left:1px solid #cccccc">
+              <li>
+                <strong fxFlex="40">Txn ID:</strong>
+                <span>{{model.txnId}}</span>
+              </li>
+              <li>
+                <strong fxFlex="40"> Date/Time:</strong>
+                <span>{{model.txnDateTime}} </span>
+              </li>
+              <hr>
+              <li>
+                <strong fxFlex="40"> GST No:</strong>
+                <span>{{model.gstNo}}</span>
+              </li>
+
+              <li>
+                <span style="color:red">BarCode</span>
+              </li>
+            </ul>
+          </div>
+        </fieldset>
+
+        <div fxLayout="row" fxLayout.xs="column">      
+
+           <table class="tabl">
+            <tr>
+                <th style="width:50px;">S.No.</th>
+                <th>SERVICE CODE</th>
+                <th>SERVICE</th>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+<!--               
+                <th>AMOUNT</th>-->
+               
+            </tr>
+                <tr>
+                    <td>{{model.srNo}}</td>
+                    <td>{{model.serviceCode}}</td>
+                    <td>
+                      <p>{{model.serviceName}}</p>
+                      <p class="tabspan">{{model.subServiceName}}</p>
+                    </td>
+                    <td>{{model.description}}</td>
+                    <td><span>{{model.price}}</span></td>
+                    <!--<td></td>-->
+                    <!--<td><span>
+              <strong>{{model.amount}}</strong>
+            </span></td>-->
+                </tr>
+        </table>
+
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <ul fxFlex="100" class="amnt">
+            <li>
+              <strong fxFlex="80">Total:</strong>
+              <span>{{model.price}}/-</span>
+            </li>
+             <li>
+                <strong fxFlex="80"> Discount:</strong>
+                <span> {{model.discount}}/-</span>
+             </li>
+             <li>
+              <strong fxFlex="80">Total Billed Amount:</strong>
+              <span class="txtBold">{{model.amount}}/-</span>
+             </li> 
+            <li>
+              <strong fxFlex="80"> GST(Tax):</strong>
+              <span>0.00/-</span>
+            </li>
+            <li>
+              <strong fxFlex="80"> Net Payable Amount:</strong>
+              <span class="txtBold">{{model.amount}}/-</span>
+            </li>
+            <!--<li>
+              <strong>In Words:</strong>
+              <span class="txtBold">Eight Hundread Only</span>
+            </li>-->
+          </ul>
+        </div>
+        <div class="inst" fxLayout="row" fxLayout.xs="column">
+          <p fxFlex="80">No Tax is payable on reverse charge basis</p>
+          <p> Authorized Signatory</p>
+        </div>
+        <div class="foot" fxLayout="row" fxLayout.xs="column">
+          <p fxFlex="30">
+            <a fxFlex.xs="80" routerLink="https://www.h3u.com">https://www.h3u.com</a>
+          </p>
+          <p fxFlex="30">
+            <a href="mailto:enquiry@h3u.com">enquiry@h3u.com</a>
+          </p>
+          <p fxFlex="30" fxLayoutAlign="end">
+            <a routerLink="https://twitter.com/h3uIndia" title="https://twitter.com/h3uIndia">
+              <img src="assets/images/twitter-1.png" alt="Twitter">
+              <span>/H3Uindia</span>
+            </a>
+            <a routerLink="https://www.facebook.com/H3Uindia/" title="https://www.facebook.com/H3Uindia">
+              <img src="assets/images/facebook-1.png" alt="Facebook">
+              <span>/H3Uindia</span>
+            </a>
+          </p>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+          <a md-raised-button class="primary" [attr.href]="model.path" target="_blank" >Print</a>
+          <!--<button md-raised-button class="primary" [routerLink]="model.path">Print</button>-->
+        </div>
+        <!-- <div *ngIf="show" class="popup">
+          <div class="pop">you have entered wrong OTP
+              <button>X</button>
+          </div>
+            </div> -->
+      </fieldset>
+    </div>
+  </md-card>
+</div>
