@@ -8,7 +8,7 @@
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
-                <md-input-container fxFlex="30" fxFlex.xs="98">
+                <md-input-container fxFlex="50" fxFlex.xs="98">
                   <input type="text" mdInput type='text' placeholder='Search by transaction ID...' (keyup)='updateFilter($event)' />
                 </md-input-container>
                 </div>
@@ -27,6 +27,8 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
+                  <md-tab-group>
+                      <md-tab label="Build">
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
@@ -44,10 +46,10 @@
                     (select)='onSelect($event)'>                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                         <ul fxFlex="92" fxLayoutAlign="center center">
+                         <ul fxFlex="91" fxLayoutAlign="center center">
                           <li fxFlex="30">Status:{{row.status}}</li>
                           <li fxFlex="30">Remarks:{{row.remarks}}</li>
-                          <li fxFlex="30">Created By: <a>{{row.createdBy}}</a></li>
+                          <li fxFlex="25">Created By: <a>{{row.createdBy}}</a></li>
                           <li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
@@ -103,9 +105,10 @@
                           <span><strong>{{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-
-                          
                     </ngx-datatable>
+                  </md-tab>
+                  <md-tab label="Unbuild">Content 2</md-tab>
+                </md-tab-group>
                   </div>
                 </div>
         </div>
