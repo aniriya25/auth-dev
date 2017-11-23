@@ -21,6 +21,7 @@ export class TransactionListComponent implements OnInit {
   user: any = {};
   InvoiceData:any;
   abc:any;
+  allrows = [];
   alldatavalue: any = [];
   allrows = [];
   
@@ -78,8 +79,8 @@ export class TransactionListComponent implements OnInit {
        //debugger;       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.allrows = this.alldatavalue
-       ], disableClose: true});    
-          
+       ], disableClose: true}); 
   }
+
 
 }
