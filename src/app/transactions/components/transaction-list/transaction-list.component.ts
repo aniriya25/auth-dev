@@ -10,7 +10,7 @@ import { SummaryComponent } from '../summary/summary.component';
    providers: [TransactionService]
 })
 export class TransactionListComponent implements OnInit {
- @ViewChild('Table') table: any;
+ @ViewChild('myTable') table: any;
  @ViewChild('expandButton') el: ElementRef;
   rows = [];
   temp = [];
@@ -26,9 +26,9 @@ export class TransactionListComponent implements OnInit {
   alldatavalue: any = [];
   
   
-  // onExpandClick() {
-  //   this.table.rowDetail.expandAllRows();
-  // }
+  onExpandClick() {
+    this.table.rowDetail.expandAllRows();
+  }
   constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { 
     
   }
