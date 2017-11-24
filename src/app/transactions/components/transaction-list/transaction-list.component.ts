@@ -25,16 +25,16 @@ export class TransactionListComponent implements OnInit {
   allrows = [];
   alldatavalue: any = [];
   
-  
+
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
   constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { 
-    
+   // this.selectedIndexChange(0);
   }
   ngOnInit() {
-  
-     this.getTransctionData();
+   this.selectedIndexChange(0);
+   //  this.getTransctionData();
   }
   
  getTransctionInvoiceData(id) {
@@ -58,7 +58,7 @@ export class TransactionListComponent implements OnInit {
       .subscribe(data => {   
        //debugger;
        this.rows = data.data;  
-       this.temp = data.data;
+      this.temp = data.data;
        let el = this.el.nativeElement;
        setTimeout(function () {
          el.click();
@@ -89,11 +89,21 @@ export class TransactionListComponent implements OnInit {
     const val = event.target.value.toLowerCase();  
     const temp = this.temp.filter(function(d) {
       return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val;      
+    
     });
     this.rows = temp;
     this.table.offset = 0;
   }
 
 
-
+  selectedIndexChange(val :number ){
+  
+    if(val === 0){
+      this.getTransctionData() ;
+    }   
+    else if(val===1)
+    {
+      this.getTransctionData() ;
+    }
+  }
 }

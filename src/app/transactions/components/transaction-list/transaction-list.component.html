@@ -27,12 +27,16 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
-                  <md-tab-group>
-                      <md-tab label="Build">
+                  <md-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
+                    <md-tab label="Unbill" >
+                    </md-tab>
+                      <md-tab label="Bill"></md-tab>
+                    </md-tab-group>
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
-                    <ngx-datatable #myTable class='material fullscreen expandable'          
+                 
+                                         <ngx-datatable #myTable class='material fullscreen expandable'        
                     [rows]='rows'
                     [limit]="10"
                     [columnMode]="'force'"
@@ -106,9 +110,11 @@
                         </ng-template>
                       </ngx-datatable-column>
                     </ngx-datatable>
-                  </md-tab>
-                  <md-tab label="Unbuild">Content 2</md-tab>
-                </md-tab-group>
+                    
+                
+                
+                  
+   
                   </div>
                 </div>
         </div>

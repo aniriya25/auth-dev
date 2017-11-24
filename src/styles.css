@@ -20,7 +20,12 @@ datatable-body-row{
     width: 100% !important;
 }
 
-
+.mat-tab-label-active {
+    background-color: rgba(165, 167, 179, 0.3) !important;
+}
+.mat-tab-label:last-child {
+    border-right: 1px solid #cccccc!important; 
+  }
 .ngx-datatable.material .datatable-body .datatable-row-detail{
     background: none ; 
     padding: 10px;
