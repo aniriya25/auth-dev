@@ -45,6 +45,7 @@ export class DashboardMenuComponent implements OnInit {
    
 
   ngOnInit() {
+    this.selectId(1) ;
     this.getUserProfile();
     if(window.innerWidth < 768) {
       this.isOpened = false;
