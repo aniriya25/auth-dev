@@ -62,27 +62,27 @@
   <md-sidenav #sidenav [mode]="isOpenSide" [opened]="isOpened">
     <div class="example-scrolling-content">
         <ul class="nav">
-          <a routerLink="home" >
+          <a routerLink="home" [ngClass]="{'selectedClass': selected == 1}" (click)="selectId(1)" >
             <li>
               <p><md-icon class="mainIcon">dashboard</md-icon></p>
               <p>DASHBOARD</p>
             </li>
           </a>
           
-          <a routerLink="provider/1/outlets">
+          <a routerLink="provider/1/outlets" [ngClass]="{'selectedClass': selected == 2}" (click)="selectId(2)" >
             <li>   
               <p><md-icon class="mainIcon">store</md-icon></p>
               <p>OUTLETS</p>  
             </li>
           </a>
-          <a routerLink="/dashboard/transactions">
-            <li>  
+          <a routerLink="/dashboard/transactions"  [ngClass]="{'selectedClass': selected == 3}" (click)="selectId(3)">
+               <li>  
                 <p><md-icon class="mainIcon">credit_card</md-icon></p>
                 <p>TRANSACTIONS</p>  
             </li>
           </a>
 
-            <a routerLink="/dashboard/invoices/invoices-list">
+            <a routerLink="/dashboard/invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)">
             <li>
               <p><md-icon class="mainIcon">receipt</md-icon></p>
               <p>INVOICES</p>

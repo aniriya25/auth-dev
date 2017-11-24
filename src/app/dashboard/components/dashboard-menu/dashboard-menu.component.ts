@@ -16,7 +16,10 @@ export class DashboardMenuComponent implements OnInit {
   isOpenSide:string = 'side';
   providerLength: number = 0; 
   id:number;
-
+  selected: number;
+  
+  
+  
   constructor(
     private loginService:LoginService,
     private router:Router,
@@ -46,6 +49,7 @@ export class DashboardMenuComponent implements OnInit {
     if(window.innerWidth < 768) {
       this.isOpened = false;
       this.isOpenSide = 'over';
+      this.selectedIndexChange(0);
     }
 
     // this.checkuser();
@@ -76,5 +80,11 @@ export class DashboardMenuComponent implements OnInit {
   add(page: string) {
    this.router.navigate([page]);
   }
-    
+  selectedIndexChange(val :number ){}
+  selectId(id: number) {
+    this.selected = id;
+}    
+
+
 }
+

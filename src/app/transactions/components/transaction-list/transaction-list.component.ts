@@ -33,7 +33,7 @@ export class TransactionListComponent implements OnInit {
    // this.selectedIndexChange(0);
   }
   ngOnInit() {
-   this.selectedIndexChange(0);
+   this.selectedIndexChange(2);
    //  this.getTransctionData();
   }
   
@@ -89,7 +89,7 @@ export class TransactionListComponent implements OnInit {
     const val = event.target.value.toLowerCase();  
     const temp = this.temp.filter(function(d) {
       return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val;      
-    
+               
     });
     this.rows = temp;
     this.table.offset = 0;
@@ -97,7 +97,6 @@ export class TransactionListComponent implements OnInit {
 
 
   selectedIndexChange(val :number ){
-  
     if(val === 0){
       this.getTransctionData() ;
     }   
