@@ -21,11 +21,16 @@ export class TransactionListComponent implements OnInit {
   allTransction: object = {};
   outletId: number;
   user: any = {};
+  filteruser: any = {};
   InvoiceData:any;
   abc:any;
   allrows = [];
   alldatavalue: any = [];
   result = [];
+  strdate:any;
+  endDate:any;
+  id:number;
+  userData:any = {};
   
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
@@ -35,8 +40,7 @@ export class TransactionListComponent implements OnInit {
   }
   ngOnInit() {
   
-     this.getTransctionData();
-     
+     this.getTransctionData();    
   }
   
  getTransctionInvoiceData(id) {
@@ -47,9 +51,23 @@ export class TransactionListComponent implements OnInit {
       .subscribe(data => {   
        this.user.path = data.data["path"];
       //  window.open(this.user.path).print();
-      this.getPrint();       
+         
       })     
   }
+
+getFilterData(){
+  debugger; 
+    
+     this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
+     this.endDate = moment(this.userData.endDate).format('DD-MMM-YYYY');
+     this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
+     .subscribe(data => {
+       this.rows = data.data;
+     });
+
+  }  
+   
+
  getPrint()
   {
       var printPage = window.open(this.user.path, '_blank');
@@ -97,7 +115,7 @@ export class TransactionListComponent implements OnInit {
 
   selectedIndexChange(val :number ){  
     if(val === 0){
-      this.getTransctionData() ;
+      this.getTransctionData();      
     }   
     else if(val===1)
     {

@@ -1,3 +1,4 @@
+<form>
 <div class="container">
   <div fxLayout="row">
     <md-card class="profileCard" fxFlex="100">
@@ -12,17 +13,23 @@
                   <input type="text" mdInput type='text' placeholder='Search by Txn ID Or Patient Name ...' (keyup)='updateFilter($event)' />
                 </md-input-container>
                 </div>
+              
               <div fxFlex="40" fxFlex.xs="100">
-                <md-input-container fxFlex="95" fxFlex.xs="80">
-                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date" id="startDate">
-                  <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
-                </md-input-container>              
-                <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
-                <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
-                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date" id="endDate">
-                  <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
-                </md-input-container>
-                <md-datepicker #endDatePicker (selectedChanged)="dateFilter($event)"></md-datepicker>
+
+             <md-input-container fxFlex="95" fxFlex.xs="80">
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="MM/DD/YYYY" (click)="dpicker.open()" style="cursor:pointer"
+                    [(ngModel)]="userData.strdate" name="strdate" #strdate="ngModel">
+                  <button mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
+             </md-input-container>
+             <md-datepicker #startDatePicker></md-datepicker>
+             <span fxFlex="5" fxFlexOffset="4" style="padding-top:35px">To</span>
+              <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
+                <input mdInput [mdDatepicker]="endDatePicker" placeholder="MM/DD/YYYY" (click)="picker.open()" 
+                   style="cursor:pointer" [(ngModel)]="userData.endDate" name="endDate" #endDate="ngModel">
+                 <button mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+            </md-input-container>
+            <md-datepicker #endDatePicker (selectedChanged) ="getFilterData()"></md-datepicker>
+     
               </div>
             </div>
               <div fxLayout="row" fxLayout.xs="column">
@@ -126,3 +133,4 @@
     </md-card>
   </div>
 </div>
+</form>

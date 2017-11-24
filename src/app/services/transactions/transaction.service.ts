@@ -30,6 +30,16 @@ getpdf:any;
       });
   }
 
+
+  getDateFilter(id:number,strdate:Date,endDate:Date) {
+    debugger;
+    return this.authhttp.get(this.config.api_base_url+this.config.transactionInvoice_url+id+"/"+strdate+"/"+endDate)
+      .map(data => {         
+         data.json();
+          return data.json();
+      });
+  }
+
   getTransactionInvoce(id:any) {
    // debugger;
     return this.authhttp.get(this.config.api_base_url+this.config.transactionInvoice_url+id+"/invoice")
