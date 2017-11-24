@@ -8,25 +8,29 @@
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
-                <md-input-container fxFlex="30" fxFlex.xs="98">
-                  <input type="text" mdInput type='text' placeholder='Search by transaction ID...' (keyup)='updateFilter($event)' />
+                <md-input-container fxFlex="40" fxFlex.xs="98">
+                  <input type="text" mdInput type='text' placeholder='Search by Txn ID Or Patient Name ...' (keyup)='updateFilter($event)' />
                 </md-input-container>
                 </div>
               <div fxFlex="40" fxFlex.xs="100">
                 <md-input-container fxFlex="95" fxFlex.xs="80">
-                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date">
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date" id="startDate">
                   <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
                 </md-input-container>              
                 <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
                 <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
-                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date">
+                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date" id="endDate">
                   <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
                 </md-input-container>
-                <md-datepicker #endDatePicker (selectedChanged)="fetchRecByEndDate($event)"></md-datepicker>
+                <md-datepicker #endDatePicker (selectedChanged)="dateFilter($event)"></md-datepicker>
               </div>
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
+             
+              <md-tab-group>
+
+              <md-tab label="UnBuild">
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
@@ -45,7 +49,7 @@
                     >                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                         <ul fxFlex="92" fxLayoutAlign="center center">
+                         <ul fxFlex="91" fxLayoutAlign="center center">
                           <li fxFlex="30">Status:{{row.status}}</li>
                           <li fxFlex="30">Remarks:{{row.remarks}}</li>
                           <li fxFlex="30">Created By: <a>{{row.createdBy}}</a></li>
@@ -104,9 +108,14 @@
                           <span><strong>{{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-
-                          
                     </ngx-datatable>
+                 </md-tab>
+                 
+              <md-tab label="Build">
+                Content 2
+              </md-tab>
+
+            </md-tab-group>
                   </div>
                 </div>
         </div>

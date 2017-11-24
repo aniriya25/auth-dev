@@ -24,7 +24,7 @@ export class TransactionListComponent implements OnInit {
   abc:any;
   allrows = [];
   alldatavalue: any = [];
-  
+  result = [];
   
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
@@ -35,6 +35,7 @@ export class TransactionListComponent implements OnInit {
   ngOnInit() {
   
      this.getTransctionData();
+     
   }
   
  getTransctionInvoiceData(id) {
@@ -84,15 +85,32 @@ export class TransactionListComponent implements OnInit {
        ], disableClose: true}); 
   }
 
-
    updateFilter(event) {
-    const val = event.target.value.toLowerCase();  
+    const val = event.target.value.toLowerCase();
     const temp = this.temp.filter(function(d) {
-      return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val;      
+      return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val || d.patientName.toLowerCase().indexOf(val) !== -1 || !val;      
     });
     this.rows = temp;
     this.table.offset = 0;
   }
+  
+
+ dateFilter(event) {
+  return function(input, startDatePicker, endDatePicker) {
+    var inputDate = event.target.input.toLowerCase();
+        this.startDatePicker = event.target.startDatePicker.toLowerCase();
+        this.endDatePicker = event.target.endDatePicker.toLowerCase();
+        this.result = [];
+    for (var i=0, len = input.length; i < len; i++) {
+        inputDate = new Date(input[i].transactionDate);            
+        if (this.startDatePicker < inputDate && inputDate < this.endDatePicker) {
+           this.result.push(input[i]);
+        }  
+    }       
+    return this.result;
+  }
+}
+
 
 
 
