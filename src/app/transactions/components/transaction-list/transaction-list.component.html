@@ -28,9 +28,12 @@
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
              
-              <md-tab-group>
-
-              <md-tab label="UnBuild">
+                   <md-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
+                    <md-tab label="Unbilled" >
+                    </md-tab>
+                      <md-tab label="Billed"></md-tab>
+                    </md-tab-group>
+           
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
@@ -108,14 +111,8 @@
                           <span><strong>{{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-                    </ngx-datatable>
-                 </md-tab>
-                 
-              <md-tab label="Build">
-                Content 2
-              </md-tab>
-
-            </md-tab-group>
+                    </ngx-datatable>  
+         
                   </div>
                 </div>
         </div>

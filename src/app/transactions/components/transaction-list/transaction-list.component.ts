@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransactionService } from './../../../services/transactions/transaction.service';
 import {MdDialog} from '@angular/material';
 import { SummaryComponent } from '../summary/summary.component';  
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-transaction-list',
@@ -93,23 +94,46 @@ export class TransactionListComponent implements OnInit {
     this.rows = temp;
     this.table.offset = 0;
   }
-  
 
- dateFilter(event) {
-  return function(input, startDatePicker, endDatePicker) {
-    var inputDate = event.target.input.toLowerCase();
-        this.startDatePicker = event.target.startDatePicker.toLowerCase();
-        this.endDatePicker = event.target.endDatePicker.toLowerCase();
-        this.result = [];
-    for (var i=0, len = input.length; i < len; i++) {
-        inputDate = new Date(input[i].transactionDate);            
-        if (this.startDatePicker < inputDate && inputDate < this.endDatePicker) {
-           this.result.push(input[i]);
-        }  
-    }       
-    return this.result;
+  selectedIndexChange(val :number ){  
+    if(val === 0){
+      this.getTransctionData() ;
+    }   
+    else if(val===1)
+    {
+      this.getTransctionData() ;
+    }
   }
-}
+
+
+    // dateFilter(event) {
+    // const val = event.target.value.toLowerCase();
+    // const temp = this.temp.filter(function() {
+    // return function(items, startDate, endDate) {
+    // //an undefined startDate is converted to the beginning of time
+    // startDate = startDate || 0;
+    // const granularity = null // can be 'days', ... see momentJS doc
+    // //you need support for array.prototype.filter and arrow functions; i.e. IE sucks/needs a polyfill   
+    // return items.filter(item => moment(item).isBetween(startDate, endDate, granularity, '[]'));
+    //   }
+    // }
+    //  )};  
+
+//  dateFilter(event) {
+//   return function(input, startDatePicker, endDatePicker) {
+//     var inputDate = event.target.input.toLowerCase();
+//         this.startDatePicker = event.target.startDatePicker.toLowerCase();
+//         this.endDatePicker = event.target.endDatePicker.toLowerCase();
+//         this.result = [];
+//     for (var i=0, len = input.length; i < len; i++) {
+//         inputDate = new Date(input[i].transactionDate);            
+//         if (this.startDatePicker < inputDate && inputDate < this.endDatePicker) {
+//            this.result.push(input[i]);
+//         }  
+//     }       
+//     return this.result;
+//   }
+// }
 
 
 

@@ -40,7 +40,7 @@ getpdf:any;
   }
 
   getViewInvoicedata() {
-    debugger;
+    //debugger;
     return this.authhttp.get(this.config.api_base_url+this.config.getBasicDetails_url)
       .map(data => {         
          data.json();
