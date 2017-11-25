@@ -9,11 +9,11 @@
          </h2>
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
-
                 <md-input-container fxFlex="40" fxFlex.xs="98">
                   <input type="text" mdInput type='text' placeholder='Search by Txn ID Or Patient Name ...' (keyup)='updateFilter($event)' />
                 </md-input-container>
                 </div>
+              
               <div fxFlex="40" fxFlex.xs="100">
 
              <md-input-container fxFlex="95" fxFlex.xs="80">
@@ -38,17 +38,16 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
-                  <md-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
-                    <md-tab label="Unbill" >
-                    </md-tab>
-                      <md-tab label="Bill"></md-tab>
+             
+                   <md-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
+                      <md-tab label="Unbilled"></md-tab>
+                      <md-tab label="Billed"></md-tab>
                     </md-tab-group>
-
+                      
                   <small>
                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
-                 
-                                         <ngx-datatable #myTable class='material fullscreen expandable'        
+                    <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
                     [limit]="10"
                     [columnMode]="'force'"
@@ -59,13 +58,14 @@
                     [selected]="selected"
                     [selectionType]="'checkbox'"
                     (activate)="onActivate($event)"
-                    (select)='onSelect($event)'>                    
+                    (select)='onSelect($event)'
+                    >                    
                     <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                          <ul fxFlex="91" fxLayoutAlign="center center">
                           <li fxFlex="30">Status:{{row.status}}</li>
                           <li fxFlex="30">Remarks:{{row.remarks}}</li>
-                          <li fxFlex="25">Created By: <a>{{row.createdBy}}</a></li>
+                          <li fxFlex="30">Created By: <a>{{row.createdBy}}</a></li>
                           <li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>
                           </ul>
                         </ng-template>
@@ -121,18 +121,12 @@
                           <span><strong>Paid: {{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
-                    </ngx-datatable>
-                    
-                
-                
-                  
-   
-
+                    </ngx-datatable>  
+         
                   </div>
                 </div>
         </div>
-     
-      <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+        <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
             <div fxLayout="row">
               <div fxFlex="100" class="cp-para">
                 

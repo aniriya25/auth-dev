@@ -27,7 +27,6 @@ export class TransactionListComponent implements OnInit {
   abc:any;
   allrows = [];
   alldatavalue: any = [];
-
   result = [];
   strdate:any;
   endDate:any;
@@ -39,12 +38,9 @@ export class TransactionListComponent implements OnInit {
   }
   constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { 
     
-
   }
-  ngOnInit() {
-   this.selectedIndexChange(0);
-   //  this.getTransctionData();
-
+  ngOnInit() {  
+     this.getTransctionData();    
   }
   
  getTransctionInvoiceData(id) {
@@ -54,8 +50,7 @@ export class TransactionListComponent implements OnInit {
       this._alltransaction.getTransactionInvoce(this.user.transactionId)
       .subscribe(data => {   
        this.user.path = data.data["path"];
-      window.open(this.user.path).print();
-         
+       window.open(this.user.path).print();         
       })     
   }
 
@@ -66,21 +61,21 @@ getFilterData(value){
      this.endDate = moment(value).format('DD-MMM-YYYY');
      this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
      .subscribe(data => {
-       this.rows = data.data;
+       this.rows = data.data; 
      });
   }  
    
-getPrint()
-  {
-      var printPage = window.open(this.user.path, '_blank');
-  }
+// getPrint()
+//   {
+//       var printPage = window.open(this.user.path, '_blank');
+//   }
 
   getTransctionData() {
       this._alltransaction.getAllTransactionList()
       .subscribe(data => {   
        //debugger;
        this.rows = data.data;  
-      this.temp = data.data;
+       this.temp = data.data;
        let el = this.el.nativeElement;
        setTimeout(function () {
          el.click();
@@ -89,7 +84,7 @@ getPrint()
   }
 
   onSelect({ selected }) {
-    console.log('Select Event', this.selected);
+    //console.log('Select Event', this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
     this.alldatavalue = this.selected;
@@ -103,7 +98,7 @@ getPrint()
        //debugger;
        if(this.selected.length == 0)
        {
-          this.snackBar.open("Somthing went wrong! , Please select any Transaction before Generate Invoice","",{duration:5000});
+          this.snackBar.open("Please select any Transaction before Generate Invoice","",{duration:5000});
        }else{       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.allrows = this.alldatavalue
@@ -112,13 +107,14 @@ getPrint()
   }
 
    updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+     this.userData.strdate = "";
+     this.userData.endDate = "";
+    const val = event.target.value.toLowerCase();    
     const temp = this.temp.filter(function(d) {
-
       return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val || d.patientName.toLowerCase().indexOf(val) !== -1 || !val;      
     });
     this.rows = temp;
-    this.table.offset = 0;
+    this.table.offset = 0;    
   }
 
   selectedIndexChange(val :number ){  
@@ -130,8 +126,6 @@ getPrint()
       this.getTransctionData() ;
     }
   }
-
-
 
     // dateFilter(event) {
     // const val = event.target.value.toLowerCase();
