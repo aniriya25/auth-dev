@@ -8,7 +8,7 @@ import * as moment from 'moment';
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
-   providers: [TransactionService]
+  providers: [TransactionService]
 })
 export class TransactionListComponent implements OnInit {
  @ViewChild('myTable') table: any;
@@ -55,20 +55,20 @@ export class TransactionListComponent implements OnInit {
       })     
   }
 
-getFilterData(){
-  debugger; 
-    
+getFilterData(value){
+     debugger;     
+     this.endDate = moment(value).format('DD-MMM-YYYY');
      this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
-     this.endDate = moment(this.userData.endDate).format('DD-MMM-YYYY');
+    //  this.endDate = moment(this.userData.endDate).format('DD-MMM-YYYY');
      this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
      .subscribe(data => {
        this.rows = data.data;
      });
+    //alert('ok');
 
   }  
    
-
- getPrint()
+getPrint()
   {
       var printPage = window.open(this.user.path, '_blank');
   }
@@ -122,7 +122,6 @@ getFilterData(){
       this.getTransctionData() ;
     }
   }
-
 
     // dateFilter(event) {
     // const val = event.target.value.toLowerCase();
