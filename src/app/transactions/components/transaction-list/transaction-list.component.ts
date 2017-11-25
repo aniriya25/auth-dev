@@ -40,28 +40,29 @@ export class TransactionListComponent implements OnInit {
    // this.selectedIndexChange(0);
   }
   ngOnInit() {
-   this.selectedIndexChange(2);
+   this.selectedIndexChange(0);
    //  this.getTransctionData();
 
   }
   
  getTransctionInvoiceData(id) {
      // alert(value);
-     // debugger;
+     debugger;
       this.user.transactionId = id;
       this._alltransaction.getTransactionInvoce(this.user.transactionId)
       .subscribe(data => {   
        this.user.path = data.data["path"];
-      //  window.open(this.user.path).print();
+       window.open(this.user.path).print();
          
       })     
   }
 
-getFilterData(){
+getFilterData(value){
   debugger; 
-    
-     this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
-     this.endDate = moment(this.userData.endDate).format('DD-MMM-YYYY');
+   
+
+     this.strdate = moment(this.userData.strDate).format('DD-MMM-YYYY');
+     this.endDate = moment(value).format('DD-MMM-YYYY');
      this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
      .subscribe(data => {
        this.rows = data.data;
