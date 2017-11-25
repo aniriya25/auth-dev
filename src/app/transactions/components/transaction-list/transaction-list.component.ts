@@ -3,12 +3,13 @@ import { TransactionService } from './../../../services/transactions/transaction
 import {MdDialog} from '@angular/material';
 import { SummaryComponent } from '../summary/summary.component';  
 import * as moment from 'moment';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
-  providers: [TransactionService]
+  providers: [TransactionService, MdSnackBar]
 })
 export class TransactionListComponent implements OnInit {
  @ViewChild('myTable') table: any;
@@ -35,7 +36,7 @@ export class TransactionListComponent implements OnInit {
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService, public dialog: MdDialog) { 
+  constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { 
     
   }
   ngOnInit() {
@@ -56,16 +57,14 @@ export class TransactionListComponent implements OnInit {
   }
 
 getFilterData(value){
-     debugger;     
-     this.endDate = moment(value).format('DD-MMM-YYYY');
+     //debugger;
+     //alert('ok');     
      this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
-    //  this.endDate = moment(this.userData.endDate).format('DD-MMM-YYYY');
+     this.endDate = moment(value).format('DD-MMM-YYYY');
      this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
      .subscribe(data => {
        this.rows = data.data;
      });
-    //alert('ok');
-
   }  
    
 getPrint()
@@ -98,10 +97,15 @@ getPrint()
   }
   
   openreview() {
-       //debugger;       
+       //debugger;
+       if(this.selected.length == 0)
+       {
+          this.snackBar.open("Somthing went wrong! , Please select any Transaction before Generate Invoice","",{duration:5000});
+       }else{       
         const dialogRef = this.dialog.open(SummaryComponent,{data:[
         this.allrows = this.alldatavalue
        ], disableClose: true}); 
+       }
   }
 
    updateFilter(event) {
@@ -151,8 +155,6 @@ getPrint()
 //     return this.result;
 //   }
 // }
-
-
 
 
 }

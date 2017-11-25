@@ -116,9 +116,9 @@
 
                      <ngx-datatable-column name="AMOUNT" prop="amnt" [width]="140" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                         <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                          <span>{{row.totalAmount}}</span>
-                          <p title="discount">-{{row.discountAmount}}</p>
-                          <span><strong>{{row.payableAmount}}</strong></span>
+                          <span>Total:  {{row.totalAmount}}</span>
+                          <p title="discount">Discount: -{{row.discountAmount}}</p>
+                          <span><strong>Paid: {{row.payableAmount}}</strong></span>
                         </ng-template>
                       </ngx-datatable-column>
                     </ngx-datatable>  
