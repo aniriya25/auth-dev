@@ -27,6 +27,7 @@ export class TransactionListComponent implements OnInit {
   abc:any;
   allrows = [];
   alldatavalue: any = [];
+
   result = [];
   strdate:any;
   endDate:any;
@@ -38,10 +39,12 @@ export class TransactionListComponent implements OnInit {
   }
   constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { 
     
+
   }
   ngOnInit() {
-  
-     this.getTransctionData();    
+   this.selectedIndexChange(0);
+   //  this.getTransctionData();
+
   }
   
  getTransctionInvoiceData(id) {
@@ -51,7 +54,7 @@ export class TransactionListComponent implements OnInit {
       this._alltransaction.getTransactionInvoce(this.user.transactionId)
       .subscribe(data => {   
        this.user.path = data.data["path"];
-      //  window.open(this.user.path).print();
+      window.open(this.user.path).print();
          
       })     
   }
@@ -77,7 +80,7 @@ getPrint()
       .subscribe(data => {   
        //debugger;
        this.rows = data.data;  
-       this.temp = data.data;
+      this.temp = data.data;
        let el = this.el.nativeElement;
        setTimeout(function () {
          el.click();
@@ -111,6 +114,7 @@ getPrint()
    updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.temp.filter(function(d) {
+
       return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val || d.patientName.toLowerCase().indexOf(val) !== -1 || !val;      
     });
     this.rows = temp;

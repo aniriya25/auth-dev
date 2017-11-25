@@ -1,123 +1,123 @@
 <div class="container popup1" >
-<div fxLayout="row" fxLayout.xs="column">
-  
-  <div fxFlex="100">
-    <div fxFlex="98" fxFlexOffset="1" class="left-card">
-        <h2>Transaction Summary</h2>
-        <div fxLayout="row" fxLayout.xs="column">
-            <ul class="supp" fxFlex="100">
-                <li fxFlex="9">
-                    <img src={{user.companyLogo}} alt="H3U" class="logo" style="height:50px; width:auto; margin:0px ;">
-                </li>
-                <li fxFlex="50">
-                    <span style="font-weight:bold;">{{user.companyName}}</span>
-                    <p>{{user.companyAddress}}</p>                   
-                    <p style="font-weight:bold;">{{user.companyPhoneNo}}</p>
-                </li>
-                <li fxFlex="10">
-                  <span class="_brand providerIcon"><img src={{user.outletLogo}} alt="H3U"></span>
-                   
-                </li>
-                <li fxFlex="27" fxFlexOffset="3">
-                    {{user.outletName}}
-                  <p>{{user.outletAddress}}</p>                  
-                  <p style="font-weight:bold;">{{user.outletPhoneNo}}</p>
-                  <p>{{user.outletGstNo}}</p>                  
-                 
-                </li>
-              </ul>
-              </div>
-      <div fxLayout="row" fxLayout.xs="column">
-        <div fxFlex="100">
-         
-          <ngx-datatable #myTable class='material fullscreen expandable'
-           [rows]='rows'
-           [limit]="10"
-           [columnMode]="'force'" 
-           [headerHeight]="50"
-           [footerHeight]="50" 
-           [scrollbarV]="false"
-           [rowHeight]="'auto'"
-            >
-
-          <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
-                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                         <ul fxFlex="92" fxLayoutAlign="center center">
-                          <li fxFlex="30">Status:{{row.status}}</li>
-                          <li fxFlex="30">Remarks:Pending</li>
-                          <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>                         
-                          </ul>
-                        </ng-template>
-            </ngx-datatable-row-detail>              
-
-            <ngx-datatable-column name="DESCRIPTION" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span>{{row.id}}</span>
-                <p>{{row.cardNumber}}</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="PATIENT" prop="outlet"  [width]="200" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span>{{ row.patientName}}</span>
-                <p>{{row.gender}} ( {{row.age}} )</p>
-                <p class="tabspan">{{row.relation}}</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="SERVICE" prop="outlet" [width]="120" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span> {{row.service}}</span>
-                <p class="tabspan">{{row.subService}}</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="HSN" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span> HSN Name</span>
-                <p>HSN Code</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="PRICE" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>Total - {{row.totalAmount}}</span>              
-                <p>Paid by User - {{row.payableAmount}}</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="TAX" prop="date" [width]="80" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>0%</span>
-                <p>0.00</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="H3U APPROVED" prop="date" [width]="165" [canAutoResize]="false"  [resizeable]="false">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-               <span><strong> {{row.discountAmount}} </strong></span>
-              </ng-template>
-            </ngx-datatable-column>
-          </ngx-datatable>
+    <div fxLayout="row" fxLayout.xs="column">
+      
+      <div fxFlex="100">
+        <div fxFlex="98" fxFlexOffset="1" class="left-card">
+            <h2>Transaction Summary</h2>
+            <div fxLayout="row" fxLayout.xs="column">
+                <ul class="supp" fxFlex="100">
+                    <li fxFlex="9">
+                        <img src={{user.companyLogo}} alt="H3U" class="logo" style="height:50px; width:auto; margin:0px ;">
+                    </li>
+                    <li fxFlex="50">
+                        <span style="font-weight:bold;">{{user.companyName}}</span>
+                        <p>{{user.companyAddress}}</p>                   
+                        <p style="font-weight:bold;">{{user.companyPhoneNo}}</p>
+                    </li>
+                    <li fxFlex="10">
+                      <span class="_brand providerIcon"><img src={{user.outletLogo}} alt="H3U"></span>
+                       
+                    </li>
+                    <li fxFlex="27" fxFlexOffset="3">
+                        {{user.outletName}}
+                      <p>{{user.outletAddress}}</p>                  
+                      <p style="font-weight:bold;">{{user.outletPhoneNo}}</p>
+                      <p>{{user.outletGstNo}}</p>                  
+                     
+                    </li>
+                  </ul>
+                  </div>
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+             
+              <ngx-datatable #myTable class='material fullscreen expandable'
+               [rows]='rows'
+               [limit]="10"
+               [columnMode]="'force'" 
+               [headerHeight]="50"
+               [footerHeight]="50" 
+               [scrollbarV]="false"
+               [rowHeight]="'auto'"
+                >
+    
+              <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                             <ul fxFlex="92" fxLayoutAlign="center center">
+                              <li fxFlex="30">Status:{{row.status}}</li>
+                              <li fxFlex="30">Remarks:Pending</li>
+                              <li fxFlex="30">Created By: <a>{{row.patientName}}</a></li>                         
+                              </ul>
+                            </ng-template>
+                </ngx-datatable-row-detail>              
+    
+                <ngx-datatable-column name="DESCRIPTION" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span>{{row.id}}</span>
+                    <p>{{row.cardNumber}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="PATIENT" prop="outlet"  [width]="200" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span>{{ row.patientName}}</span>
+                    <p>{{row.gender}} ( {{row.age}} )</p>
+                    <p class="tabspan">{{row.relation}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="SERVICE" prop="outlet" [width]="120" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span> {{row.service}}</span>
+                    <p class="tabspan">{{row.subService}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="HSN" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span> HSN Name</span>
+                    <p>HSN Code</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="PRICE" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                    <span>Total - {{row.totalAmount}}</span>              
+                    <p>Paid by User - {{row.payableAmount}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="TAX" prop="date" [width]="80" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                    <span>0%</span>
+                    <p>0.00</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="H3U APPROVED" prop="date" [width]="165" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                   <span><strong> {{row.discountAmount}} </strong></span>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+    
+          <div fxLayout="row" fxLayout.xs="column">
+            <ul fxFlex="100" class="amnt">
+              <li>
+                <strong>G.Total: {{getSum(0)}}</strong>
+                <!--<span> Two Thousands Five Hundread</span>-->
+              </li>
+            </ul>
+          </div>
+    
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+              <button md-raised-button class="primary">Submit</button>
+              <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
+            </div>
+            
         </div>
       </div>
-
-      <div fxLayout="row" fxLayout.xs="column">
-        <ul fxFlex="100" class="amnt">
-          <li>
-            <strong>G.Total: {{getSum(0)}}</strong>
-            <!--<span> Two Thousands Five Hundread</span>-->
-          </li>
-        </ul>
-      </div>
-
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-          <button md-raised-button class="primary">Submit</button>
-          <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
-        </div>
-        
+    
     </div>
-  </div>
-
-</div>
-</div>
+    </div>

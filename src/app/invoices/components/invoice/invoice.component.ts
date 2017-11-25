@@ -8,12 +8,16 @@ import { MdSnackBar } from '@angular/material';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-// show:boolean = false;
+show:boolean = false;
 @ViewChild('myTable') table: any;
 rows = [];
 temp = [];
 isLimits: number = 10;
 records: any;
+
+ showto(){
+   this.show=true;
+}
 model: any = {};
 invoiceData: any = {};
   constructor(

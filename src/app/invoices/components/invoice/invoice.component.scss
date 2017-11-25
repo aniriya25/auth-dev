@@ -1,3 +1,25 @@
+//  .popup{
+//     /* Hidden by default */
+//     position: fixed; /* Stay in place */
+//     z-index: 1; /* Sit on top */
+//     padding-top: 100px; /* Location of the box */
+//     left: 0;
+//     top: 0;
+//     width: 100%; /* Full width */
+//     height: 100%; /* Full height */
+//     overflow: hidden; /* Enable scroll if needed */
+//     background-color: rgb(0,0,0); /* Fallback color */
+//     background-color: rgba(0,0,0,0.4);
+
+//  }
+//  .pop{
+//      background: #ffffff;
+//      width: 40%;
+//      margin: auto;
+//      padding: 20px;
+
+    
+//  }
 
 .logo{
     vertical-align: middle;
@@ -21,6 +43,7 @@ ol{
     list-style: none;
    
 }
+
   .tabspan{
     font-size: 12px;
     color: #489cce;
@@ -64,7 +87,7 @@ ol{
     border-top:3px solid #8c8a8a;
     border-bottom: 3px solid #8c8a8a;
     margin: 20px 0px;
-    padding: 0px 30px;
+    padding: 50px 30px 0px 30px;
     color: #000000
 }
 .supp{
@@ -77,6 +100,30 @@ ol{
        }
     }
 }
+.tabl{
+    width: 100%;
+    margin: 1% 0%;
+    
+    border:1px solid #d2e3f9;
+    p{
+        line-height: .5;
+        
+        }
+        th{
+           border: none; 
+            padding:15px 10px;
+            background:#e4ecf9;
+            text-align: left;
+        }
+        td{
+           
+            line-height: 0.2;
+            // border:1px solid #d2e3f9;
+            padding:10px;
+        }
+    
+}
+
 .txtBold{
     font-weight: bold !important;
     color: #489cce;

@@ -5,10 +5,14 @@
   }
   ngx-datatable{
     p{
-      line-height: .5;
+      line-height: 1;
       font-size: 12px;
     }
   ul{
     list-style: none;
   }
+  }
+  .btn_contain{
+    height: 40px;
+    margin-top: 25px;
   }

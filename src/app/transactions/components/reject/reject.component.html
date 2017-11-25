@@ -7,6 +7,7 @@
           <md-icon>error_outline</md-icon>
         </div>
 
+
 <div fxLayout="row" fxFlex="100" class="algn">
         <md-input-container fxFlex="100" class="mdTextAra">
         <textarea matInput placeholder="Leave a comment" [(ngModel)] ="user.remark" name="remark" #remark="ngModel"></textarea>
@@ -14,6 +15,7 @@
     </div>
 
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+
       <button md-raised-button class="primary"  md-dialog-close>Close</button>&nbsp;
       <button md-raised-button class="primary" (click) = "rejectTransaction();">Submit</button>
     </div>

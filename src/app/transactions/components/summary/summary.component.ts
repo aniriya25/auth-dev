@@ -13,6 +13,7 @@ import { ProfileService } from './../../../services/profile/profile.service';
 })
 
 export class SummaryComponent implements OnInit {
+
   // @ViewChild('myTable') table: any;
   rows = [];
   InvoiceViewData:any;

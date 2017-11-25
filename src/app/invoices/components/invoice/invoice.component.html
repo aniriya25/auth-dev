@@ -1,231 +1,231 @@
 <div class="container">
-  <md-card fxFlex="100">
-    <ul class="supp">
-      <li fxFlex="80">
-        <img fxFlexAlign="center" class="logo" src="assets/images/H3U_Logo_201x132.png" />
-      </li>
-      <li fxFlex="20">
-        Vipul Medcare Pvt Ltd
-        <p>534, Udyog Vihar, Phase V</p>
-
-        <p>Gurgaon, Haryana</p>
-        <p>Pincode: 122016</p>
-        <p style="font-weight:bold;">0124-4803182 </p>
-      </li>
-    </ul>
-    <div fxLayout="row" fxLayout.xs="column">
-      <fieldset fxFlex="97" class="field">
-        <fieldset fxFlex="100">
-          <legend> Patient Information</legend>
-          <div fxLayout="row" fxLayout.xs="column">
-            <ul fxFlex="60">
-              <li>
-                <strong fxFlex="40">Patient Name:</strong>
-                <span>{{model.patientName}}</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Card Holder Name:</strong>
-                <span fxFlex="60">Admin Kumar Gupta</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Age:</strong>
-                <span>{{model.age}}</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Gender:</strong>
-                <span> {{model.gender}}</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Address:</strong>
-                <span>{{model.patientAddress}}</span>
-              </li>
-            </ul>
-            <ul fxFlex="40" style="border-left:1px solid #cccccc">
-              <li>
-                <strong fxFlex="40"> UHID:</strong>
-                <span>{{model.patientAddress}}</span>
-              </li>
-              <li>
-                  <span style="color:red"> BarCode</span>
+    <md-card fxFlex="100">
+      <ul class="supp">
+        <li fxFlex="80">
+          <img fxFlexAlign="center" class="logo" src="assets/images/H3U_Logo_201x132.png" />
+        </li>
+        <li fxFlex="20">
+          Vipul Medcare Pvt Ltd
+          <p>534, Udyog Vihar, Phase V</p>
+  
+          <p>Gurgaon, Haryana</p>
+          <p>Pincode: 122016</p>
+          <p style="font-weight:bold;">0124-4803182 </p>
+        </li>
+      </ul>
+      <div fxLayout="row" fxLayout.xs="column">
+        <fieldset fxFlex="97" class="field">
+          <fieldset fxFlex="100">
+            <legend> Patient Information</legend>
+            <div fxLayout="row" fxLayout.xs="column">
+              <ul fxFlex="60">
+                <li>
+                  <strong fxFlex="40">Patient Name:</strong>
+                  <span>{{model.patientName}}</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Card Holder Name:</strong>
+                  <span fxFlex="60">Admin Kumar Gupta</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Age:</strong>
+                  <span>{{model.age}}</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Gender:</strong>
+                  <span> {{model.gender}}</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Address:</strong>
+                  <span>{{model.patientAddress}}</span>
+                </li>
+              </ul>
+              <ul fxFlex="40" style="border-left:1px solid #cccccc">
+                <li>
+                  <strong fxFlex="40"> UHID:</strong>
+                  <span>{{model.patientAddress}}</span>
+                </li>
+                <li>
+                    <span style="color:red"> BarCode</span>
+                  </li>
+                  <hr>
+                <li>
+                  <strong fxFlex="40">Card No:</strong>
+                  <span>{{model.cardNo}}</span>
+                </li>
+  
+                <li>
+                  <strong fxFlex="40">Booking ID:</strong>
+                  <span>RQD456</span>
+                </li>
+              </ul>
+            </div>
+          </fieldset>
+          <fieldset fxFlex="100">
+            <legend> Provider Information</legend>
+            <div fxLayout="row" fxLayout.xs="column">
+              <ul fxFlex="60">
+                <li>
+                  <strong fxFlex="40">Provider/Outlet Name:</strong>
+                  <span>{{model.provider_OutletName}}</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Provider/Outlet Code:</strong>
+                  <span>{{model.provider_OutletCode}}</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Address:</strong>
+                  <span> 345, udhyog vihar, phase V Gurugram</span>
+                </li>
+                <li>
+                  <strong fxFlex="40"> User ID:</strong>
+                  <span> UID456</span>
+                </li>
+                <li>
+                  <strong fxFlex="40">Doctor Name:</strong>
+                  <span>{{model.doctorName}}</span>
+                </li>
+              </ul>
+              <ul fxFlex="40" style="border-left:1px solid #cccccc">
+                <li>
+                  <strong fxFlex="40">Txn ID:</strong>
+                  <span>190</span>
+                </li>
+                <li>
+                  <strong fxFlex="40"> Date/Time:</strong>
+                  <span>{{model.DateTime}} </span>
                 </li>
                 <hr>
-              <li>
-                <strong fxFlex="40">Card No:</strong>
-                <span>{{model.cardNo}}</span>
-              </li>
-
-              <li>
-                <strong fxFlex="40">Booking ID:</strong>
-                <span>RQD456</span>
-              </li>
-            </ul>
-          </div>
-        </fieldset>
-        <fieldset fxFlex="100">
-          <legend> Provider Information</legend>
+                <li>
+                  <strong fxFlex="40"> GST No:</strong>
+                  <span>{{model.GSTNo}}</span>
+                </li>
+  
+                <li>
+                  <span style="color:red">BarCode</span>
+                </li>
+              </ul>
+            </div>
+          </fieldset>
+          <!-- <fieldset fxFlex="100">
+            <legend> Transaction Information</legend>
+            <div fxLayout="row" fxLayout.xs="column">
+              <ul fxFlex="60">
+                <li>
+                  <strong fxFlex="40">Txn ID:</strong>
+                  <span> PA0987</span>
+                </li>
+                
+               
+              </ul>
+              <ul fxFlex="40">
+                
+                <li>
+                  <span style="color:red">BarCode</span>
+                </li>
+              </ul>
+            </div>
+          </fieldset> -->
+  
           <div fxLayout="row" fxLayout.xs="column">
-            <ul fxFlex="60">
-              <li>
-                <strong fxFlex="40">Provider/Outlet Name:</strong>
-                <span>{{model.provider_OutletName}}</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Provider/Outlet Code:</strong>
-                <span>{{model.provider_OutletCode}}</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Address:</strong>
-                <span> 345, udhyog vihar, phase V Gurugram</span>
-              </li>
-              <li>
-                <strong fxFlex="40"> User ID:</strong>
-                <span> UID456</span>
-              </li>
-              <li>
-                <strong fxFlex="40">Doctor Name:</strong>
-                <span>{{model.doctorName}}</span>
-              </li>
-            </ul>
-            <ul fxFlex="40" style="border-left:1px solid #cccccc">
-              <li>
-                <strong fxFlex="40">Txn ID:</strong>
-                <span>190</span>
-              </li>
-              <li>
-                <strong fxFlex="40"> Date/Time:</strong>
-                <span>{{model.DateTime}} </span>
-              </li>
-              <hr>
-              <li>
-                <strong fxFlex="40"> GST No:</strong>
-                <span>{{model.GSTNo}}</span>
-              </li>
-
-              <li>
-                <span style="color:red">BarCode</span>
-              </li>
-            </ul>
+            <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable' [rows]='rows' [limit]="PageSize" [columnMode]="'force'"
+              [headerHeight]="50" [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
+              <ngx-datatable-column name="S.No." prop="s no" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  1
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="SERVICE CODE" prop="alias" width="100">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  123456
+                </ng-template>
+              </ngx-datatable-column>
+  
+              <ngx-datatable-column name="SERVICE" prop="serv">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  <span>{{model.serviceId}}</span>
+                  <p class="tabspan">{{model.subServiceId}}</p>
+                </ng-template>
+              </ngx-datatable-column>
+  
+              <ngx-datatable-column name="DESCRIPTION" prop="relation" width="100">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  {{model.description}}
+                </ng-template>
+              </ngx-datatable-column>
+  
+              <ngx-datatable-column name="PRICE" prop="age" width="100">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  <span>3300</span>
+  
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="DISCOUNT" prop="age" width="100">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  -2500
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="AMOUNT" prop="age" width="100">
+                <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                  <span>
+                    <strong>800</strong>
+                  </span>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+  
           </div>
-        </fieldset>
-        <!-- <fieldset fxFlex="100">
-          <legend> Transaction Information</legend>
           <div fxLayout="row" fxLayout.xs="column">
-            <ul fxFlex="60">
+            <ul fxFlex="100" class="amnt">
               <li>
-                <strong fxFlex="40">Txn ID:</strong>
-                <span> PA0987</span>
+                <strong fxFlex="80">Total Bill Amount:</strong>
+                <span>800/-</span>
               </li>
-              
-             
-            </ul>
-            <ul fxFlex="40">
-              
               <li>
-                <span style="color:red">BarCode</span>
+                <strong fxFlex="80"> GST(Tax):</strong>
+                <span>0.00/-</span>
+              </li>
+              <li>
+                <strong fxFlex="80"> Net Payable Amount:</strong>
+                <span class="txtBold">800/-</span>
+              </li>
+              <li>
+                <strong>In Words:</strong>
+                <span class="txtBold">Eight Hundread Only</span>
               </li>
             </ul>
           </div>
-        </fieldset> -->
-
-        <div fxLayout="row" fxLayout.xs="column">
-          <ngx-datatable #myTable fxFlex="100" class='material fullscreen expandable' [rows]='rows' [limit]="PageSize" [columnMode]="'force'"
-            [headerHeight]="50" [footerHeight]="50" [scrollbarV]="false" [rowHeight]="'auto'">
-            <ngx-datatable-column name="S.No." prop="s no" [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                1
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="SERVICE CODE" prop="alias" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                123456
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="SERVICE" prop="serv">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>{{model.serviceId}}</span>
-                <p class="tabspan">{{model.subServiceId}}</p>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="DESCRIPTION" prop="relation" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                {{model.description}}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="PRICE" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>3300</span>
-
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="DISCOUNT" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                -2500
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="AMOUNT" prop="age" width="100">
-              <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                <span>
-                  <strong>800</strong>
-                </span>
-              </ng-template>
-            </ngx-datatable-column>
-          </ngx-datatable>
-
-        </div>
-        <div fxLayout="row" fxLayout.xs="column">
-          <ul fxFlex="100" class="amnt">
-            <li>
-              <strong fxFlex="80">Total Bill Amount:</strong>
-              <span>800/-</span>
-            </li>
-            <li>
-              <strong fxFlex="80"> GST(Tax):</strong>
-              <span>0.00/-</span>
-            </li>
-            <li>
-              <strong fxFlex="80"> Net Payable Amount:</strong>
-              <span class="txtBold">800/-</span>
-            </li>
-            <li>
-              <strong>In Words:</strong>
-              <span class="txtBold">Eight Hundread Only</span>
-            </li>
-          </ul>
-        </div>
-        <div class="inst" fxLayout="row" fxLayout.xs="column">
-          <p fxFlex="80">No Tax is payable on reverse charge basis</p>
-          <p> Authorized Signatory</p>
-        </div>
-        <div class="foot" fxLayout="row" fxLayout.xs="column">
-          <p fxFlex="30">
-            <a fxFlex.xs="80" routerLink="https://www.h3u.com">https://www.h3u.com</a>
-          </p>
-          <p fxFlex="30">
-            <a href="mailto:enquiry@h3u.com">enquiry@h3u.com</a>
-          </p>
-          <p fxFlex="30" fxLayoutAlign="end">
-            <a routerLink="https://twitter.com/h3uIndia" title="https://twitter.com/h3uIndia">
-              <img src="assets/images/twitter-1.png" alt="Twitter">
-              <span>/H3Uindia</span>
-            </a>
-            <a routerLink="https://www.facebook.com/H3Uindia/" title="https://www.facebook.com/H3Uindia">
-              <img src="assets/images/facebook-1.png" alt="Facebook">
-              <span>/H3Uindia</span>
-            </a>
-          </p>
-        </div>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-          <button md-raised-button class="primary" (click)="showto()">Print</button>
-        </div>
-        <!-- <div *ngIf="show" class="popup">
-          <div class="pop">you have entered wrong OTP
-              <button>X</button>
+          <div class="inst" fxLayout="row" fxLayout.xs="column">
+            <p fxFlex="80">No Tax is payable on reverse charge basis</p>
+            <p> Authorized Signatory</p>
           </div>
-            </div> -->
-      </fieldset>
-    </div>
-  </md-card>
-</div>
+          <div class="foot" fxLayout="row" fxLayout.xs="column">
+            <p fxFlex="30">
+              <a fxFlex.xs="80" routerLink="https://www.h3u.com">https://www.h3u.com</a>
+            </p>
+            <p fxFlex="30">
+              <a href="mailto:enquiry@h3u.com">enquiry@h3u.com</a>
+            </p>
+            <p fxFlex="30" fxLayoutAlign="end">
+              <a routerLink="https://twitter.com/h3uIndia" title="https://twitter.com/h3uIndia">
+                <img src="assets/images/twitter-1.png" alt="Twitter">
+                <span>/H3Uindia</span>
+              </a>
+              <a routerLink="https://www.facebook.com/H3Uindia/" title="https://www.facebook.com/H3Uindia">
+                <img src="assets/images/facebook-1.png" alt="Facebook">
+                <span>/H3Uindia</span>
+              </a>
+            </p>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+            <button md-raised-button class="primary" (click)="showto()">Print</button>
+          </div>
+          <!-- <div *ngIf="show" class="popup">
+            <div class="pop">you have entered wrong OTP
+                <button>X</button>
+            </div>
+              </div> -->
+        </fieldset>
+      </div>
+    </md-card>
+  </div>
