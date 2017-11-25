@@ -127,6 +127,8 @@ getPrint()
     }
   }
 
+
+
     // dateFilter(event) {
     // const val = event.target.value.toLowerCase();
     // const temp = this.temp.filter(function() {

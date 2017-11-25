@@ -264,6 +264,24 @@ getPayableAmountData() {
       }, Error => {
         this.snackBar.open("Somthing went wrong!","",{duration:5000});
       }); 
-     }      
+     }
+
+     
+   handleFileSelect(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+    this.user.fileName = file.name;
+    this.user.fileType = file.type;
+    this.user.fileTypedata = "data:" + file.type + ";base64,";
+    if (files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.user.imageUrl = btoa(binaryString);
+  }      
   
 }

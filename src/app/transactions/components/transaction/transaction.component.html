@@ -110,7 +110,7 @@
                       <fieldset fxFlex="40">
                           <legend>Member ID</legend>
                           <md-card fxFlex="100" class="fixh">
-                              <img md-card-image src="{{user.idProoImg}}" alt="user profile photo">
+                              <img md-card-image src="{{user.idProoImg}}" alt="user profile photo" >
                               <md-card-content>
                                  <span fxFlex="50" fxLayoutAlign="start">{{user.name}}</span>
                                  <span fxFlex="50" fxLayoutAlign="end">{{user.relation}}</span>
@@ -135,7 +135,7 @@
                             <div *ngIf="IdValue">
                             <p>Upload ID proof</p>
                             <div class="file-upload" fxLayout fxLayoutAlign="center center">
-                               <input id="upload" class="btnupload" type="file" name="file-upload">
+                               <input id="upload" class="btnupload" #fileInput type="file" name="file-upload" (change)="handleFileSelect($event)">
                                <md-icon>file_upload</md-icon>
                             </div>
                             </div>
