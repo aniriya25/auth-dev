@@ -37,6 +37,7 @@ export class TransactionComponent implements OnInit {
   IdValue: any;
   payableTotalAmount:any = {};
   button:any = true;
+  btnTotal:any = true;
   amoutP:any = false;
   showotp: boolean = false;
   detailspay: boolean = false;
@@ -76,7 +77,7 @@ export class TransactionComponent implements OnInit {
        consultationType: this.user.consultationType,
 
        cardNumber: this.user.cardNumber,
-       cuponNumber: this.user.cuponNumber,
+       requestNo: this.user.requestNo,
        serviceName: this.user.serviceName,
        subServiceName: this.user.subServiceName, 
        totalAmount: this.user.totalAmount,
@@ -153,7 +154,8 @@ getPayableAmountData() {
        //debugger;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
-      //  this.user.cardNumber = data.data["cardNumber"];
+       this.user.cardNumber = data.data["cardNumber"];
+       this.route.queryParams.subscribe(queryParams => this.user.requestNo = queryParams['page']); 
        this.user.refcouponId = data.data["refcouponId"];
        this.user.consultationType = data.data["consultationType"];
        this.rows = data.data["Members"];
@@ -167,12 +169,14 @@ getPayableAmountData() {
        this.user.discountAmount = data.data["discountAmount"];
        this.user.payableAmount = data.data["payableAmount"];
        this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];
+       this.btnTotal = true;
       })  
     }
     else if(this.user.cardNumber.length == 16){
       this._transaction.getTransaction(this.user.cardNumber)
       .subscribe(data => {
        //debugger;
+       this.btnTotal = false;
        this.alldatavalue = data.data;
        this.user.refCardId = data.data["refCardId"];
        this.user.refcouponId = data.data["refcouponId"];
@@ -202,16 +206,25 @@ getPayableAmountData() {
     }
   }
   otpshow(){
-    this.showotp = true;
-    this.button = true;
+    this.showotp = true; 
   }
   paydetails(){
     this.detailspay = true;
     this.button = false;
   }
   showpay(){
-    this.payshow = true;
+    this.payshow = true;  
+  }
+  edittotal(){
+    this.showotp = false;
+    this.detailspay = false; 
     this.button = true;
+    this.user.otp = "";
+    this.payableTotalAmount.discountAmount = "";
+    this.payableTotalAmount.payableAmount = "";
+    this.user.doctor = "";
+    this.user.payTransectionNo = "";
+
   }
 
   getMemberData(value){
@@ -255,9 +268,9 @@ getPayableAmountData() {
       this.model.mobileNo = this.user.contactNo;
       this.model.otp = this.user.otp;
       this._transaction.verifyOTP(this.model)
-      .subscribe(data => {    
+      .subscribe(data => {         
          if(data.message) {
-          this.showpay();
+          this.paydetails();
           }else if(data && data.error && data.error.message){
             this.snackBar.open("Somthing went wrong!, Please Check OTP Code","",{duration:5000});
           }        
