@@ -43,6 +43,8 @@ export class TransactionComponent implements OnInit {
   detailspay: boolean = false;
   proData: any = {};
   getMembers:any = {};
+  isCaedValue: boolean = false;
+  
 
   constructor(
     private _transaction: TransactionService,
@@ -50,7 +52,8 @@ export class TransactionComponent implements OnInit {
     public snackBar: MdSnackBar,
     private _route: Router,
     private route: ActivatedRoute,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    
   ) { }
 
 
@@ -97,15 +100,17 @@ export class TransactionComponent implements OnInit {
     { id: 5, name: "Others"}
   ]
   ngOnInit() {
-
+    this.isCaedValue = false;
     this.user['refPayModeId'] = "1";
     this.getIdentityData();
     this.getProviderData();
     this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
     if(this.abc != "" && this.abc != undefined)
     {
+       this.isCaedValue = true;
        this.user.cardNumber = this.abc;
        this.getTrasnctionData1();
+
      }  
     this.kycshow = false;
     this.IdValue = false;
@@ -206,7 +211,15 @@ getPayableAmountData() {
     }
   }
   otpshow(){
-    this.showotp = true; 
+    debugger;
+    if(this.user.totalAmount = "undefined")
+    {
+      // this.user.totalAmount = "";
+      this.snackBar.open("Please enter amount","",{duration:5000});
+    }else{
+     this.showotp = true;
+     this.postOTP();
+    }
   }
   paydetails(){
     this.detailspay = true;

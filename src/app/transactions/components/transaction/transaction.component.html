@@ -7,14 +7,13 @@
               <div fxLayout="row" fx-layout-align="center center">
                 <div fxFlex="100" class="v_align" >  
                     <md-input-container fxFlex="45">
-                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (blur)="getTrasnctionData1($event);" maxlength="20">
+                        <input type="text" mdInput placeholder="Card Number" required [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" (blur)="getTrasnctionData1($event);" maxlength="20" [disabled]="isCaedValue">
                     </md-input-container>
                      <div fxFlex="100" style="padding-left:20px;">
                       <md-input-container fxFlex="45">
                         <input type="text" mdInput placeholder="Cupon Number" [(ngModel)]="user.requestNo" name="requestNo" #requestNo="ngModel" maxlength="20" readonly="true">
                     </md-input-container>
-                     </div>
-                    
+                     </div>                    
                     </div>
                 </div>
 
@@ -129,7 +128,7 @@
                            
                            <div fxLayout="row"  fxLayoutGap="10px">
                                <md-input-container fxFlex="100">
-                                <input type="text" mdInput type='text' placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
+                                <input type="text" mdInput placeholder='ID Proof No' [(ngModel)]="user.idProofNumber" name="idProofNumber" #idProofNumber="ngModel" />
                                 </md-input-container>
                             </div>  
                             <div *ngIf="IdValue">
@@ -152,9 +151,9 @@
                           <legend>Payment</legend>
                           <div fxFlex="100"  fxFlex.xs="100">
                           <md-input-container fxFlex="80">
-                              <input type="number" mdInput type='text'  placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (change) = "getPayableAmountData();edittotal();" [disabled] = "btnTotal"/>
+                              <input type="text" required maxlength="5" mdInput placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (change) = "getPayableAmountData();edittotal();" [disabled] = "btnTotal"/>
                             </md-input-container>  
-                           <button md-raised-button fxFlexOffset="5" class="btn_contain primary"  (click)="getPayableAmountData(); otpshow(); postOTP();">Verify</button>
+                           <button md-raised-button fxFlexOffset="5" class="btn_contain primary"  (click)="getPayableAmountData(); otpshow();">Verify</button>
                           </div>
                           </fieldset>
                        </div>
@@ -165,7 +164,7 @@
                           <legend>OTP Request</legend>
                           <div fxFlex="100"  fxFlex.xs="100">
                            <md-input-container fxFlex="80"> 
-                              <input type="text" mdInput type='text' placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
+                              <input type="text" mdInput placeholder='Please Enter OTP' [(ngModel)]="user.otp" name="otp" #otp="ngModel" />
                            </md-input-container>   
                            <button md-raised-button fxFlexOffset="5" class="btn_contain primary" (click)="verifyOTP();">Verify</button>
                       </div>
@@ -186,16 +185,16 @@
                        <div fxLayout="row" fxFlex="98">     
                                             
                         <md-input-container fxFlex="49"  >
-                            <input type="text" mdInput type='text'  placeholder='Promise Amount' [(ngModel)]= "payableTotalAmount.discountAmount" name="discountAmount" #discountAmount="ngModel">
+                            <input type="number" mdInput placeholder='Promise Amount' [(ngModel)]= "payableTotalAmount.discountAmount" name="discountAmount" #discountAmount="ngModel">
                         </md-input-container>
                         <md-input-container fxFlex="48" fxFlexOffset="2">
-                            <input type="text" mdInput type='text'  placeholder='Payable Amount' [(ngModel)] = "payableTotalAmount.payableAmount" name="payableAmount" #payableAmount="ngModel" />
+                            <input type="number" mdInput placeholder='Payable Amount' [(ngModel)] = "payableTotalAmount.payableAmount" name="payableAmount" #payableAmount="ngModel" />
                         </md-input-container>           
                     </div>
 
                     <div fxLayout="row" fxFlex="97">                        
                         <md-input-container fxFlex="32">
-                            <input type="text" mdInput type='text'  placeholder='Doctor Name' [(ngModel)]="user.doctor" name="doctor" #doctor="ngModel"/>
+                            <input type="text" mdInput placeholder='Doctor Name' [(ngModel)]="user.doctor" name="doctor" #doctor="ngModel"/>
                         </md-input-container>                       
                        
                         <md-select placeholder="Select Payment Mode" fxFlex="32" fxFlexOffset="2" [(ngModel)] = "user.refPayModeId" name="refPayModeId" #refPayModeId="ngModel" class="opt" [disabled] ="amoutP">
@@ -203,7 +202,7 @@
                         </md-select>
 
                         <md-input-container fxFlex="32" fxFlexOffset="2">
-                            <input type="text" mdInput type='text'  placeholder='Payment Ref Id' [(ngModel)]="user.payTransectionNo" name="payTransectionNo" #payTransectionNo="ngModel" />
+                            <input type="text" mdInput placeholder='Payment Ref Id' [(ngModel)]="user.payTransectionNo" name="payTransectionNo" #payTransectionNo="ngModel" />
                         </md-input-container>                     
                     </div>
 
