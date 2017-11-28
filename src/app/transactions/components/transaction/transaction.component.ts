@@ -46,7 +46,6 @@ export class TransactionComponent implements OnInit {
   getMembers:any = {};
   isCaedValue: boolean = false;
   
-
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
@@ -56,7 +55,6 @@ export class TransactionComponent implements OnInit {
     public dialog: MdDialog,
     
   ) { }
-
 
   openDialog() {
     const dialogRef = this.dialog.open(RejectComponent,{data:{
@@ -81,7 +79,7 @@ export class TransactionComponent implements OnInit {
        consultationType: this.user.consultationType,
 
        cardNumber: this.user.cardNumber,
-       requestNo: this.user.requestNo,
+       couponCode: this.user.couponCode,
        serviceName: this.user.serviceName,
        subServiceName: this.user.subServiceName, 
        totalAmount: this.user.totalAmount,
@@ -110,6 +108,7 @@ export class TransactionComponent implements OnInit {
     {
        this.isCaedValue = true;
        this.user.cardNumber = this.abc;
+      //  this.user.requestNo = this.abc;
        this.getTrasnctionData1();
 
      }  
@@ -117,15 +116,13 @@ export class TransactionComponent implements OnInit {
     this.IdValue = false;
     this.getPayableAmountData();
   }
-getIdentityData() {
-    
+getIdentityData() {    
     this._transaction.getIdentity()
       .subscribe(data => {         
         this.Identities = data.data; 
         //console.log(this.Identities);   
       })
   }
-
  getProviderData() {
      this._profile.getPersonalInfo()
       .subscribe(data => {         
@@ -133,7 +130,6 @@ getIdentityData() {
         this.proData = data.data;         
       })
   }
-
 getPayableAmountData() {
       this._transaction.getpayableAmount({totalAmount: this.user.totalAmount})
       .subscribe(data => {
@@ -150,17 +146,17 @@ getPayableAmountData() {
        // console.log(this.payableTotalAmount);
       })      
   }
-
   getTrasnctionData1() {
     //debugger;
     if(this.user.cardNumber.length == 6)
     {
       this._transaction.getCouponTransaction(this.user.cardNumber)
       .subscribe(data => {
-       //debugger;
+      //  debugger; 
        this.alldatavalue = data.data;
+       this.user.couponCode = data.data["couponCode"];
        this.user.refCardId = data.data["refCardId"];
-       this.user.cardNumber = data.data["cardNumber"];
+       this.user.cardNumber = data.data["cardNumber"];       
        this.route.queryParams.subscribe(queryParams => this.user.requestNo = queryParams['page']); 
        this.user.refcouponId = data.data["refcouponId"];
        this.user.consultationType = data.data["consultationType"];
@@ -168,13 +164,14 @@ getPayableAmountData() {
        this.services = data.data["Services"];
        this.user.serviceId = this.services[0]["serviceId"];
        this.user.serviceName = this.services[0]["serviceName"];
-       this.speciality= data.data["SubServices"];
+       this.speciality = data.data["SubServices"];
        this.user.subServiceId = this.speciality[0]["subServiceId"];
        this.user.subServiceName = this.speciality[0]["subServiceName"];
        this.user.totalAmount = data.data["totalAmount"];
        this.user.discountAmount = data.data["discountAmount"];
        this.user.payableAmount = data.data["payableAmount"];
-       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];
+       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];      
+       this.Membershow = true;
        this.btnTotal = true;
       })  
     }
@@ -212,13 +209,13 @@ getPayableAmountData() {
     }
   }
   otpshow(){
-    debugger;
-    if(this.user.totalAmount != "")
+    //debugger; 
+    if(this.user.totalAmount != null && this.user.totalAmount != "")
     {
       this.showotp = true;
       this.postOTP();
     }else{
-      this.snackBar.open("Please enter amount","",{duration:5000});    
+      this.snackBar.open("Please enter total amount","",{duration:5000});    
     }
   }
   paydetails(){
@@ -240,7 +237,6 @@ getPayableAmountData() {
     this.payableTotalAmount.payableAmount = "";
     this.user.doctor = "";
     this.user.payTransectionNo = "";
-
   }
 
   getMemberData(value){

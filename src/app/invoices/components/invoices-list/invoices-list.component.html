@@ -9,8 +9,7 @@
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="90" fxFlex.xs="98">
                   <input type="text" mdInput type='text' placeholder='Search Invoice...' (keyup)='updateFilter($event)' />
-                </md-input-container>
-               
+                </md-input-container>               
                 </div>
               <div fxFlex="40" fxFlex.xs="100">
                 <md-input-container fxFlex="95" fxFlex.xs="80">
@@ -62,19 +61,58 @@
                       </ng-template>
                     </ngx-datatable-column> 
 
-                    <ngx-datatable-column name="OUTLET DETAILS" prop="outlet">
+                     <ngx-datatable-column name="INVOIVE DATE" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <span>Outlet Name</span>
-                        <p>98.4 Pharmacy G2 Block Market, Sarita Vihar</p>
-                        <p class="tabspan">9876543210</p>
+                        12/Nov/2017
                       </ng-template>
                     </ngx-datatable-column> 
 
-                    <ngx-datatable-column name="DATE" prop="date" width="100">
-                      <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                        12/01/2017
+                      <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        Rs. 4500/-
                       </ng-template>
-                 </ngx-datatable-column> 
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="DISCOUNT" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        Rs. 4500/-
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        Rs. 4500/-
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="PAID BY USER" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        Rs. 4500/-
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <!--<ngx-datatable-column name="STATUS" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        <md-select placeholder="Status" fxFlex="90">
+                          <md-option>Pending</md-option>
+                          <md-option>Approved</md-option>
+                        </md-select>
+                      </ng-template>
+                    </ngx-datatable-column>  
+                    <ngx-datatable-column name="VALIDATE AMOUNT" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        <md-input-container>
+                          <input type="text" mdInput placeholder="Validate Amount">    
+                      </md-input-container>
+                      </ng-template>
+                    </ngx-datatable-column> 
+                    <ngx-datatable-column name="REMARKS" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                       <md-input-container>
+                           <textarea mdInput placeholder="Remarks" required></textarea>     
+                      </md-input-container>
+                      </ng-template>
+                    </ngx-datatable-column> -->
 
                     </ngx-datatable>
                   </div>
@@ -82,8 +120,7 @@
         </div>
         <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
             <div fxLayout="row">
-              <div fxFlex="100" class="cp-para">
-                
+              <div fxFlex="100" class="cp-para">                
               </div>
             </div>
           </div> -->

@@ -105,15 +105,15 @@
           <div fxLayout="row" fxLayout.xs="column">
             <ul fxFlex="100" class="amnt">
               <li>
-                <strong>G.Total: {{getSum(0)}}</strong>
+                <strong>G.Total: {{this.totalAmount}}</strong>
                 <!--<span> Two Thousands Five Hundread</span>-->
               </li>
             </ul>
           </div>
     
           <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-              <button md-raised-button class="primary">Submit</button>
-              <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Edit</button>
+              <button md-raised-button class="primary" (click)=saveDataFunction();>Submit</button>
+              <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Back</button>
             </div>
             
         </div>

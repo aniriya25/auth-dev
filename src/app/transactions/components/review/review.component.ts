@@ -39,7 +39,7 @@ export class ReviewComponent implements OnInit {
       this.user.refcouponId = this.data.refcouponId;
 
       this.user.cardNumber = this.data.cardNumber;
-      this.user.requestNo = this.data.requestNo;
+      this.user.couponCode = this.data.couponCode;
       this.user.serviceName = this.data.serviceName;
       this.user.subServiceName = this.data.subServiceName;
       this.user.totalAmount = this.data.totalAmount;

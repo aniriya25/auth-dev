@@ -127,34 +127,5 @@ getFilterData(value){
     }
   }
 
-    // dateFilter(event) {
-    // const val = event.target.value.toLowerCase();
-    // const temp = this.temp.filter(function() {
-    // return function(items, startDate, endDate) {
-    // //an undefined startDate is converted to the beginning of time
-    // startDate = startDate || 0;
-    // const granularity = null // can be 'days', ... see momentJS doc
-    // //you need support for array.prototype.filter and arrow functions; i.e. IE sucks/needs a polyfill   
-    // return items.filter(item => moment(item).isBetween(startDate, endDate, granularity, '[]'));
-    //   }
-    // }
-    //  )};  
-
-//  dateFilter(event) {
-//   return function(input, startDatePicker, endDatePicker) {
-//     var inputDate = event.target.input.toLowerCase();
-//         this.startDatePicker = event.target.startDatePicker.toLowerCase();
-//         this.endDatePicker = event.target.endDatePicker.toLowerCase();
-//         this.result = [];
-//     for (var i=0, len = input.length; i < len; i++) {
-//         inputDate = new Date(input[i].transactionDate);            
-//         if (this.startDatePicker < inputDate && inputDate < this.endDatePicker) {
-//            this.result.push(input[i]);
-//         }  
-//     }       
-//     return this.result;
-//   }
-// }
-
 
 }

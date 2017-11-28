@@ -19,12 +19,12 @@
                 <input type="text" mdInput type='text' placeholder='Provider Name' [(ngModel)] = "user.proName" name="proName" #proName="ngModel"  [readonly]="true"/>
             </md-input-container>
             <md-input-container fxFlex="49" fxFlexOffset="2">
-                <input type="text" mdInput type='text' placeholder='Provider code' value="0001" name="Provider code" [readonly]="true" />
+                <input type="text" mdInput type='text' placeholder='Provider code' value="" name="Provider code" [readonly]="true" />
             </md-input-container>
         </div>
         <div fxLayout="row" fxFlex="100">
             <md-input-container fxFlex="49">
-                <input type="text" mdInput type='text' placeholder='Coupon Code' [(ngModel)]="user.requestNo" name="requestNo" #requestNo="ngModel" [readonly]="true" />
+                <input type="text" mdInput type='text' placeholder='Coupon Code' [(ngModel)]="user.couponCode" name="couponCode" #couponCode="ngModel" [readonly]="true" />
             </md-input-container>
             <md-input-container fxFlex="49" fxFlexOffset="2">
                 <input type="text" mdInput type='text' placeholder='Card No.'  [(ngModel)]="user.cardNumber" name="cardNumber" #cardNumber="ngModel" [readonly]="true"/>

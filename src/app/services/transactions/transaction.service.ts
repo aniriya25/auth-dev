@@ -106,6 +106,18 @@ getpdf:any;
       });
   }
 
+  transactionPost(value:any) {
+    return this.authhttp.post(
+        this.config.api_base_url+this.config.postTransaction_url,value
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+
+
    getpayableAmount(value:any) {
     return this.authhttp.post(this.config.api_base_url+this.config.amountvalidate_url, value)
       .map(data => {
