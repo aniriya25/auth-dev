@@ -74,6 +74,7 @@ export class AppConfig {
   //Invoice
   getBasicDetails_url:string;
   postTransaction_url:string;
+  getInvoiceData_url:string;
 
 // Master
   services_url: string;
@@ -91,9 +92,9 @@ export class AppConfig {
 
 export const APP_DI_CONFIG: AppConfig = {
 
- api_base_url: 'http://192.168.9.50/v2/apis/auth/',
+ //api_base_url: 'http://192.168.9.50/v2/apis/auth/',
   
- // api_base_url: 'https://www.h3u.com/v2/apis/auth/',
+ api_base_url: 'https://www.h3u.com/v2/apis/auth/',
   
   //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
   //api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
@@ -156,6 +157,7 @@ export const APP_DI_CONFIG: AppConfig = {
   //Invoice
   getBasicDetails_url:'me/basicdetails',
   postTransaction_url:'outletInvoice',
+  getInvoiceData_url:'outletInvoice',
 
   // master
 

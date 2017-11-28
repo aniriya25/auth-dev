@@ -9,7 +9,7 @@ import { ProfileService } from './../../../services/profile/profile.service';
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss'],
-  providers: [MdSnackBar, ProfileService]
+  providers: [MdSnackBar, ProfileService, TransactionService]
 })
 
 export class SummaryComponent implements OnInit {
@@ -75,7 +75,7 @@ export class SummaryComponent implements OnInit {
           this._route.navigate(['dashboard/invoices/invoices-list']);
         }
       }, Error => {
-        this.snackBar.open("Duplicate ID!","",{duration:5000});
+        this.snackBar.open("Duplicate ID!, Please select Uniq ID","",{duration:5000});
       });      
   }
 
