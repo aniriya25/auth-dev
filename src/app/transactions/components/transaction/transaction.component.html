@@ -27,7 +27,7 @@
                         </md-option>
                           </md-select>
 
-                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel" (change)="getMemberData($event.value); getSubServiceName($event.value)">
+                          <md-select placeholder="Speciality" fxFlex="50" fxFlexOffset="2" [(ngModel)]="user.subServiceId" name="subServiceId" #subServiceId="ngModel" (change)="getMemberData($event.value); getSubServiceName($event.value); showMember();">
                            <md-option *ngFor="let speciality of speciality" value= {{speciality.subServiceId}} select ="this.user.subServiceId">
                               {{ speciality.subServiceName }}
                             </md-option>
@@ -43,7 +43,7 @@
                   </fieldset>
                   
                 </div>
-              <div fxLayout="row" fxLayout.xs="column">
+              <div fxLayout="row" fxLayout.xs="column" *ngIf="Membershow">
                   <fieldset fxFlex="100">
                       <legend>Member</legend>
                   <div fxFlex="100">
@@ -151,7 +151,7 @@
                           <legend>Payment</legend>
                           <div fxFlex="100"  fxFlex.xs="100">
                           <md-input-container fxFlex="80">
-                              <input type="text" required maxlength="5" mdInput placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (change) = "getPayableAmountData();edittotal();" [disabled] = "btnTotal"/>
+                              <input type="text" required maxlength="5"  onkeyup="this.value=this.value.replace(/[^\d]/,'')" mdInput placeholder='Total Amount' [(ngModel)]="user.totalAmount" name="totalAmount" #totalAmount="ngModel" (change) = "getPayableAmountData();edittotal();" [disabled] = "btnTotal"/>
                             </md-input-container>  
                            <button md-raised-button fxFlexOffset="5" class="btn_contain primary"  (click)="getPayableAmountData(); otpshow();">Verify</button>
                           </div>

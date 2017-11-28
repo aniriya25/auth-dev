@@ -32,6 +32,7 @@ export class TransactionComponent implements OnInit {
   abc: any;
   kycshow: boolean = false;
   payshow: boolean =false;
+  Membershow: boolean = false;
   alldatavalue: object;
   model: any = {};
   IdValue: any;
@@ -212,13 +213,12 @@ getPayableAmountData() {
   }
   otpshow(){
     debugger;
-    if(this.user.totalAmount = "undefined")
+    if(this.user.totalAmount != "")
     {
-      // this.user.totalAmount = "";
-      this.snackBar.open("Please enter amount","",{duration:5000});
+      this.showotp = true;
+      this.postOTP();
     }else{
-     this.showotp = true;
-     this.postOTP();
+      this.snackBar.open("Please enter amount","",{duration:5000});    
     }
   }
   paydetails(){
@@ -227,6 +227,9 @@ getPayableAmountData() {
   }
   showpay(){
     this.payshow = true;  
+  }
+  showMember(){
+    this.Membershow = true;
   }
   edittotal(){
     this.showotp = false;
