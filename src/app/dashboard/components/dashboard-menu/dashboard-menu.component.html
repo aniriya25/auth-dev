@@ -10,7 +10,7 @@
            <md-icon>person</md-icon> <span>{{profile.firstName}} {{profile.lastName}}</span><md-icon>expand_more</md-icon>
          </span>
          <md-menu #profileXs="mdMenu"  [overlapTrigger]="true" yPosition="below">
-          <button md-menu-item (click)="add('/dashboard/providers/provider/166')"><md-icon>perm_identity</md-icon>Profile</button>
+          <button md-menu-item (click)="add('dashboard/providers/provider/me')"><md-icon>perm_identity</md-icon>Profile</button>
           <!--<button md-menu-item (click)="add('/dashboard/provider/1/outlet/2')"><md-icon>perm_identity</md-icon>Profile-O</button>-->
           <button md-menu-item (click)="logout()"><md-icon>exit_to_app</md-icon> Log Out</button>
         </md-menu>
@@ -69,20 +69,27 @@
             </li>
           </a>
           
-          <a routerLink="provider/1/outlets" [ngClass]="{'selectedClass': selected == 2}" (click)="selectId(2)" >
+          <a routerLink="providers" [ngClass]="{'selectedClass': selected == 2}" (click)="selectId(2)" >
+            <li>   
+              <p><md-icon class="mainIcon">store</md-icon></p>
+              <p>PROVIDERS</p>  
+            </li>
+          </a>
+          
+          <a routerLink="outlets" [ngClass]="{'selectedClass': selected == 2}" (click)="selectId(2)" >
             <li>   
               <p><md-icon class="mainIcon">store</md-icon></p>
               <p>OUTLETS</p>  
             </li>
           </a>
-          <a routerLink="/dashboard/transactions"  [ngClass]="{'selectedClass': selected == 3}" (click)="selectId(3)">
+          <a routerLink="transactions"  [ngClass]="{'selectedClass': selected == 3}" (click)="selectId(3)">
                <li>  
                 <p><md-icon class="mainIcon">credit_card</md-icon></p>
                 <p>TRANSACTIONS</p>  
             </li>
           </a>
 
-            <a routerLink="/dashboard/invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)">
+            <a routerLink="invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)">
             <li>
               <p><md-icon class="mainIcon">receipt</md-icon></p>
               <p>INVOICES</p>

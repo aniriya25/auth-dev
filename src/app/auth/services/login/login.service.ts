@@ -11,7 +11,6 @@ export class LoginService {
 
     ) { }
   login(username,password){
-    //debugger;
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       return this._http.post(this.config.api_base_url + this.config.login_url

@@ -6,13 +6,12 @@ import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class InvoiceService {
-
-  constructor(private _http: Http,
+   constructor(private _http: Http,
     private authhttp: AuthHttp,
     @Inject(APP_CONFIG) private config: AppConfig) { }
 
     getInvoiceDetails(){
-      return this.authhttp.get(this.config.api_base_url+this.config.getInvoiceData_url)
+      return this.authhttp.get(this.config.api_base_url+this.config.getallTransaction_url)
       .map(data => {
           data.json();
           return data.json();

@@ -9,7 +9,7 @@ import { ProfileService } from './../../../services/profile/profile.service';
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss'],
-  providers: [MdSnackBar, ProfileService, TransactionService]
+  providers: [MdSnackBar, ProfileService]
 })
 
 export class SummaryComponent implements OnInit {
@@ -66,17 +66,34 @@ export class SummaryComponent implements OnInit {
         transactionId: this.rows[i]["id"],
       });
     }
-    //debugger;
+    debugger;
     this._transaction.transactionPost(this.saveData)
-    .subscribe(data => {      
-         if(data.message) {
-          this.snackBar.open("Updated successfully","",{duration:2000});
-          this.dialogRef.close();
+     .subscribe(
+      res => {
+        if (res && res.message) {
+          this.snackBar.open(res.message, null, { duration: 3000 });   
+          this.dialogRef.close();     
           this._route.navigate(['dashboard/invoices/invoices-list']);
         }
-      }, Error => {
-        this.snackBar.open("Duplicate ID!, Please select Uniq ID","",{duration:5000});
-      });      
+        else if (res && res.error && res.error.message) {
+          this.snackBar.open(res.error.message, null, { duration: 3000 });
+        }
+        else {
+          this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
+        }
+      },
+      err => this.snackBar.open(err, null, { duration: 3000 })
+
+     );
+    // .subscribe(data => {      
+    //      if(data.message) {
+    //       this.snackBar.open("Updated successfully","",{duration:2000});
+    //       this.dialogRef.close();
+    //       this._route.navigate(['dashboard/invoices/invoices-list']);
+    //     }
+    //   }, Error => {
+    //     this.snackBar.open("Duplicate ID!","",{duration:5000});
+    //   });      
   }
 
   getInvoiceViewData() {

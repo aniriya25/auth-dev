@@ -107,6 +107,7 @@ getpdf:any;
   }
 
   transactionPost(value:any) {
+      debugger;
     return this.authhttp.post(
         this.config.api_base_url+this.config.postTransaction_url,value
       )

@@ -38,7 +38,7 @@
                     [scrollbarV]="false" 
                     [rowHeight]="'auto'">
                     (activate)="onActivate($event, modal)"
-                    <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                    <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                           <ul fxFlex="100" fxLayoutAlign="center center">
                           <li fxFlex="80">Status:Pending</li>
@@ -46,7 +46,7 @@
                           <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
                           </ul>
                         </ng-template>
-                      </ngx-datatable-row-detail>
+                      </ngx-datatable-row-detail>-->
                      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                         <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
                           <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
@@ -57,37 +57,37 @@
                     </ngx-datatable-column>
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                      <a routerLink="/dashboard/invoices/invoice"> 4251</a>
+                      <a routerLink="/dashboard/invoices/invoice-summary"> {{row.invoiceNo}}</a>
                       </ng-template>
                     </ngx-datatable-column> 
 
                      <ngx-datatable-column name="INVOIVE DATE" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        12/Nov/2017
+                        {{row.invoiceDate}}
                       </ng-template>
                     </ngx-datatable-column> 
 
-                      <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet">
+                      <ngx-datatable-column name="AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        Rs. 4500/-
+                        {{row.totalAmount}}
                       </ng-template>
                     </ngx-datatable-column>
 
-                    <ngx-datatable-column name="DISCOUNT" prop="outlet">
+                    <ngx-datatable-column name=" PROMISED AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        Rs. 4500/-
+                        {{row.promisedAmount}}
                       </ng-template>
                     </ngx-datatable-column>
 
                     <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        Rs. 4500/-
+                        {{row.totalPaidAmount}}
                       </ng-template>
                     </ngx-datatable-column>
 
                     <ngx-datatable-column name="PAID BY USER" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        Rs. 4500/-
+                       {{row.userPaidAmount}}
                       </ng-template>
                     </ngx-datatable-column>
 

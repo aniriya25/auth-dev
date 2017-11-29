@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     this.loginService.logout(); 
   }
   loginSubmit(){
-    debugger;
       this.loginProgress = true;
       this.loginService.login(this.login.email,this.login.password)
       .subscribe(loginReponse => {

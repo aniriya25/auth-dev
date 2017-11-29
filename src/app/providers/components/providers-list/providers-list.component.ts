@@ -21,7 +21,6 @@ export class ProvidersListComponent implements OnInit {
   expanded: any = {};
   loadingIndicator: boolean = true;
 
-
   providers = [];
 
   constructor(

@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { InvoiceService } from './../../../services/invoices/invoice.service';
+import { InvoiceSummaryComponent } from '../invoice-summary/invoice-summary.component';
+import { MdSnackBar } from '@angular/material';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'app-invoices-list',
   templateUrl: './invoices-list.component.html',
   styleUrls: ['./invoices-list.component.scss'],
-  providers: [MdSnackBar,InvoiceService]
+  providers: [InvoiceService, MdSnackBar]
 })
 export class InvoicesListComponent implements OnInit {
   @ViewChild('myTable') table: any;
@@ -15,28 +17,32 @@ export class InvoicesListComponent implements OnInit {
    temp = [];
    isLimits: number = 10;
    records: any;
-   invoiceData: any = {};
-
-   
-  constructor(private _invoice: InvoiceService,public snackBar: MdSnackBar, private _route: Router) { }
+   allInvoice =[];
+   allrows = [];
+   alldatavalue: any = [];
+  constructor(  private _invoice: InvoiceService,
+    public snackBar: MdSnackBar,
+    private _route: Router, public dialog: MdDialog) { }
 
   ngOnInit() {
-    // this.rows = [
-    //  { "company": "", "service": "", "comment": "" },
-    //  ];
-    this.getInvoiceData();
+ 
+    this.getIdentityData();
   }
 
-  getInvoiceData() {
-    debugger;
+  getIdentityData() {    
     this._invoice.getInvoiceDetails()
-     .subscribe(data => {         
-     // debugger;
-       this.invoiceData = data.data;         
-     })
- }
+      .subscribe(data => {         
+        this.allInvoice = data.data; 
+        this.rows = this.allInvoice;
+       console.log(this.rows);   
+      })
+  }
+  
+  openreview() {
+     const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
+         this.rows = this.allInvoice
+       ], disableClose: true});
 
 }
 
-
-
+}
