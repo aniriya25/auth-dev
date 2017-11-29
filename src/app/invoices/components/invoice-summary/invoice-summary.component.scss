@@ -1,1 +1,19 @@
-
+fieldset{
+    width: 700px;
+}
+.popup1{
+    width:100%; 
+}
+ul{
+    padding-left: 0px;
+    // border-bottom: 2px solid #cccccc;
+    li{
+        list-style: none;
+        padding: 5px 0px;
+      
+        span{
+            font-weight: normal;
+        }
+      
+    }
+}

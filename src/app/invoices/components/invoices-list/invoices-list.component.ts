@@ -26,10 +26,10 @@ export class InvoicesListComponent implements OnInit {
 
   ngOnInit() {
  
-    this.getIdentityData();
+    this.getInvoiceData();
   }
 
-  getIdentityData() {    
+  getInvoiceData() {    
     this._invoice.getInvoiceDetails()
       .subscribe(data => {         
         this.allInvoice = data.data; 
@@ -37,13 +37,25 @@ export class InvoicesListComponent implements OnInit {
       //  console.log(this.rows);   
       })
   }
+
+  // getInvoiceData() { 
+  //   debugger;   
+  //   this._invoice.getInvoiceDetailsInproccess()
+  //     .subscribe(data => {         
+  //       this.allInvoice = data.data; 
+  //       this.rows = this.allInvoice;
+  //     //  console.log(this.rows);   
+  //     })
+  // }
+  
+
   
   openreview(row) {
     debugger;
      const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
           this.rows = this.allInvoice[row.$$index]["Invoice"]
        ], disableClose: true});
-
+       this.getInvoiceData();
 }
 
 }

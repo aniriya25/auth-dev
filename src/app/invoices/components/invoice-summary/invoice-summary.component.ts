@@ -13,7 +13,9 @@ export class InvoiceSummaryComponent implements OnInit {
    @ViewChild('myTable') table: any;
   rows = [];
   temp = [];
-  user = [];
+  user: any = {};
+  amount:number = 0;
+  promisedAmount:number = 0;
   // result = [];
   // strdate:any;
   // endDate:any;
@@ -26,18 +28,20 @@ export class InvoiceSummaryComponent implements OnInit {
   constructor(public dialogRef: MdDialogRef<InvoiceSummaryComponent>, @Inject(MD_DIALOG_DATA) public data:any,
   public snackBar: MdSnackBar, private _route: Router) { 
     debugger;
-     //this.temp = this.data;
-     this.rows = this.temp;
-    // this.user.invoiceNo = this.data[0].Invoice[0]["invoiceNo"];
-    // this.user.refTransactionId = this.data[0].Invoice[0]["refTransactionId"];
-    // this.user.amount = this.data[0].Invoice[0]["amount"];
-    // this.user.userPaidAmount = this.data[0].Invoice[0]["userPaidAmount"];
-    // this.user.promisedAmount = this.data[0].Invoice[0]["promisedAmount"];
+    this.rows = this.data[0];
   }
 
   ngOnInit() {
+    this.getSum(this.user.amount);
+  }
 
-  
+  getSum(amount) {
+    debugger;
+    for (let i = 0; i < this.rows.length; i++) {
+      this.amount -= this.rows[i]['amount'];
+      this.promisedAmount -= this.rows[i]['promisedAmount'];
+      console.log(this.amount);
+     }
   }
 
   //   updateFilter(event) {

@@ -18,4 +18,14 @@ export class InvoiceService {
       });
     }
 
+    // getInvoiceDetailsInproccess(){
+    //     debugger
+    //     return this.authhttp.get(this.config.api_base_url+this.config.postTransaction_url+8)
+    //     .map(data => {
+    //         data.json();
+    //         return data.json();
+    //     });
+    //   }
+  
+
 }

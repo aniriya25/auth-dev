@@ -31,7 +31,7 @@
             <div fxFlex="100">
              
               <ngx-datatable #myTable class='material fullscreen expandable'
-               [rows]='temp'
+               [rows]='rows'
                [limit]="10"
                [columnMode]="'force'" 
                [headerHeight]="50"
@@ -50,7 +50,7 @@
                             </ng-template>
                 </ngx-datatable-row-detail>              -->
     
-                <ngx-datatable-column name="INVOICE NO" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="INVOICE NO" prop="id" [width]="120" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                       <p>{{row.invoiceNo}}</p>
                   </ng-template>
@@ -62,25 +62,25 @@
                   </ng-template>
                 </ngx-datatable-column>-->
     
-                <ngx-datatable-column name="TRANSACTION ID" prop="outlet" [width]="120" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="TRANSACTION ID" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                      <p class="tabspan">{{row.refTransactionId}}</p>
                   </ng-template>
                 </ngx-datatable-column>
     
-                <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="130" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     <p>{{row.amount}}</p>
                   </ng-template>
                 </ngx-datatable-column>
     
-                <ngx-datatable-column name="PAID BY USER" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="PAID BY USER" prop="date" [width]="210" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                     <p>Paid by User - {{row.userPaidAmount}}</p>
                   </ng-template>
                 </ngx-datatable-column>
     
-                <ngx-datatable-column name="PROMISED AMOUNT" prop="date" [width]="80" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="PROMISED AMOUNT" prop="date" [width]="200" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                      <p>{{row.promisedAmount}}</p>
                   </ng-template>
@@ -90,17 +90,18 @@
             </div>
           </div>
     
-          <!--<div fxLayout="row" fxLayout.xs="column">
+          <div fxLayout="row" fxLayout.xs="column">
             <ul fxFlex="100" class="amnt">
               <li>
-                <strong>G.Total: {{this.totalAmount}}</strong>
-               <span> Two Thousands Five Hundread</span>
+                <strong>G.Total: {{this.amount}}</strong>
+               <!-- <span> Two Thousands Five Hundread</span> -->
               </li>
+              <li>Promised Amount: {{this.promisedAmount}}</li>
             </ul>
-          </div>-->
+          </div>
     
           <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-              <button md-raised-button class="primary">Submit</button>
+              <!-- <button md-raised-button class="primary">Submit</button> -->
               <button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Back</button>
             </div>
             
