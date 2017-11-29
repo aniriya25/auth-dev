@@ -34,13 +34,14 @@ export class InvoicesListComponent implements OnInit {
       .subscribe(data => {         
         this.allInvoice = data.data; 
         this.rows = this.allInvoice;
-       console.log(this.rows);   
+      //  console.log(this.rows);   
       })
   }
   
-  openreview() {
+  openreview(row) {
+    debugger;
      const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
-         this.rows = this.allInvoice
+          this.rows = this.allInvoice[row.$$index]["Invoice"]
        ], disableClose: true});
 
 }

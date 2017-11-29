@@ -1,7 +1,7 @@
 <div class="form-control">
   <div [ngClass]="{'form-overlay': outletBasicFormOnverlay}">
      <div [hidden]="isOutletEditBtn" style="position: absolute; right: 0; bottom: 0;">
-      <button md-raised-button type="button" class="primary" (click)="edit()">EDIT</button>
+      <!--<button md-raised-button type="button" class="primary" (click)="edit()">EDIT</button>-->
     </div>
   </div>
   <form  #outletBasicInfo="ngForm" (ngSubmit)="outletBasicInfoFrm(outletBasicInfoInput)">

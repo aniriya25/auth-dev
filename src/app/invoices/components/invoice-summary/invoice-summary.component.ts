@@ -1,17 +1,19 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,Inject } from '@angular/core';
 import * as moment from 'moment';
-import { MdSnackBar } from '@angular/material';
-import {MdDialog} from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-summary',
   templateUrl: './invoice-summary.component.html',
-  styleUrls: ['./invoice-summary.component.scss']
+  styleUrls: ['./invoice-summary.component.scss'],
+  providers: [ MdSnackBar]
 })
 export class InvoiceSummaryComponent implements OnInit {
    @ViewChild('myTable') table: any;
   rows = [];
   temp = [];
+  user = [];
   // result = [];
   // strdate:any;
   // endDate:any;
@@ -21,13 +23,21 @@ export class InvoiceSummaryComponent implements OnInit {
   //   this.table.rowDetail.expandAllRows();
   // }
 
-  constructor() { }
+  constructor(public dialogRef: MdDialogRef<InvoiceSummaryComponent>, @Inject(MD_DIALOG_DATA) public data:any,
+  public snackBar: MdSnackBar, private _route: Router) { 
+    debugger;
+     //this.temp = this.data;
+     this.rows = this.temp;
+    // this.user.invoiceNo = this.data[0].Invoice[0]["invoiceNo"];
+    // this.user.refTransactionId = this.data[0].Invoice[0]["refTransactionId"];
+    // this.user.amount = this.data[0].Invoice[0]["amount"];
+    // this.user.userPaidAmount = this.data[0].Invoice[0]["userPaidAmount"];
+    // this.user.promisedAmount = this.data[0].Invoice[0]["promisedAmount"];
+  }
 
   ngOnInit() {
 
-       this.rows = [
-     { "company": "", "service": "", "comment": "" },
-     ];
+  
   }
 
   //   updateFilter(event) {

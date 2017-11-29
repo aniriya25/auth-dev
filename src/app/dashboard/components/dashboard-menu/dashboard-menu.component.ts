@@ -3,6 +3,7 @@ import { LoginService } from './../../../auth/services/login/login.service';
 import { ProfileService } from './../../../services/profile/profile.service';
 import { ProviderService } from './../../../services/providers/provider.service';
 import { Router, RouterModule } from '@angular/router';
+import { JwtHelper } from "angular2-jwt";
 
 @Component({
   selector: 'app-dashboard-menu',
@@ -11,13 +12,18 @@ import { Router, RouterModule } from '@angular/router';
   providers:[LoginService, ProfileService, ProviderService]
 })
 export class DashboardMenuComponent implements OnInit {
+  jwtHelper: JwtHelper = new JwtHelper();
   profile:any = {}; 
   isOpened:boolean = true;
   isOpenSide:string = 'side';
   providerLength: number = 0; 
   id:number;
   selected: number;
-  
+  provdier:boolean = true;
+  outlets:boolean = true;
+  transactions:boolean = true;
+  username:any;
+  password:any; 
   
   
   constructor(
@@ -46,6 +52,7 @@ export class DashboardMenuComponent implements OnInit {
 
   ngOnInit() {
   
+    // this.showModule();
     this.getUserProfile();
     if(window.innerWidth < 768) {
       this.isOpened = false;
@@ -66,6 +73,21 @@ export class DashboardMenuComponent implements OnInit {
     //    this.router.navigate(['/dashboard/outlet/outlet/{id}']);
     // }
     // }
+
+  showModule(){
+    debugger;    
+    if((this.username = "devesh.awasthi@h3u.com") && (this.password = "1234567"))
+    {
+      this.provdier = true;
+      this.outlets = false;
+      this.transactions = false;
+    }else{
+      this.provdier = true;
+      this.outlets = true;
+      this.transactions = true;
+    }
+
+  }  
  
   getUserProfile() {
     this.userProfile.getPersonalInfo() 

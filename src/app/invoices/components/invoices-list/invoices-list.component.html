@@ -36,8 +36,8 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-                    [rowHeight]="'auto'">
-                    (activate)="onActivate($event, modal)"
+                    [rowHeight]="'auto'">       
+
                     <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                           <ul fxFlex="100" fxLayoutAlign="center center">
@@ -47,17 +47,19 @@
                           </ul>
                         </ng-template>
                       </ngx-datatable-row-detail>-->
-                     <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+
+                     <!--<ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                         <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
                           <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
                         </ng-template>
                         <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
                           <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
                         </ng-template>
-                    </ngx-datatable-column>
+                    </ngx-datatable-column>-->
+                    
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                      <a routerLink="/dashboard/invoices/invoice-summary"> {{row.invoiceNo}}</a>
+                      <a  (click)="openreview(row);"> {{row.invoiceNo}}</a>
                       </ng-template>
                     </ngx-datatable-column> 
 
@@ -73,11 +75,11 @@
                       </ng-template>
                     </ngx-datatable-column>
 
-                    <ngx-datatable-column name=" PROMISED AMOUNT" prop="outlet">
+                    <!--<ngx-datatable-column name=" PROMISED AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         {{row.promisedAmount}}
                       </ng-template>
-                    </ngx-datatable-column>
+                    </ngx-datatable-column>-->
 
                     <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
@@ -85,11 +87,11 @@
                       </ng-template>
                     </ngx-datatable-column>
 
-                    <ngx-datatable-column name="PAID BY USER" prop="outlet">
+                    <!--<ngx-datatable-column name="PAID BY USER" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                        {{row.userPaidAmount}}
                       </ng-template>
-                    </ngx-datatable-column>
+                    </ngx-datatable-column>-->
 
                     <!--<ngx-datatable-column name="STATUS" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   

@@ -15,8 +15,8 @@ import { JwtHelper } from "angular2-jwt";
 export class LoginComponent implements OnInit {
   jwtHelper: JwtHelper = new JwtHelper();
   login: any = {
-    email:"admin@h3u.com",
-    password:"admin"
+    email:"",
+    password:""
   };
   loginProgress = false;
   loginError = "";
