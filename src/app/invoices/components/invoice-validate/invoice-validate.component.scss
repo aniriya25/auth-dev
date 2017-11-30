@@ -1,0 +1,46 @@
+$rejectcolor:red;
+fieldset{
+    width: 700px;
+}
+.popup1{
+    width:100%;
+    height: 600px;
+    overflow-y: scroll; 
+}
+ul{
+    padding-left: 0px;
+    // border-bottom: 2px solid #cccccc;
+    li{
+        list-style: none;
+        padding: 5px 0px;
+      
+        span{
+            font-weight: normal;
+        }
+      
+    }
+}
+input[type=text] {
+ border: 1px solid #d4d3d3;
+ margin-top: 10px;
+ height: 50px;
+}
+.reject{
+    background: $rejectcolor;
+    color:#fff;   
+}
+.mat-button, .mat-fab, .mat-icon-button, .mat-mini-fab, .mat-raised-button{
+    font-size: 12px;
+    line-height: 26px;
+    margin-top: 5px;
+}
+input[type=text] {
+    border: 1px solid #d4d3d3;
+    margin-top: 0px;
+    height: 30px;
+}
+input[type=select] {
+    border: 1px solid #d4d3d3;
+    margin-top: 0px;
+    height: 30px;
+}

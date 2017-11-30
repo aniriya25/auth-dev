@@ -75,10 +75,13 @@ export class AppConfig {
   getBasicDetails_url:string;
   postTransaction_url:string;
   getallTransaction_url:string;
+  getInprocessTransaction_url:string;
+  putValidate_url:string;
 
 // Master
   services_url: string;
   Identity_url: string;
+  getStatus_url: string;
 
 }
 
@@ -158,11 +161,14 @@ export const APP_DI_CONFIG: AppConfig = {
   getBasicDetails_url:'me/basicdetails',
   postTransaction_url:'outletInvoice',
   getallTransaction_url:'me/outletInvoice',
+  getInprocessTransaction_url:'/me/invoices',
+  putValidate_url:'transactions/',
 
   // master
 
   services_url:"masters/servicecategories",
-  Identity_url:"masters/IdentityTypes"
+  Identity_url:"masters/IdentityTypes",
+  getStatus_url:"paymentstatus"
 
 };
 

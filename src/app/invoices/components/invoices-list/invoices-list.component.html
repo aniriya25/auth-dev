@@ -36,30 +36,11 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-                    [rowHeight]="'auto'">       
-
-                    <!--<ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
-                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                          <ul fxFlex="100" fxLayoutAlign="center center">
-                          <li fxFlex="80">Status:Pending</li>
-                          <li fxFlex="80">Remarks:Pending</li>
-                          <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
-                          </ul>
-                        </ng-template>
-                      </ngx-datatable-row-detail>-->
-
-                     <!--<ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
-                          <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
-                        </ng-template>
-                        <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-                          <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
-                        </ng-template>
-                    </ngx-datatable-column>-->
+                    [rowHeight]="'auto'">                      
                     
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                      <a  (click)="openreview(row);"> {{row.invoiceNo}}</a>
+                      <a  (click)="openreviewValidate(row);"> {{row.invoiceNo}}</a>
                       </ng-template>
                     </ngx-datatable-column> 
 
@@ -74,12 +55,7 @@
                         {{row.totalAmount}}
                       </ng-template>
                     </ngx-datatable-column>
-
-                    <!--<ngx-datatable-column name=" PROMISED AMOUNT" prop="outlet">
-                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        {{row.promisedAmount}}
-                      </ng-template>
-                    </ngx-datatable-column>-->
+                  
 
                     <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
@@ -87,36 +63,7 @@
                       </ng-template>
                     </ngx-datatable-column>
 
-                    <!--<ngx-datatable-column name="PAID BY USER" prop="outlet">
-                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                       {{row.userPaidAmount}}
-                      </ng-template>
-                    </ngx-datatable-column>-->
-
-                    <!--<ngx-datatable-column name="STATUS" prop="outlet">
-                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <md-select placeholder="Status" fxFlex="90">
-                          <md-option>Pending</md-option>
-                          <md-option>Approved</md-option>
-                        </md-select>
-                      </ng-template>
-                    </ngx-datatable-column>  
-                    <ngx-datatable-column name="VALIDATE AMOUNT" prop="outlet">
-                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                        <md-input-container>
-                          <input type="text" mdInput placeholder="Validate Amount">    
-                      </md-input-container>
-                      </ng-template>
-                    </ngx-datatable-column> 
-                    <ngx-datatable-column name="REMARKS" prop="outlet">
-                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                       <md-input-container>
-                           <textarea mdInput placeholder="Remarks" required></textarea>     
-                      </md-input-container>
-                      </ng-template>
-                    </ngx-datatable-column> -->
-
-                    </ngx-datatable>
+                      </ngx-datatable>
                   </div>
                 </div>
         </div>

@@ -10,7 +10,7 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
   providers: [ MdSnackBar]
 })
 export class InvoiceSummaryComponent implements OnInit {
-   @ViewChild('myTable') table: any;
+  @ViewChild('myTable') table: any;
   rows = [];
   temp = [];
   user: any = {};

@@ -1,0 +1,127 @@
+<div class="container popup1" >
+    <div fxLayout="row" fxLayout.xs="column">
+      
+      <div fxFlex="100">
+        <div fxFlex="98" fxFlexOffset="1" class="left-card">
+            <h2>Invoice Validation</h2>        
+
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">             
+             <small>
+                <a #expandButton (click)="onExpandClick()"></a>        
+             </small>
+
+              <ngx-datatable #myTable class='material fullscreen expandable'
+               [rows]='rows'
+               [limit]="10"
+               [columnMode]="'force'" 
+               [headerHeight]="50"
+               [footerHeight]="50" 
+               [scrollbarV]="false"
+               [rowHeight]="'auto'"                       
+                >
+                <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                         <ul fxFlex="95" fxLayoutAlign="start center">
+                          <li fxFlex="20">
+                            <input type="text" mdInput placeholder="Validate Amount" 
+                            (blur)="setValidAmountData($event.target.value, row);"></li>
+                          <li fxFlex="20"><input type="text" mdInput placeholder="Remarks" (blur)="setReamrk($event.target.value, row);"></li>
+                          <li fxFlex="20">
+                                <md-select placeholder="Status" fxFlex="90" (change)="setStatus($event.value,row);">    
+                                 <md-option *ngFor="let x of action" value= {{x.value}}>
+                              {{ x.viewValue }}
+                        </md-option>
+                                </md-select>
+                          </li>
+                           <li fxFlex="30">                            
+                          <button  md-raised-button class="primary" (click)="updateTrans(row)">Approved</button> / <button  md-raised-button class="reject">Reject</button>
+                           </li>
+                          <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
+                          </ul>
+                        </ng-template>
+                </ngx-datatable-row-detail>
+
+
+          
+                <ngx-datatable-column name="INVOICE NO" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                      <p>{{row.invoiceNo}}</p>
+                  </ng-template>
+                </ngx-datatable-column>    
+    
+                <ngx-datatable-column name="TRANSACTION ID" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                     <p class="tabspan">{{row.refTransactionId}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <p>{{row.amount}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="PAID BY USER" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                    <p>{{row.userPaidAmount}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="PROMISED AMOUNT" prop="date" [width]="220" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                     <p>{{row.promisedAmount}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                  <!--<ngx-datatable-column name="VALIDATE AMOUNT" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                    
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="REMARKS" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                     <input type="text" mdInput placeholder="Validate Amount">
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="STATUS" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                       <md-select placeholder="Status" fxFlex="90">
+                          <md-option>Pending</md-option>
+                          <md-option>Approved</md-option>
+                        </md-select>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="ACTION" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                      <button  md-raised-button class="primary">Approved</button> <button  md-raised-button class="reject">Reject</button>
+                  </ng-template>
+                </ngx-datatable-column>-->
+               
+              </ngx-datatable>
+            </div>
+          </div>
+    
+          <!--<div fxLayout="row" fxLayout.xs="column">
+            <ul fxFlex="100" class="amnt">
+              <li>
+                <strong>G.Total: {{this.amount}}</strong>
+               <span> Two Thousands Five Hundread</span>
+              </li>
+              <li>Promised Amount: {{this.promisedAmount}}</li>
+            </ul>
+          </div>-->
+    
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+              <!-- <button md-raised-button class="primary">Submit</button> -->
+              <p><button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Done</button></p>
+            </div>
+            
+        </div>
+      </div>
+    
+    </div>
+    </div>

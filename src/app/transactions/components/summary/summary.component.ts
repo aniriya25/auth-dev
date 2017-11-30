@@ -66,6 +66,7 @@ export class SummaryComponent implements OnInit {
         transactionId: this.rows[i]["id"],
       });
     }
+    
     debugger;
     this._transaction.transactionPost(this.saveData)
      .subscribe(

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { InvoiceService } from './../../../services/invoices/invoice.service';
 import { InvoiceSummaryComponent } from '../invoice-summary/invoice-summary.component';
+import { InvoiceValidateComponent } from '../invoice-validate/invoice-validate.component';
 import { MdSnackBar } from '@angular/material';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {MdDialog} from '@angular/material';
@@ -24,38 +25,47 @@ export class InvoicesListComponent implements OnInit {
     public snackBar: MdSnackBar,
     private _route: Router, public dialog: MdDialog) { }
 
-  ngOnInit() {
- 
-    this.getInvoiceData();
+  ngOnInit() { 
+    //  this.getInvoiceData();
+     this.getInvoiceInproccessData();
   }
 
-  getInvoiceData() {    
-    this._invoice.getInvoiceDetails()
-      .subscribe(data => {         
-        this.allInvoice = data.data; 
-        this.rows = this.allInvoice;
-      //  console.log(this.rows);   
-      })
-  }
-
-  // getInvoiceData() { 
-  //   debugger;   
-  //   this._invoice.getInvoiceDetailsInproccess()
+  // getInvoiceData() {    
+  //   this._invoice.getInvoiceDetails()
   //     .subscribe(data => {         
   //       this.allInvoice = data.data; 
   //       this.rows = this.allInvoice;
   //     //  console.log(this.rows);   
   //     })
   // }
-  
 
+  getInvoiceInproccessData() { 
+    debugger;   
+    this._invoice.getInvoiceDetailsInproccess()
+      .subscribe(data => {         
+        this.allInvoice = data.data; 
+        this.rows = this.allInvoice;
+      //  console.log(this.rows);   
+      })
+  } 
   
-  openreview(row) {
+//   openreview(row) {
+//     debugger;
+//      const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
+//           this.rows = this.allInvoice[row.$$index]["Invoice"]
+//        ], disableClose: true});
+//         this.getInvoiceData();
+      
+// }
+
+  openreviewValidate(row) {
     debugger;
-     const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
+     const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
           this.rows = this.allInvoice[row.$$index]["Invoice"]
        ], disableClose: true});
-       this.getInvoiceData();
+      //  this.getInvoiceData();
+       this. getInvoiceInproccessData();
 }
+
 
 }

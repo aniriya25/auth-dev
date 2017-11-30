@@ -6,6 +6,7 @@ import { InvoicesRoutingModule } from './invoices-routing.module';
 import { InvoicesListComponent } from './components/invoices-list/invoices-list.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { InvoiceSummaryComponent } from './components/invoice-summary/invoice-summary.component';
+import { InvoiceValidateComponent } from './components/invoice-validate/invoice-validate.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { InvoiceSummaryComponent } from './components/invoice-summary/invoice-su
     InvoicesRoutingModule,
     GlobalModule
   ],
-  declarations: [InvoicesListComponent, InvoiceComponent, InvoiceSummaryComponent]
+  declarations: [InvoicesListComponent, InvoiceComponent, InvoiceSummaryComponent, InvoiceValidateComponent]
 })
 export class InvoicesModule { }
