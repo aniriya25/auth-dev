@@ -19,12 +19,12 @@ export class DashboardMenuComponent implements OnInit {
   providerLength: number = 0; 
   id:number;
   selected: number;
-  provdier:boolean = true;
-  outlets:boolean = true;
-  transactions:boolean = true;
+  provdier:boolean = false;
+  outlets:boolean = false;
+  transactions:boolean = false;
   username:any;
   password:any; 
-  
+ 
   
   constructor(
     private loginService:LoginService,
@@ -50,9 +50,7 @@ export class DashboardMenuComponent implements OnInit {
   }
    
 
-  ngOnInit() {
-  
-    // this.showModule();
+  ngOnInit() {  
     this.getUserProfile();
     if(window.innerWidth < 768) {
       this.isOpened = false;
@@ -75,16 +73,17 @@ export class DashboardMenuComponent implements OnInit {
     // }
 
   showModule(){
-    debugger;    
-    if((this.username = "devesh.awasthi@h3u.com") && (this.password = "1234567"))
+     if(this.profile.refProfileLoginId == 2)
+    {
+      this.provdier = true;
+      this.outlets = false;
+      this.transactions = true;
+     }
+    if(this.profile.refProfileLoginId == 16) 
     {
       this.provdier = true;
       this.outlets = false;
       this.transactions = false;
-    }else{
-      this.provdier = true;
-      this.outlets = true;
-      this.transactions = true;
     }
 
   }  
@@ -93,7 +92,9 @@ export class DashboardMenuComponent implements OnInit {
     this.userProfile.getPersonalInfo() 
       .subscribe(data => {
         this.profile = data.data;
-        //console.log(data.data);
+        console.log(this.profile.id);
+        this.showModule();
+        
       })
   }
   logout(){

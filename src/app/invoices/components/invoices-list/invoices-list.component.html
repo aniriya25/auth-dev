@@ -40,7 +40,7 @@
                     
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                      <a  (click)="openreviewValidate(row);"> {{row.invoiceNo}}</a>
+                      <a  (click)="openreview(row);" class="blueText"> {{row.invoiceNo}}</a>
                       </ng-template>
                     </ngx-datatable-column> 
 

@@ -7,11 +7,11 @@
     <div fxLayout="row" fxFlexOrder="2" fxLayoutAlign="center" fxLayoutGap="10px" fxLayout.xs="column">
       <!-- Transaction Section -->
       <div fxFlex="48" class.xs="tran">
-        <app-generate-transaction></app-generate-transaction>
+        <app-generate-transaction *ngIf="TransactionSearch"></app-generate-transaction>
       </div>
       <!-- Services Section -->
       <div fxFlex="48" class.xs="tran">
-        <app-offer></app-offer>
+        <app-offer *ngIf="Offers"></app-offer>
       </div>
     </div>
   </div>

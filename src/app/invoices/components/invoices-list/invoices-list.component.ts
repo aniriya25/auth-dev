@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { InvoiceService } from './../../../services/invoices/invoice.service';
 import { InvoiceSummaryComponent } from '../invoice-summary/invoice-summary.component';
 import { InvoiceValidateComponent } from '../invoice-validate/invoice-validate.component';
+import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {MdDialog} from '@angular/material';
@@ -10,7 +11,7 @@ import {MdDialog} from '@angular/material';
   selector: 'app-invoices-list',
   templateUrl: './invoices-list.component.html',
   styleUrls: ['./invoices-list.component.scss'],
-  providers: [InvoiceService, MdSnackBar]
+  providers: [InvoiceService, MdSnackBar, ProfileService]
 })
 export class InvoicesListComponent implements OnInit {
   @ViewChild('myTable') table: any;
@@ -21,23 +22,27 @@ export class InvoicesListComponent implements OnInit {
    allInvoice =[];
    allrows = [];
    alldatavalue: any = [];
+   profile:any = {}; 
+   
   constructor(  private _invoice: InvoiceService,
     public snackBar: MdSnackBar,
+    private userProfile: ProfileService,
     private _route: Router, public dialog: MdDialog) { }
 
   ngOnInit() { 
-    //  this.getInvoiceData();
-     this.getInvoiceInproccessData();
+  
+    this.showInvoiceList();
+    this.getInvoiceData();
   }
 
-  // getInvoiceData() {    
-  //   this._invoice.getInvoiceDetails()
-  //     .subscribe(data => {         
-  //       this.allInvoice = data.data; 
-  //       this.rows = this.allInvoice;
-  //     //  console.log(this.rows);   
-  //     })
-  // }
+  getInvoiceData() {    
+    this._invoice.getInvoiceDetails()
+      .subscribe(data => {         
+        this.allInvoice = data.data; 
+        this.rows = this.allInvoice;
+        console.log(this.rows);   
+      })
+  }
 
   getInvoiceInproccessData() { 
     debugger;   
@@ -49,22 +54,43 @@ export class InvoicesListComponent implements OnInit {
       })
   } 
   
-//   openreview(row) {
-//     debugger;
-//      const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
-//           this.rows = this.allInvoice[row.$$index]["Invoice"]
-//        ], disableClose: true});
-//         this.getInvoiceData();
+  openreview(row) {
+   // debugger;
+     const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
+          this.rows = this.allInvoice[row.$$index]["Invoice"]
+       ], disableClose: true});
+        this.getInvoiceData();
       
-// }
+}
 
   openreviewValidate(row) {
-    debugger;
+    //debugger;
      const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
           this.rows = this.allInvoice[row.$$index]["Invoice"]
        ], disableClose: true});
       //  this.getInvoiceData();
        this. getInvoiceInproccessData();
+}
+
+showInvoiceList(){
+  if(this.profile.id == 2)
+  {
+    this.getInvoiceData();
+   }
+   if(this.profile.id == 16){
+    this.getInvoiceInproccessData();
+   }
+
+}
+
+getUserProfile() {
+  this.userProfile.getPersonalInfo() 
+    .subscribe(data => {
+      this.profile = data.data;
+      console.log(this.profile.id);
+      this.showInvoiceList();
+      
+    })
 }
 
 

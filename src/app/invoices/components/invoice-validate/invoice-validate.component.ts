@@ -3,12 +3,13 @@ import * as moment from 'moment';
 import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from "@angular/material";
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { InvoiceService } from './../../../services/invoices/invoice.service';
+import { ProfileService } from './../../../services/profile/profile.service';
 
 @Component({
   selector: 'app-invoice-validate',
   templateUrl: './invoice-validate.component.html',
   styleUrls: ['./invoice-validate.component.scss'],
-  providers: [MdSnackBar, InvoiceService]
+  providers: [MdSnackBar, InvoiceService,ProfileService]
 })
 export class InvoiceValidateComponent implements OnInit {
   @ViewChild('myTable') table: any;
@@ -16,20 +17,34 @@ export class InvoiceValidateComponent implements OnInit {
   rows = [];
   temp = [];
   user: any = {};
+  status = [];
   model: any = {};
+  profile:any = {}; 
+  approved:boolean = true;
+  username: boolean = false;
+
  action =[{value:"1",viewValue:"Pending"},{value:"3",viewValue:"Approved"}];
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
 
   constructor(public dialogRef: MdDialogRef<InvoiceValidateComponent>, @Inject(MD_DIALOG_DATA) public data: any,
-    public snackBar: MdSnackBar, private _route: Router, private _invoice: InvoiceService) {
+    public snackBar: MdSnackBar, private _route: Router, private _invoice: InvoiceService, private userProfile: ProfileService) {
 
   }
 
   ngOnInit() {
     this.getInvoiceData();
     this.getStatusData();
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
+    this.userProfile.getPersonalInfo() 
+      .subscribe(data => {
+        this.profile = data.data;
+       console.log(this.profile.firstname);    
+      })
   }
 
   getInvoiceData() {
@@ -43,7 +58,7 @@ export class InvoiceValidateComponent implements OnInit {
   getStatusData() {
     this._invoice.getStatus()
       .subscribe(data => {
-        this.user = data.data;
+        this.status = data.data;
         console.log(data.data);
       });
   }
@@ -69,6 +84,8 @@ this.rows[row.$$index]["status"]=value;
      .subscribe(
       res => {
         if (res && res.message) {
+          this.approved = false;
+          this.username = true;
           this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {

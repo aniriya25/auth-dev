@@ -29,14 +29,16 @@
                           <li fxFlex="20"><input type="text" mdInput placeholder="Remarks" (blur)="setReamrk($event.target.value, row);"></li>
                           <li fxFlex="20">
                                 <md-select placeholder="Status" fxFlex="90" (change)="setStatus($event.value,row);">    
-                                 <md-option *ngFor="let x of action" value= {{x.value}}>
-                              {{ x.viewValue }}
-                        </md-option>
+                                 <!-- <md-option *ngFor="let x of action" value= {{x.value}}>                                   
+                                  {{ x.viewValue }}
+                                </md-option> -->
+                                <md-option *ngFor="let x of status" value = {{x.id}}> {{ x.status }} </md-option>
                                 </md-select>
                           </li>
                            <li fxFlex="30">                            
-                          <button  md-raised-button class="primary" (click)="updateTrans(row)">Approved</button> / <button  md-raised-button class="reject">Reject</button>
-                           </li>
+                          <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row)">Approved</button> / <button  md-raised-button class="reject">Reject</button></p>
+                          <span *ngIf="username">{{profile.firstName}} {{profile.lastName}}</span>
+                          </li>
                           <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
                           </ul>
                         </ng-template>
