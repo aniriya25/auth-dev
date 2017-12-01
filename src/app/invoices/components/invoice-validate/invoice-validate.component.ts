@@ -26,10 +26,10 @@ export class InvoiceValidateComponent implements OnInit {
   PayMode:boolean = false;
   account:boolean = false;
   accountNew:boolean = false;
-
+  button:any = false;
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
- status1 =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
+
 
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
@@ -58,8 +58,8 @@ export class InvoiceValidateComponent implements OnInit {
           this.PayMode = true;
           this.account = true;
            this.accountNew = true;
-          console.log("-------- ID Fetch --------");
-          console.log(this.profile.refProfileLoginId);
+          // console.log("-------- ID Fetch --------");
+          // console.log(this.profile.refProfileLoginId);
          }
         
       })
@@ -89,10 +89,9 @@ setReamrk(value,row){
 this.rows[row.$$index]["remak"]=value;
 }
 
-setStatus(eve,row){
- console.log(eve);
+setStatus(value,row){
 //  debugger;
-this.rows[row.$$index]["status"]=eve;
+this.rows[row.$$index]["status"]=value;
 }
 
 // -------------- for Account ----------------
@@ -117,6 +116,9 @@ setAcPayMode(value,row){
 this.rows[row.$$index]["acpayModeId"]=value;
 }
 
+setButton(value,row){
+  this.rows[row.$$index]["button"]=value;
+}
 
   updateTrans(value) {
     // debugger;
@@ -128,8 +130,9 @@ this.rows[row.$$index]["acpayModeId"]=value;
      .subscribe(
       res => {
         if (res && res.message) {
-          this.approved = false;
-          this.username = true;
+          // this.approved = false;
+          // this.username = true;
+          // this.button = true;
           this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
@@ -145,20 +148,19 @@ this.rows[row.$$index]["acpayModeId"]=value;
   }
 
     updateAccountTrans(value) {
-    debugger;
+   // debugger;
     this.model.paidAmount = this.rows[value.$$index]["acValidAmount"];
     this.model.remarks = this.rows[value.$$index]["acRemak"];
     this.model.refPaymentNo = this.rows[value.$$index]["acRefPay"];
     this.model.refStatusId = this.rows[value.$$index]["acStatus"];
     this.model.payModeId = this.rows[value.$$index]["acpayModeId"];
-
-    debugger;
+    // debugger;
      this._invoice.updateAccountAmount(this.model,this.rows[value.$$index]["refTransactionId"])
      .subscribe(
       res => {
         if (res && res.message) {
-          this.approved = false;
-          this.username = true;
+          // this.approved = false;
+          // this.username = true;
           this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
