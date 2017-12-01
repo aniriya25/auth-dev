@@ -22,6 +22,8 @@ export class DashboardMenuComponent implements OnInit {
   provdier:boolean = false;
   outlets:boolean = false;
   transactions:boolean = false;
+  InvoiceOutlet:boolean = false;
+  InvoiceAccount:boolean = true;
   username:any;
   password:any; 
  
@@ -78,12 +80,15 @@ export class DashboardMenuComponent implements OnInit {
       this.provdier = true;
       this.outlets = false;
       this.transactions = true;
+      this.InvoiceOutlet = true;  
+      this.InvoiceAccount = false;
      }
     if(this.profile.refProfileLoginId == 16) 
     {
       this.provdier = true;
       this.outlets = false;
       this.transactions = false;
+      
     }
 
   }  

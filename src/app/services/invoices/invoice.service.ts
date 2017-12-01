@@ -39,6 +39,18 @@ export class InvoiceService {
       });
   }
 
+   updateAccountAmount(updateAccountAmount, id) {
+      let _updateAccountAmount = JSON.stringify(updateAccountAmount);
+        return this.authhttp.put(
+        this.config.api_base_url+this.config.putValidate_url+id+"/paid",
+        _updateAccountAmount
+      )
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
   getStatus() {
     return this.authhttp.get(this.config.api_base_url+this.config.getStatus_url)
       .map(data => {

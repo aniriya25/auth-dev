@@ -24,14 +24,14 @@ export class InvoicesListComponent implements OnInit {
    alldatavalue: any = [];
    profile:any = {}; 
    
-  constructor(  private _invoice: InvoiceService,
+  constructor( private _invoice: InvoiceService,
     public snackBar: MdSnackBar,
     private userProfile: ProfileService,
     private _route: Router, public dialog: MdDialog) { }
 
   ngOnInit() { 
   
-    this.showInvoiceList();
+    // this.showInvoiceList();
     this.getInvoiceData();
   }
 
@@ -44,15 +44,6 @@ export class InvoicesListComponent implements OnInit {
       })
   }
 
-  getInvoiceInproccessData() { 
-    debugger;   
-    this._invoice.getInvoiceDetailsInproccess()
-      .subscribe(data => {         
-        this.allInvoice = data.data; 
-        this.rows = this.allInvoice;
-      //  console.log(this.rows);   
-      })
-  } 
   
   openreview(row) {
    // debugger;
@@ -63,35 +54,28 @@ export class InvoicesListComponent implements OnInit {
       
 }
 
-  openreviewValidate(row) {
-    //debugger;
-     const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
-          this.rows = this.allInvoice[row.$$index]["Invoice"]
-       ], disableClose: true});
-      //  this.getInvoiceData();
-       this. getInvoiceInproccessData();
-}
 
-showInvoiceList(){
-  if(this.profile.id == 2)
-  {
-    this.getInvoiceData();
-   }
-   if(this.profile.id == 16){
-    this.getInvoiceInproccessData();
-   }
 
-}
+// showInvoiceList(){
+//   if(this.profile.id == 2)
+//   {
+//     this.getInvoiceData();
+//    }
+//    if(this.profile.id == 16){
+//     this.getInvoiceInproccessData();
+//    }
 
-getUserProfile() {
-  this.userProfile.getPersonalInfo() 
-    .subscribe(data => {
-      this.profile = data.data;
-      console.log(this.profile.id);
-      this.showInvoiceList();
+// }
+
+// getUserProfile() {
+//   this.userProfile.getPersonalInfo() 
+//     .subscribe(data => {
+//       this.profile = data.data;
+//       console.log(this.profile.id);
+//       this.showInvoiceList();
       
-    })
-}
+//     })
+// }
 
 
 }

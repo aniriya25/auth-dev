@@ -1,4 +1,3 @@
-<form>
 <div class="container popup1" >
     <div fxLayout="row" fxLayout.xs="column">
       
@@ -21,77 +20,37 @@
                [scrollbarV]="false"
                [rowHeight]="'auto'"                       
                 >
-                <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow>
+                <ngx-datatable-row-detail [rowHeight]="120" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-                        
-                      
-                            
-                                  <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row"  *ngIf="validate">
-                                  <li fxFlex="20">
-                                    <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setValidAmountData($event.target.value, row);">
-                                  </li>
-                                  <li fxFlex="20">
-                                    <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setReamrk($event.target.value, row);">
-                                  </li>                              
-                                  <li fxFlex="20">
-                                        <!--<select placeholder="Status" fxFlex="90" (change)="setStatus($event.value,row);">          
-                                        <option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </option>
-                                        </select>-->
-
-                                  <md-select placeholder="Select Status" fxFlex="90" (change)="setStatus($event.value,row);">
-                                   <md-option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </md-option>
-                                 </md-select>
-
-
-                                  </li>                                 
-                                  <li fxFlex="30">                            
-                                  <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row)">Submit</button></p>
-                                  <!--/ <button  md-raised-button class="reject">Reject</button></p>-->
-                                  <span *ngIf="username">{{profile.firstName}} {{profile.lastName}}</span>
-                                  </li>
-                                  <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
-                                  </ul>
-
-                      
-                          <ul fxFlex="100" fxLayout="row" fxLayoutAlign="start center"  *ngIf="account">
-                             <li fxFlex="20">{{row.validateAmount}}</li>
-                             <li fxFlex="20">{{row.remarks}}</li>
-                             <li fxFlex="20">{{row.invoiceStatus}}</li>
-                             <li fxFlex="20">{{row.validateBy}}</li>
-                           </ul>                         
+                           <ul fxFlex="95" fxLayoutAlign="start center">
+                             <li fxFlex="20"><!--{{row.validAmout}} --> 1200</li>
+                             <li fxFlex="20"><!--{{row.remarks}} --> Testing</li>
+                             <li fxFlex="20"><!--{{row.status}} --> Verified</li>
+                             <li fxFlex="20"><!--{{row.createdBy}}--> Devesh Awasthi</li>
+                           </ul>
                          <hr>  
-                        
-                         <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="accountNew">
+                         <ul fxFlex="95" fxLayoutAlign="start center">
+                          <!--<li fxFlex="20">
+                            <input type="text" mdInput placeholder="Validate Amount" 
+                            (blur)="setValidAmountData($event.target.value, row);"></li>-->
+                          <li fxFlex="20"><input type="text" mdInput placeholder="Remarks" (blur)="setReamrk($event.target.value, row);"></li>
                           <li fxFlex="20">
-                            <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setAcValidAmountData($event.target.value, row);">
+                                <md-select placeholder="Status" fxFlex="90" (change)="setStatus($event.value,row);">                                 
+                                <md-option *ngFor="let x of status" value = {{x.id}}> {{ x.status }} </md-option>
+                                </md-select>
                           </li>
                           <li fxFlex="20">
-                            <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setAcReamrk($event.target.value, row);">
-                          </li>
-                           <li fxFlex="20">
-                            <input fxFlex="90" type="text" placeholder="Payment Ref No" (blur)="setAcRefPay($event.target.value, row);">
-                          </li>
-                          <li fxFlex="20">
-                                
-                                    <md-select placeholder="Select Status" fxFlex="90" (change)="setAcStatus($event.value,row);">
-                                   <md-option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </md-option>
-                                 </md-select>
-
-
-                          </li>
-                           <li fxFlex="20" *ngIf="PayMode">
-                            
-                                   <md-select placeholder="Payment Mode" fxFlex="90" (change)="setAcPayMode($event.value,row);">
-                                   <md-option *ngFor="let x of action" value = {{x.value}}> {{ x.viewValue }}</md-option>
-                                 </md-select>
+                                <md-select placeholder="Status" fxFlex="90" (change)="setStatus($event.value,row);">                                 
+                                <md-option *ngFor="let x of status" value = {{x.id}}> {{ x.status }} </md-option>
+                                </md-select>
                           </li>
                            <li fxFlex="30">                            
-                          <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateAccountTrans(row)">Submit</button></p>
-                          <span *ngIf="username">{{row.validateBy}}</span>
+                          <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row)">Approved</button> / <button  md-raised-button class="reject">Reject</button></p>
+                          <span *ngIf="username">{{profile.firstName}} {{profile.lastName}}</span>
                           </li>
                           <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
                           </ul>
-                       
+                                                    
 
                         </ng-template>
                 </ngx-datatable-row-detail>
@@ -100,31 +59,31 @@
           
                 <ngx-datatable-column name="INVOICE NO" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                      <p>{{row.invoiceNo}}</p>
+                      <p><!--{{row.invoiceNo}}--> QL829149</p>
                   </ng-template>
                 </ngx-datatable-column>    
     
                 <ngx-datatable-column name="TRANSACTION ID" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                     <p class="tabspan">{{row.refTransactionId}}</p>
+                     <p class="tabspan"><!--{{row.refTransactionId}}--> 335</p>
                   </ng-template>
                 </ngx-datatable-column>
     
                 <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <p>{{row.amount}}</p>
+                    <p><!--{{row.amount}}--> 1200</p>
                   </ng-template>
                 </ngx-datatable-column>
     
                 <ngx-datatable-column name="PAID BY USER" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                    <p>{{row.userPaidAmount}}</p>
+                    <p><!--{{row.userPaidAmount}}--> 0</p>
                   </ng-template>
                 </ngx-datatable-column>
     
                 <ngx-datatable-column name="PROMISED AMOUNT" prop="date" [width]="220" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                     <p>{{row.promisedAmount}}</p>
+                     <p><!--{{row.promisedAmount}}--> 1200</p>
                   </ng-template>
                 </ngx-datatable-column>
 
@@ -179,4 +138,3 @@
     
     </div>
     </div>
-</form>

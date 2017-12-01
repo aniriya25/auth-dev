@@ -38,8 +38,8 @@ export class InvoiceSummaryComponent implements OnInit {
   getSum(amount) {
     debugger;
     for (let i = 0; i < this.rows.length; i++) {
-      this.amount -= this.rows[i]['amount'];
-      this.promisedAmount -= this.rows[i]['promisedAmount'];
+      this.amount += this.rows[i]['amount'];
+      this.promisedAmount += this.rows[i]['promisedAmount'];
       console.log(this.amount);
      }
   }

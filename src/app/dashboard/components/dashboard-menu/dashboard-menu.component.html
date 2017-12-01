@@ -89,13 +89,19 @@
             </li>
           </a>
 
-            <a routerLink="invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)">
+            <a routerLink="invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)" *ngIf="InvoiceOutlet">
             <li>
               <p><md-icon class="mainIcon">receipt</md-icon></p>
               <p>INVOICES</p>
             </li>
+          </a>
 
-          </a>  
+            <a routerLink="invoices/invoice" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)" *ngIf="InvoiceAccount">
+            <li>
+              <p><md-icon class="mainIcon">receipt</md-icon></p>
+              <p>INVOICES</p>
+            </li>
+          </a>         
 
           <a routerLink="training">
             <li> 

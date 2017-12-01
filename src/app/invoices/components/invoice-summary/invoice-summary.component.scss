@@ -2,7 +2,9 @@ fieldset{
     width: 700px;
 }
 .popup1{
-    width:100%; 
+    width:100%;
+    height: 600px;
+    overflow-y: scroll; 
 }
 ul{
     padding-left: 0px;

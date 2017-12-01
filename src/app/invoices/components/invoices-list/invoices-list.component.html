@@ -40,7 +40,7 @@
                     
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
-                      <a  (click)="openreview(row);" class="blueText"> {{row.invoiceNo}}</a>
+                      <a (click)="openreview(row);" class="blueText"> {{row.invoiceNo}}</a>
                       </ng-template>
                     </ngx-datatable-column> 
 
@@ -60,6 +60,12 @@
                     <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         {{row.totalPaidAmount}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="STATUS" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        {{row.invoiceStatus}}
                       </ng-template>
                     </ngx-datatable-column>
 

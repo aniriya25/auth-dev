@@ -4,13 +4,15 @@ import { InvoicesListComponent } from './components/invoices-list/invoices-list.
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { InvoiceSummaryComponent } from './components/invoice-summary/invoice-summary.component';
 import { InvoiceValidateComponent } from './components/invoice-validate/invoice-validate.component';
+import { InvoiceAccountComponent } from './components/invoice-account/invoice-account.component';
 
 const routes: Routes = [
 
   {path:"invoices-list", component:InvoicesListComponent},
   {path:"invoice", component:InvoiceComponent},
   {path:"invoice-summary", component:InvoiceSummaryComponent},
-  {path:"invoice-validate", component:InvoiceValidateComponent}
+  {path:"invoice-validate", component:InvoiceValidateComponent},
+  {path:"invoice-account", component:InvoiceAccountComponent}
   
 ];
 
