@@ -50,3 +50,14 @@ select{
     border: 1px solid #cccccc;
     height: 30px;
 }
+.ngx-datatable.material .datatable-body .datatable-row-detail{
+    display: block !important;
+}
+.boldText{font-weight: bold !important;}
+
+md-select {
+    padding-top: 0px !important;
+}
+.mat-select-trigger {
+    padding-top: 16px !important;
+ }

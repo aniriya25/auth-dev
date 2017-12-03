@@ -21,7 +21,7 @@
                [scrollbarV]="false"
                [rowHeight]="'auto'"                       
                 >
-                <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow>
+                <ngx-datatable-row-detail [rowHeight]="170" #myDetailRow style="display:block">
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                         
                                                  
@@ -50,37 +50,35 @@
 
                       
                           <ul fxFlex="100" fxLayout="row" fxLayoutAlign="start center"  *ngIf="account">
-                             <li fxFlex="20">{{row.validateAmount}}</li>
-                             <li fxFlex="20">{{row.remarks}}</li>
-                             <li fxFlex="20">{{row.invoiceStatus}}</li>
-                             <li fxFlex="20">{{row.validateBy}}</li>
+                             <li fxFlex="20">Valid Amount: <span class="boldText">{{row.validateAmount}}</span></li>
+                             <li fxFlex="30">Remarks: <span class="boldText">{{row.remarks}}</span></li>
+                             <li fxFlex="20">Status: <span class="boldText">{{row.invoiceStatus}}</span></li>
+                             <li fxFlex="30">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
                            </ul>                         
                          <hr>  
                         
                          <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="accountNew">
-                          <li fxFlex="20">
+                          <li fxFlex="15">
                             <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setAcValidAmountData($event.target.value, row);">
                           </li>
                           <li fxFlex="20">
                             <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setAcReamrk($event.target.value, row);">
                           </li>
-                           <li fxFlex="20">
+                           <li fxFlex="15">
                             <input fxFlex="90" type="text" placeholder="Payment Ref No" (blur)="setAcRefPay($event.target.value, row);">
                           </li>
-                          <li fxFlex="20">
-                                
-                                    <md-select placeholder="Select Status" fxFlex="90" (change)="setAcStatus($event.value,row);">
+                          <li fxFlex="30">                                
+                                 <md-select placeholder="Select Status" fxFlex="90" (change)="setAcStatus($event.value,row);">
                                    <md-option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </md-option>
                                  </md-select>
                           </li>
-                           <li fxFlex="20" *ngIf="PayMode">
-                            
-                                   <md-select placeholder="Payment Mode" fxFlex="90" (change)="setAcPayMode($event.value,row);">
+                           <li fxFlex="35" *ngIf="PayMode">                            
+                                 <md-select placeholder="Payment Mode" fxFlex="90" (change)="setAcPayMode($event.value,row);">
                                    <md-option *ngFor="let x of action" value = {{x.value}}> {{ x.viewValue }}</md-option>
                                  </md-select>
                           </li>
-                           <li fxFlex="30">                            
-                          <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateAccountTrans(row)" [disabled] ="button">Submit</button></p>
+                           <li fxFlex="10">                            
+                          <p *ngIf="approved"><button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled] ="button">Submit</button></p>
                           <span *ngIf="username">{{row.validateBy}}</span>
                           </li>
                           <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->

@@ -30,11 +30,21 @@ export class InvoiceValidateComponent implements OnInit {
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
 
-
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
     // this.table.rowDetail.class("rowDe");
-  } 
+  }
+
+  chnageButton($event){
+    console.log(event);
+    // console.log(row);
+    if($event.event.srcElement.nodeName.toLowerCase() == 'button'){
+      $event.event.preventDefault();
+      this.button = true;
+    }
+    //eve.srcElement.attributes.disabled = true;
+  //  this.rows[row.$$index]["button"] = true;
+  }
 
   constructor(public dialogRef: MdDialogRef<InvoiceValidateComponent>, @Inject(MD_DIALOG_DATA) public data: any,
     public snackBar: MdSnackBar, private _route: Router, private _invoice: InvoiceService, private userProfile: ProfileService) {
@@ -66,7 +76,7 @@ export class InvoiceValidateComponent implements OnInit {
   }
 
   getInvoiceData() {
-    this.rows = this.data[0]; 
+    this.rows = this.data[0];
     let el = this.el.nativeElement;
     setTimeout(function () {
       el.click();
@@ -78,9 +88,14 @@ export class InvoiceValidateComponent implements OnInit {
       .subscribe(data => {
         // debugger;
         this.status = data.data;        
-        //console.log(data.data);
-      });
+        // console.log("data",this.status);
+         this.status=this.status.filter((item)=>{
+          return item.id>2;
+        })
+        // console.log("filter",this.status);
+      });    
   }
+  
 
 setValidAmountData(value,row){
 this.rows[row.$$index]["validAmount"]=value;
@@ -117,7 +132,7 @@ this.rows[row.$$index]["acpayModeId"]=value;
 }
 
 setButton(value,row){
-  this.rows[row.$$index]["button"]=value;
+  this.rows[row.$$index]["button"]=false;
 }
 
   updateTrans(value) {
@@ -174,7 +189,5 @@ setButton(value,row){
 
      );
   }
-
-
   
 }

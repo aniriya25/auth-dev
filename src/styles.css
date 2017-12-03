@@ -30,13 +30,14 @@ datatable-body-row{
     background: none ; 
     padding: 10px;
     border-bottom: 5px solid #cccccc ;
+    display: block !important;
   }
   .datatable-scroll{
     width: 100% !important;
 }
 .mat-select-trigger {
     border: 1px solid #d3d9e0;
-    padding: 36px 5px 16px 5px;
+    padding: 16px 5px 16px 5px;
     min-width: 0px !important;
     min-height: 0px !important;
 }
