@@ -10,7 +10,7 @@
            <md-icon>person</md-icon> <span>{{profile.firstName}} {{profile.lastName}}</span><md-icon>expand_more</md-icon>
          </span>
          <md-menu #profileXs="mdMenu"  [overlapTrigger]="true" yPosition="below">
-          <button md-menu-item (click)="add('dashboard/providers/provider/me')"><md-icon>perm_identity</md-icon>Profile</button>
+          <button md-menu-item (click)="add('dashboard/provider/me/outlet/me')"><md-icon>perm_identity</md-icon>Profile</button>
           <!--<button md-menu-item (click)="add('/dashboard/provider/1/outlet/2')"><md-icon>perm_identity</md-icon>Profile-O</button>-->
           <button md-menu-item (click)="logout()"><md-icon>exit_to_app</md-icon> Log Out</button>
         </md-menu>

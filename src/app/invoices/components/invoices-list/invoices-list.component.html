@@ -36,8 +36,9 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-                    [rowHeight]="'auto'">                      
-                    
+                    [rowHeight]="'auto'">
+
+                       
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                       <a (click)="openreview(row);" class="blueText"> {{row.invoiceNo}}</a>

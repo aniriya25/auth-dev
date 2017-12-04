@@ -23,7 +23,8 @@ export class InvoicesListComponent implements OnInit {
    allrows = [];
    alldatavalue: any = [];
    profile:any = {}; 
-   
+
+      
   constructor( private _invoice: InvoiceService,
     public snackBar: MdSnackBar,
     private userProfile: ProfileService,
@@ -43,18 +44,14 @@ export class InvoicesListComponent implements OnInit {
         console.log(this.rows);   
       })
   }
-
   
   openreview(row) {
    // debugger;
      const dialogRef = this.dialog.open(InvoiceSummaryComponent,{data:[
           this.rows = this.allInvoice[row.$$index]["Invoice"]
        ], disableClose: true});
-        this.getInvoiceData();
-      
+        this.getInvoiceData();      
 }
-
-
 
 // showInvoiceList(){
 //   if(this.profile.id == 2)

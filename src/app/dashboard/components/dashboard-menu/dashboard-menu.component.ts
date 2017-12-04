@@ -77,18 +77,17 @@ export class DashboardMenuComponent implements OnInit {
   showModule(){
      if(this.profile.refProfileLoginId == 2)
     {
-      this.provdier = true;
+      this.provdier = false;
       this.outlets = false;
       this.transactions = true;
       this.InvoiceOutlet = true;  
       this.InvoiceAccount = false;
      }
-    if(this.profile.refProfileLoginId == 16) 
+    if(this.profile.refProfileLoginId == 13 || this.profile.refProfileLoginId == 554) 
     {
       this.provdier = true;
       this.outlets = false;
-      this.transactions = false;
-      
+      this.transactions = false;      
     }
 
   }  
@@ -97,7 +96,8 @@ export class DashboardMenuComponent implements OnInit {
     this.userProfile.getPersonalInfo() 
       .subscribe(data => {
         this.profile = data.data;
-        console.log(this.profile.id);
+        console.log("Login Releated ID");
+        console.log(this.profile.refProfileLoginId);
         this.showModule();
         
       })

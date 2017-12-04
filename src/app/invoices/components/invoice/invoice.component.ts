@@ -48,11 +48,21 @@ invoiceData: any = {};
   } 
     openreviewValidate(row) {
     //debugger;
-     const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
+    if(this.allInvoice[row.$$index]["Invoice"] == null){
+       this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
+    }else{
+          const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
           this.rows = this.allInvoice[row.$$index]["Invoice"]
-       ], disableClose: true});
+       ], disableClose: true,});
       //  this.getInvoiceData();
+      this. getInvoiceInproccessData();
+      this.dialog.afterAllClosed .subscribe(() => {
        this. getInvoiceInproccessData();
-}
+      });
+     }
+
+  }
+
+
 
 }  

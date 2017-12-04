@@ -34,7 +34,6 @@ export class InvoiceValidateComponent implements OnInit {
     this.table.rowDetail.expandAllRows();
     // this.table.rowDetail.class("rowDe");
   }
-
   chnageButton($event){
     console.log(event);
     // console.log(row);
@@ -76,11 +75,14 @@ export class InvoiceValidateComponent implements OnInit {
   }
 
   getInvoiceData() {
+    //debugger;
     this.rows = this.data[0];
     let el = this.el.nativeElement;
     setTimeout(function () {
       el.click();
     }, );
+    console.log("--------------Invoice Data ----------");
+    console.log(this.rows);
   }
 
   getStatusData() {
@@ -99,6 +101,7 @@ export class InvoiceValidateComponent implements OnInit {
 
 setValidAmountData(value,row){
 this.rows[row.$$index]["validAmount"]=value;
+
 }
 setReamrk(value,row){
 this.rows[row.$$index]["remak"]=value;
@@ -135,22 +138,33 @@ setButton(value,row){
   this.rows[row.$$index]["button"]=false;
 }
 
-  updateTrans(value) {
+  updateTrans(value,status) {
     // debugger;
+   // this.rows[value.$$index]["status"]=5;
     this.model.validAmount = this.rows[value.$$index]["validAmount"];
     this.model.remarks = this.rows[value.$$index]["remak"];
-    this.model.refStatusId = this.rows[value.$$index]["status"];
+    if(status === "approved")
+    {
+      this.model.refStatusId = 5;// this.rows[value.$$index]["status"];
+    }
+    if(status === "reject")
+    {
+      this.model.refStatusId = 4;
+    } 
     //debugger;
      this._invoice.updateValidateAmount(this.model,this.rows[value.$$index]["refTransactionId"])
      .subscribe(
       res => {
         if (res && res.message) {
           // this.approved = false;
-          // this.username = true;
+          this.username = true;
           // this.button = true;
-          this.snackBar.open(res.message, null, { duration: 3000 });   
+          this.rows[value.$$index]["isActive"] = true;
+          this.getInvoiceData();
+            this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
+          this.rows[value.$$index]["isActive"] = true;
           this.snackBar.open(res.error.message, null, { duration: 3000 });
         }
         else {
@@ -162,8 +176,8 @@ setButton(value,row){
      );
   }
 
-    updateAccountTrans(value) {
-   // debugger;
+    updateAccountTrans(value) {     
+    debugger;
     this.model.paidAmount = this.rows[value.$$index]["acValidAmount"];
     this.model.remarks = this.rows[value.$$index]["acRemak"];
     this.model.refPaymentNo = this.rows[value.$$index]["acRefPay"];
@@ -175,10 +189,15 @@ setButton(value,row){
       res => {
         if (res && res.message) {
           // this.approved = false;
-          // this.username = true;
-          this.snackBar.open(res.message, null, { duration: 3000 });   
+         this.username = true;
+         this.rows[value.$$index]["isActive"] = true;
+        
+         this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
+
+         this.rows[value.$$index]["isActive"] = true;
+
           this.snackBar.open(res.error.message, null, { duration: 3000 });
         }
         else {

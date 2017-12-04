@@ -4,7 +4,7 @@
       
       <div fxFlex="100">
         <div fxFlex="98" fxFlexOffset="1" class="left-card">
-            <h2>Invoice Validation</h2>        
+            <h2>Invoice Validation - {{rows[0].invoiceNo}}</h2>            
 
           <div fxLayout="row" fxLayout.xs="column">
             <div fxFlex="100">             
@@ -21,7 +21,8 @@
                [scrollbarV]="false"
                [rowHeight]="'auto'"                       
                 >
-                <ngx-datatable-row-detail [rowHeight]="170" #myDetailRow style="display:block">
+
+                <ngx-datatable-row-detail [rowHeight]="150" #myDetailRow style="display:block">
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                         
                                                  
@@ -29,19 +30,19 @@
                                   <li fxFlex="20">
                                     <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setValidAmountData($event.target.value, row);">
                                   </li>
-                                  <li fxFlex="20">
+                                  <li fxFlex="30">
                                     <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setReamrk($event.target.value, row);">
-                                  </li>                              
-                                  <li fxFlex="20">                                     
+                                  </li>    
 
+                                  <!--<li fxFlex="20">  
                                   <md-select placeholder="Select Status" fxFlex="90" (change)="setStatus($event.value,row);">
                                    <md-option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </md-option>
                                  </md-select>
+                                  </li>        -->
 
-                                  </li>                                 
                                   <li fxFlex="30">                            
-                                  <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row)" [disabled] ="button">Submit</button></p>
-                                  <!--/ <button  md-raised-button class="reject">Reject</button></p>-->
+                                  <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row,'approved')" [disabled]=row.isActive>Approve</button> / 
+                                  <button  md-raised-button class="reject" [disabled]=row.isActive  (click)="updateTrans(row,'reject')">Reject</button></p>
                                   <span *ngIf="username">{{row.validateBy}}</span>
                                   <!--<span *ngIf="username">{{profile.firstName}} {{profile.lastName}}</span>-->
                                   </li>
@@ -50,10 +51,11 @@
 
                       
                           <ul fxFlex="100" fxLayout="row" fxLayoutAlign="start center"  *ngIf="account">
-                             <li fxFlex="20">Valid Amount: <span class="boldText">{{row.validateAmount}}</span></li>
+                             <li fxFlex="20">Approved Amount: <span class="boldText">{{row.validateAmount}}</span></li>
                              <li fxFlex="30">Remarks: <span class="boldText">{{row.remarks}}</span></li>
-                             <li fxFlex="20">Status: <span class="boldText">{{row.invoiceStatus}}</span></li>
-                             <li fxFlex="30">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
+                             <li fxFlex="15">Status: <span class="boldText">{{row.invoiceStatus}}</span></li>
+                             <li fxFlex="25">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
+                             <li fxFlex="10"><button  md-raised-button class="reject">Reject</button></li>
                            </ul>                         
                          <hr>  
                         
@@ -78,7 +80,7 @@
                                  </md-select>
                           </li>
                            <li fxFlex="10">                            
-                          <p *ngIf="approved"><button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled] ="button">Submit</button></p>
+                          <p *ngIf="approved"><button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled]=row.isActive>Submit</button></p>
                           <span *ngIf="username">{{row.validateBy}}</span>
                           </li>
                           <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
@@ -86,33 +88,59 @@
                       </ng-template>
                 </ngx-datatable-row-detail>
           
-                <ngx-datatable-column name="INVOICE NO" prop="id" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+
+                <ngx-datatable-column name="DATE" prop="id" [width]="100" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                      <p>{{row.invoiceNo}}</p>
+                      <p>{{row.transactionDate}}</p>
                   </ng-template>
                 </ngx-datatable-column>    
     
-                <ngx-datatable-column name="TRANSACTION ID" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="TXN ID" prop="outlet" [width]="80" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                      <p class="tabspan">{{row.refTransactionId}}</p>
                   </ng-template>
                 </ngx-datatable-column>
-    
-                <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="180" [canAutoResize]="false"  [resizeable]="false">
+
+                 <ngx-datatable-column name="TYPE" prop="outlet" [width]="150" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <p>{{row.amount}}</p>
+                     <span>{{row.discountAmount}}</span>
+                     <p>{{row.cardNumber}}</p>
+                     <p class="tabspan">{{row.couponCode}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="PATIENT" prop="outlet" [width]="175" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                     <span>{{row.patientName}}</span>
+                     <p>Id: {{row.idProofType}}</p>
+                     <p>G: {{row.gender}}</p>
+                     <p class="tabspan">M: {{row.contactNo}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+                <ngx-datatable-column name="SERVICE" prop="outlet" [width]="100" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span>{{row.service}}</span>
+                    <p class="tabspan">{{row.subService}}</p>
                   </ng-template>
                 </ngx-datatable-column>
     
-                <ngx-datatable-column name="PAID BY USER" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
+                <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet" [width]="145" [canAutoResize]="false"  [resizeable]="false">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span>{{row.amount}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="PAID BY USER" prop="date" [width]="130" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                    <p>{{row.userPaidAmount}}</p>
+                    <span>{{row.userPaidAmount}}</span>
                   </ng-template>
                 </ngx-datatable-column>
     
                 <ngx-datatable-column name="PROMISED AMOUNT" prop="date" [width]="220" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                     <p>{{row.promisedAmount}}</p>
+                     <span>{{row.promisedAmount}}</span>
                   </ng-template>
                 </ngx-datatable-column>
 
@@ -159,7 +187,7 @@
     
           <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
               <!-- <button md-raised-button class="primary">Submit</button> -->
-              <p><button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close>Done</button></p>
+              <p><button md-raised-button class="primary" fxFlexOffset="3" md-dialog-close (click)=getInvoiceData();>Done</button></p>
             </div>
             
         </div>
