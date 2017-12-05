@@ -22,31 +22,27 @@
                [rowHeight]="'auto'"                       
                 >
 
-                <ngx-datatable-row-detail [rowHeight]="150" #myDetailRow style="display:block">
+                <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                         
-                                                 
-                                  <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row"  *ngIf="validate">
+                                  <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="row.isActive == true">
+                                  <li fxFlex="20">Validate Amount: <strong>{{row.validateAmount}}</strong></li>
+                                  <li fxFlex="30">Remarks: <strong>{{row.remarks}}</strong></li>    
+                                  <li fxFlex="30">Validate By: <strong>{{row.validateBy}}</strong></li>                               
+                                  </ul>               
+                                  
+                                  <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="row.isActive == false">
                                   <li fxFlex="20">
-                                    <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setValidAmountData($event.target.value, row);">
-                                  </li>
+                                    <input  fxFlex="90" type="text" required placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setValidAmountData($event.target.value, row);"  [disabled]=row.isActive>
+                                 </li>
                                   <li fxFlex="30">
-                                    <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setReamrk($event.target.value, row);">
-                                  </li>    
-
-                                  <!--<li fxFlex="20">  
-                                  <md-select placeholder="Select Status" fxFlex="90" (change)="setStatus($event.value,row);">
-                                   <md-option *ngFor="let x of status" value="{{x.id}}"> {{x.status }} </md-option>
-                                 </md-select>
-                                  </li>        -->
-
+                                   <input fxFlex="90" type="text" required placeholder="Remarks" (blur)="setReamrk($event.target.value, row);"  [disabled]=row.isActive>                                 
+                                  </li>  
                                   <li fxFlex="30">                            
-                                  <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row,'approved')" [disabled]=row.isActive>Approve</button> / 
+                                  <p *ngIf="approved"><button  md-raised-button class="primary" (click)="updateTrans(row,'approved')" [disabled]=row.isActive >Approve</button> / 
                                   <button  md-raised-button class="reject" [disabled]=row.isActive  (click)="updateTrans(row,'reject')">Reject</button></p>
-                                  <span *ngIf="username">{{row.validateBy}}</span>
-                                  <!--<span *ngIf="username">{{profile.firstName}} {{profile.lastName}}</span>-->
-                                  </li>
-                                  <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
+                                  </li>                                 
+                                  <li *ngIf="validateBy">{{row.validateBy}}</li>
                                   </ul>
 
                       
@@ -57,8 +53,8 @@
                              <li fxFlex="25">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
                              <li fxFlex="10"><button  md-raised-button class="reject">Reject</button></li>
                            </ul>                         
-                         <hr>  
                         
+<!--                        
                          <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="accountNew">
                           <li fxFlex="15">
                             <input  fxFlex="90" type="text" placeholder="Validate Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setAcValidAmountData($event.target.value, row);">
@@ -82,9 +78,9 @@
                            <li fxFlex="10">                            
                           <p *ngIf="approved"><button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled]=row.isActive>Submit</button></p>
                           <span *ngIf="username">{{row.validateBy}}</span>
-                          </li>
-                          <!--<li fxFlex="20" fxLayoutAlign="end" (click) ="getTransctionInvoiceData(row.transactionId);" target="_blank"><a title="Print"><md-icon class="print">print</md-icon></a></li>-->
-                          </ul>
+                          </li>                          
+                          </ul>-->
+
                       </ng-template>
                 </ngx-datatable-row-detail>
           
@@ -134,7 +130,7 @@
     
                 <ngx-datatable-column name="PAID BY USER" prop="date" [width]="130" [canAutoResize]="false"  [resizeable]="false">
                   <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                    <span>{{row.userPaidAmount}}</span>
+                    <span>{{row.amountPaidByUser}}</span>
                   </ng-template>
                 </ngx-datatable-column>
     
@@ -143,33 +139,6 @@
                      <span>{{row.promisedAmount}}</span>
                   </ng-template>
                 </ngx-datatable-column>
-
-                  <!--<ngx-datatable-column name="VALIDATE AMOUNT" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
-                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                    
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="REMARKS" prop="date" [width]="120" [canAutoResize]="false"  [resizeable]="false">
-                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                     <input type="text" mdInput placeholder="Validate Amount">
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="STATUS" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
-                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                       <md-select placeholder="Status" fxFlex="90">
-                          <md-option>Pending</md-option>
-                          <md-option>Approved</md-option>
-                        </md-select>
-                  </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="ACTION" prop="date" [width]="150" [canAutoResize]="false"  [resizeable]="false">
-                  <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
-                      <button  md-raised-button class="primary">Approved</button> <button  md-raised-button class="reject">Reject</button>
-                  </ng-template>
-                </ngx-datatable-column>-->
                
               </ngx-datatable>
             </div>

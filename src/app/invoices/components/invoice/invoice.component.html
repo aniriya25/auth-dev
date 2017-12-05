@@ -8,7 +8,7 @@
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="90" fxFlex.xs="98">
-                  <input type="text" mdInput type='text' placeholder='Search Invoice...' (keyup)='updateFilter($event)' />
+                  <input type="text" mdInput type='text' placeholder='Search...' (keyup)='updateFilter($event)' />
                 </md-input-container>               
                 </div>
               <div fxFlex="40" fxFlex.xs="100">
@@ -26,8 +26,8 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
-                  <small>
-                      <a #expandButton (click)="onExpandClick()"></a>        
+                   <small>
+                       <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
                     <ngx-datatable #myTable class='material fullscreen expandable'          
                     [rows]='rows'
@@ -36,7 +36,37 @@
                     [headerHeight]="50"
                     [footerHeight]="50"
                     [scrollbarV]="false" 
-                    [rowHeight]="'auto'">                      
+                    [rowHeight]="'auto'">
+
+                      <ngx-datatable-row-detail [rowHeight]="90" #myDetailRow *ngIf="accountNew">
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+                        <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" >
+                          <li fxFlex="15">
+                            <input  fxFlex="90" type="text" placeholder="Paid Amount" maxlength="5" onkeydown="this.value=this.value.replace(/[^\d]/,'')" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  (blur)="setAcValidAmountData($event.target.value, row);">
+                         </li>
+                          <li fxFlex="30">
+                            <input fxFlex="90" type="text" placeholder="Remarks" (blur)="setAcReamrk($event.target.value, row);">
+                          </li>
+                           <li fxFlex="15">
+                            <input fxFlex="90" type="text" placeholder="Payment Ref No" (blur)="setAcRefPay($event.target.value, row);">
+                           </li>                         
+                           <li fxFlex="15">                            
+                                 <md-select placeholder="Payment Mode" fxFlex="90" (change)="setAcPayMode($event.value,row);">
+                                   <md-option *ngFor="let x of action" value = {{x.value}}> {{ x.viewValue }}</md-option>
+                                 </md-select>
+                          </li>
+                           <li fxFlex="20">                            
+                           <button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled]=row.isActive>Submit</button> 
+                           <!--<button  md-raised-button class="reject" [disabled]=row.isActive  (click)="updateTrans(row,'reject')">Reject</button>-->
+                           <span *ngIf="username">{{row.validateBy}}</span>
+                          </li>
+                         
+                          </ul>
+
+                        </ng-template>
+                     </ngx-datatable-row-detail>  
+
                     
                      <ngx-datatable-column name="INVOICE NO" prop="id">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
@@ -50,14 +80,14 @@
                       </ng-template>
                     </ngx-datatable-column> 
 
-                      <ngx-datatable-column name="AMOUNT" prop="outlet">
+                      <ngx-datatable-column name="TOTAL AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         {{row.totalAmount}}
                       </ng-template>
                     </ngx-datatable-column>
                   
 
-                    <ngx-datatable-column name="PAID AMOUNT" prop="outlet">
+                    <ngx-datatable-column name="TOTAL PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         {{row.totalPaidAmount}}
                       </ng-template>

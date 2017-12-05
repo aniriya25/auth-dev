@@ -36,9 +36,8 @@ export class TransactionListComponent implements OnInit {
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { 
-    
-  }
+  constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { }
+  
   ngOnInit() {  
      this.getTransctionData();    
   }
@@ -76,9 +75,11 @@ getFilterData(value){
        //debugger;
        this.rows = data.data;  
        this.temp = data.data;
+      //  console.log("------------- All Transaction Data -------");
+      //  console.log(this.temp);
        let el = this.el.nativeElement;
        setTimeout(function () {
-         el.click();
+       el.click();
        }, );    
       }) 
   }
@@ -109,12 +110,19 @@ getFilterData(value){
    updateFilter(event) {
      this.userData.strdate = "";
      this.userData.endDate = "";
-    const val = event.target.value.toLowerCase();    
-    const temp = this.temp.filter(function(d) {
-      return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val || d.patientName.toLowerCase().indexOf(val) !== -1 || !val;      
+     const val = event.target.value.toLowerCase();    
+     const temp = this.temp.filter(function(d) {
+      return d.transactionId.toLowerCase().indexOf(val) !== -1 || !val 
+      || d.patientName.toLowerCase().indexOf(val) !== -1 || !val 
+      || d.outletName.toLowerCase().indexOf(val) !== -1 || !val 
+      || d.service.toLowerCase().indexOf(val) !== -1 || !val 
+      || d.cardNumber.toLowerCase().indexOf(val) !== -1 || !val
+      || d.contactNo.toLowerCase().indexOf(val) !== -1 || !val
+      || d.gender.toLowerCase().indexOf(val) !== -1 || !val
+      || d.idProofType.toLowerCase().indexOf(val) !== -1 || !val;  
     });
     this.rows = temp;
-    this.table.offset = 0;    
+    this.table.offset = 0;
   }
 
   selectedIndexChange(val :number ){  

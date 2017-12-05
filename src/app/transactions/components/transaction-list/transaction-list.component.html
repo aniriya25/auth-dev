@@ -10,7 +10,7 @@
             <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
               <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
                 <md-input-container fxFlex="40" fxFlex.xs="98">
-                  <input type="text" mdInput type='text' placeholder='Search by Txn ID Or Patient Name ...' (keyup)='updateFilter($event)' />
+                  <input type="text" mdInput type='text' placeholder='Search...' (keyup)='updateFilter($event)' />
                 </md-input-container>
                 </div>
               
@@ -78,19 +78,19 @@
                           <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
                         </ng-template>
                     </ngx-datatable-column>
-                     <ngx-datatable-column name="Txn ID" prop="id" [width]="160" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                     <ngx-datatable-column name="Txn ID" prop="id" [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>                   
                           {{row.transactionId}}
                           </ng-template>
                     </ngx-datatable-column>
 
-                     <ngx-datatable-column name="DATE" prop="date" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                     <ngx-datatable-column name="DATE" prop="date" [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                           <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                              {{row.transactionDate}}
                           </ng-template>
                      </ngx-datatable-column> 
 
-                     <ngx-datatable-column name="TYPE" prop="type" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                     <ngx-datatable-column name="TYPE" prop="type" [width]="180" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         <span>{{row.discountAmount}}</span>
                         <p>{{row.cardNumber}}</p>
@@ -98,7 +98,7 @@
                       </ng-template>
                     </ngx-datatable-column> 
 
-                    <ngx-datatable-column name="PATIENT" prop="patient"  [width]="250" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                    <ngx-datatable-column name="PATIENT" prop="patient"  [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         <span>{{row.patientName}}</span>
                         <p>Id: {{row.idProofType}}</p>
@@ -107,10 +107,16 @@
                       </ng-template>
                     </ngx-datatable-column> 
                      
-                    <ngx-datatable-column name="SERVICE" prop="service" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                    <ngx-datatable-column name="SERVICE" prop="service" [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                       <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
                         <span>{{row.service}}</span>
                         <p class="tabspan">{{row.subService}}</p>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                      <ngx-datatable-column name="CORPORATE NAME" prop="service" [width]="200" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                      <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                        <span>{{row.outletName}}</span>                        
                       </ng-template>
                     </ngx-datatable-column>
 
