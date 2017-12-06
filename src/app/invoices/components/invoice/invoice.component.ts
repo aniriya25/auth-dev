@@ -33,6 +33,7 @@ endDate:any;
 userData:any = {};
 accountNew:boolean = true;
 username:boolean = false; 
+filteruser: any = {};
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
 
@@ -58,14 +59,13 @@ onExpandClick() {
     this._invoice.getInvoiceDetailsInproccess()
       .subscribe(data => {         
         this.allInvoice = data.data;
-        console.log("------- Total Data ----------");
-        console.log(this.allInvoice);
-        this.rows = this.allInvoice;  
+        this.rows = this.allInvoice;
+        this.temp = data.data; 
         let el = this.el.nativeElement;
         setTimeout(function () {
         el.click();
         }, );
-        console.log(this.rows);   
+        // console.log(this.rows);
       })
   } 
 
@@ -79,16 +79,16 @@ onExpandClick() {
       })
   }
 
-  getFilterData(value){
-     //debugger;
-     //alert('ok');     
-     this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
-     this.endDate = moment(value).format('DD-MMM-YYYY');
-     this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
-     .subscribe(data => {
-       this.rows = data.data; 
-     });
-  } 
+  // getFilterData(value){
+  //    //debugger;
+  //    //alert('ok');     
+  //    this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
+  //    this.endDate = moment(value).format('DD-MMM-YYYY');
+  //    this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
+  //    .subscribe(data => {
+  //      this.rows = data.data; 
+  //    });
+  // } 
 
     openreviewValidate(row) {
     //debugger;
@@ -106,16 +106,14 @@ onExpandClick() {
      }
   }
 
-    updateFilter(event) {
+    updateInvoiceFilter(event) {
     //  this.userData.strdate = "";
     //  this.userData.endDate = "";
      const val = event.target.value.toLowerCase();    
      const temp = this.temp.filter(function(d) {
-      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val      
-      || d.totalAmount.toLowerCase().indexOf(val) !== -1 || !val 
-      || d.totalPaidAmount.toLowerCase().indexOf(val) !== -1 || !val;  
+      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val    
     });
-    this.allInvoice = temp;
+    this.rows = temp;
     this.table.offset = 0;
   }
 

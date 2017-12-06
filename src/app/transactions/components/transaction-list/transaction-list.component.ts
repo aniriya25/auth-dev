@@ -62,7 +62,7 @@ getFilterData(value){
      .subscribe(data => {
        this.rows = data.data; 
      });
-  }  
+  }
    
 // getPrint()
 //   {

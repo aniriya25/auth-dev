@@ -41,7 +41,7 @@ export class InvoicesListComponent implements OnInit {
       .subscribe(data => {         
         this.allInvoice = data.data; 
         this.rows = this.allInvoice;
-        console.log(this.rows);   
+        this.temp = data.data;    
       })
   }
   
@@ -52,6 +52,28 @@ export class InvoicesListComponent implements OnInit {
        ], disableClose: true});
         this.getInvoiceData();      
 }
+
+  updateFilter(event) {
+    //  this.userData.strdate = "";
+    //  this.userData.endDate = "";
+     const val = event.target.value.toLowerCase();    
+     const temp = this.temp.filter(function(d) {
+     return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val
+     });
+    this.rows = temp;
+    this.table.offset = 0;
+  }
+
+  selectedIndexChange(val :number ){  
+    if(val === 0){
+      this.getInvoiceData();      
+    }   
+    else if(val===1)
+    {
+      this.getInvoiceData() ;
+    }
+  }
+
 
 // showInvoiceList(){
 //   if(this.profile.id == 2)
