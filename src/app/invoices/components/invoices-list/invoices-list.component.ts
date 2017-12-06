@@ -6,6 +6,7 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import {MdDialog} from '@angular/material';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-invoices-list',
@@ -22,7 +23,10 @@ export class InvoicesListComponent implements OnInit {
    allInvoice =[];
    allrows = [];
    alldatavalue: any = [];
-   profile:any = {}; 
+   profile:any = {};
+   strdate:any;
+   endDate:any;
+   userData:any = {}; 
 
       
   constructor( private _invoice: InvoiceService,
@@ -53,9 +57,26 @@ export class InvoicesListComponent implements OnInit {
         this.getInvoiceData();      
 }
 
+  getFilterData(value){
+     
+     //alert('ok');     
+     this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
+     this.endDate = moment(value).format('DD-MMM-YYYY');
+     this._invoice.getInvoiceDateFilter(this.strdate, this.endDate)
+     .subscribe(data => {    
+       this.rows = data.data;
+       if(this.rows === undefined)
+       {
+          this.rows = [];
+          this.snackBar.open("No data found","",{duration:5000});
+       }
+     });
+  } 
+
   updateFilter(event) {
-    //  this.userData.strdate = "";
-    //  this.userData.endDate = "";
+     debugger;
+     this.userData.strdate = "";
+     this.userData.endDate = "";
      const val = event.target.value.toLowerCase();    
      const temp = this.temp.filter(function(d) {
      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val

@@ -25,6 +25,7 @@
                 <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow >
                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
                         
+                                  <div *ngIf="validate">
                                   <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="row.isActive == true">
                                   <li fxFlex="20">Validate Amount: <strong>{{row.validateAmount}}</strong></li>
                                   <li fxFlex="30">Remarks: <strong>{{row.remarks}}</strong></li>    
@@ -44,16 +45,18 @@
                                   </li>                                 
                                   <li *ngIf="validateBy">{{row.validateBy}}</li>
                                   </ul>
-
+                                  </div>   
                       
-                          <ul fxFlex="100" fxLayout="row" fxLayoutAlign="start center"  *ngIf="account">
-                             <li fxFlex="20">Approved Amount: <span class="boldText">{{row.validateAmount}}</span></li>
-                             <li fxFlex="30">Remarks: <span class="boldText">{{row.remarks}}</span></li>
+                          <div *ngIf="account">
+                          <ul fxFlex="100" fxLayout="row" fxLayoutAlign="start center">
+                             <li fxFlex="10">Amount: <span class="boldText">{{row.validateAmount}}</span></li>
+                             <li fxFlex="25">Remarks: <span class="boldText">{{row.remarks}}</span></li>
                              <li fxFlex="15">Status: <span class="boldText">{{row.invoiceStatus}}</span></li>
-                             <li fxFlex="25">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
-                             <li fxFlex="10"><button  md-raised-button class="reject">Reject</button></li>
+                             <li fxFlex="20">Validate By: <span class="boldText">{{row.validateBy}}</span></li>
+                             <li fxFlex="20"><input fxFlex="70" type="text" required placeholder="Reject Remarks" (blur)="setReamrk($event.target.value, row);" [disabled]=row.isActive></li>
+                             <li fxFlex="8"><button  md-raised-button class="reject" (click)="rejectTransaction(row, 4)" [disabled]="btnReject">Reject</button></li>
                            </ul>                         
-                        
+                          </div>
 <!--                        
                          <ul fxFlex="95" fxLayoutAlign="start center" fxLayout="row" *ngIf="accountNew">
                           <li fxFlex="15">

@@ -34,6 +34,7 @@ export class InvoiceValidateComponent implements OnInit {
   afterValidate:boolean = false;
   // validateBy:boolean = false;
   isActive:boolean = false;
+  btnReject:boolean = false;
 
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
@@ -55,14 +56,10 @@ export class InvoiceValidateComponent implements OnInit {
     this.userProfile.getPersonalInfo() 
       .subscribe(data => {
         this.profile = data.data;             
-         if(this.profile.refProfileLoginId == 554){        
-          this.PayMode = true;
+         if(this.profile.refProfileLoginId == 554){  
           this.account = true;
-           this.accountNew = false;  
-           this.validate = false;
-             
-         }
-        
+           this.validate = false; 
+         }        
       })
   }
 
@@ -104,11 +101,10 @@ updateTrans(value,status) {
     // debugger;
    // this.rows[value.$$index]["status"]=5;
     this.model.validAmount = this.rows[value.$$index]["validAmount"];
-    this.model.remarks = this.rows[value.$$index]["remak"];
-  //  this.model.validateBy = this.rows[0].validateBy;      
+    this.model.remarks = this.rows[value.$$index]["remak"];    
     if(status === "approved")
     {
-      this.model.refStatusId = 5;// this.rows[value.$$index]["status"];
+      this.model.refStatusId = 5;
     }
     if(status === "reject")
     {
@@ -122,85 +118,45 @@ updateTrans(value,status) {
           this.username = true;     
           this.rows[value.$$index]["isActive"] = true;
           this.rows[value.$$index]["validateAmount"] = this.model.validAmount;
-          this.rows[value.$$index]["remarks"] = this.model.remarks;
-          debugger;          
-          this.rows[value.$$index]["validateBy"] =  this.profile.firstName+ " "+this.profile.lastName  ;  
-          this.snackBar.open(res.message, null, { duration: 3000 });   
+          this.rows[value.$$index]["remarks"] = this.model.remarks;                
+          this.rows[value.$$index]["validateBy"] =  this.profile.firstName+ " "+this.profile.lastName; 
+          this.snackBar.open(res.message, null, { duration: 3000 });
         }
         else if (res && res.error && res.error.message) {
-          this.rows[value.$$index]["isActive"] = true;
-          // this.getInvoiceData();
-          // this.validateBy = true;
-       
+          this.rows[value.$$index]["isActive"] = true; 
           this.snackBar.open(res.error.message, null, { duration: 3000 });
+        }      
+        else {
+          this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
         }
+      },
+      err => this.snackBar.open("Validate amount & Remarks should not be blank", null, { duration: 3000 })
+
+     );
+  }
+
+  rejectTransaction(value,id){
+    //  debugger;
+     this.model.remarks= this.rows[value.$$index]["remak"];   
+     this._invoice.postRejectTransaction( this.model, this.rows[value.$$index]["refTransactionId"])
+     .subscribe(
+      res => {       
+          if (res && res.message) {
+          this.btnReject = true;  
+          this.snackBar.open(res.message, null, { duration: 3000 });
+        }
+        else if (res && res.error && res.error.message) {
+          this.btnReject = true;        
+          this.snackBar.open(res.error.message, null, { duration: 3000 });
+        }      
         else {
           this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
         }
       },
       err => this.snackBar.open(err, null, { duration: 3000 })
-
-     );
+     );     
   }
 
 
-  // // -------------- for Account ----------------
-// setAcValidAmountData(value,row){
-// this.rows[row.$$index]["acValidAmount"]=value;
-// }
-// setAcReamrk(value,row){
-// this.rows[row.$$index]["acRemak"]=value;
-// }
-
-// setAcStatus(value,row){
-// //  debugger;
-// this.rows[row.$$index]["acStatus"]=value;
-// }
-
-// setAcRefPay(value,row){
-// // debugger;
-// this.rows[row.$$index]["acRefPay"]=value;
-// }
-
-// setAcPayMode(value,row){
-// this.rows[row.$$index]["acpayModeId"]=value;
-// }
-
-// setButton(value,row){
-//   this.rows[row.$$index]["button"]=false;
-// }
-
-  //   updateAccountTrans(value) {     
-  //   debugger;
-  //   this.model.paidAmount = this.rows[value.$$index]["acValidAmount"];
-  //   this.model.remarks = this.rows[value.$$index]["acRemak"];
-  //   this.model.refPaymentNo = this.rows[value.$$index]["acRefPay"];
-  //   this.model.refStatusId = this.rows[value.$$index]["acStatus"];
-  //   this.model.payModeId = this.rows[value.$$index]["acpayModeId"];
-  //   // debugger;
-  //    this._invoice.updateAccountAmount(this.model,this.rows[value.$$index]["refTransactionId"])
-  //    .subscribe(
-  //     res => {
-  //       if (res && res.message) {
-  //         // this.approved = false;
-  //        this.username = true;
-  //        this.rows[value.$$index]["isActive"] = true;
-        
-  //        this.snackBar.open(res.message, null, { duration: 3000 });   
-  //       }
-  //       else if (res && res.error && res.error.message) {
-
-  //        this.rows[value.$$index]["isActive"] = true;
-
-  //         this.snackBar.open(res.error.message, null, { duration: 3000 });
-  //       }
-  //       else {
-  //         this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
-  //       }
-  //     },
-  //     err => this.snackBar.open(err, null, { duration: 3000 })
-
-  //    );
-  // }
   
 }

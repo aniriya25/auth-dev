@@ -12,16 +12,24 @@
                 </md-input-container>               
                 </div>
               <div fxFlex="40" fxFlex.xs="100">
+                
                 <md-input-container fxFlex="95" fxFlex.xs="80">
-                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date" >
-                  <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
-                </md-input-container>              
-                <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
-                <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
-                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date">
-                  <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="MM/DD/YYYY" (click)="startDatePicker.open()" style="cursor:pointer"
+                    [(ngModel)]="userData.strdate" name="strdate" #strdate="ngModel">
+                  <button mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
                 </md-input-container>
-                <md-datepicker #endDatePicker (selectedChanged)="fetchRecByEndDate($event)"></md-datepicker>
+                <md-datepicker #startDatePicker></md-datepicker>
+
+                <span fxFlex="5" fxFlexOffset="4" style="padding-top:35px">To</span>
+
+                <md-input-container fxFlex="95" fxFlex.xs="80"> 
+                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="MM/DD/YYYY" (click)="endDatePicker.open()" (ngModelChange) ="getFilterData($event)" style="cursor:pointer"
+                    [(ngModel)]="userData.endDate" name="endDate" #endDate="ngModel">
+                  <button mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+                </md-input-container>
+               <md-datepicker #endDatePicker ></md-datepicker>
+
+
               </div>
             </div>
               <div fxLayout="row" fxLayout.xs="column">
@@ -57,7 +65,7 @@
                                  </md-select>
                           </li>
                            <li fxFlex="20">                            
-                           <button md-raised-button class="primary" (click)="updateAccountTrans(row); chnageButton($event, row);" [disabled]=row.isActive>Submit</button> 
+                           <button md-raised-button class="primary" (click)="updateInvoicePaid(row, id)">Submit</button> 
                            <!--<button  md-raised-button class="reject" [disabled]=row.isActive  (click)="updateTrans(row,'reject')">Reject</button>-->
                            <span *ngIf="username">{{row.validateBy}}</span>
                           </li>

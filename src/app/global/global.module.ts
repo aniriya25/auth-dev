@@ -77,6 +77,9 @@ export class AppConfig {
   getallTransaction_url:string;
   getInprocessTransaction_url:string;
   putValidate_url:string;
+  postRejectTransaction_url:string;
+  postInvoicePaid_url:string;
+  getInvoiceDateFilter:string;
 
 // Master
   services_url: string;
@@ -95,9 +98,9 @@ export class AppConfig {
 
 export const APP_DI_CONFIG: AppConfig = {
 
-  //api_base_url: 'http://192.168.9.50/v2/apis/auth/',
+  api_base_url: 'http://192.168.9.50/v2/apis/auth/',
   
-  api_base_url: 'https://www.h3u.com/v2/apis/auth/',
+  //api_base_url: 'https://www.h3u.com/v2/apis/auth/',
   
   //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
   //api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
@@ -163,6 +166,9 @@ export const APP_DI_CONFIG: AppConfig = {
   getallTransaction_url:'me/outletInvoice',
   getInprocessTransaction_url:'/me/invoices',
   putValidate_url:'transactions/',
+  postRejectTransaction_url:'transactions/',
+  postInvoicePaid_url:'invoice/paid',
+  getInvoiceDateFilter:'me/outletInvoiceFilter',
 
   // master
 

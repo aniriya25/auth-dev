@@ -79,16 +79,21 @@ onExpandClick() {
       })
   }
 
-  // getFilterData(value){
-  //    //debugger;
-  //    //alert('ok');     
-  //    this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
-  //    this.endDate = moment(value).format('DD-MMM-YYYY');
-  //    this._alltransaction.getDateFilter(0, this.strdate, this.endDate)
-  //    .subscribe(data => {
-  //      this.rows = data.data; 
-  //    });
-  // } 
+  getFilterData(value){
+    //  debugger;
+     //alert('ok');     
+     this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
+     this.endDate = moment(value).format('DD-MMM-YYYY');
+     this._invoice.getInvoiceDateFilter(this.strdate, this.endDate)
+     .subscribe(data => {
+       this.rows = data.data;
+        if(this.rows === undefined)
+       {
+          this.rows = [];
+          this.snackBar.open("No data found","",{duration:5000});
+       } 
+     });
+  } 
 
     openreviewValidate(row) {
     //debugger;
@@ -107,11 +112,11 @@ onExpandClick() {
   }
 
     updateInvoiceFilter(event) {
-    //  this.userData.strdate = "";
-    //  this.userData.endDate = "";
+     this.userData.strdate = "";
+     this.userData.endDate = "";
      const val = event.target.value.toLowerCase();    
      const temp = this.temp.filter(function(d) {
-      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val    
+      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val   
     });
     this.rows = temp;
     this.table.offset = 0;
@@ -129,52 +134,44 @@ onExpandClick() {
 
   // -------------- for Account ----------------
 setAcValidAmountData(value,row){
-this.rows[row.$$index]["acValidAmount"]=value;
+this.rows[row.$$index]["paidAmount"]=value;
+}
+setAcPayMode(value,row){
+this.rows[row.$$index]["acpayModeId"]=value;
+}
+setAcRefPay(value,row){
+this.rows[row.$$index]["acRefPay"]=value;
 }
 setAcReamrk(value,row){
 this.rows[row.$$index]["acRemak"]=value;
 }
 
-setAcStatus(value,row){
-//  debugger;
-this.rows[row.$$index]["acStatus"]=value;
-}
+// setAcStatus(value,row){
+// //  debugger;
+// this.rows[row.$$index]["acStatus"]=value;
+// }
+// setButton(value,row){
+//   this.rows[row.$$index]["button"]=false;
+// }
 
-setAcRefPay(value,row){
-// debugger;
-this.rows[row.$$index]["acRefPay"]=value;
-}
-
-setAcPayMode(value,row){
-this.rows[row.$$index]["acpayModeId"]=value;
-}
-
-setButton(value,row){
-  this.rows[row.$$index]["button"]=false;
-}
-
-    updateAccountTrans(value) {     
-    debugger;
-    this.model.paidAmount = this.rows[value.$$index]["acValidAmount"];
-    this.model.remarks = this.rows[value.$$index]["acRemak"];
-    this.model.refPaymentNo = this.rows[value.$$index]["acRefPay"];
-    this.model.refStatusId = this.rows[value.$$index]["acStatus"];
-    this.model.payModeId = this.rows[value.$$index]["acpayModeId"];
+updateInvoicePaid(value){
     // debugger;
-     this._invoice.updateAccountAmount(this.model,this.rows[value.$$index]["refTransactionId"])
+    this.model.paidAmount = this.rows[value.$$index]["paidAmount"];
+    this.model.payModeId = this.rows[value.$$index]["acpayModeId"];
+    this.model.refPaymentNo = this.rows[value.$$index]["acRefPay"];
+    this.model.remarks = this.rows[value.$$index]["acRemak"];
+    this.model.invoiceNo = this.rows[value.$$index]["invoiceNo"];  
+    this._invoice.postInvoicePaid(this.model)
      .subscribe(
       res => {
         if (res && res.message) {
           // this.approved = false;
          this.username = true;
-         this.rows[value.$$index]["isActive"] = true;
-        
+         this.rows[value.$$index]["isActive"] = true;        
          this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
-
          this.rows[value.$$index]["isActive"] = true;
-
           this.snackBar.open(res.error.message, null, { duration: 3000 });
         }
         else {
@@ -182,9 +179,7 @@ setButton(value,row){
         }
       },
       err => this.snackBar.open(err, null, { duration: 3000 })
-
      );
   }
-
 
 }  

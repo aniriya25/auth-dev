@@ -39,6 +39,32 @@ export class InvoiceService {
       });
   }
 
+   getInvoiceDateFilter(strdate:Date,endDate:Date) {
+    debugger;
+    return this.authhttp.get(this.config.api_base_url+this.config.getInvoiceDateFilter+"/"+strdate+"/"+endDate)
+     .map(data => {         
+         data.json();
+          return data.json();
+      });
+  }
+
+
+  postRejectTransaction(value:any, id){
+       return this.authhttp.post(this.config.api_base_url+this.config.postRejectTransaction_url+id+"/reject", value)
+        .map(data => {
+            data.json();
+            return data.json();
+        });
+   }
+
+  postInvoicePaid(value:any){
+       return this.authhttp.post(this.config.api_base_url+this.config.postInvoicePaid_url, value)
+        .map(data => {
+            data.json();
+            return data.json();
+        });
+    }
+
    updateAccountAmount(updateAccountAmount, id) {
       let _updateAccountAmount = JSON.stringify(updateAccountAmount);
         return this.authhttp.put(

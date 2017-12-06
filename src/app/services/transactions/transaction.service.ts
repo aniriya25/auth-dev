@@ -72,8 +72,7 @@ getpdf:any;
       });
   }
 
- rejectTransaction(value:any) {
-    
+ rejectTransaction(value:any) {    
     return this.authhttp.post(
         this.config.api_base_url+this.config.reject_url, 
         value
