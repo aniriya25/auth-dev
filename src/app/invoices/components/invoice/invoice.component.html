@@ -34,6 +34,13 @@
             </div>
               <div fxLayout="row" fxLayout.xs="column">
                <div fxFlex="100">
+
+                   <md-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
+                      <md-tab label="Pendind"></md-tab>
+                      <md-tab label="Unpaid">ALL Unpaid Transactions</md-tab>
+                      <md-tab label="Paid">ALL Paid Transactions</md-tab>
+                   </md-tab-group>
+
                    <small>
                        <a #expandButton (click)="onExpandClick()"></a>        
                    </small>
@@ -94,10 +101,15 @@
                       </ng-template>
                     </ngx-datatable-column>
                   
-
                     <ngx-datatable-column name="TOTAL PAID AMOUNT" prop="outlet">
                       <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
                         {{row.totalPaidAmount}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                     <ngx-datatable-column name="STATUS" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        {{row.invoiceStatus}}
                       </ng-template>
                     </ngx-datatable-column>
 

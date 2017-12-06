@@ -65,7 +65,7 @@ onExpandClick() {
         setTimeout(function () {
         el.click();
         }, );
-        // console.log(this.rows);
+        console.log(this.rows);
       })
   } 
 
@@ -116,7 +116,10 @@ onExpandClick() {
      this.userData.endDate = "";
      const val = event.target.value.toLowerCase();    
      const temp = this.temp.filter(function(d) {
-      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val   
+      return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val 
+      || d.totalAmount.toString().indexOf(val) !== -1 || !val
+      || d.totalPaidAmount.toString().indexOf(val) !== -1 || !val
+      || d.invoiceStatus.toLowerCase().indexOf(val) !== -1 || !val 
     });
     this.rows = temp;
     this.table.offset = 0;

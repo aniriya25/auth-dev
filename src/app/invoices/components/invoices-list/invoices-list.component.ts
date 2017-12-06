@@ -57,8 +57,7 @@ export class InvoicesListComponent implements OnInit {
         this.getInvoiceData();      
 }
 
-  getFilterData(value){
-     
+  getFilterData(value){     
      //alert('ok');     
      this.strdate = moment(this.userData.strdate).format('DD-MMM-YYYY');
      this.endDate = moment(value).format('DD-MMM-YYYY');
@@ -79,7 +78,10 @@ export class InvoicesListComponent implements OnInit {
      this.userData.endDate = "";
      const val = event.target.value.toLowerCase();    
      const temp = this.temp.filter(function(d) {
-     return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val
+     return d.invoiceNo.toLowerCase().indexOf(val) !== -1 || !val 
+     || d.totalAmount.toString().indexOf(val) !== -1 || !val
+     || d.totalPaidAmount.toString().indexOf(val) !== -1 || !val
+     || d.invoiceStatus.toLowerCase().indexOf(val) !== -1 || !val
      });
     this.rows = temp;
     this.table.offset = 0;
