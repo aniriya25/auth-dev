@@ -27,6 +27,24 @@ export class InvoiceService {
         });
       }
 
+   getPaidInvoiceOutlet(){
+        // debugger
+        return this.authhttp.get(this.config.api_base_url+this.config.getPaidInvoiceOutlet_url)
+        .map(data => {
+            data.json();
+            return data.json();
+        });
+      } 
+
+    getPaidInvoiceAccount(){
+        debugger
+        return this.authhttp.get(this.config.api_base_url+this.config.getPaidInvoiceAccount_url)
+        .map(data => {
+            data.json();
+            return data.json();
+        });
+      }       
+
    updateValidateAmount(updateValidateAmount, id) {
       let _updateValidateAmount = JSON.stringify(updateValidateAmount);
         return this.authhttp.put(

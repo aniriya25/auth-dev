@@ -3,13 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { GlobalModule } from "./global/global.module";
-
 import { routing } from './app-routing';
 import { AuthGuard } from './guards/auth.guard';
-import { AuthenticationService } from './services/auth/authentication.service';
- 
+import { AuthenticationService } from './services/auth/authentication.service'; 
 import { MaterialModule } from '@angular/material';
-
 import { TransactionService } from './services/transactions/transaction.service';
 
 
@@ -45,7 +42,7 @@ import { TransactionService } from './services/transactions/transaction.service'
 
 @NgModule({
   declarations: [
-     AppComponent,
+     AppComponent,  
      
     // LoginComponent,
     // DashboardComponent,

@@ -1,5 +1,4 @@
-
- <header class="headerSec">
+<header class="headerSec">
     <button md-icon-button (click)="sidenav.toggle()">
       <md-icon class="material-icons md-24">menu</md-icon>
     </button>￼
@@ -9,8 +8,9 @@
          <span [mdMenuTriggerFor]="profileXs" class="triggerMenu"> 
            <md-icon>person</md-icon> <span>{{profile.firstName}} {{profile.lastName}}</span><md-icon>expand_more</md-icon>
          </span>
-         <md-menu #profileXs="mdMenu"  [overlapTrigger]="true" yPosition="below">
-          <button md-menu-item (click)="add('dashboard/provider/me/outlet/me')"><md-icon>perm_identity</md-icon>Profile</button>
+         <md-menu #profileXs="mdMenu"  [overlapTrigger]="true" yPosition="below">   
+          <!--<button md-menu-item routerLink="provider/me"><md-icon>perm_identity</md-icon>Profile</button>-->
+          <button md-menu-item (click)="add('dashboard/providers/179')"><md-icon>perm_identity</md-icon>Profile</button>
           <!--<button md-menu-item (click)="add('/dashboard/provider/1/outlet/2')"><md-icon>perm_identity</md-icon>Profile-O</button>-->
           <button md-menu-item (click)="logout()"><md-icon>exit_to_app</md-icon> Log Out</button>
         </md-menu>
@@ -103,7 +103,7 @@
             </li>
           </a>         
 
-          <a routerLink="training">
+          <a routerLink="training" [ngClass]="{'selectedClass': selected == 5}" (click)="selectId(5)">
             <li> 
               <p><md-icon class="mainIcon">assignment</md-icon></p>
               <p>TRAINING</p>

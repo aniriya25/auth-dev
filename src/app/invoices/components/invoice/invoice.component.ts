@@ -34,6 +34,7 @@ userData:any = {};
 accountNew:boolean = true;
 username:boolean = false; 
 filteruser: any = {};
+paidInvoice:any;
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
 
@@ -50,8 +51,10 @@ onExpandClick() {
     ) { }
 
    ngOnInit() {    
-   this.getInvoiceInproccessData();
+   this.getInvoiceInproccessData();   
+   this.getPaidInvoiceAccountData();
    this.getUserProfile();
+   this.selectedIndexChange(0);
   }
 
   getInvoiceInproccessData() { 
@@ -60,15 +63,28 @@ onExpandClick() {
       .subscribe(data => {         
         this.allInvoice = data.data;
         this.rows = this.allInvoice;
-        this.temp = data.data; 
+        this.temp = data.data;     
         let el = this.el.nativeElement;
         setTimeout(function () {
         el.click();
-        }, );
-        console.log(this.rows);
+        }, );    
       })
   } 
 
+  getPaidInvoiceAccountData() {
+   debugger;
+    this._invoice.getPaidInvoiceAccount()
+      .subscribe(data => {
+       this.allInvoice = data.data;
+        this.rows = this.allInvoice;
+        // console.log("-------- Paid Invoice ----------");
+        // console.log(this.rows); 
+        if(this.paidInvoice.invoiceStatus == "Paid"){  
+           this.accountNew = false;
+         }
+      })
+  }
+ 
   getUserProfile() {
     this.userProfile.getPersonalInfo() 
       .subscribe(data => {
@@ -96,20 +112,22 @@ onExpandClick() {
   } 
 
     openreviewValidate(row) {
-    //debugger;
+    debugger;
     if(this.allInvoice[row.$$index]["Invoice"] == null){
        this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
     }else{
           const dialogRef = this.dialog.open(InvoiceValidateComponent,{data:[
-          this.rows = this.allInvoice[row.$$index]["Invoice"]
+          this.rows = this.allInvoice[row.$$index]["Invoice"]         
        ], disableClose: true,});
-      //  this.getInvoiceData();
-      this. getInvoiceInproccessData();
+      // this.getPaidInvoiceAccountData();
+      // this.getInvoiceInproccessData();
       this.dialog.afterAllClosed .subscribe(() => {
-       this. getInvoiceInproccessData();
+      this.getInvoiceInproccessData();
+      this.selectedIndexChange[0];
+      // this.getPaidInvoiceAccountData();
       });
      }
-  }
+  } 
 
     updateInvoiceFilter(event) {
      this.userData.strdate = "";
@@ -125,13 +143,14 @@ onExpandClick() {
     this.table.offset = 0;
   }
 
-    selectedIndexChange(val :number ){  
+    selectedIndexChange(val :number ){
+    this.rows = [];  
     if(val === 0){
       this.getInvoiceInproccessData();      
     }   
     else if(val===1)
     {
-      this.getInvoiceInproccessData() ;
+      this.getPaidInvoiceAccountData();     
     }
   }
 
@@ -170,12 +189,14 @@ updateInvoicePaid(value){
         if (res && res.message) {
           // this.approved = false;
          this.username = true;
-         this.rows[value.$$index]["isActive"] = true;        
+         this.rows[value.$$index]["isActive"] = true;
+         this.selectedIndexChange(1);  
          this.snackBar.open(res.message, null, { duration: 3000 });   
         }
         else if (res && res.error && res.error.message) {
          this.rows[value.$$index]["isActive"] = true;
-          this.snackBar.open(res.error.message, null, { duration: 3000 });
+         this.selectedIndexChange(1);
+         this.snackBar.open(res.error.message, null, { duration: 3000 });
         }
         else {
           this.snackBar.open("Something went wrong, Please try again", null, { duration: 3000 });
@@ -185,4 +206,4 @@ updateInvoicePaid(value){
      );
   }
 
-}  
+} 

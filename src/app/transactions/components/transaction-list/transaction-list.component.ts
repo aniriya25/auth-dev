@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransactionService } from './../../../services/transactions/transaction.service';
+import { InvoiceService } from './../../../services/invoices/invoice.service';
 import {MdDialog} from '@angular/material';
 import { SummaryComponent } from '../summary/summary.component';  
 import * as moment from 'moment';
@@ -9,7 +10,7 @@ import { MdSnackBar } from '@angular/material';
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
-  providers: [TransactionService, MdSnackBar]
+  providers: [TransactionService, MdSnackBar, InvoiceService]
 })
 export class TransactionListComponent implements OnInit {
  @ViewChild('myTable') table: any;
@@ -36,7 +37,7 @@ export class TransactionListComponent implements OnInit {
   onExpandClick() {
     this.table.rowDetail.expandAllRows();
   }
-  constructor(private _alltransaction: TransactionService, public dialog: MdDialog, public snackBar: MdSnackBar) { }
+  constructor(private _alltransaction: TransactionService, private _invoice: InvoiceService, public dialog: MdDialog, public snackBar: MdSnackBar) { }
   
   ngOnInit() {  
      this.getTransctionData();    
@@ -52,6 +53,14 @@ export class TransactionListComponent implements OnInit {
        window.open(this.user.path).print();         
       })     
   }
+
+  getPaidInvoiceData() {
+      debugger;
+      this._invoice.getPaidInvoiceOutlet()
+      .subscribe(data => {   
+       this.rows = data.data;        
+      }) 
+  } 
 
 getFilterData(value){
      //debugger;
@@ -131,7 +140,7 @@ getFilterData(value){
     }   
     else if(val===1)
     {
-      this.getTransctionData() ;
+      this.getPaidInvoiceData() ;
     }
   }
 

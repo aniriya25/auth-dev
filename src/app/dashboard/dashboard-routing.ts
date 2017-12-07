@@ -12,7 +12,8 @@ const dashboardRoutes: Routes = [
             {path: 'providers' , loadChildren:"./../providers/providers.module#ProvidersModule"},
             {path: 'provider' , loadChildren:"./../outlet/outlet.module#OutletModule"},
             {path: 'invoices' , loadChildren:"./../invoices/invoices.module#InvoicesModule"},
-            {path: 'package' , loadChildren:"./../package/package.module#PackageModule"}
+            {path: 'package' , loadChildren:"./../package/package.module#PackageModule"},
+            {path: 'training' , loadChildren:"./../training/training.module#TrainingModule"}
             
         ]
     },

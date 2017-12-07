@@ -80,6 +80,8 @@ export class AppConfig {
   postRejectTransaction_url:string;
   postInvoicePaid_url:string;
   getInvoiceDateFilter:string;
+  getPaidInvoiceOutlet_url:string;
+  getPaidInvoiceAccount_url:string;
 
 // Master
   services_url: string;
@@ -169,6 +171,8 @@ export const APP_DI_CONFIG: AppConfig = {
   postRejectTransaction_url:'transactions/',
   postInvoicePaid_url:'invoice/paid',
   getInvoiceDateFilter:'me/outletInvoiceFilter',
+  getPaidInvoiceOutlet_url:'me/paidinvoice',
+  getPaidInvoiceAccount_url:'me/invoice/paid',
 
   // master
 

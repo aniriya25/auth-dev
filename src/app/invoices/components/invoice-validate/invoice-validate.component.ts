@@ -34,8 +34,6 @@ export class InvoiceValidateComponent implements OnInit {
   afterValidate:boolean = false;
   // validateBy:boolean = false;
   isActive:boolean = false;
-  btnReject:boolean = false;
-
 
  action =[{value:"1", viewValue:"NEFT"},{value:"2",viewValue:"Cheque"},{value:"3",viewValue:"Other"}];
 
@@ -50,7 +48,7 @@ export class InvoiceValidateComponent implements OnInit {
     this.getInvoiceData();
     this.getStatusData();
     this.getUserProfile();
-  }
+   }
 
    getUserProfile() {
     this.userProfile.getPersonalInfo() 
@@ -66,6 +64,8 @@ export class InvoiceValidateComponent implements OnInit {
   getInvoiceData() {
     //debugger;
     this.rows = this.data[0];
+    // console.log("---------Get Invoice Data ---------")
+    // console.log(this.rows[0].transactionStatus); 
     let el = this.el.nativeElement;
     setTimeout(function () {
       el.click();
@@ -142,11 +142,11 @@ updateTrans(value,status) {
      .subscribe(
       res => {       
           if (res && res.message) {
-          this.btnReject = true;  
+          this.rows[value.$$index]["isActive"] = true; 
           this.snackBar.open(res.message, null, { duration: 3000 });
         }
         else if (res && res.error && res.error.message) {
-          this.btnReject = true;        
+          this.rows[value.$$index]["isActive"] = true;   
           this.snackBar.open(res.error.message, null, { duration: 3000 });
         }      
         else {
