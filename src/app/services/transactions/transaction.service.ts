@@ -14,7 +14,23 @@ export class TransactionService {
   ) { }
 
   getTransaction(cardNumber:any) {
-    return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+9876543210987654)
+    return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+cardNumber)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+  getTransactionList(id: number) {
+    return this.authhttp.get(this.config.api_base_url+this.config.transaction_url+id)
+      .map(data => {
+          data.json();
+          return data.json();
+      });
+  }
+
+  getServiceList() {
+    return this.authhttp.get(this.config.api_base_url+this.config.services_url)
       .map(data => {
           data.json();
           return data.json();

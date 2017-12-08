@@ -1,4 +1,4 @@
-<md-card>
+<md-card class="dash">
     <md-card-header>
       <md-card-title-group>
         <md-card-title>
@@ -10,21 +10,20 @@
       </md-card-title-group>
     </md-card-header>
     <md-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100">
-        <div fxLayout="row" fxFlex="100">
-          <!--<md-radio-group name="codeType" [formControl]="codeType" fxFlex="100">
+      <form (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px" fxFlex="100" >
+        <!--<div fxLayout="row" fxFlex="100">
+          <md-radio-group name="codeType" [formControl]="codeType" fxFlex="100">
             <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="card">Card Number</md-radio-button>
             <md-radio-button  fxLayout="column" fxFlex="50" fxLayoutAlign="center" value="coupon">    Coupon Number</md-radio-button>
-          </md-radio-group>-->
-        </div>
+          </md-radio-group>
+        </div>-->
         <div fxLayout="row" fxFlex="100">
           <md-input-container fxLayout="column" fxFlex="100">
-            <input mdInput [formControl]="
-            " placeholder="Please provide card number or Request No" value="">
+            <input mdInput placeholder="Please provide card number or Request No" [(ngModel)]="user.cardNo" name="cardNo" #crdNo="ngModel">
           </md-input-container>
         </div>
         <div fxLayout="row" fxFlex="100">
-          <a md-raised-button class="primary" routerLink="/dashboard/transactions">Submit</a>
+          <a md-raised-button class="primary" (click)="getTransaction();">Submit</a>
         </div>
       </form>
     </md-card-content>

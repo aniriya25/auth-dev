@@ -1,5 +1,6 @@
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-generate-transaction',
@@ -7,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./generate-transaction.component.css']
 })
 export class GenerateTransactionComponent implements OnInit {
+  user:any = [];
   public form: FormGroup;
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,
+  private _route: Router
+  ) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      codeType:[null, Validators.required],
-      cardNumber:[null, Validators.required]
-    })
+    // this.form = this.fb.group({
+    //   codeType:[null, Validators.required],
+    //   cardNumber:[null, Validators.required]
+    // })
   }
   onSubmit(){
     //console.log(this.form);
@@ -26,7 +30,11 @@ export class GenerateTransactionComponent implements OnInit {
   }
 
   get cardNumber(){
-    return this.form.get("cardNumber");
+    return this.form.get("crdNo");
+  }
+
+  getTransaction(){
+    this._route.navigate(['dashboard/transactions/transaction'],{queryParams:{page:this.user.cardNo}});
   }
 
 }
