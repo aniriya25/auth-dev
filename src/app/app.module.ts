@@ -10,7 +10,7 @@ import { AuthenticationService } from './services/auth/authentication.service';
  
 import { MaterialModule } from '@angular/material';
 
-
+import { TransactionService } from './services/transactions/transaction.service';
 
 
 
@@ -45,7 +45,7 @@ import { MaterialModule } from '@angular/material';
 
 @NgModule({
   declarations: [
-     AppComponent
+     AppComponent,
      
     // LoginComponent,
     // DashboardComponent,
@@ -75,7 +75,7 @@ import { MaterialModule } from '@angular/material';
     BrowserModule,
     MaterialModule,    
   ],
-  providers: [AuthGuard,AuthenticationService,
+  providers: [AuthGuard,AuthenticationService, TransactionService
 
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,92 @@
+<div class="container">
+  <div fxLayout="row">
+    <md-card class="profileCard" fxFlex="100">
+        <div fxFlex="98" fxFlexOffset="1" class="left-card">
+         <h2><span  fxFlex="80">Invoices List</span>
+         <!-- <button md-raised-button type="button" style="letter-spacing: 2px;" class="primary" routerLink="/dashboard/invoices/invoice">New Invoice</button> -->
+         </h2>
+            <div fxLayout="row" fxLayout.xs="column" fx-layout-align="center center">
+              <div fxFlex="60"  fxFlex.xs="100" class="v_align" >
+                <md-input-container fxFlex="90" fxFlex.xs="98">
+                  <input type="text" mdInput type='text' placeholder='Search Invoice...' (keyup)='updateFilter($event)' />
+                </md-input-container>
+               
+                </div>
+              <div fxFlex="40" fxFlex.xs="100">
+                <md-input-container fxFlex="95" fxFlex.xs="80">
+                  <input mdInput [mdDatepicker]="startDatePicker" placeholder="Start Date" >
+                  <button type="button" mdSuffix [mdDatepickerToggle]="startDatePicker"></button>
+                </md-input-container>              
+                <md-datepicker #startDatePicker (selectedChanged)="fetchRecByStartDate($event)"></md-datepicker>
+                <md-input-container fxFlex="95" fxFlex.xs="100" fxFlexOffset="5" >
+                  <input mdInput [mdDatepicker]="endDatePicker" placeholder="End Date">
+                  <button type="button" mdSuffix [mdDatepickerToggle]="endDatePicker"></button>
+                </md-input-container>
+                <md-datepicker #endDatePicker (selectedChanged)="fetchRecByEndDate($event)"></md-datepicker>
+              </div>
+            </div>
+              <div fxLayout="row" fxLayout.xs="column">
+               <div fxFlex="100">
+                  <small>
+                      <a #expandButton (click)="onExpandClick()"></a>        
+                   </small>
+                    <ngx-datatable #myTable class='material fullscreen expandable'          
+                    [rows]='rows'
+                    [limit]="10"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [scrollbarV]="false" 
+                    [rowHeight]="'auto'">
+                    (activate)="onActivate($event, modal)"
+                    <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                          <ul fxFlex="100" fxLayoutAlign="center center">
+                          <li fxFlex="80">Status:Pending</li>
+                          <li fxFlex="80">Remarks:Pending</li>
+                          <li fxFlex="80">Created By: <a>Amit Bakshi</a></li>
+                          </ul>
+                        </ng-template>
+                      </ngx-datatable-row-detail>
+                     <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                          <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+                          <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+                        </ng-template>
+                    </ngx-datatable-column>
+                     <ngx-datatable-column name="INVOICE NO" prop="id">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                      <a routerLink="/dashboard/invoices/invoice"> 4251</a>
+                      </ng-template>
+                    </ngx-datatable-column> 
+
+                    <ngx-datatable-column name="OUTLET DETAILS" prop="outlet">
+                      <ng-template let-row="row"  let-value="value" ngx-datatable-cell-template>                   
+                        <span>Outlet Name</span>
+                        <p>98.4 Pharmacy G2 Block Market, Sarita Vihar</p>
+                        <p class="tabspan">9876543210</p>
+                      </ng-template>
+                    </ngx-datatable-column> 
+
+                    <ngx-datatable-column name="DATE" prop="date" width="100">
+                      <ng-template let-row="row" let-value="values" ngx-datatable-cell-template>
+                        12/01/2017
+                      </ng-template>
+                 </ngx-datatable-column> 
+
+                    </ngx-datatable>
+                  </div>
+                </div>
+        </div>
+        <!-- <div fxFlex="29" fxFlexOffset="1" class="right-card" fxShow fxHide.xs="true">
+            <div fxLayout="row">
+              <div fxFlex="100" class="cp-para">
+                
+              </div>
+            </div>
+          </div> -->
+    </md-card>
+  </div>
+</div>

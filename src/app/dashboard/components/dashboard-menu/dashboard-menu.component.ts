@@ -15,24 +15,42 @@ export class DashboardMenuComponent implements OnInit {
   isOpened:boolean = true;
   isOpenSide:string = 'side';
   providerLength: number = 0; 
+  id:number;
+  selected: number;
+  
+  
+  
   constructor(
     private loginService:LoginService,
     private router:Router,
     private userProfile: ProfileService,
     private providerService: ProviderService
     ) {
-        this.providerService.getAllProvider()
-          .subscribe(data => {
-            this.providerLength = data.data.length;
-            console.log(this.providerLength);
-          })
+        // this.providerService.getAllProvider()
+        //   .subscribe(data => {
+        //     this.providerLength = data.data.length;
+        //     console.log(this.providerLength);
+        //   })
      }
 
+
+    getUserProviderProfile() {
+      this.providerService.getProviderProfileData() 
+      .subscribe(data => {
+        this.profile = data.data;
+        console.log("Get Provider ID:");
+        console.log(data.data);
+      })
+  }
+   
+
   ngOnInit() {
+  
     this.getUserProfile();
     if(window.innerWidth < 768) {
       this.isOpened = false;
       this.isOpenSide = 'over';
+      this.selectedIndexChange(0);
     }
 
     // this.checkuser();
@@ -63,5 +81,11 @@ export class DashboardMenuComponent implements OnInit {
   add(page: string) {
    this.router.navigate([page]);
   }
-    
+  selectedIndexChange(val :number ){}
+  selectId(id: number) {
+    this.selected = id;
+}    
+
+
 }
+

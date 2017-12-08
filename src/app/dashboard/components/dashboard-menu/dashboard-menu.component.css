@@ -7,6 +7,13 @@
 .mat-sidenav-content {
     margin-top: 20px;
 }
+.liactive{
+    background:#000000;
+}
+.selectedClass {
+    background-color:#000000;
+}
+
 .logo{    vertical-align: middle;
     width: auto;height:60px;    margin: 5px 0px;}
 header.headerSec {
@@ -157,7 +164,9 @@ ul.nav a li p:first-child {
     margin-bottom: 10px;
 }
 
-ul.nav a:hover,
+
+
+ul.nav a:focus,
 ul.nav a:active,
 ul.nav a:hover{
     background: #000;

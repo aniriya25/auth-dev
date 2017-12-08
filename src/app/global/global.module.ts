@@ -45,6 +45,8 @@ export class AppConfig {
   mou_type_master: string;
   mou_annexures: string;
 
+  providerProfile:string;
+
   // profile
   profile_personal_update_url:string;
   profile_corporate_update_url:string;
@@ -60,19 +62,43 @@ export class AppConfig {
 
   // Transtions
   transaction_url:string;
+  transactionInvoice_url:string;
+  transaction_cupon_url:string;
+  cardDetails_update_url: string;
+  transactionList_url:string;
+  amountvalidate_url:string;
+  sendOTP_url:string;
+  verifyOTP_url:string;
+  reject_url: string;
 
-  // Master
-  services_url:string;
+  //Invoice
+  getBasicDetails_url:string;
+
+
+// Master
+  services_url: string;
+  Identity_url: string;
 
 }
 
+// let getHostName = window.location.hostname;
+// if(getHostName == "localhost") {
+//   var _hostName = "http://192.168.9.50/";
+//   //var _hostName = "https://www.h3u.com/";
+// } else {
+//   var _hostName = "https://www.h3u.com/";
+// }
+
 export const APP_DI_CONFIG: AppConfig = {
 
-  api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
+  //api_base_url: 'http://192.168.9.50/v2/apis/auth/',
   
-   // api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
-    //api_base_url: 'http://182.71.190.154/nerveapi/',
-    login_url:"auth/login",
+ api_base_url: 'https://www.h3u.com/v2/apis/auth/',
+  
+  //api_base_url: 'https://www.h3u.com/v2/apis/nerve/',
+  //api_base_url: 'http://192.168.9.50/v2/apis/nerve/',
+  //api_base_url: 'http://182.71.190.154/nerveapi/',
+  login_url:"auth/login",
   nerve_token_key:"h3u_nerve_usertoken",
   profile_personal_info_url:"users/me/profile/personal",
   profile_communication_url: "users/me/profile/communication",
@@ -102,6 +128,8 @@ export const APP_DI_CONFIG: AppConfig = {
   mou_type_master: 'masters/mouTypes',
   mou_annexures: 'masters/mouAnnexures',
 
+  providerProfile:'me/profile',
+
   // profiles
   profile_personal_update_url:'users/profile/personal',
   profile_corporate_update_url: 'users/me/profile/corporate',
@@ -115,10 +143,24 @@ export const APP_DI_CONFIG: AppConfig = {
   outlet: 'Outlet/',
 
   //transaction
-  transaction_url:'cards/',
+  transaction_url:'products/',
+  transactionInvoice_url:'transactions/',
+  transaction_cupon_url:'requests/',
+  cardDetails_update_url:'transactions',
+  transactionList_url: 'me/transactions',
+  amountvalidate_url:'transactions/validate',
+  sendOTP_url:'sendOTP',
+  verifyOTP_url:'verifyOTP',
+  reject_url:'transactions/reject',
+  
+  //Invoice
+  getBasicDetails_url:'me/basicdetails',
 
-  //Mast
-  services_url:"masters/servicecategories"
+  // master
+
+  services_url:"masters/servicecategories",
+  Identity_url:"masters/IdentityTypes"
+
 };
 
 @NgModule({

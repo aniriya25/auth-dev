@@ -1,0 +1,87 @@
+.logo{
+    vertical-align: middle;
+    width: auto;
+    height: 60px;
+    margin: 5px 0px;
+}
+
+.mat-dialog-container{
+    width: 1200px !important;
+}
+.popup1{
+     //min-width:1000px;
+    min-width: 100% !important;   
+    //width: 1300px;
+}
+
+ul{
+    padding-left: 0px;
+    // border-bottom: 2px solid #cccccc;
+    li{
+        list-style: none;
+        padding: 5px 0px;
+      
+        span{
+            font-weight: normal;
+        }
+      
+    }
+}
+ol{
+    list-style: none;
+   
+}
+  .tabspan{
+    font-size: 12px;
+    color: #489cce;
+  }
+  ngx-datatable{
+      height: 300px;
+      overflow-y: scroll;
+    p{
+      line-height: .5;
+      font-size: 12px;
+    }
+ 
+  }
+  .amnt{
+    span{
+       text-align: right
+    }
+}
+.field{
+    border: none;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.foot{
+    background-color: #535f72;
+    color: #ffffff;
+    padding: 0px 30px;
+    margin: 20px 0px;
+    a{
+        color: #ffffff;
+    }
+}
+.inst{
+    background: transparent;
+    border-top:3px solid #8c8a8a;
+    border-bottom: 3px solid #8c8a8a;
+    margin: 20px 0px;
+    padding: 0px 30px;
+    color: #000000
+}
+.supp{
+    margin-bottom: 0px;
+    li{
+        line-height: 1;
+          font-weight: bold;
+       p{
+           font-weight: normal;
+           font-size: 12px;
+       }
+    }
+}
+._brand.providerIcon > img{width: 90px;
+    overflow: hidden;
+    float: left;height: auto;margin: 0px 0 10px 10px;}

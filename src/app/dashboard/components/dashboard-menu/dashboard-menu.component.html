@@ -10,8 +10,8 @@
            <md-icon>person</md-icon> <span>{{profile.firstName}} {{profile.lastName}}</span><md-icon>expand_more</md-icon>
          </span>
          <md-menu #profileXs="mdMenu"  [overlapTrigger]="true" yPosition="below">
-          <button md-menu-item (click)="add('/dashboard/providers/provider/152')"><md-icon>perm_identity</md-icon>Profile-P</button>
-          <button md-menu-item (click)="add('/dashboard/provider/1/outlet/2')"><md-icon>perm_identity</md-icon>Profile-O</button>
+          <button md-menu-item (click)="add('/dashboard/providers/provider/166')"><md-icon>perm_identity</md-icon>Profile</button>
+          <!--<button md-menu-item (click)="add('/dashboard/provider/1/outlet/2')"><md-icon>perm_identity</md-icon>Profile-O</button>-->
           <button md-menu-item (click)="logout()"><md-icon>exit_to_app</md-icon> Log Out</button>
         </md-menu>
       </li>
@@ -32,7 +32,7 @@
         </md-menu>
       </li>
     </ul> 
-    <ul class="headerRightMenu" fxShow fxHide.md fxHide.sm fxHide.lg fxLayoutAlign="end end">
+    <!--<ul class="headerRightMenu" fxShow fxHide.md fxHide.sm fxHide.lg fxLayoutAlign="end end">
       <li>
         <span [mdMenuTriggerFor]="profileLg" class="triggerMenu">
            <md-icon>person</md-icon>
@@ -55,38 +55,41 @@
           <button md-menu-item ><img src="assets/images/industry-line_stethescope-20.png"> Add Doctor</button>
         </md-menu>
       </li>
-    </ul>
+    </ul>-->
   </header>
 <md-sidenav-container class="example-sidenav-fab-container" fullscreen>
  
   <md-sidenav #sidenav [mode]="isOpenSide" [opened]="isOpened">
     <div class="example-scrolling-content">
         <ul class="nav">
-          <a routerLink="home" >
+          <a routerLink="home" [ngClass]="{'selectedClass': selected == 1}" (click)="selectId(1)">
             <li>
               <p><md-icon class="mainIcon">dashboard</md-icon></p>
               <p>DASHBOARD</p>
             </li>
           </a>
           
-          <a routerLink="invoice">
-            <li>
-              <p><md-icon class="mainIcon">receipt</md-icon></p>
-              <p>INVOICES</p>
-            </li>
-          </a>
-          <a routerLink="provider/1/outlets">
+          <a routerLink="provider/1/outlets" [ngClass]="{'selectedClass': selected == 2}" (click)="selectId(2)" >
             <li>   
               <p><md-icon class="mainIcon">store</md-icon></p>
               <p>OUTLETS</p>  
             </li>
           </a>
-          <a routerLink="/dashboard/transactions/transaction-list">
-            <li>  
+          <a routerLink="/dashboard/transactions"  [ngClass]="{'selectedClass': selected == 3}" (click)="selectId(3)">
+               <li>  
                 <p><md-icon class="mainIcon">credit_card</md-icon></p>
                 <p>TRANSACTIONS</p>  
             </li>
           </a>
+
+            <a routerLink="/dashboard/invoices/invoices-list" [ngClass]="{'selectedClass': selected == 4}" (click)="selectId(4)">
+            <li>
+              <p><md-icon class="mainIcon">receipt</md-icon></p>
+              <p>INVOICES</p>
+            </li>
+
+          </a>  
+
           <a routerLink="training">
             <li> 
               <p><md-icon class="mainIcon">assignment</md-icon></p>

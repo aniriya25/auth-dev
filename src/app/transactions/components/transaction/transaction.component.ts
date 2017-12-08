@@ -4,7 +4,11 @@ import { ProfileService } from './../../../services/profile/profile.service';
 import { MdSnackBar } from '@angular/material';
 import * as moment from 'moment';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {MdDialog} from '@angular/material';
+import { RejectComponent } from '../reject/reject.component';
+import { ReviewComponent } from '../review/review.component';                              
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -15,9 +19,10 @@ export class TransactionComponent implements OnInit {
   @ViewChild('myTable') table: any;
   cardNumber: any;
   rows = [];
-  service = [];
-  cardData = [];
   temp = [];
+  Identities = [];
+  services: object;
+  speciality: object;
   isLimits: number = 10;
   records: any;
   user: any = {};
@@ -25,193 +30,240 @@ export class TransactionComponent implements OnInit {
   isReadOnly: boolean = true;
   edited: boolean = true;
   abc: any;
-  selctedServices: any;
+  kycshow: boolean = false;
+  payshow: boolean =false;
+  alldatavalue: object;
+  model: any = {};
+  IdValue: any;
+  payableTotalAmount:any = {};
+  button:any = true;
+  amoutP:any = false;
+  showotp: boolean = false;
+  detailspay: boolean = false;
+  proData: any = {};
+  getMembers:any = {};
 
-  // services = [
-  //   { value: '0', viewValue: 'OPD' },
-  //   { value: '1', viewValue: 'Pharmacy' },
-  //   { value: '2', viewValue: 'Diagnostic' }
-  // ];
-  speciality = [
-    { value: '0', viewValue: 'Cardiology' },
-    { value: '1', viewValue: 'Ent' },
-    { value: '2', viewValue: 'Gynocologist' },
-    { value: '3', viewValue: 'Dental' }
-  ];
   constructor(
     private _transaction: TransactionService,
     private _profile: ProfileService,
     public snackBar: MdSnackBar,
     private _route: Router,
-    private route: ActivatedRoute
-  ) {
-    
-  }
+    private route: ActivatedRoute,
+    public dialog: MdDialog
+  ) { }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);
-    this.getServiceData();
-    this.getTrasnctionData1();  
-    this.getTrasnctionData();
-    
-    // this.getIdentityData();
-    // this.getPersonalData();
 
-  }
-
-  getServiceData() {
-    this._transaction.getServiceList()
-      .subscribe(data => {
-        debugger;
-        this.service = data.data;
-        //this.user.cardNumber = data.data[0]["cardNumber"];
-       // console.log(this.user.cardNumber);
-      })
-  }
-
-  getTrasnctionData() {
-    this._transaction.getTransaction(this.abc)
-      .subscribe(data => {
-        //debugger;
-        this.rows = data.data;
-        this.user.cardNumber = this.rows[0]["cardNumber"];
-        console.log(this.user.cardNumber);
-      })
+  openDialog() {
+    const dialogRef = this.dialog.open(RejectComponent,{data:{
+      cardNumber: this.user.cardNumber,
+      // coupnNumber: this.user.cuponNumber
+    }});
   }
   
-getTrasnctionData1() {
-    this._transaction.getTransaction(this.user.cardNumber)
-      .subscribe(data => {
-        //debugger;
-        this.cardData = data.data;
-        //this.user.cardNumber = data.data[0]["cardNumber"];
-        //console.log(this.user.cardNumber);
+  openreview() {
+     //debugger;
+     const dialogRef = this.dialog.open(ReviewComponent,{data:{
+       
+       refCardId: this.user.refCardId,
+       serviceId: this.user.serviceId,
+       subServiceId: this.user.subServiceId,
+       refDependentId: this.user.refDependentId,
+       idProofTypeId: this.user.idProofTypeId,
+       doctor: this.user.doctor,
+       payTransectionNo: this.user.payTransectionNo,
+       refPayModeId: this.user.refPayModeId,
+       refcouponId:this.user.refcouponId,
+       consultationType: this.user.consultationType,
+
+       cardNumber: this.user.cardNumber,
+       cuponNumber: this.user.cuponNumber,
+       serviceName: this.user.serviceName,
+       subServiceName: this.user.subServiceName, 
+       totalAmount: this.user.totalAmount,
+       discountAmount: this.user.discountAmount,
+       payableAmount: this.user.payableAmount, 
+       UserName: this.user.name,
+       cardOnName: this.user.cardOnName,
+       proName: this.proData.firstName+" "+this.proData.lastName  
+  } , disableClose: true});
+  }
+   myControl: FormControl = new FormControl();
+   paymentMode = [
+    { id: 1, name: "Cash" },   
+    { id: 2, name: "Credit Card"},
+    { id: 3, name: "Debt Card"},
+    { id: 4, name: "Paytm Wallet"},
+    { id: 5, name: "Others"}
+  ]
+  ngOnInit() {
+
+    this.user['refPayModeId'] = "1";
+    this.getIdentityData();
+    this.getProviderData();
+    this.route.queryParams.subscribe(queryParams => this.abc = queryParams['page']);  
+    if(this.abc != "" && this.abc != undefined)
+    {
+       this.user.cardNumber = this.abc;
+       this.getTrasnctionData1();
+     }  
+    this.kycshow = false;
+    this.IdValue = false;
+    this.getPayableAmountData();
+  }
+getIdentityData() {
+    
+    this._transaction.getIdentity()
+      .subscribe(data => {         
+        this.Identities = data.data; 
+        //console.log(this.Identities);   
       })
   }
 
-  getIdentityData() {
-    this._profile.getIdentity()
-      .subscribe(data => {
-        this.user = data.data;
-        //console.log(this.user);
-        this.user.forEach((element: any) => {
-          //debugger;
-          //console.log(element.idNo);
-          switch (element.refIdentityTypeId) {
-            case 1:
-              this.user.addharNo = element.idNo;
-              //console.log(this.user.addharNo);
-              break;
-            case 2:
-              this.user.passportNumber = element.idNo;
-              this.user.passportExpDate = moment(element.expiryDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-              break;
-            case 3:
-              this.user.panNumber = element.idNo;
-              this.user.pancardPix = element.imageUrl;
-              break;
-            case 4:
-              this.user.voterIdNumber = element.idNo;
-              break;
-            case 5:
-              this.user.dlNumber = element.idNo;
-              this.user.DrivingExpDate = moment(element.expiryDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-              break;
-          }
-        });
-
-      });
+ getProviderData() {
+     this._profile.getPersonalInfo()
+      .subscribe(data => {         
+      // debugger;
+        this.proData = data.data;         
+      })
   }
 
-  submitFrm(users: any) {
-    users.forEach(element => {
-      //debugger;
-      switch (element.refIdentityTypeId) {
-        case 1:
-          element.idNo = users.addharNo;
-          element.imageUrl = users.adharPix;
-          this.identity.push({ idNo: element.idNo, imageUrl: element.imageUrl });
-          break;
-        case 2:
-          element.idNo = users.passportNumber;
-          element.imageUrl = users.passportPix;
-          element.expiryDate = moment(users.passportExpDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-          this.identity.push({ idNo: element.idNo, expiryDate: element.expiryDate, imageUrl: element.imageUrl });
-          break;
-        case 5:
-          element.idNo = users.dlNumber;
-          element.imageUrl = users.drivingPix;
-          element.expiryDate = moment(users.DrivingExpDate, "DD/MMM/YYYY").format('DD/MMM/YYYY');
-          this.identity.push({ idNo: element.idNo, expiryDate: element.expiryDate, imageUrl: element.imageUrl });
-          break;
-        case 3:
-          element.idNo = users.panNumber;
-          element.imageUrl = users.pancardPix;
-          this.identity.push({ idNo: element.idNo, imageUrl: element.imageUrl });
-          break;
-      }
-    });
-
-    this._profile.updateIdentity(this.identity)
+getPayableAmountData() {
+      this._transaction.getpayableAmount({totalAmount: this.user.totalAmount})
       .subscribe(data => {
-        if (data.message) {
-          this.snackBar.open("Updated successfully", "", { duration: 5000 });
-          return false;
+       // debugger;       
+        this.payableTotalAmount = data.data;
+        this.user.discountAmount = data.data["discountAmount"];
+        this.user.payableAmount = data.data["payableAmount"];        
+        if(this.payableTotalAmount.payableAmount === 0){          
+          this.amoutP = true;
+          this.amoutP.option.value === 0;
+        }else{
+           this.amoutP = false;
         }
-      }, Error => {
-        this.snackBar.open("Somthing went wrong!", "", { duration: 5000 });
-      });
+       // console.log(this.payableTotalAmount);
+      })      
+  }
 
-    this.identity = [];
-
-    users['dob'] = moment(users['dob'], "DD/MMM/YYYY").format('DD/MMM/YYYY');
-    this._profile.updatePersonalInfo(users)
+  getTrasnctionData1() {
+    //debugger;
+    if(this.user.cardNumber.length == 6)
+    {
+      this._transaction.getCouponTransaction(this.user.cardNumber)
       .subscribe(data => {
-        if (data.message) {
-          this.snackBar.open("Updated successfully", "", { duration: 5000 });
-          return false;
-        }
-      }, Error => {
-        this.snackBar.open("Somthing went wrong!", "", { duration: 5000 });
-      });
+       //debugger;
+       this.alldatavalue = data.data;
+       this.user.refCardId = data.data["refCardId"];
+      //  this.user.cardNumber = data.data["cardNumber"];
+       this.user.refcouponId = data.data["refcouponId"];
+       this.user.consultationType = data.data["consultationType"];
+       this.rows = data.data["Members"];
+       this.services = data.data["Services"];
+       this.user.serviceId = this.services[0]["serviceId"];
+       this.user.serviceName = this.services[0]["serviceName"];
+       this.speciality= data.data["SubServices"];
+       this.user.subServiceId = this.speciality[0]["subServiceId"];
+       this.user.subServiceName = this.speciality[0]["subServiceName"];
+       this.user.totalAmount = data.data["totalAmount"];
+       this.user.discountAmount = data.data["discountAmount"];
+       this.user.payableAmount = data.data["payableAmount"];
+       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];
+      })  
+    }
+    else if(this.user.cardNumber.length == 16){
+      this._transaction.getTransaction(this.user.cardNumber)
+      .subscribe(data => {
+       //debugger;
+       this.alldatavalue = data.data;
+       this.user.refCardId = data.data["refCardId"];
+       this.user.refcouponId = data.data["refcouponId"];
+       this.user.consultationType = data.data["consultationType"];
+      //  this.rows = data.data["Members"];
+       this.services = data.data["Services"];
+       this.speciality= data.data["SubServices"];
+       this.user.cardOnName =  this.alldatavalue["Members"].filter(function (a) { return a.relationshipId === 1;})[0]["name"];    
+      })
+    }else{
+      this.snackBar.open("Please enter the valid Card No / Cupon No.","",{duration:5000});
+    }   
   }
 
-  editFrm() {
-    this.isReadOnly = !this.isReadOnly;
-    this.edited = false;
-  }
-
-  getFileFx(eve, id) {
-    //console.log(eve.target.value);
-    // console.log(id);
-    switch (id) {
-      case 1:
-        this.user['adharPix'] = eve.target.value;
-        break;
-      case 2:
-        this.user['passportPix'] = eve.target.value;
-        break;
-      case 5:
-        this.user['drivingPix'] = eve.target.value;
-        break;
-      case 3:
-        this.user['pancardPix'] = eve.target.value;
-        break;
+  kycShow(value) {
+    //debugger;
+    this.kycshow = true;
+    this.user.idProofTypeId = value.idProofTypeId;
+    this.user.idProofNumber = value.idProofNumber;
+    this.user.idProoImg = value.idProoImg;
+    this.user.name = value.name;
+    this.user.contactNo = value.contactNo;
+    this.user.relation = value.relation;
+    this.user.refDependentId = value.refDependentId;   
+    if(this.user.idProoImg === ""){
+    this.IdValue = true;
     }
   }
-
-
-
-  getPersonalData() {
-    this._profile.getPersonalInfo()
-      .subscribe(data => {
-        this.user = data.data;
-        // this.user['dob'] = moment(this.user['dob'],"DD/MM/YYYY").format('MM/DD/YYYY');
-        console.log(data.data);
-      });
+  otpshow(){
+    this.showotp = true;
+    this.button = true;
+  }
+  paydetails(){
+    this.detailspay = true;
+    this.button = false;
+  }
+  showpay(){
+    this.payshow = true;
+    this.button = true;
   }
 
+  getMemberData(value){
+     //debugger;
+     this.rows = this.alldatavalue["Members"];  
+    }
 
+  getSubService(value){
+   this.speciality = this.alldatavalue["SubServices"].filter(function (a) { return a.serviceId === value; });
 
+   this.user.serviceName =  this.alldatavalue["Services"].filter(function (a) { return a.serviceId === value; })[0]["serviceName"]; 
+   
+  }  
+   // edit readonly fields
+   editFrm() {
+     this.isReadOnly = !this.isReadOnly;
+     this.edited = false;  
+  }
 
+    getSubServiceName(value){
+      //debugger;
+      this.user.subServiceName=  this.alldatavalue["SubServices"].filter(function (a) { return a.subServiceId === value; })[0]["subServiceName"];
+    }
+
+     postOTP() {
+      //debugger; 
+      this.model.mobileNo = this.user.contactNo;
+      this._transaction.sendOTP(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          // this.snackBar.open("Updated successfully","",{duration:5000});
+          // return false;
+        }
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      }); 
+     }
+
+     verifyOTP() {
+      //debugger; 
+      this.model.mobileNo = this.user.contactNo;
+      this.model.otp = this.user.otp;
+      this._transaction.verifyOTP(this.model)
+      .subscribe(data => {    
+         if(data.message) {
+          this.showpay();
+          }else if(data && data.error && data.error.message){
+            this.snackBar.open("Somthing went wrong!, Please Check OTP Code","",{duration:5000});
+          }        
+      }, Error => {
+        this.snackBar.open("Somthing went wrong!","",{duration:5000});
+      }); 
+     }      
+  
 }

@@ -3,19 +3,27 @@ textarea.mat-input-element {
     overflow: auto;
     height: 100px;
 }
+.fixh{
+    min-height: 405px;
+}
 .file-upload{
-    height: 95px;
+    height: 70px;
     border: 2px dashed #cccccc;
-   
+    margin-bottom: 20px;
     md-icon{
         position: absolute;
     }
 }
-span{
-    font-size:18px;
+.opt{
+    margin-top: 6px
 }
+
+
+// span{
+//     font-size:18px;
+// }
 .btnupload{
-    height: 95px;
+    height: 70px;
     width: 100%;
     opacity: 0;
 }
@@ -39,7 +47,9 @@ label{
         padding-left: 0px;
     }
 }
-
+.fixh{
+    min-height: 405px;
+}
 .cp-para h3 span{position: relative;font-family: "Oswald",Helvetica,Arial,sans-serif;}
 .cp-para h3 span::after{
     content: '';
@@ -80,3 +90,15 @@ hr{    width: 10%;
             font-size: 17px;
           }
       }
+.opt{
+    margin-top: 6px
+}
+.field{
+    border: none;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.btn_contain{
+    height: 40px;
+    margin-top: 25px;
+  }

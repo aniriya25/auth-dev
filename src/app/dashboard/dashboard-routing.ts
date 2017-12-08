@@ -10,7 +10,10 @@ const dashboardRoutes: Routes = [
             {path: 'outlet' , loadChildren:"./../outlet/outlet.module#OutletModule"},
             {path: 'transactions' , loadChildren:"./../transactions/transactions.module#TransactionsModule"},
             {path: 'providers' , loadChildren:"./../providers/providers.module#ProvidersModule"},
-            {path: 'provider' , loadChildren:"./../outlet/outlet.module#OutletModule"}
+            {path: 'provider' , loadChildren:"./../outlet/outlet.module#OutletModule"},
+            {path: 'invoices' , loadChildren:"./../invoices/invoices.module#InvoicesModule"},
+            {path: 'package' , loadChildren:"./../package/package.module#PackageModule"}
+            
         ]
     },
     {path: '**', redirectTo: 'home', pathMatch: 'full'},
